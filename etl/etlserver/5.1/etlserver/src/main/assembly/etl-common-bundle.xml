@@ -1,0 +1,35 @@
+<assembly>
+	<id>etl-lib-common</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<dependencySets>
+		<dependencySet>
+			<includes>
+				<include>javax.activation:activation</include>
+				<include>commons*:*</include>
+				<include>log4j:log4j</include>
+				<include>jaxen:jaxen</include>
+				<include>wsdl4j:wsdl4j</include>
+				<include>jdom:jdom</include>
+				<include>org.apache.axis2:*</include>
+				<include>org.apache.ws.commons.axiom:*</include>
+				<include>xalan:xalan</include>
+				<include>xerces:xercesImpl</include>
+				<include>javax.activation:activation</include>
+				<!-- <include>org.apache.ws.commons.schema:XmlSchema</include> -->
+				<include>com.sun.xml.bind:jaxb-xjc</include>
+				<include>com.sun.xml.bind:jaxb-impl</include>
+				<include>javax.xml.bind:jaxb-api</include>
+				<include>xml-apis:xml-apis</include>
+				<include>javax.xml.stream:stax-api</include>
+				<include>org.codehaus.woodstox:wstx-asl</include>
+				<include>backport-util-concurrent:backport-util-concurrent</include>
+				<include>org.apache.ant:ant*</include>
+				<include>jline:jline</include>
+				<include>org.apache.geronimo*:*</include>
+			</includes>
+		</dependencySet>
+	</dependencySets>
+</assembly>

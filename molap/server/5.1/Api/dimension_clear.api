@@ -1,0 +1,84 @@
+@request_path /dimension/clear
+
+@short_description Clears a dimension
+
+@long_description Clears a dimension by removing all elements within
+the dimension. The dimension itself remains, however all associated
+cubes are also cleared.
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+
+@param dimension
+@param_type identifier
+@param_description Identifier of the dimension
+
+@param name_dimension
+@param_type string
+@param_description Name of the dimension. Used only if dimension parameter is omitted.
+
+@param type
+@param_type integer
+@param_description Optional parameter. Clear only elements of specified type (1=NUMERIC, 2=STRING, 4=CONSOLIDATED)
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+ 
+
+
+@result dimension
+@result_type identifier
+@result_description Identifier of the dimension
+
+@result name_dimension
+@result_type string
+@result_description Name of the dimension
+
+@result number_elements
+@result_type integer
+@result_description Number of elements
+
+@result maximum_level
+@result_type integer
+@result_description Maximum level of the dimension
+
+@result maximum_indent
+@result_type integer
+@result_description Maximum indent of the dimension
+
+@result maximum_depth
+@result_type integer
+@result_description Maximum depth of the dimension
+
+@result type
+@result_type integer
+@result_description Type of dimension (0=normal, 1=system, 2=attribute)
+
+@result attributes_dimension
+@result_type identifier
+@result_description Identifier of the attributes dimension of a normal dimension or the 
+identifier of the normal dimension associated to a attributes dimension.
+
+@result attributes_cube
+@result_type identifier
+@result_description Identifier of the attributes cube. (only for normal dimensions)
+
+@result rights_cube
+@result_type identifier
+@result_description Identifier of the rights cube. (only for normal dimensions)
+
+@result dimension_token
+@result_type integer
+@result_description The dimension token of the dimension
+
+
+
+@example database=1&dimension=10
+@example_description Clears dimensions "10" of database "1"

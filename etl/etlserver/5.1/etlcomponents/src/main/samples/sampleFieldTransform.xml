@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleFieldTransform" version="5.1" modified="1383649194228" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Different possibilities of data transformations with functions in a Transform of type FieldTransform are demonstrated. The result is written to Flat Files with File-Loads.</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="Customer_file" type="File" modified="1383649194228" modifiedBy="">
+      <database>BikerCustomerRegions.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Orderlines_file" type="File" modified="1383649194228" modifiedBy="">
+      <database>BikerOrderlines.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Out_Mapping" type="File" modified="1383649194228" modifiedBy="">
+      <database>Result_Mapping.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Out_Date" type="File" modified="1383649194228" modifiedBy="">
+      <database>Result_Date.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Out_Row" type="File" modified="1383649194228" modifiedBy="">
+      <database>Result_Row.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Out_Text" type="File" modified="1383649194228" modifiedBy="">
+      <database>Result_Text.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Out_OlapData" type="File" modified="1383649194228" modifiedBy="">
+      <database>Result_OlapData.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="palodemo" type="Jedox" modified="1383649194228" modifiedBy="">
+      <host>127.0.0.1</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">cFju7JN3KyVmTPxIbDA/1w==</password>
+      <database>Demo</database>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="E_Customers" type="File" modified="1383649194228" modifiedBy="">
+      <connection nameref="Customer_file" />
+    </extract>
+    <extract name="E_Orderlines" type="File" modified="1383649194228" modifiedBy="">
+      <connection nameref="Orderlines_file" />
+      <alias_map>
+        <alias name="SalesOrderID">1</alias>
+        <alias name="OrderDate">2</alias>
+        <alias name="CustomerID">4</alias>
+        <alias name="ProductID">7</alias>
+        <alias name="OrderQty">9</alias>
+        <alias name="LineCost">12</alias>
+        <alias name="LineTotal">14</alias>
+        <alias name="Channel">18</alias>
+      </alias_map>
+    </extract>
+    <extract name="E_Regions" type="Dimension" modified="1383649194228" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query>
+        <dimension name="Regions" />
+      </query>
+      <withAttributes>false</withAttributes>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="T_Text" type="FieldTransform" modified="1383649194228" modifiedBy="">
+      <sources>
+        <source nameref="E_Customers" />
+      </sources>
+      <functions>
+        <function name="CountryName_Upper" type="UpperLower">
+          <inputs>
+            <input nameref="Country" />
+          </inputs>
+          <parameters>
+            <case>upper</case>
+          </parameters>
+        </function>
+        <function name="Name1" type="Concatenation">
+          <inputs>
+            <input nameref="Title" />
+            <input nameref="FirstName" />
+            <input nameref="LastName" />
+          </inputs>
+          <parameters>
+            <delimiter>#space</delimiter>
+          </parameters>
+        </function>
+        <function name="Name2" type="Concatenation">
+          <inputs>
+            <input nameref="FirstName" />
+            <input nameref="LastName" />
+          </inputs>
+          <parameters>
+            <template>#{FirstName}_#{LastName}</template>
+          </parameters>
+        </function>
+        <function name="Phone_Part1" type="Split">
+          <inputs>
+            <input nameref="Phone" />
+          </inputs>
+          <parameters>
+            <separator>-</separator>
+            <occurence>1</occurence>
+            <default>NotFound</default>
+          </parameters>
+        </function>
+        <function name="Phone_Part2" type="Split">
+          <inputs>
+            <input nameref="Phone" />
+          </inputs>
+          <parameters>
+            <separator>-</separator>
+            <occurence>2</occurence>
+            <default>NotFound</default>
+          </parameters>
+        </function>
+        <function name="Company_Begin" type="SubString">
+          <inputs>
+            <input nameref="CompanyName" />
+          </inputs>
+          <parameters>
+            <begin>1</begin>
+            <end>10</end>
+          </parameters>
+        </function>
+        <function name="Company_End" type="SubString">
+          <inputs>
+            <input nameref="CompanyName" />
+          </inputs>
+          <parameters>
+            <begin>1</begin>
+            <end>10</end>
+            <fromSide>right</fromSide>
+          </parameters>
+        </function>
+        <function name="Phone_Replace" type="Replace">
+          <inputs>
+            <input nameref="Phone" />
+          </inputs>
+          <parameters>
+            <regexp>[-]</regexp>
+            <replacement>/</replacement>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="T_Mapping" type="FieldTransform" modified="1383649194228" modifiedBy="">
+      <sources>
+        <source nameref="E_Orderlines" />
+      </sources>
+      <functions>
+        <function name="Customer_Text" type="Lookup">
+          <inputs>
+            <input nameref="CustomerID" />
+          </inputs>
+          <parameters>
+            <source>E_Customers</source>
+            <from>CustomerID</from>
+            <to>CompanyName</to>
+          </parameters>
+        </function>
+        <function name="Channel_Trans" type="Map">
+          <inputs>
+            <input nameref="Channel" />
+          </inputs>
+          <parameters>
+            <map>Online Shop=Online,Fax/Phone/Mail=Telephone</map>
+            <default>No Channel</default>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="T_Date" type="FieldTransform" modified="1383649194228" modifiedBy="">
+      <sources>
+        <source nameref="E_Orderlines" />
+      </sources>
+      <functions>
+        <function name="Year" type="DateFormat">
+          <inputs>
+            <input nameref="OrderDate" />
+          </inputs>
+          <parameters>
+            <targetformat>yyyy</targetformat>
+            <sourceformat>dd.MM.yyyy</sourceformat>
+          </parameters>
+        </function>
+        <function name="Month" type="DateFormat">
+          <inputs>
+            <input nameref="OrderDate" />
+          </inputs>
+          <parameters>
+            <targetformat>MMM</targetformat>
+            <sourceformat>dd.MM.yyyy</sourceformat>
+            <language>en</language>
+          </parameters>
+        </function>
+        <function name="Excel_Day" type="DateDuration">
+          <inputs>
+            <input constant="31.12.1899" />
+            <input nameref="OrderDate" />
+          </inputs>
+          <parameters>
+            <unit>days</unit>
+            <sourceformat>dd.MM.yyyy</sourceformat>
+          </parameters>
+        </function>
+        <function name="100DaysLater" type="DateDuration">
+          <inputs>
+            <input nameref="OrderDate" />
+            <input constant="100" />
+          </inputs>
+          <parameters>
+            <unit>days</unit>
+            <sourceformat>dd.MM.yyyy</sourceformat>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="T_Row" type="FieldTransform" modified="1383649194228" modifiedBy="">
+      <sources>
+        <source nameref="E_Customers" />
+      </sources>
+      <functions>
+        <function name="Index" type="RowNumber">
+          <parameters>
+            <start>1</start>
+          </parameters>
+        </function>
+        <function name="Previous_Customer" type="Previous">
+          <inputs>
+            <input nameref="CustomerID" />
+          </inputs>
+          <parameters>
+            <default>N.A.</default>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="T_OlapData" type="FieldTransform" modified="1383649194228" modifiedBy="">
+      <sources>
+        <source nameref="E_Regions" format="ea" />
+      </sources>
+      <functions>
+        <function name="ActualUnits" type="OlapData">
+          <inputs>
+            <input constant="All Products" />
+            <input nameref=":element" />
+            <input constant="Year" />
+            <input constant="All Years" />
+            <input constant="Actual" />
+            <input constant="Units" />
+          </inputs>
+          <parameters>
+            <connection>palodemo</connection>
+            <cube>Sales</cube>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="L_Text" type="File" modified="1383649194228" modifiedBy="">
+      <source nameref="T_Text" />
+      <connection nameref="Out_Text" />
+    </load>
+    <load name="L_Date" type="File" modified="1383649194228" modifiedBy="">
+      <source nameref="T_Date" />
+      <connection nameref="Out_Date" />
+    </load>
+    <load name="L_Row" type="File" modified="1383649194228" modifiedBy="">
+      <source nameref="T_Row" />
+      <connection nameref="Out_Row" />
+    </load>
+    <load name="L_Mapping" type="File" modified="1383649194228" modifiedBy="">
+      <source nameref="T_Mapping" />
+      <connection nameref="Out_Mapping" />
+    </load>
+    <load name="L_OlapData" type="File" modified="1383649194228" modifiedBy="">
+      <source nameref="T_OlapData" />
+      <connection nameref="Out_OlapData" />
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard" modified="1383649194228" modifiedBy="">
+      <execution type="load" nameref="L_Text" />
+      <execution type="load" nameref="L_Mapping" />
+      <execution type="load" nameref="L_Date" />
+      <execution type="load" nameref="L_Row" />
+      <execution type="load" nameref="L_OlapData" />
+    </job>
+  </jobs>
+</project>
+

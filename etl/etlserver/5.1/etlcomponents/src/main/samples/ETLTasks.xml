@@ -1,0 +1,1032 @@
+<project name="ETLTasks" version="5.1" modified="1394705605244" modifiedBy="">
+  <headers>
+    <header name="comment" modified="1394702840960" modifiedBy="">
+      <comment><![CDATA[Automated tasks for OLAP Server:
+- CubeCopy
+- CubeRulesCalc
+- CubeAnonymize
+- DatabaseBackup
+- DatabaseRestore
+- DatabaseCopy
+- DatabaseSave
+- DatabaseAnonymize
+- CreateOlap
+- RulesReplace
+- UpdateElementType
+- PopulateCube]]></comment>
+    </header>
+  </headers>
+  <variables>
+    <variable name="SourceConn" modified="1394701167973" modifiedBy="">
+      <default>localhost_static</default>
+    </variable>
+    <variable name="SourceDB" modified="1394701167973" modifiedBy="">
+      <default>Demo</default>
+    </variable>
+    <variable name="TargetConn" modified="1394701167973" modifiedBy="">
+      <default>localhost_static</default>
+    </variable>
+    <variable name="TargetDB" modified="1394705605244" modifiedBy="">
+      <comment />
+      <default>Demo_Copy</default>
+    </variable>
+    <variable name="FilePath" modified="1394701167973" modifiedBy="">
+      <default>.</default>
+    </variable>
+    <variable name="FileName" modified="1394704608299" modifiedBy="">
+      <comment />
+      <default>Test.csv</default>
+    </variable>
+    <variable name="Cube" modified="1394701167973" modifiedBy="">
+      <default>Sales</default>
+    </variable>
+    <variable name="TargetCube" modified="1394701167973" modifiedBy="">
+      <default>SalesCopy</default>
+    </variable>
+    <variable name="Dimension" modified="1394701167973" modifiedBy="">
+      <default>Months</default>
+    </variable>
+    <variable name="RegExp" modified="1394701167973" modifiedBy="">
+      <default>Desktop Pro</default>
+    </variable>
+    <variable name="Replacement" modified="1394701167973" modifiedBy="">
+      <default>Desktop L</default>
+    </variable>
+    <variable name="TargetElementType" modified="1394701167973" modifiedBy="">
+      <default>N</default>
+    </variable>
+    <variable name="NumericLocale" modified="1394701167973" modifiedBy="">
+      <default>GERMAN</default>
+    </variable>
+    <variable name="NumberOfCells" modified="1394701167973" modifiedBy="">
+      <default>100</default>
+    </variable>
+    <variable name="Delimiter" modified="1394701167973" modifiedBy="">
+      <default>;</default>
+    </variable>
+    <variable name="_cellType" modified="1394701167973" modifiedBy="">
+      <default>only_string</default>
+    </variable>
+    <variable name="_elementType" modified="1394701167973" modifiedBy="">
+      <default>S</default>
+    </variable>
+    <variable name="_SourceRef" modified="1394701167973" modifiedBy="">
+      <default>Cube_Extract</default>
+    </variable>
+    <variable name="_Count" modified="1394701167973" modifiedBy="">
+      <default>0</default>
+    </variable>
+  </variables>
+  <connections>
+    <connection name="OlapSource" type="JedoxGlobal" modified="1394701167973" modifiedBy="">
+      <globalReference>${SourceConn}</globalReference>
+      <database>${SourceDB}</database>
+      <comment><![CDATA[Reference to Jedox source connection defined in Connection Manager. Only Connections which don't use user credentials are allowed.]]></comment>
+    </connection>
+    <connection name="OlapTarget" type="JedoxGlobal" modified="1394701167973" modifiedBy="">
+      <globalReference>${TargetConn}</globalReference>
+      <database>${TargetDB}</database>
+      <comment><![CDATA[Reference to Jedox target connection defined in Connection Manager. Only Connections which don't use user credentials are allowed.]]></comment>
+    </connection>
+    <connection name="DimFile" type="File" modified="1394701167973" modifiedBy="">
+      <database>${FilePath}\\${Dimension}.DIMENSION.TXT</database>
+      <header>true</header>
+      <delimiter>${Delimiter}</delimiter>
+      <quote>"</quote>
+      <encoding>UTF-8</encoding>
+      <enableEscape>false</enableEscape>
+    </connection>
+    <connection name="DimFiles" type="Directory" modified="1394701167973" modifiedBy="">
+      <database>${FilePath}</database>
+      <pattern>.DIMENSION.TXT$</pattern>
+      <header>false</header>
+      <delimiter>${Delimiter}</delimiter>
+      <quote>"</quote>
+      <encoding>UTF-8</encoding>
+      <enableEscape>false</enableEscape>
+    </connection>
+    <connection name="CubeFile" type="File" modified="1394701167973" modifiedBy="">
+      <database>${FilePath}\\${Cube}.CUBE.TXT</database>
+      <header>true</header>
+      <delimiter>${Delimiter}</delimiter>
+      <quote>"</quote>
+      <encoding>UTF-8</encoding>
+      <enableEscape>false</enableEscape>
+    </connection>
+    <connection name="CubeFiles" type="Directory" modified="1394701167973" modifiedBy="">
+      <database>${FilePath}</database>
+      <pattern>.CUBE.TXT$</pattern>
+      <header>true</header>
+      <delimiter>${Delimiter}</delimiter>
+      <quote>"</quote>
+      <encoding>UTF-8</encoding>
+      <enableEscape>false</enableEscape>
+    </connection>
+    <connection name="RuleFile" type="File" modified="1394701167973" modifiedBy="">
+      <database>${FilePath}\\${Cube}.RULE.TXT</database>
+      <header>true</header>
+      <delimiter>${Delimiter}</delimiter>
+      <quote>"</quote>
+      <encoding>UTF-8</encoding>
+      <enableEscape>false</enableEscape>
+    </connection>
+    <connection name="RuleFiles" type="Directory" modified="1394701167973" modifiedBy="">
+      <database>${FilePath}</database>
+      <pattern>.RULE.TXT$</pattern>
+      <header>true</header>
+      <delimiter>${Delimiter}</delimiter>
+      <quote>"</quote>
+      <encoding>UTF-8</encoding>
+      <enableEscape>false</enableEscape>
+    </connection>
+    <connection name="GenericFile" type="File" modified="1394703262883" modifiedBy="">
+      <database>${FilePath}\\${FileName}</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>UTF-8</encoding>
+      <enableEscape>false</enableEscape>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="DimFiles_Extract" type="Metadata" modified="1394701167973" modifiedBy="">
+      <connection nameref="DimFiles" />
+      <query>
+        <selector>files</selector>
+      </query>
+    </extract>
+    <extract name="RuleFiles_Extract" type="Metadata" modified="1394701167973" modifiedBy="">
+      <connection nameref="RuleFiles" />
+      <query>
+        <selector>files</selector>
+      </query>
+    </extract>
+    <extract name="CubeFiles_Extract" type="Metadata" modified="1394701167973" modifiedBy="">
+      <connection nameref="CubeFiles" />
+      <query>
+        <selector>files</selector>
+      </query>
+    </extract>
+    <extract name="Dimension_Extract" type="Dimension" modified="1394704919365" modifiedBy="">
+      <connection nameref="OlapSource" />
+      <query>
+        <dimension name="${Dimension}" />
+      </query>
+      <withAttributes>false</withAttributes>
+    </extract>
+    <extract name="Dimension_Filter_Extract" type="Dimension" modified="1394701167973" modifiedBy="">
+      <connection nameref="OlapSource" />
+      <query>
+        <dimension name="${Dimension}">
+          <condition operator="like" value="${RegExp}" mode="onlyNodes" type="accept" />
+        </dimension>
+      </query>
+      <withAttributes>false</withAttributes>
+    </extract>
+    <extract name="Cube_Slice_Extract" type="CubeSlice" modified="1394701167973" modifiedBy="">
+      <connection nameref="OlapSource" />
+      <query randomPaths="true" mode="generateBases">
+        <cube name="${Cube}" valuename="Value" fixValue="#random(-1000,1000)" />
+        <dimensions />
+      </query>
+    </extract>
+    <extract name="Cube_Extract" type="Cube" modified="1394701167973" modifiedBy="">
+      <connection nameref="OlapSource" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="${Cube}" />
+      </query>
+    </extract>
+    <extract name="CubeRulesCalc_Extract" type="Cube" modified="1394701167973" modifiedBy="">
+      <connection nameref="OlapSource" />
+      <query useRules="true" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="${Cube}" />
+      </query>
+    </extract>
+    <extract name="Rule_Extract" type="Rule" modified="1394701167973" modifiedBy="">
+      <connection nameref="OlapSource" />
+      <cube name="${Cube}" />
+    </extract>
+    <extract name="DimFile_Extract" type="File" modified="1394701167973" modifiedBy="">
+      <connection nameref="DimFile" />
+      <columns>3</columns>
+    </extract>
+    <extract name="CubeFile_Extract" type="File" modified="1394701167973" modifiedBy="">
+      <connection nameref="CubeFile" />
+    </extract>
+    <extract name="RuleFile_Extract" type="File" modified="1394701167973" modifiedBy="">
+      <connection nameref="RuleFile" />
+    </extract>
+    <extract name="Cubes" type="Metadata" modified="1394701167973" modifiedBy="">
+      <connection nameref="OlapSource" />
+      <query>
+        <selector>cube</selector>
+        <filters>
+          <filter name="mask" value="11101" />
+        </filters>
+      </query>
+    </extract>
+    <extract name="Dimensions" type="Metadata" modified="1394701167973" modifiedBy="">
+      <connection nameref="OlapSource" />
+      <query>
+        <selector>dimension</selector>
+        <filters>
+          <filter name="mask" value="1101" />
+        </filters>
+      </query>
+    </extract>
+    <extract name="NormalDimensions" type="Metadata" modified="1394701167973" modifiedBy="">
+      <connection nameref="OlapSource" />
+      <query>
+        <selector>dimension</selector>
+        <filters>
+          <filter name="mask" value="1000" />
+        </filters>
+      </query>
+    </extract>
+    <extract name="DimensionCubes" type="Metadata" modified="1394701167973" modifiedBy="">
+      <connection nameref="OlapSource" />
+      <query>
+        <selector>cube</selector>
+        <filters>
+          <filter name="mask" value="11101" />
+          <filter name="dimension" value="${Dimension}" />
+        </filters>
+      </query>
+    </extract>
+    <extract name="Cube_Type_Extract" type="Cube" modified="1394701167973" modifiedBy="">
+      <connection nameref="OlapSource" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="${_cellType}">
+        <cube name="${Cube}" valuename="Value" />
+        <dimensions>
+          <dimension name="${Dimension}">
+            <condition operator="like" value="${RegExp}" mode="onlyNodes" type="accept" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+    <extract name="GenericFile_Extract" type="File" modified="1394703275788" modifiedBy="">
+      <connection nameref="GenericFile" />
+    </extract>
+    <extract name="GenericFile_Columns" type="Metadata" modified="1394703315832" modifiedBy="">
+      <connection nameref="GenericFile" />
+      <query>
+        <selector>columns</selector>
+      </query>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="Cube_Slice_Transform" type="TableView" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="Cube_Slice_Extract" />
+      </sources>
+      <end>${NumberOfCells}</end>
+    </transform>
+    <transform name="DimensionCubes_T1" type="FieldTransform" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="DimensionCubes" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Cube">
+            <input nameref="Name" />
+          </coordinate>
+        </coordinates>
+      </target>
+    </transform>
+    <transform name="Dim_TreeNC_Transform" type="TreeNC" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="DimFile_Extract" />
+      </sources>
+      <target>
+        <type>
+          <input nameref=":type" />
+        </type>
+        <element>
+          <input nameref=":element" />
+        </element>
+        <weight>
+          <input nameref=":weight" />
+        </weight>
+      </target>
+    </transform>
+    <transform name="Cube_Anonymize" type="FieldTransform" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="Cube_Extract" />
+      </sources>
+      <functions>
+        <function name="#Value" type="Groovy">
+          <inputs>
+            <input nameref="#Value" />
+          </inputs>
+          <parameters>
+            <script><![CDATA[if (_input1==null || _input1.isEmpty()) {
+	return "";
+};
+
+if (_input1.isDouble()) {
+	if (_input1.toDouble() >= 0)
+		return 1000*Math.random();
+	else
+		return -1000*Math.random();
+};
+
+return 1000000*Math.random();]]></script>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="Cubes_T1" type="TableView" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="Cubes" />
+      </sources>
+      <sorter>
+        <input nameref="isNormalCube" order="desc" />
+      </sorter>
+    </transform>
+    <transform name="DimFiles_T1" type="TableView" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="DimFiles_Extract" />
+      </sources>
+      <sorter>
+        <input nameref="Filename" order="desc" />
+      </sorter>
+    </transform>
+    <transform name="CubeFiles_T1" type="TableView" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="CubeFiles_Extract" />
+      </sources>
+      <sorter>
+        <input nameref="Filename" order="desc" />
+      </sorter>
+    </transform>
+    <transform name="Dimensions_T1" type="TableView" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="Dimensions" />
+      </sources>
+      <sorter>
+        <input nameref="isNormalDimension" order="desc" />
+        <input nameref="Id" order="asc" />
+      </sorter>
+    </transform>
+    <transform name="Dimensions_T2" type="FieldTransform" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="Dimensions_T1" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Dimension">
+            <input nameref="Name" />
+          </coordinate>
+        </coordinates>
+      </target>
+    </transform>
+    <transform name="Cubes_T2" type="FieldTransform" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="Cubes_T1" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Cube">
+            <input nameref="Name" />
+          </coordinate>
+        </coordinates>
+      </target>
+    </transform>
+    <transform name="DimFiles_T2" type="FieldTransform" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="DimFiles_T1" />
+      </sources>
+      <functions>
+        <function name="Dimension" type="Replace">
+          <inputs>
+            <input nameref="Filename" />
+          </inputs>
+          <parameters>
+            <regexp>.DIMENSION.TXT</regexp>
+          </parameters>
+        </function>
+      </functions>
+      <target>
+        <coordinates>
+          <coordinate name="Dimension">
+            <input nameref="Dimension" />
+          </coordinate>
+        </coordinates>
+      </target>
+    </transform>
+    <transform name="CubeFiles_T2" type="FieldTransform" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="CubeFiles_T1" />
+      </sources>
+      <functions>
+        <function name="Cube" type="Replace">
+          <inputs>
+            <input nameref="Filename" />
+          </inputs>
+          <parameters>
+            <regexp>.CUBE.TXT</regexp>
+          </parameters>
+        </function>
+      </functions>
+      <target>
+        <coordinates>
+          <coordinate name="Cube">
+            <input nameref="Cube" />
+          </coordinate>
+        </coordinates>
+      </target>
+    </transform>
+    <transform name="RuleFiles_T2" type="FieldTransform" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="RuleFiles_Extract" />
+      </sources>
+      <functions>
+        <function name="Cube" type="Replace">
+          <inputs>
+            <input nameref="Filename" />
+          </inputs>
+          <parameters>
+            <regexp>.RULE.TXT</regexp>
+          </parameters>
+        </function>
+      </functions>
+      <target>
+        <coordinates>
+          <coordinate name="Cube">
+            <input nameref="Cube" />
+          </coordinate>
+        </coordinates>
+      </target>
+    </transform>
+    <transform name="NormalDimensions_T2" type="FieldTransform" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="NormalDimensions" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Dimension">
+            <input nameref="Name" />
+          </coordinate>
+          <coordinate name="_Count">
+            <input nameref="_Count" />
+          </coordinate>
+        </coordinates>
+      </target>
+      <functions>
+        <function name="_Count" type="RowNumber" />
+      </functions>
+    </transform>
+    <transform name="Dimension_Anonym_T1" type="FieldTransform" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="Dimension_Extract" format="ea" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="OldName">
+            <input nameref=":element" />
+          </coordinate>
+          <coordinate name="NewName">
+            <input nameref="NewName" />
+          </coordinate>
+        </coordinates>
+      </target>
+      <functions>
+        <function name="RowNumber" type="RowNumber" />
+        <function name="NewName" type="Concatenation">
+          <inputs>
+            <input nameref="RowNumber" />
+          </inputs>
+          <parameters>
+            <template>D${_Count} E#{RowNumber}</template>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="Rule_Replace" type="FieldTransform" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="Rule_Extract" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="NewDefinition">
+            <input nameref="NewDefinition" />
+          </coordinate>
+          <coordinate name="NewComment">
+            <input nameref="NewComment" />
+          </coordinate>
+          <coordinate name="ExternID">
+            <input nameref="ExternID" />
+          </coordinate>
+          <coordinate name="Timestamp">
+            <input nameref="Timestamp" />
+          </coordinate>
+        </coordinates>
+      </target>
+      <functions>
+        <function name="NewDefinition" type="Replace">
+          <inputs>
+            <input nameref="Definition" />
+          </inputs>
+          <parameters>
+            <regexp>${RegExp}</regexp>
+            <replacement>${Replacement}</replacement>
+          </parameters>
+        </function>
+        <function name="NewComment" type="Replace">
+          <inputs>
+            <input nameref="Comment" />
+          </inputs>
+          <parameters>
+            <regexp>${RegExp}</regexp>
+            <replacement>${Replacement}</replacement>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="ElementTypeTransform" type="TableView" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="Dimension_Filter_Extract" format="ncw" />
+      </sources>
+      <filter>
+        <input nameref=":type">
+          <condition operator="equal" value="${_elementType}" type="accept" />
+        </input>
+      </filter>
+    </transform>
+    <transform name="CubeFile_Transform" type="FieldTransform" modified="1394701167973" modifiedBy="">
+      <sources>
+        <source nameref="CubeFile_Extract" />
+      </sources>
+      <functions>
+        <function name="Value" type="Groovy">
+          <inputs>
+            <input nameref="Value" />
+          </inputs>
+          <parameters>
+            <script><![CDATA[import java.text.*;
+
+		try{
+			if(${TargetElementType}.equals("S")){
+				return _input1;
+			};
+			NumberFormat formatter = NumberFormat.getInstance(Locale.${NumericLocale});
+			return formatter.parse(_input1);
+
+		}
+		catch(Exception e){
+			return _input1;
+		}]]></script>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="GenericDimension_Tree" type="TreeFH" modified="1394705527743" modifiedBy="">
+      <sources>
+        <source nameref="GenericFile_Extract" />
+      </sources>
+      <target type="numeric">
+        <levels>
+          <level>
+            <input constant="All ${Dimension}" />
+          </level>
+          <level>
+            <input nameref="${Dimension}" />
+          </level>
+        </levels>
+      </target>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="DimensionCopy_Load" type="Dimension" modified="1394701167973" modifiedBy="">
+      <source nameref="Dimension_Extract" />
+      <connection nameref="OlapTarget" />
+      <dimension name="${Dimension}">
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="inactive" />
+      </dimension>
+    </load>
+    <load name="CubeCopy_Load" type="Cube" modified="1394701167973" modifiedBy="">
+      <source nameref="${_SourceRef}" />
+      <connection nameref="OlapTarget" />
+      <cube name="${Cube}" />
+      <mode>update</mode>
+    </load>
+    <load name="RuleCopy_Load" type="Rule" modified="1394701167973" modifiedBy="">
+      <source nameref="Rule_Extract" />
+      <connection nameref="OlapTarget" />
+      <cube name="${Cube}" />
+      <mode>update</mode>
+    </load>
+    <load name="DimToFile_Load" type="File" modified="1394701167973" modifiedBy="">
+      <source nameref="Dimension_Extract" format="ncw" />
+      <connection nameref="DimFile" />
+      <mode>create</mode>
+    </load>
+    <load name="CubeToFile_Load" type="File" modified="1394701167973" modifiedBy="">
+      <source nameref="Cube_Extract" />
+      <connection nameref="CubeFile" />
+      <mode>create</mode>
+    </load>
+    <load name="RuleToFile_Load" type="File" modified="1394701167973" modifiedBy="">
+      <source nameref="Rule_Extract" />
+      <connection nameref="RuleFile" />
+      <mode>create</mode>
+    </load>
+    <load name="DimFromFile_Load" type="Dimension" modified="1394701167973" modifiedBy="">
+      <source nameref="Dim_TreeNC_Transform" />
+      <connection nameref="OlapTarget" />
+      <dimension name="${Dimension}">
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="inactive" />
+      </dimension>
+    </load>
+    <load name="CubeFromFile_Load" type="Cube" modified="1394701167973" modifiedBy="">
+      <source nameref="CubeFile_Extract" />
+      <connection nameref="OlapTarget" />
+      <cube name="${Cube}" />
+      <mode>update</mode>
+    </load>
+    <load name="CubeFromFile_Insert_Load" type="Cube" modified="1394701167973" modifiedBy="">
+      <source nameref="CubeFile_Transform" />
+      <connection nameref="OlapSource" />
+      <cube name="${Cube}" splash="disabled" />
+      <mode>insert</mode>
+    </load>
+    <load name="RuleFromFile_Load" type="Rule" modified="1394701167973" modifiedBy="">
+      <source nameref="RuleFile_Extract" />
+      <connection nameref="OlapTarget" />
+      <cube name="${Cube}" />
+      <mode>update</mode>
+    </load>
+    <load name="CubeTarget_Load" type="Cube" modified="1394701167973" modifiedBy="">
+      <source nameref="${_SourceRef}" />
+      <connection nameref="OlapTarget" />
+      <cube name="${TargetCube}" />
+      <mode>update</mode>
+    </load>
+    <load name="CubePopulate_Load" type="Cube" modified="1394701167973" modifiedBy="">
+      <source nameref="Cube_Slice_Transform" />
+      <connection nameref="OlapSource" />
+      <cube name="${Cube}" />
+      <mode>update</mode>
+    </load>
+    <load name="RuleTarget_Load" type="Rule" modified="1394701167973" modifiedBy="">
+      <source nameref="Rule_Extract" />
+      <connection nameref="OlapTarget" />
+      <cube name="${TargetCube}" />
+      <mode>update</mode>
+    </load>
+    <load name="RulesUpdate_Load" type="Rule" modified="1394701167973" modifiedBy="">
+      <source nameref="Rule_Replace" />
+      <connection nameref="OlapSource" />
+      <cube name="${Cube}" />
+      <mode>update</mode>
+    </load>
+    <load name="CubeFile_Type_Load" type="File" modified="1394701167973" modifiedBy="">
+      <source nameref="Cube_Type_Extract" />
+      <connection nameref="CubeFile" />
+      <mode>create</mode>
+    </load>
+    <load name="Dimension_Load" type="Dimension" modified="1394704950013" modifiedBy="">
+      <source nameref="Dimension_Extract" />
+      <connection nameref="OlapTarget" />
+      <dimension name="${Dimension}">
+        <elements mode="create" />
+        <consolidations mode="update" />
+        <attributes mode="inactive" />
+      </dimension>
+    </load>
+    <load name="CubeGeneric_Load" type="Cube" modified="1394705387791" modifiedBy="">
+      <source nameref="GenericFile_Extract" />
+      <connection nameref="OlapTarget" />
+      <mode>create</mode>
+      <cube name="${Cube}" />
+    </load>
+    <load name="DimensionGeneric_Load" type="Dimension" modified="1394705425078" modifiedBy="">
+      <source nameref="GenericDimension_Tree" />
+      <connection nameref="OlapTarget" />
+      <dimension name="${Dimension}">
+        <elements mode="create" />
+        <consolidations mode="update" />
+        <attributes mode="inactive" />
+      </dimension>
+    </load>
+  </loads>
+  <jobs>
+    <job name="CubeCopy" type="Standard" modified="1394701167973" modifiedBy="">
+      <comment><![CDATA[Cube to Cube Copy
+Variables: SourceConn, TargetConn, SourceDB, TargetDB, Cube=Sales, TargetCube]]></comment>
+      <execution type="load" nameref="CubeTarget_Load" />
+      <execution type="load" nameref="RuleTarget_Load" />
+    </job>
+    <job name="CubeRulesCalc" type="Standard" modified="1394701167973" modifiedBy="">
+      <comment><![CDATA[Copy Cube with precalculated Rule Values
+Variables: SourceConn, TargetConn, SourceDB, TargetDB, Cube=Sales, TargetCube]]></comment>
+      <variable name="_SourceRef">
+        <default>CubeRulesCalc_Extract</default>
+      </variable>
+      <execution type="load" nameref="CubeTarget_Load" />
+    </job>
+    <job name="CubeAnonymize" type="Standard" modified="1394701167973" modifiedBy="">
+      <comment><![CDATA[Copy Cube with anonymized random values
+Variables: SourceConn, TargetConn, SourceDB, TargetDB, Cube=Sales, TargetCube]]></comment>
+      <variable name="_SourceRef">
+        <default>Cube_Anonymize</default>
+      </variable>
+      <execution type="load" nameref="CubeTarget_Load" />
+    </job>
+    <job name="CubeWithRulesCopy" type="Standard" modified="1394701167973" modifiedBy="">
+      <execution type="load" nameref="CubeCopy_Load" />
+      <execution type="load" nameref="RuleCopy_Load" />
+    </job>
+    <job name="DimensionsCopyAll" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("Dimensions_T2");
+while (source.nextRow()){
+   v1 = source.getColumnString("Dimension");
+   API.setProperty("Dimension",v1);
+   state = API.executeLoad("DimensionCopy_Load");
+   if (!state.isOK())
+      return;
+};]]></jobscript>
+    </job>
+    <job name="CubesCopyAll" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("Cubes_T2");
+while (source.nextRow()){
+   v1 = source.getColumnString("Cube");
+   API.setProperty("Cube",v1);
+   state = API.executeJob("CubeWithRulesCopy");
+   if (!state.isOK())
+      return;
+};]]></jobscript>
+    </job>
+    <job name="DatabaseCopy" type="Standard" modified="1394701167973" modifiedBy="">
+      <execution type="job" nameref="DimensionsCopyAll" />
+      <execution type="job" nameref="CubesCopyAll" />
+      <comment><![CDATA[Copy a complete Jedox database to another running Jedox OLAP Server.
+Variables: SourceConn, TargetConn, SourceDB, TargetDB]]></comment>
+    </job>
+    <job name="DimensionsToFileAll" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("Dimensions_T2");
+while (source.nextRow()){
+   v1 = source.getColumnString("Dimension");
+   API.setProperty("Dimension",v1);
+   state = API.executeLoad("DimToFile_Load");
+   if (!state.isOK())
+      return;
+};]]></jobscript>
+    </job>
+    <job name="CubesToFileAll" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("Cubes_T2");
+while (source.nextRow()){
+   v1 = source.getColumnString("Cube");
+   API.setProperty("Cube",v1);
+   state = API.executeLoad("CubeToFile_Load");
+   if (!state.isOK())
+      return;
+};]]></jobscript>
+    </job>
+    <job name="RulesToFileAll" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("Cubes_T2");
+while (source.nextRow()){
+   v1 = source.getColumnString("Cube");
+   API.setProperty("Cube",v1);
+   state = API.executeLoad("RuleToFile_Load");
+   if (!state.isOK())
+      return;
+};]]></jobscript>
+    </job>
+    <job name="DatabaseBackup" type="Standard" modified="1394701167973" modifiedBy="">
+      <execution type="job" nameref="DimensionsToFileAll" />
+      <execution type="job" nameref="CubesToFileAll" />
+      <execution type="job" nameref="RulesToFileAll" />
+      <comment><![CDATA[Backup a Jedox database to a File-Directory.
+Variables: FilePath, SourceConn, SourceDB]]></comment>
+    </job>
+    <job name="DimensionsFromFileAll" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("DimFiles_T2");
+while (source.nextRow()){
+   v1 = source.getColumnString("Dimension");
+   API.setProperty("Dimension",v1);
+   state = API.executeLoad("DimFromFile_Load");
+   if (!state.isOK())
+      return;
+};]]></jobscript>
+    </job>
+    <job name="CubesFromFileAll" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("CubeFiles_T2");
+while (source.nextRow()){
+   v1 = source.getColumnString("Cube");
+   API.setProperty("Cube",v1);
+   state = API.executeLoad("CubeFromFile_Load");
+   if (!state.isOK())
+      return;
+};]]></jobscript>
+    </job>
+    <job name="CubesFromFile_Insert_All" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("CubeFiles_T2");
+while (source.nextRow()){
+   v1 = source.getColumnString("Cube");
+   API.setProperty("Cube",v1);
+   state = API.executeLoad("CubeFromFile_Insert_Load");
+   if (!state.isOK())
+      return;
+};]]></jobscript>
+    </job>
+    <job name="RulesFromFileAll" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("RuleFiles_T2");
+while (source.nextRow()){
+   v1 = source.getColumnString("Cube");
+   API.setProperty("Cube",v1);
+   state = API.executeLoad("RuleFromFile_Load");
+   if (!state.isOK())
+      return;
+};]]></jobscript>
+    </job>
+    <job name="DatabaseRestore" type="Standard" modified="1394701167973" modifiedBy="">
+      <execution type="job" nameref="DimensionsFromFileAll" />
+      <execution type="job" nameref="CubesFromFileAll" />
+      <execution type="job" nameref="RulesFromFileAll" />
+      <comment><![CDATA[Restoring a Jedox database from a File-Directory. Also usable for a filebased Import of OLAP-models from Infor Alea and IBM Cognos TM1 to Jedox OLAP
+Variables: FilePath, TargetConn, TargetDB]]></comment>
+    </job>
+    <job name="DatabaseSave" type="Groovy" modified="1394703087804" modifiedBy="">
+      <comment><![CDATA[Saves all Jedox Cubes and the Database to disk in aggregated form in order to reduce disk space and time to start server
+Variables: TargetDB]]></comment>
+      <jobscript><![CDATA[LOG.info("Starting Jedox Database Save");
+IDatabase db = OLAP.getDatabase("OlapTarget");
+db.save();
+for(ICube c : db.getCubes()){
+	if(c.getType().equals(ICube.CubeType.CUBE_ATTRIBUTE) || c.getType().equals(ICube.CubeType.CUBE_NORMAL)){
+		c.save();
+	}
+}
+LOG.info("Finished Jedox Database Save");]]></jobscript>
+    </job>
+    <job name="DatabaseAnonymize" type="Standard" modified="1394701167973" modifiedBy="">
+      <variable name="_SourceRef">
+        <default>Cube_Anonymize</default>
+      </variable>
+      <execution type="job" nameref="DatabaseCopy" />
+      <execution type="job" nameref="DimensionsAnonymizeAll" />
+      <comment><![CDATA[Copy a complete Olap database to another and anonimze the cube cell values and the dimension element names of the target database.
+Variables: SourceConn, TargetConn, SourceDB, TargetDB]]></comment>
+    </job>
+    <job name="DimensionsAnonymizeAll" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("NormalDimensions_T2");
+while (source.nextRow()){
+   v1 = source.getColumnString("Dimension");
+   API.setProperty("Dimension",v1);
+   state = API.executeJob("RenameElements");
+   if (!state.isOK())
+      return;
+};]]></jobscript>
+    </job>
+    <job name="RenameElements" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("Dimension_Anonym_T1");
+   def oldNames = [];
+   def newNames = [];
+   while (source.nextRow()) {
+     oldNames.add(source.getColumnString("OldName"));
+     newNames.add(source.getColumnString("NewName"));
+   };
+   OLAP.erename("OlapTarget","${Dimension}",oldNames as String[],newNames as String[]);]]></jobscript>
+    </job>
+    <job name="RulesReplace" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[import java.io.File;
+
+API.setProperty("TargetConn","${SourceConn}");
+API.setProperty("TargetDB","${SourceDB}");
+API.setProperty("#failOnError","false");
+
+/* Create temporary directory */
+int randomNum = new Random().nextInt();
+API.setProperty("FilePath","temp"+randomNum);
+String tempDirStr = API.getLocalFilesDir()+"\\temp" + randomNum + "\\";
+File tempDir = new File(tempDirStr);
+tempDir.mkdir();
+
+API.executeLoad("RuleToFile_Load");
+state = API.executeLoad("RulesUpdate_Load");
+if (!state.isOK()) {
+      API.executeLoad("RuleFromFile_Load");
+};
+
+/* Delete temporary directory */
+for(File file: tempDir.listFiles()) file.delete();
+tempDir.delete();]]></jobscript>
+      <comment><![CDATA[All Enterprise Rules are read from a Cube, in the cube definition all occurences of a regular expression are replaced with a new string, the changed rules are loaded back to the same cube, the original rules are deleted.
+Variables: SourceConn, SourceDB, Cube, RegExp, Replacement]]></comment>
+    </job>
+    <job name="CubeFile_Type_Job" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("DimensionCubes_T1");
+while (source.nextRow()){
+   v1 = source.getColumnString("Cube");
+   API.setProperty("Cube",v1);
+   state = API.executeLoad("CubeFile_Type_Load");
+   if (!state.isOK())
+      return;
+};]]></jobscript>
+    </job>
+    <job name="UpdateElementType" type="Groovy" modified="1394701167973" modifiedBy="">
+      <jobscript><![CDATA[LOG.info("Starting update elements type in dimension");
+
+def targetElementTypeStr = "numeric";
+if(API.getProperty("TargetElementType").equals("N")){
+API.setProperty("_cellType","only_string");/*_cellType are the cells that we need to backup*/
+API.setProperty("_elementType","S");/*_elementType is the type to be changed */
+}else if(API.getProperty("TargetElementType").equals("S")){
+API.setProperty("_cellType","only_numeric");
+API.setProperty("_elementType","N");
+targetElementTypeStr = "string";
+}else{
+LOG.error("Target type can only be N or S.");
+return;
+};
+
+/*collect the list of the elements that need to be changed*/
+  elementToBeChangedSource = API.initSource("ElementTypeTransform");
+
+   def names = [];
+   int elemCount=0;
+   while (elementToBeChangedSource.nextRow()) {
+     name=elementToBeChangedSource.getColumnString(":element");
+     names.add(name);
+     LOG.info("The element \"" + name + "\" type will be changed to " + targetElementTypeStr);
+     elemCount++;
+   };
+
+if(names.size()==0){
+  LOG.warn("No element found that needs to be changed.");
+  return;
+};
+
+/* Create temporary directory */
+int randomNum = new Random().nextInt();
+API.setProperty("FilePath","temp"+randomNum);
+String tempDirStr = API.getLocalFilesDir()+"\\temp" + randomNum + "\\";
+File tempDir = new File(tempDirStr);
+tempDir.mkdir();
+
+/* make a backup in files for the cells */
+state = API.executeJob("CubeFile_Type_Job");
+ if (!state.isOK())
+     return;
+
+  /** change the type in the dimension */
+
+  OLAP.eupdateElementsType("OlapSource",API.getProperty("Dimension"),names as String[],targetElementTypeStr);
+  LOG.info("Number of elements that are changed is: " + elemCount);
+
+/* restore the cube cells if possible */
+state = API.executeJob("CubesFromFile_Insert_All");
+ if (!state.isOK())
+     return;
+     
+/* Delete temporary directory */
+for(File file: tempDir.listFiles()) file.delete();
+tempDir.delete();
+
+LOG.info("Finished update element types in dimension");]]></jobscript>
+      <comment><![CDATA[The Element type of dimension elements is changed from String to Numeric or vice versa. TargetElementType is "S" for conversion to String element and "N" for conversion to Numeric element. For all cubes which contain this dimension the cube data on the selected elements is extracted to a temporary file and loaded back to the cube after element conversion. 
+Variables: SourceConn, SourceDB, Dimension, RegExp, TargetElementType]]></comment>
+    </job>
+    <job name="CubePopulate" type="Standard" modified="1394701167973" modifiedBy="">
+      <execution type="load" nameref="CubePopulate_Load" />
+      <comment><![CDATA[Generates cell paths with random cell values and loads them to an (empty) cube. This may be useful for simulations and mass data tests.  
+Variables: SourceConn, SourceDB, Cube, NumberOfCells]]></comment>
+    </job>
+    <job name="CreateOlap" type="Groovy" modified="1394705586990" modifiedBy="">
+      <comment><![CDATA[Creates a complete Olap Model from a csv-File which contains the fact table: The elements in the first columns, the cube value in the last. All dimensions are created flat with a root element.
+Variables: FilePath,FileName, PaloTargetConn, PaloTargetDB, Cube]]></comment>
+      <jobscript><![CDATA[LOG.info("Starting Creation of Olap Model from File");
+/* Dimensions */
+columnsSource = API.initSource("GenericFile_Columns");
+if (!columnsSource.nextRow()) {
+  LOG.error("No columns found in Source file");
+  return;
+}
+dimension = columnsSource.getColumnString("Column");
+/* Do not take the last column which contains the cube value */
+boolean ok=false;
+while (columnsSource.nextRow()) {
+   API.setProperty("Dimension",dimension);
+   state = API.executeLoad("DimensionGeneric_Load");
+   if (!state.isOK())
+      return;
+   dimension = columnsSource.getColumnString("Column");
+   ok=true;
+};
+if (!ok) {
+  LOG.error("Source file has only 1 column. At least 2 columns required for Cube data.");
+}
+/* Cube */
+state = API.executeLoad("CubeGeneric_Load");
+if (!state.isOK())
+    return;
+
+LOG.info("Finished Creation of Olap Model from File");]]></jobscript>
+    </job>
+  </jobs>
+</project>

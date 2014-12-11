@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+ 	targetNamespace="http://schemas.jedox.com/etlcore"
+	xmlns:c="http://schemas.jedox.com/etlcore"
+	elementFormDefault="qualified">
+
+	<element name="extract" type="c:extracttype" />
+
+		<complexType name="extracttype">
+		<all>
+			<element name="connection" type="c:connectionref" />
+			<element name="namespaces" type="c:namespaces" minOccurs="0"/>
+			<element name="query" type="c:querytype" minOccurs="1"
+				maxOccurs="1" />
+			<element name="comment" type="string" minOccurs="0"
+				maxOccurs="1" />
+			<element name="alias_map" type="c:aliasmap" minOccurs="0" maxOccurs="1"/>
+		</all>
+		<attribute name="name" type="string" use="required" />
+		<attribute name="type" type="string" use="required" />
+	</complexType>
+
+	<complexType name="connectionref">
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>connections:/connection/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<anyAttribute processContents="lax" />
+	</complexType>
+
+	<complexType name="fieldstype">
+		<sequence>
+			<element name="field" type="string" minOccurs="1"
+				maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="namespaces">
+		<sequence>
+			<element name="namespace" type="c:namespace" minOccurs="1"
+				maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="namespace">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="name" type="string" use="required"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="querytype">
+		<all>
+			<element name="level" type="string" minOccurs="1"
+				maxOccurs="1" />
+			<element name="fields" type="c:fieldstype" minOccurs="1"
+				maxOccurs="1" />
+		</all>
+	</complexType>
+
+		<complexType name="aliastype">
+		<simpleContent>
+			<extension base="positiveInteger">
+				<attribute name="name" type="string"/>
+				<attribute name="default" type="string"/>
+				<attribute name="origin" type="string"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+    <complexType name="aliasmap">
+    	<sequence>
+        	<element name="alias" type="c:aliastype" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+		<attribute name="nameref" type="string">
+			<annotation>
+				<appinfo>
+					<ref>alias_maps:/alias_map/@name</ref>
+					<choice>element:/alias</choice>
+				</appinfo>
+			</annotation>
+		</attribute>
+	 </complexType>
+</schema>

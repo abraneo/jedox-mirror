@@ -1,0 +1,41 @@
+@request_path /cell/goalseek
+
+@short_description Puts value into cell and calculates values for sister cells in order to parents remain unchanged.
+ 
+@long_description 
+    
+@param database
+@param_type identifier
+@param_description Identifier of a database
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of a cube
+
+@param path
+@param_type path
+@param_description Target cell path. Comma separated list of element identifiers.
+ 
+@param type
+@param_type integer
+@param_description The type of goal-seek algorithm. 0 complete allocation, 1 equal, 2 relative (0 default).
+ 
+@param area
+@param_type area
+@param_description Comma separated list of element identifiers list. Each element identifiers list is colon separated. Siblings to reallocate for each dimension (only for type 1 and 2). 
+ 
+@param value
+@param_type double
+@param_description The numeric value of the target cube cell.
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+  
+@example database=5&cube=18&sid=SFAO&path=5,5&value=7
+@example_description Put 7 in cell "5,5" and calculate other values.
+
+@result OK
+@result_type boolean
+@result_description "1" means OK
+

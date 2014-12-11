@@ -1,0 +1,100 @@
+Palo 3.0.0 (Build 3442)
+-----------------------
+* new area handling
+* new rule engine
+* new job management
+
+Palo 2.1.4 (2008-01-16)
+-----------------------
+
+* Markers for Enterprise-Rules
+
+Palo 2.1.3 (2007-12-18)
+-----------------------
+
+* Dimension cache
+
+Palo 2.1.2 (2007-11-14)
+-----------------------
+
+* added UNDO for splashing
+
+Palo 2.1.1 (2007-10-24)
+-----------------------
+
+* added rule optimizations
+
+* added "splash-limits" parameter
+
+Palo 2.0.0 (2007-09-21)
+-----------------------
+
+* added HTTPS interface
+
+* extended rule functionalities
+
+Palo 2.0.0 (2007-08-31)
+-----------------------
+
+* added info objects
+
+Palo 2.0.0 (2007-08-20)
+-----------------------
+
+* ID for dimensions, cubes, elements are now longer recycled
+
+Palo 2.0.0 (2007-08-03)
+-----------------------
+
+* fixed handling of STET
+
+* added configuration cube
+
+Palo 2.0.0 (2007-07-28)
+-----------------------
+
+* improved cell/values and cell/area
+
+* improved cell/value
+
+Palo 2.0.0 (2007-07-19)
+-----------------------
+
+* optimized cube clear
+
+* correct handling of enterprise rules and consolidations
+
+Palo 1.5.6 (2007-05-18)
+-----------------------
+
+* additional information (external identifier, comment, time stamp) for enterprise rules
+
+* additional information for cell/value, cell/values, cell/area (identifier of enterprise rule)
+
+* improved cell/export function
+
+Palo 1.5.5 (2007-05-18)
+-----------------------
+
+* server side cache
+
+* group-by like algorithm for area, values, and multiple value requests
+
+* do not use .ll and .yy if flex or bison are missing
+
+Palo 1.5.4 (2007-03-28)
+-----------------------
+
+* Enterprise rules for cubes
+
+* add and event_processor parameter for cell/replace and cell/replace_bulk
+
+Palo 1.5.3d (2007-02-09)
+------------------------
+
+* Improved performance of HTTP interface
+
+* change save functions to write a temporary file first and only delete
+  the original if the temporary file could be written successfully
+
+* increased maximal number of open files under Windows

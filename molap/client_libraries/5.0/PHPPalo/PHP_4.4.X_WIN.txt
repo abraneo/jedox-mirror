@@ -1,0 +1,11 @@
+i)
+you have to change TSRM\tsrm_config_common.h  in your php-4.4.x source tree.
+
+replace the line
+
+# if WINNT|WIN32
+
+by
+
+# if defined(WINNT)|| defined(WIN32)|| defined(WIN64)
+

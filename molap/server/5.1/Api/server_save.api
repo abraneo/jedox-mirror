@@ -1,0 +1,31 @@
+@request_path /server/save
+
+@short_description Saves the server to disk
+
+@long_description 
+This request saves the server data, i. e. identifiers and database
+names, to disk. To save database and/or cube data see the requests
+"/database/save" and "/cube/save".
+
+
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the
+<a href="/api/server/login">/server/login</a> request to get a valid
+session identifier.
+
+@param complete
+@param_type boolean
+@param_description (Optional) If "1" then also databases and all cube data will be saved (default "0").
+ 
+
+@result OK
+@result_type boolean
+@result_description "1" means OK
+
+
+
+@example
+@example_description Save the server data to disk. Attention: This
+example overwrites all saved data.

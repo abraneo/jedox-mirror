@@ -1,0 +1,39 @@
+ 
+<!ELEMENT subset (data_filter?,structural_filter?,basic_filter?,alias_filter?,
+	text_filter?,sorting_filter?)>
+
+<!ATTLIST subset name CDATA #IMPLIED
+		id CDATA #REQUIRED
+		sourceDimensionId CDATA #REQUIRED
+		activeStateId CDATA #IMPLIED>
+
+<!ELEMENT data_filter ((only_consolidated|only_leaves)?,
+	(data_min|data_max|data_sum|data_average|data_any|data_all),
+		(upper_percentage|lower_percentage|mid_percentage)?,
+			source_cube,par1,op1,par2?,op2?,coordinates,percentage1?,percentage2?)>
+
+<!ELEMENT only_consolidated EMPTY>
+<!ELEMENT only_leaves EMPTY>
+<!ELEMENT data_min EMPTY>
+<!ELEMENT data_max EMPTY>
+<!ELEMENT data_sum EMPTY>
+<!ELEMENT data_average EMPTY>
+<!ELEMENT data_any EMPTY>
+<!ELEMENT data_all EMPTY>
+<!ELEMENT upper_percentage (#PCDATA)>
+<!ELEMENT lower_percentage (#PCDATA)>
+<!ELEMENT mid_percentage (#PCDATA)>
+<!ELEMENT source_cube (#PCDATA)>
+<!ELEMENT par1 (#PCDATA)>
+<!ELEMENT par2 (#PCDATA)>
+<!ELEMENT op1 (#PCDATA)>
+<!ELEMENT op2 (#PCDATA)>
+<!ELEMENT coordinates (#PCDATA)>
+<!ELEMENT percentage1 (#PCDATA)>
+<!ELEMENT percentage2 (#PCDATA)>
+
+<!--!ELEMENT alias_filter ((search_one|search_two)?,hide_double?,display_alias?,
+	 attribute1?,attribute2?,display_attribute?) -->
+
+<!-- !ELEMENT search_one EMPTY -->
+

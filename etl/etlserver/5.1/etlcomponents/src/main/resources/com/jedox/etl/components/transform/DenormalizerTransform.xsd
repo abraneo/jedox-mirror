@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+	<include schemaLocation="resource.xsd"/>
+    <element name="transform" type="c:transformtype" />
+    
+    <complexType name="inputref">
+		<attribute name="nameref" type="string">
+		</attribute>
+		<attribute name="constant" type="string"/>
+	</complexType>
+	
+	<complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+	 </complexType>
+	 
+	 <complexType name="sourcerefs">
+		<sequence>
+			<element name="source" type="c:sourceref" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+	</complexType> 	
+	
+	<simpleType name="datatype">
+ 		 <restriction base="string">
+    		<enumeration value="text"/>
+    		<enumeration value="numeric"/>
+  		</restriction>
+	</simpleType> 	
+        
+   <complexType name="typedcomponent">
+		<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required">
+		</attribute>
+        <anyAttribute processContents="lax"/>
+    </complexType>
+	
+	<complexType name="coordinatetype">
+		<sequence>
+			<element name="input" type="c:inputref" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+		<attribute name="name" type="string"/>
+	</complexType>
+	
+	<complexType name="measuretype">
+		<sequence>
+			<element name="input" type="c:inputref" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+		<attribute name="name" type="string"/>
+		<attribute name="aggregate" type="c:aggregatemode"/>
+		<attribute name="type" type="c:datatype" default="numeric"/>
+	</complexType>
+	
+	<complexType name="coordinatestype">
+		<sequence>
+			<element name="coordinate" type="c:coordinatetype" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="measurestype">
+		<sequence>
+			<element name="measure" type="c:measuretype" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>	
+		<attribute name="denormalize" type="string" use="required">
+			<annotation>
+				<appinfo>input</appinfo>
+			</annotation>
+		</attribute>		
+		<attribute name="valuename" type="string" default="Value"/>
+	</complexType>
+	
+	<complexType name="targettype">
+		<all>
+			<element name="coordinates" type="c:coordinatestype" minOccurs="0" maxOccurs="1"/>
+			<element name="measures" type="c:measurestype" minOccurs="0" maxOccurs="1"/>
+		</all>
+	</complexType> 
+	
+	 <simpleType name="cacheType">
+ 		 <restriction base="string">
+    		<enumeration value="none"/>
+    		<enumeration value="memory"/>
+    		<enumeration value="disk"/>
+  		</restriction>
+	</simpleType> 
+    
+    <complexType name="transformtype">
+        <all>
+            <element name="sources" type="c:sourcerefs" minOccurs="1" maxOccurs="1"/>
+            <element name="target" type="c:targettype" minOccurs="0" maxOccurs="1"/>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>  
+            <element name="cache" type="c:cacheType" minOccurs="0"
+				maxOccurs="1" />	    
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+        <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+
+</schema>

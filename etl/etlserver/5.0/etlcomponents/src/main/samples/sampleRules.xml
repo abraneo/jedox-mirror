@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleRules" version="5.0">
+  <comment>
+<![CDATA[ETL Demo Project.
+project sampleOLAP has to be executed before to create the necessary dimensions and cubes!
+Definition of (OLAP) Rules, Extraction of Rules from a Cube and loading of Rules to another Cube.]]>
+  </comment>
+  <variables>
+    <variable name="rule_var">Actual</variable>
+  </variables>
+  <connections>
+    <connection name="palotarget" type="Jedox">
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">9ogJbpO2l9/34aqA3Hg+rA==</password>
+      <database>Demo_ETL</database>
+    </connection>
+    <connection name="rules_file" type="File">
+      <comment>
+<![CDATA[Rules can be written or read from a file]]>
+      </comment>
+      <database>rules.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="definedPaloRules" type="Rule">
+      <comment>
+<![CDATA[Rules can be defined in an extract]]>
+      </comment>
+      <rules>
+        <rule comment="Actual rule 1" active="true">['${rule_var}'] = ['2012']</rule>
+        <rule comment="Actual rule 2" active="false">['Actual'] = ['2012']*2</rule>
+        <rule comment="Actual rule 3" active="false">['Actual'] = ['2012']*3</rule>
+      </rules>
+    </extract>
+    <extract name="CubePaloRules" type="Rule">
+      <comment>
+<![CDATA[Rules can be read from a cube in a a palo database]]>
+      </comment>
+      <connection nameref="palotarget" />
+      <cube name="SalesCopy" />
+    </extract>
+  </extracts>
+  <transforms />
+  <loads>
+    <load name="Rules_to_File" type="File">
+      <comment>
+<![CDATA[This loads the rules in a file. This file will have always four columns:
+"RuleExternalIdentifier","Comment","Definition" and "Active"]]>
+      </comment>
+      <source nameref="CubePaloRules" />
+      <connection nameref="rules_file" />
+    </load>
+    <load name="Rules_to_Cube" type="Rule">
+      <comment>
+<![CDATA[This loads the rules in a cube "SalesCopy". The extract should be an extract of type "Rule".]]>
+      </comment>
+      <source nameref="definedPaloRules" />
+      <connection nameref="palotarget" />
+      <cube name="SalesCopy" />
+    </load>
+  </loads>
+  <jobs>
+    <job name="Rules_to_Cube">
+      <comment>
+<![CDATA[Loads manually defined Rules to Palo Cube.]]>
+      </comment>
+      <load nameref="Rules_to_Cube" />
+    </job>
+    <job name="Rules_to_File" type="Standard">
+      <comment>
+<![CDATA[Reads Rules from Cube and loads to File.
+Job "Rules_to_Cube" has to be executed before.]]>
+      </comment>
+      <load nameref="Rules_to_File" />
+    </job>
+  </jobs>
+</project>
+

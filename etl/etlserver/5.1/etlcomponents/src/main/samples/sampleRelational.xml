@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleRelational" version="5.1" modified="1383649274133" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Extract and loading data from Relational Database connections. 
+For the sample the file-based databases HSQLDB and Derby are used, connections for other databases are available.</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="MySQL_Conn" type="Mysql" modified="1383649274133" modifiedBy="">
+      <host>12.34.56.78</host>
+      <port>3306</port>
+      <database>db1</database>
+      <user>testuser</user>
+      <password encrypted="true">gjGWw6I1yuKgtI+8axjB2w==</password>
+    </connection>
+    <connection name="Ingres_Conn" type="Ingres" modified="1383649274133" modifiedBy="">
+      <host>192.168.2.35:II7</host>
+      <database>demodb</database>
+      <user>administrator</user>
+      <password>password</password>
+    </connection>
+    <connection name="MySQL_Conn_Generic" type="GenericDB" modified="1383649274133" modifiedBy="">
+      <url>jdbc:mysql://12.34.56.78:3306/db1</url>
+      <driver>com.mysql.jdbc.Driver</driver>
+      <user>testuser</user>
+      <password encrypted="true">DKxXwmUPFkd+9m1xGwXF1Q==</password>
+    </connection>
+    <connection name="Postgres_Conn" type="Postgresql" modified="1383649274133" modifiedBy="">
+      <host>localhost</host>
+      <port>5432</port>
+      <database>testDB</database>
+      <user>postgres</user>
+      <password>password</password>
+    </connection>
+    <connection name="Oracle_Conn" type="Oracle" modified="1383649274133" modifiedBy="">
+      <host>12.34.56.78</host>
+      <port>1521</port>
+      <database>db1</database>
+      <user>testuser</user>
+      <password encrypted="true">fww1PQcCJ+buYJDlVG69Yg==</password>
+    </connection>
+    <connection name="MSSQL_Conn" type="Sqlserver" modified="1383649274133" modifiedBy="">
+      <host>12.34.56.78</host>
+      <port>1433</port>
+      <database>model</database>
+      <user>sa</user>
+      <password encrypted="true">LI0zPBGOlyjd4EKAgV1wQg==</password>
+    </connection>
+    <connection name="Access_Conn" type="Odbc" modified="1383649274133" modifiedBy="">
+      <database>Access_Test</database>
+    </connection>
+    <connection name="HSSQL_Conn" type="Hsqldb" modified="1383649274133" modifiedBy="">
+      <comment><![CDATA[HSQLDB File with Sales-Database.]]></comment>
+      <database>./hsqldb/db1</database>
+      <user>SA</user>
+      <mode>Embedded</mode>
+    </connection>
+    <connection name="H2_Conn_Target" type="H2" modified="1383649274133" modifiedBy="">
+      <database>./H2/Sample</database>
+      <mode>Embedded</mode>
+    </connection>
+    <connection name="HSQLDB_Conn_Target" type="Hsqldb" modified="1383649274133" modifiedBy="">
+      <database>./hsqldb/Sample</database>
+      <mode>Embedded</mode>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Customer_Extract" type="Relational" modified="1383649274133" modifiedBy="">
+      <connection nameref="HSSQL_Conn" />
+      <query><![CDATA[select cust.kunnr, cust.name1, cust.ort01, cust.pstlz, country.land1, country.landx
+from customers as cust, countries as	country
+where cust.land1 = country.land1
+order by cust.land1, cust.kunnr]]></query>
+      <alias_map>
+        <alias name="CustomerID" default="Customer n.a.">1</alias>
+        <alias name="CustomerName">2</alias>
+        <alias name="City">3</alias>
+        <alias name="PLZ">4</alias>
+        <alias name="CountryID" default="Country n.a.">5</alias>
+        <alias name="CountryName">6</alias>
+      </alias_map>
+    </extract>
+    <extract name="Sales_Extract" type="Relational" modified="1383649274133" modifiedBy="">
+      <connection nameref="HSSQL_Conn" />
+      <query><![CDATA[select h.vbeln, i.posnr, h.erdat, h.kunnr, i.arktx, i.netwr, i.waerk, i.kwmeng
+from sdochead as h, sdocline as i
+where h.vbeln = i.vbeln and h.kunnr between '1000' and '3000']]></query>
+      <alias_map>
+        <alias name="SalesDocNr">1</alias>
+        <alias name="SalesDocLine">2</alias>
+        <alias name="Date">3</alias>
+        <alias name="Customer" default="Customer n.a.">4</alias>
+        <alias name="Artikel">5</alias>
+        <alias name="NetValue" default="0">6</alias>
+        <alias name="Currency">7</alias>
+        <alias name="Units" default="0">8</alias>
+      </alias_map>
+    </extract>
+  </extracts>
+  <transforms />
+  <loads>
+    <load name="Sales_Load" type="Relational" modified="1383649274133" modifiedBy="">
+      <source nameref="Sales_Extract" />
+      <connection nameref="H2_Conn_Target" />
+      <mode>update</mode>
+      <table name="SALES" />
+    </load>
+    <load name="Customer_Load" type="Relational" modified="1383649274133" modifiedBy="">
+      <source nameref="Customer_Extract" />
+      <connection nameref="HSQLDB_Conn_Target" />
+      <mode>update</mode>
+      <table name="Customer_Copy" />
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard" modified="1383649274133" modifiedBy="">
+      <execution type="load" nameref="Customer_Load" />
+      <execution type="load" nameref="Sales_Load" />
+    </job>
+  </jobs>
+</project>
+

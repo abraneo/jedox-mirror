@@ -1,0 +1,44 @@
+@request_path /server/info
+
+@short_description Information about the server
+
+@long_description 
+Returns information about the server, i. e. its version number.
+
+
+@param -
+@param_type -
+@param_description Needs no parameter
+
+@result major_version
+@result_type integer
+@result_description major version of the server
+
+@result minor_version
+@result_type integer
+@result_description minor version of the server
+
+@result type_version
+@result_type integer
+@result_description used to distinct type of the server(1 - ST 32bit, 2 - MT 32bit, 3 - ST 64bit, 4 - MT 64bit, 5 - GPU 64bit)
+
+@result build_number
+@result_type integer
+@result_description build number of the server
+
+@result encryption
+@result_type integer
+@result_description 0 for none, 1 for optional, 2 for required
+
+@result https_port
+@result_type integer
+@result_description the corresponding HTTPS port or 0 if HTTPS is not supported
+
+@result data_token
+@result_type token
+@result_description Data token. Changed by every write operations.
+
+
+
+@example 
+@example_description Retrieves information about the server.

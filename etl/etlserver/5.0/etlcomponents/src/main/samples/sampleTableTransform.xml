@@ -1,0 +1,195 @@
+<project name="sampleTableTransform" version="5.0">
+  <comment>
+<![CDATA[ETL Demo Project.
+Shows the different possibilites of TableTransform component: Aggregation, Normalisation of rows, Denormalisation of rows.]]>
+  </comment>
+  <variables/>
+  <connections>
+    <connection name="palodemo" type="Jedox">
+      <comment>
+<![CDATA[Palo database from which the data is extracted]]>
+      </comment>
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password>admin</password>
+      <database>Demo</database>
+    </connection>
+    <connection name="Orderlines_file" type="File">
+      <database>BikerOrderlines.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>    
+    <connection name="out_Denormalize" type="File">
+      <database>Result_Denormalize.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="out_Aggregate" type="File">
+      <database>Result_Aggregate.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="out_Normalize" type="File">
+      <database>Result_Normalize.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>    
+  </connections>
+  <extracts>
+    <extract name="Sales_Extract" type="Cube">
+      <connection nameref="palodemo" valuename="Value"/>
+      <query>
+        <cube name="Sales" valuename="Value"/>
+        <dimensions>
+           <dimension name="Datatypes">
+            <accept operator="equal" value="Actual" mode="onlyBases"/>
+          </dimension> 
+          <dimension name="Products">
+            <accept operator="equal" value="Desktop L" mode="onlyBases"/>
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+    <extract name="Orderlines_Extract" type="File">
+      <connection nameref="Orderlines_file" />
+      <alias_map>
+        <alias name="SalesOrderID">1</alias>
+        <alias name="OrderDate">2</alias>
+        <alias name="CustomerID">4</alias>
+        <alias name="ProductID">7</alias>
+        <alias name="OrderQty">9</alias>
+        <alias name="LineCost">12</alias>
+        <alias name="LineTotal">14</alias>
+        <alias name="Channel">18</alias>
+      </alias_map>
+    </extract>    
+  </extracts>
+  <transforms>
+   <transform name="Sales_Aggregate" type="TableTransform">
+      <sources>
+        <source nameref="Sales_Extract"/>
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate>
+            <input nameref="Years"/>
+          </coordinate>
+          <coordinate>
+            <input nameref="Regions"/>
+          </coordinate>
+          <coordinate>
+            <input nameref="Measures"/>
+          </coordinate>          
+        </coordinates>
+        <measures>      
+          <measure name="Sum" aggregate="sum">
+            <input nameref="Value"/>
+          </measure>
+          <measure name="Weekly_Maximum" aggregate="max">
+            <input nameref="Value"/>
+          </measure>
+          <measure name="Weekly_Minimum" aggregate="min">
+            <input nameref="Value"/>
+          </measure>
+          <measure name="Weekly_Average" aggregate="avg">
+            <input nameref="Value"/>
+          </measure>
+          <measure name="Weekly_Count" aggregate="count">
+            <input nameref="Value"/>
+          </measure>  
+        </measures>
+      </target>
+    </transform>  
+    <transform name="Sales_Denormalize" type="TableTransform">
+      <sources>
+        <source nameref="Sales_Extract"/>
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate>
+            <input nameref="Years"/>
+          </coordinate>
+          <coordinate>
+            <input nameref="Months"/>
+          </coordinate>
+          <coordinate>
+            <input nameref="Regions"/>
+          </coordinate>
+        </coordinates>
+        <measures denormalize="Measures">
+          <measure name="Units" aggregate="sum">
+            <input nameref="Value"/>
+          </measure>
+          <measure name="Cost of Sales" aggregate="sum">
+            <input nameref="Value"/>
+          </measure>
+          <measure name="Turnover" aggregate="sum">
+            <input nameref="Value"/>
+          </measure>
+        </measures>
+      </target>
+    </transform>
+    <transform name="Orderlines_Normalize" type="TableTransform">
+      <sources>
+        <source nameref="Orderlines_Extract" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="SalesOrderID">
+            <input nameref="SalesOrderID" />
+          </coordinate>
+          <coordinate name="OrderDate">
+            <input nameref="OrderDate" />
+          </coordinate>
+          <coordinate name="ProductID">
+            <input nameref="ProductID" />
+          </coordinate>
+          <coordinate name="Datatypes">
+            <input constant="Actual" />
+          </coordinate>
+        </coordinates>
+        <measures normalize="Measures" valuename="Value">
+          <measure name="Units">
+            <input nameref="OrderQty" />
+          </measure>
+          <measure name="Cost of Sales" >
+            <input nameref="LineCost" />
+          </measure>
+          <measure name="Sales">
+            <input nameref="LineTotal" />
+          </measure>
+        </measures>
+      </target>
+    </transform>    
+  </transforms>
+  <loads>
+    <load name="Denormalize" type="File">
+      <source nameref="Sales_Denormalize"/>
+      <connection nameref="out_Denormalize"/>
+    </load>
+    <load name="Aggregate" type="File">
+      <source nameref="Sales_Aggregate"/>
+      <connection nameref="out_Aggregate"/>
+    </load>
+    <load name="Normalize" type="File">
+      <source nameref="Orderlines_Normalize"/>
+      <connection nameref="out_Normalize"/>
+    </load>            
+  </loads>
+  <jobs>
+    <job name="default" type="Standard">
+      <load nameref="Aggregate"/>      
+      <load nameref="Denormalize"/>
+      <load nameref="Normalize"/>
+    </job>
+  </jobs>
+</project>

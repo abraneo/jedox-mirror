@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Jedox OLAP</title>
+    <link href="/inc/style_palo.css" rel="stylesheet" type="text/css">
+    <!--[if IE]>
+    <style>
+      body{
+        overflow:auto;
+      }
+    </style>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div id="surround" align="center">
+      <div id="container">
+        <div id="clientHeader">&nbsp;</div>
+
+        <div id="left">
+          <a class="nav" href="/">Home</a>     
+          <a class="nav" href="/browser">Server browser</a>     
+          <a class="nav" href="/api">API Documentation</a>     
+          <a class="nav" href="http://www.jedox.com">Jedox OLAP Home</a>     
+        </div>
+
+        <div id="center">
+          <div style="margin: 10px;">
+            <h1>Jedox OLAP documentation</h1>
+
+            <table cellpadding="2" cellspacing="2" width="100%">
+            
+              <tr class="border_table">
+                <td colspan="2"><a href="/">home</a> > <a href="/api">API</a> > [{@request_path}] ></td>
+              </tr>
+
+              <tr>
+                <td width="110" class="keyword">request url</td>
+                <td>http://[SERVER]:[PORT]{@request_path}[?PARAMETER1=value[&...]]</td>
+              </tr>
+
+              <tr>
+                <td class="keyword">short description</td>
+                <td>{@short_description}</td>
+              </tr>
+
+              <tr>
+                <td class="keyword">long description</td>
+                <td>{@long_description}</td>
+              </tr>
+
+              <tr>
+                <td class="keyword">parameters</td>
+                <td>
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="125">name</td>
+                      <td width="50">type</td>
+                      <td>description</td>
+                    </tr>
+LOOP @param
+                    <tr class="value_table">
+                      <td>{@param[]}</td>
+                      <td>{@param_type[]}</td>
+                      <td>{@param_description[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="keyword">result</td>
+                <td>
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">#</td>
+                      <td width="100">name</td>
+                      <td width="50">type</td>
+                      <td>description</td>
+                    </tr>
+LOOP @result
+                    <tr class="value_table">
+                      <td>{@loop_number}</td>
+                      <td>{@result[]}</td>
+                      <td>{@result_type[]}</td>
+                      <td>{@result_description[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="keyword">examples</td>
+                <td>
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td>description</td>
+                    </tr>
+LOOP @example
+                    <tr class="value_table">
+                      <td><a href="{@request_path}?sid=0000&{@example[]}">{@example_description[]}</a></td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="keyword">further information</td>
+                <td>{@further_information}</td>
+              </tr>
+            </table>  
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footerText">Copyright 2005-2013 Jedox AG</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

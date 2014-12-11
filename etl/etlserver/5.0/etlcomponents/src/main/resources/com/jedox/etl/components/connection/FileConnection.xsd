@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://schemas.jedox.com/etlcore"
+	xmlns:c="http://schemas.jedox.com/etlcore"
+	elementFormDefault="qualified">
+
+	<element name="connection" type="c:connectiontype" />
+
+	<simpleType name="sslmode">
+ 		 <restriction base="string">
+    		<enumeration value="verify"/>
+    		<enumeration value="trust"/>
+  		</restriction>
+	</simpleType>   
+
+	<complexType name="connectiontype">
+		<all>
+			<element name="database" type="string" minOccurs="1" maxOccurs="1"/>
+			<element name="delimiter" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="quote" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="enableEscape" type="boolean" minOccurs="0" maxOccurs="1"/>
+			<element name="header" type="boolean" minOccurs="0" maxOccurs="1"/>
+			<element name="encoding" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="skip" type="nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+			<element name="start" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+			<element name="end" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+			<element name="columns" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+			<element name="ssl" type="c:sslmode" minOccurs="0" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+		</all>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="type" type="string" use="required"/>
+	</complexType>
+
+	<simpleType name="encodingList">
+ 		 <restriction base="string">
+    		<enumeration value="ASCII"/>
+			<enumeration value="Cp858"/>
+			<enumeration value="Cp932"/>
+    		<enumeration value="Cp1250"/>
+    		<enumeration value="Cp1251"/>
+    		<enumeration value="Cp1252"/>
+    		<enumeration value="Cp1253"/>
+    		<enumeration value="Cp1254"/>
+    		<enumeration value="Cp1255"/>
+    		<enumeration value="Cp1256"/>
+    		<enumeration value="Cp1257"/>	
+   			<enumeration value="EUC-JP"/>
+   			<enumeration value="EUC-KR"/>
+   			<enumeration value="ISO-2022-CN"/>
+   			<enumeration value="ISO-2022-JP"/>
+   			<enumeration value="ISO-2022-KR"/>
+    		<enumeration value="ISO-8859-1"/>
+    		<enumeration value="ISO-8859-2"/>
+    		<enumeration value="ISO-8859-3"/>
+    		<enumeration value="ISO-8859-4"/>
+    		<enumeration value="ISO-8859-5"/>
+    		<enumeration value="ISO-8859-6"/>
+    		<enumeration value="ISO-8859-7"/>
+    		<enumeration value="ISO-8859-8"/>
+    		<enumeration value="ISO-8859-9"/>
+    		<enumeration value="Latin1"/>
+    		<enumeration value="Shift_JIS"/>
+    		<enumeration value="UnicodeBig"/>
+    		<enumeration value="UnicodeLittle"/>
+    		<enumeration value="UTF-8"/>
+    		<enumeration value="UTF-16"/>
+  		</restriction>
+	</simpleType>
+
+	<simpleType name="delimiterList">
+ 		 <restriction base="string">
+    		<enumeration value="#space"/>
+    		<enumeration value=";"/>
+    		<enumeration value=","/>
+    		<enumeration value="\t"/>
+  		</restriction>
+	</simpleType>
+
+	<simpleType name="quoteList">
+ 		 <restriction base="string">
+    		<enumeration value="#none"/>
+    		<enumeration value="&quot;"/>
+    		<enumeration value="&apos;"/>
+  		</restriction>
+	</simpleType>
+
+</schema>

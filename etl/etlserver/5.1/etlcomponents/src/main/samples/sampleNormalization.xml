@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleNormalization" version="5.1" modified="1383649236790" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Shows how to normalize data with transform Normalize: Input rows with measure values in sepatate columns are transformed to individual rows for each measure.</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="Orderlines_file" type="File" modified="1383649236790" modifiedBy="">
+      <database>BikerOrderlines.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="out_Normalize" type="File" modified="1383649236790" modifiedBy="">
+      <database>Result_Normalize.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Orderlines_Extract" type="File" modified="1383649236790" modifiedBy="">
+      <connection nameref="Orderlines_file" />
+      <alias_map>
+        <alias name="SalesOrderID">1</alias>
+        <alias name="OrderDate">2</alias>
+        <alias name="CustomerID">4</alias>
+        <alias name="ProductID">7</alias>
+        <alias name="OrderQty">9</alias>
+        <alias name="LineCost">12</alias>
+        <alias name="LineTotal">14</alias>
+        <alias name="Channel">18</alias>
+      </alias_map>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="Orderlines_Normalize" type="TableNormalization" modified="1383649236790" modifiedBy="">
+      <sources>
+        <source nameref="Orderlines_Extract" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="SalesOrderID">
+            <input nameref="SalesOrderID" />
+          </coordinate>
+          <coordinate name="OrderDate">
+            <input nameref="OrderDate" />
+          </coordinate>
+          <coordinate name="ProductID">
+            <input nameref="ProductID" />
+          </coordinate>
+          <coordinate name="Datatypes">
+            <input constant="Actual" />
+          </coordinate>
+        </coordinates>
+        <measures normalize="Measures" valuename="Value">
+          <measure name="Units">
+            <input nameref="OrderQty" />
+          </measure>
+          <measure name="Cost of Sales">
+            <input nameref="LineCost" />
+          </measure>
+          <measure name="Sales">
+            <input nameref="LineTotal" />
+          </measure>
+        </measures>
+      </target>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="Normalize" type="File" modified="1383649236790" modifiedBy="">
+      <source nameref="Orderlines_Normalize" />
+      <connection nameref="out_Normalize" />
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard" modified="1383649236790" modifiedBy="">
+      <execution type="load" nameref="Normalize" />
+    </job>
+  </jobs>
+</project>
+

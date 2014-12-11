@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://schemas.jedox.com/etlcore"
+	elementFormDefault="qualified" 
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:c="http://schemas.jedox.com/etlcore" 
+	xmlns:l="http://schemas.jedox.com/etlcore">
+
+	<element name="job" type="c:jobtype" /> 
+	
+	<complexType name="jobreftype">
+		<attribute name="nameref" type="string">
+			<annotation>
+				<appinfo>
+					<ref>jobs:/job/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	
+	<complexType name="loadreftype">
+		<attribute name="nameref" type="string">
+			<annotation>
+				<appinfo>
+					<ref>loads:/load/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	
+	<complexType name="variable">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="name" type="string" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+	
+	<complexType name="jobtype">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="load" type="c:loadreftype"/>
+			<element name="job" type="c:jobreftype"/>
+			<element name="script" type="string"/>
+			<element name="variable" type="c:variable"/>
+			<element name="comment" type="string"/>
+		</choice>
+		<attribute name="name" type="string" default="default"/>
+		<attribute name="type" type="string" />		
+		<anyAttribute processContents="lax"/>
+	</complexType>
+	  	
+</schema>

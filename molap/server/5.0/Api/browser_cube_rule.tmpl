@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Jedox OLAP</title>
+    <link href="/inc/style_palo.css" rel="stylesheet" type="text/css">
+    <!--[if IE]>
+    <style>
+      body{
+        overflow:auto;
+      }
+    </style>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div id="surround" align="center">
+      <div id="container">
+        <div id="clientHeader">&nbsp;</div>
+
+        <div id="left">
+          <a class="nav" href="/">Home</a>     
+          <a class="nav" href="/browser">Server browser</a>     
+          <a class="nav" href="/api">API Documentation</a>     
+          <a class="nav" href="http://www.jedox.com">Jedox OLAP Home</a>     
+        </div>
+
+        <div id="center">
+          <div style="margin: 10px;">
+            <h1>Jedox OLAP server browser</h1>
+
+            <table cellpadding="2" cellspacing="2" width="100%">
+		
+              <tr class="border_table">
+                <td colspan="2"><a href="/">home</a> > <a href="/browser">server</a> > <a href="/browser/database?database={@database_identifier}">database</a> > <a href="/browser/cube?database={@database_identifier}&cube={@cube_identifier}">cube</a> > rules ></td>
+              </tr>
+
+              {@message}
+
+              <tr>
+                <td colspan="2"><h2>Enterprise rules</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">ID</td>
+                      <td width="40">action</td>
+                      <td>rule</td>
+	                    <td>external identifier</td>
+      	              <td>comment</td>
+      	              <td>time stamp</td>
+      	              <td>active</td>
+      	              <td><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}&action=reset" title="reset counters">evaluated</a></td>
+      	              <td><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}&action=reset" title="reset counters">null results</a></td>
+                    </tr>
+LOOP @rule_identifier
+                    <tr class="value_table">
+                      <td>{@rule_identifier[]}</td>
+                      <td><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}&rule={@rule_identifier[]}&action=delete">delete</a></td>
+                      <td>{@rule_text[]}</td>
+                      <td>{@rule_external[]}</td>
+                      <td>{@rule_comment[]}</td>
+                      <td>{@rule_timestamp[]}</td>
+                      <td><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}&rule={@rule_identifier[]}&action=activate">{@rule_active[]}</a></td>
+                      <td>{@eval_counter[]}</td>
+                      <td>{@null_counter[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+									<form action="/browser/rule">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td>Rule</td>
+                      <td width="10"></td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><input name="definition" type="text" size="75" maxlength="200" value="{@rule_new_rule}"></td>
+                      <td><input type="submit" value=" OK "></td>
+                    </tr>
+                  </table>
+                  <input name="database" type="hidden" value="{@database_identifier}">  
+                  <input name="cube" type="hidden" value="{@cube_identifier}">  
+									</form>
+                </td>
+              </tr>
+
+
+            </table>  
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footerText">{@footerText}</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

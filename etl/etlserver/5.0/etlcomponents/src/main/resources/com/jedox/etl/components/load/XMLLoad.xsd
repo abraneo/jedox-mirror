@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="load" type="c:loadtype" />
+    
+     <complexType name="connectionref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>connections:/connection/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<anyAttribute processContents="lax"/>
+	 </complexType>  
+	 
+	 <complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>sources:/source/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+	 </complexType>
+	 
+	 
+	 <simpleType name="loadmode">
+ 		 <restriction base="string">
+    		<enumeration value="update"/>
+    		<enumeration value="add"/>
+    		<enumeration value="create"/>
+    		<enumeration value="insert"/>
+    		<enumeration value="delete"/>
+  		</restriction>
+	</simpleType>  	
+	
+	 <complexType name="denormalizerref">
+		 <all>
+        	<element name="element" type="string" minOccurs="0" maxOccurs="1"/>
+            <element name="content" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+	 </complexType>
+	
+    
+     <complexType name="loadtype">
+        <all>
+            <element name="connection" type="c:connectionref"/>
+            <element name="source" type="c:sourceref"/>
+			<element name="mode" type="c:loadmode" minOccurs="0" maxOccurs="1"/> 
+			<element name="root" type="string" minOccurs="0" maxOccurs="1"/> 
+			<element name="xslt" type="string" minOccurs="0" maxOccurs="1"/>        
+			<element name="denormalizer" type="c:denormalizerref" minOccurs="0" maxOccurs="1"/>                        
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>      
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+
+</schema>

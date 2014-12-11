@@ -1,0 +1,82 @@
+@request_path /rule/create
+
+@short_description Creates a new enterprise rule for a cube
+
+@long_description 
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+ 
+@param definition
+@param_type string
+@param_description Urlencoded enterprise rule
+
+@param activate
+@param_type integer
+@param_description create active rule with "1" (default) or a not active rule with "0"
+
+@param external_identifier
+@param_type string
+@param_description Urlencoded external identifier
+
+@param comment
+@param_type string
+@param_description Urlencoded comment
+
+@param use_identifier
+@param_type boolean
+@param_description Use identifier in textual representation of the rule in the result. The definition can use name or identifier independent of the parameter.
+
+@param position
+@param_type double
+@param_description Optional position of the rule in the list of cube rules. By default(0) the rule gets position of last rule +1 
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+@result rule
+@result_type identifier
+@result_description Identifier of the rule
+
+@result rule_string
+@result_type string
+@result_description Textual representation for the rule
+
+@result external_identifier
+@result_type string
+@result_description external identifier of the rule
+
+@result comment
+@result_type string
+@result_description comment for the rule
+
+@result timestamp
+@result_type string
+@result_description creation time of the rule in seconds since 1970-01-01
+
+@result active
+@result_type integer
+@result_description 0=rule is not active,  1=rule is active
+
+@result position
+@result_type double
+@result_description Position of the rule within list of cube rules 
+
+@example database=1&cube=13&definition=['budget']%3dadd(['actual'],['variance']*-1)
+@example_description Simple rule: Budget = Variance - Actual

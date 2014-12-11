@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleGroovyJob" version="5.1" modified="1390217098783" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo.
+Examples how to use Scripting language Groovy in a Job e.g. for dynamically assigning variables, looping over elements or react on the status of a job execution for a simple workflow.</comment>
+    </header>
+  </headers>
+  <variables>
+    <variable name="Month" modified="1390216445541" modifiedBy="">
+      <default>Jan</default>
+    </variable>
+    <variable name="Year" modified="1390216445541" modifiedBy="">
+      <default>2007</default>
+    </variable>
+    <variable name="RelConn" modified="1390216445541" modifiedBy="">
+      <default>SQL_Conn</default>
+    </variable>
+    <variable name="Host" modified="1390216632472" modifiedBy="">
+      <comment />
+      <default>localhost</default>
+    </variable>
+  </variables>
+  <connections>
+    <connection name="SQL_Conn" type="Hsqldb" modified="1390216445541" modifiedBy="">
+      <comment><![CDATA[HSQLDB File with Sales-Database.]]></comment>
+      <database>./db1</database>
+      <mode>Embedded</mode>
+    </connection>
+    <connection name="palodemo" type="Jedox" modified="1390216621683" modifiedBy="">
+      <password encrypted="true">UIIKTDp6jWhHfZhBpPByiA==</password>
+      <host>${Host}</host>
+      <port>7777</port>
+      <user>admin</user>
+      <database>Demo</database>
+    </connection>
+    <connection name="palotarget" type="Jedox" modified="1390216661050" modifiedBy="">
+      <password encrypted="true">UIIKTDp6jWhHfZhBpPByiA==</password>
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <database>Demo_ETL</database>
+    </connection>
+    <connection name="out_file" type="File" modified="1390216661031" modifiedBy="">
+      <database>CubeOut.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+      <enableEscape>false</enableEscape>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Sales_Extract" type="Cube" modified="1390216445541" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="Sales" />
+        <dimensions>
+          <dimension name="Years">
+            <condition operator="like" value="${Year}" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Months">
+            <condition operator="like" value="${Month}" mode="onlyBases" type="accept" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+  </extracts>
+  <transforms>
+  </transforms>
+  <loads>
+    <load name="File_Load" type="File" modified="1390216445541" modifiedBy="">
+      <source nameref="Sales_Extract" />
+      <connection nameref="out_file" />
+    </load>
+  </loads>
+  <jobs>
+    <job name="RelationalMetadata" type="Groovy" modified="1390216445541" modifiedBy="">
+      <jobscript><![CDATA[/* Catalogs */
+LOG.info("List of Catalogs");
+state = API.getConnectionMetadata("${RelConn}","catalog",null);
+if (state.getData()!=null) {
+	for (String line :	state.getData().split("\r\n")) {
+		LOG.info(line);
+	}
+};
+/* Schemas */
+LOG.info("List of Schemas");
+state = API.getConnectionMetadata("${RelConn}","schema",null);
+if (state.getData()!=null) {
+	for (String line : state.getData().split("\r\n")) {
+		LOG.info(line);
+	}
+};
+/* Tables */
+LOG.info("List of Tables");
+state =	API.getConnectionMetadata("${RelConn}","table",null);
+if (state.getData()!=null) {
+	for (String line : state.getData().split("\r\n")) {
+		LOG.info(line);
+	}
+};]]></jobscript>
+      <comment><![CDATA[Sample for Connection Metadata. List the schemas, catalogs and tables of a HSQLDB-database.]]></comment>
+    </job>
+    <job name="DynamicVariables" type="Groovy" modified="1390216445541" modifiedBy="">
+      <jobscript><![CDATA[import java.util.Calendar;
+import java.util.Locale;
+
+calendar = Calendar.getInstance();
+String year = calendar.get(Calendar.YEAR);
+String mon = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.ENGLISH);
+
+/* API.setProperty("Year",year); */
+API.setProperty("Month",mon);
+state = API.executeLoad("File_Load");]]></jobscript>
+      <comment><![CDATA[Sample for dynamic setting of job/load variables. Loads Cube data for the current date to a File. Note: Year is not set as there is no sample data .]]></comment>
+    </job>
+    <job name="JobStatus" type="Groovy" modified="1390216661065" modifiedBy="">
+      <comment><![CDATA[Sample for simple workflow. Loads Cube data for year 2007 to File, if successfully load also Cube data for 2010.]]></comment>
+      <jobscript><![CDATA[st = API.getJobState();
+LOG.info("Currently: "+st.getStatus()+" Warnung "+st.getWarnings());
+LOG.warn("Eine Warnung");
+st = API.getJobState();
+LOG.info("Currently: "+st.getStatus()+" Warnung "+st.getWarnings());
+
+state = API.executeLoad("File_Load");
+
+LOG.info("Log: "+state.getLog());
+
+if (state.isOK()) {
+    LOG.info("Load has been successfully or with warnings, starting it again for year 2010");
+    API.setProperty("Year","2010");
+	state2 = API.executeLoad("File_Load");  
+} 
+else {
+   String status = state.getStatus();
+   int errors = state.getErrors();
+   int warnings = state.getWarnings();
+   LOG.info("Errors occured during load. Status:"+status+", Errors:"+errors+", Warnings:"+warnings);
+}]]></jobscript>
+    </job>
+    <job name="ReadSource" type="Groovy" modified="1390216445541" modifiedBy="">
+      <jobscript><![CDATA[source = API.initSource("Sales_Extract");
+int count=0;
+
+while (source.nextRow() && count<20) {
+  Product = source.getColumnString("Products");
+  Region = source.getColumnString("Regions");
+  Datatype = source.getColumnString("Datatypes");
+  Measure = source.getColumnString("Measures");
+  Value = source.getColumnString("#Value");
+  LOG.info(Product+" - "+Region+" - "+Datatype+" - "+Measure+" - "+Value);
+  count=count+1;
+};]]></jobscript>
+      <comment><![CDATA[Sample for access to the data of an extract or a transform.]]></comment>
+    </job>
+       <job name="Wait" type="Groovy" modified="1390216445541" modifiedBy="">
+      <jobscript><![CDATA[int seconds = 5;
+LOG.info("Waiting for "+seconds+" seconds...");
+Thread.sleep(seconds*1000);
+LOG.info("Waiting finished.");]]></jobscript>
+    </job>
+    <job name="SendMail" type="Groovy" modified="1390216660920" modifiedBy="">
+      <comment><![CDATA[Sample for Sending an EMail to multiple recipients. The SMPT-Settings are taken from Jedox Web System Manager]]></comment>
+      <jobscript><![CDATA[mailer = API.getMailer();
+mailer.setServer();
+/* for 2 recipients */
+mailer.addRecipient("changeme@gmail.com");
+mailer.addRecipient("changeme2@gmail.com");
+mailer.setSubject("ETL Test Mail");
+mailer.setMessage("Hello! here are the files.");
+/* with 2 attachements */
+mailer.addAttachment("FileToOlap.csv");
+mailer.addAttachment("BikerOrderlines.csv");
+mailer.send();]]></jobscript>
+    </job>
+    <job name="JobStatus2" type="Groovy" modified="1390217098783" modifiedBy="">
+      <comment><![CDATA[Sample for simple workflow. Loads Cube data for year 2007 to File, if successfully load also Cube data for 2010.]]></comment>
+      <jobscript><![CDATA[/* This is an example with failOnError=true */
+API.setProperty("#failOnError","false");
+
+API.setProperty("Host","HostNotAvailable");
+API.setProperty("Year","2010");
+state = API.executeLoad("File_Load");
+
+if (state.getErrors()!=0) {
+  /* try to load again to another host, the load will not be executed 
+     unless API.setProperty("#failOnError","false") is added to first line*/
+   API.setProperty("Host","localhost");
+   state = API.executeLoad("File_Load");
+   LOG.info("Errors:"+state.getErrors()+", Warnings:"+state.getWarnings());
+}]]></jobscript>
+    </job>
+  </jobs>
+</project>
+

@@ -1,0 +1,93 @@
+@request_path /rule/modify
+
+@short_description Modifies an enterprise rule for a cube. 
+Use the parameter "definition" for changing the rule or use the parameter "activate" for activating and deactivating.
+
+@long_description 
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+ 
+@param rule
+@param_type identifier
+@param_description Comma separated list of rule identifiers to be modified. If definition is specified, only first rule is modified!
+
+@param definition
+@param_type string
+@param_description Urlencoded enterprise rule
+
+@param activate
+@param_type integer
+@param_description activate rule with "1", deactivate rule with "0" or toggle rule active state with "2"
+
+@param external_identifier
+@param_type string
+@param_description Urlencoded external identifier
+
+@param comment
+@param_type string
+@param_description Urlencoded comment
+
+@param use_identifier
+@param_type boolean
+@param_description Use identifier in textual representation of the rule in the result. The definition can use name or identifier independent of the parameter.
+ 
+@param position
+@param_type double
+@param_description Optional position of the rule in the list of cube rules. By default the position stays unchanged. If multiple rules are specified in parameter 'rule' all these rules will get new position. First rule from the list get position 'position', second gets 'position'+1 etc.
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+@result rule
+@result_type identifier
+@result_description Identifier of the rule
+
+@result rule_string
+@result_type string
+@result_description Textual representation for the rule
+
+@result external_identifier
+@result_type string
+@result_description external identifier of the rule
+
+@result comment
+@result_type string
+@result_description comment for the rule
+
+@result timestamp
+@result_type string
+@result_description creation time of the rule in seconds since 1970-01-01
+
+@result active
+@result_type integer
+@result_description 0=rule is not active,  1=rule is active
+
+@result position
+@result_type double
+@result_description Position of the rule within list of cube rules
+
+@example database=1&cube=13&definition=['budget']%3dadd(['actual'],['variance']*-2)&rule=0
+@example_description Modify rule 0: Budget = Variance - 2 * Actual
+
+@example database=1&cube=13&rule=0,1,2&activate=2
+@example_description Toggle active state of rules 0,1 and 2. Active rules are deactivated and vice versa.
+
+@example database=1&cube=13&rule=0,2,1&position=100,400
+@example_description Set new position of rules 0,2 and 1. Rule 0 gets position 100, rule 2 gets position 200 and rule 1 position 300.  

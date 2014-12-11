@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{691919e6-e6ca-44ea-82ea-b073adff361f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{4a5c556d-054f-4976-9b87-917f68ecc130}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main\Impl">
+      <UniqueIdentifier>{e2284221-71fe-47ce-8473-59e2eadfc0d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PHP Extension">
+      <UniqueIdentifier>{cc5a4ccd-942a-4c96-8e63-e7bd90a638af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zend Value">
+      <UniqueIdentifier>{a0fa81aa-9b92-4460-82fd-c7adf63aae3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zend Value\Impl">
+      <UniqueIdentifier>{737dd51a-bac2-4f03-a159-7231ffe23cf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="X">
+      <UniqueIdentifier>{2b38ddd7-631a-437d-989e-6e2b585bd35c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="X\Output">
+      <UniqueIdentifier>{dbb9d069-3733-4aaf-9006-9eec7f992b7d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res.rc">
+      <Filter>Resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="PHPPaloContext.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="PHPPaloException.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="PHPPaloLogger.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="PHPPaloMessages.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="PHPPaloSpreadsheetFuncs.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="PHPPaloSpreadsheetFuncsWrapper.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="PHPPaloVersion.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="wrap.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="c2c_plus_plus.h">
+      <Filter>PHP Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="php_jedox_palo.h">
+      <Filter>PHP Extension</Filter>
+    </ClInclude>
+    <ClInclude Include="ZendArrayBuilderImpl.h">
+      <Filter>Zend Value</Filter>
+    </ClInclude>
+    <ClInclude Include="ZendValue.h">
+      <Filter>Zend Value</Filter>
+    </ClInclude>
+    <ClInclude Include="ZendValueException.h">
+      <Filter>Zend Value</Filter>
+    </ClInclude>
+    <ClInclude Include="ZendValueIteratorImpl.h">
+      <Filter>Zend Value</Filter>
+    </ClInclude>
+    <ClInclude Include="ZendValueMessages.h">
+      <Filter>Zend Value</Filter>
+    </ClInclude>
+    <ClInclude Include="php_jedox_palo.c.h">
+      <Filter>X\Output</Filter>
+    </ClInclude>
+    <ClInclude Include="wrap.cpp.h">
+      <Filter>X\Output</Filter>
+    </ClInclude>
+    <ClInclude Include="wrap.h.h">
+      <Filter>X\Output</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PHPPaloContext.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="PHPPaloLogger.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="PHPPaloMessages.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="PHPPaloSpreadsheetFuncs.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="PHPPaloSpreadsheetFuncsWrapper.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="PHPPaloVersion.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="wrap.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="c2c_plus_plus.cpp">
+      <Filter>PHP Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="php_jedox_palo.c">
+      <Filter>PHP Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="php_jedox_palo_cpp.cpp">
+      <Filter>PHP Extension</Filter>
+    </ClCompile>
+    <ClCompile Include="ZendArrayBuilderImpl.cpp">
+      <Filter>Zend Value\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="ZendValue.cpp">
+      <Filter>Zend Value\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="ZendValueIteratorImpl.cpp">
+      <Filter>Zend Value\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="ZendValueMessages.cpp">
+      <Filter>Zend Value\Impl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MakeWrapperDecl.xslt">
+      <Filter>X</Filter>
+    </None>
+    <None Include="MakeWrapperEntries.xslt">
+      <Filter>X</Filter>
+    </None>
+    <None Include="MakeWrappers.xslt">
+      <Filter>X</Filter>
+    </None>
+    <None Include="CHANGES" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="$(SolutionDir)Common\Documentation.xml" />
+  </ItemGroup>
+</Project>

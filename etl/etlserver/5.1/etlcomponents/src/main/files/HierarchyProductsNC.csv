@@ -1,0 +1,59 @@
+N,Desktop L,
+N,Desktop Pro,
+N,Desktop Pro XL,
+N,Desktop High XL,
+N,Desktop High XQ,
+N,Server Power XC,
+N,Server Power TT,
+N,Server Dual C,
+N,Server Dual XC,
+N,Server Lion RX,
+N,Notebook SX,
+N,Notebook GT,
+N,Notebook LXC,
+N,Notebook TT,
+N,Notebook SL,
+N,Subnote SL,
+N,Subnote XK,
+N,TFT Monitor XA,
+N,TFT Monitor TL,
+N,TFT Monitor XP,
+N,Wireless Mouse XT,
+N,Optical Mouse TS,
+N,Laptop Mouse S,
+N,Keyboard XX,
+N,Keyboard GT,
+C,Stationary PC's,
+,Desktop L,2
+,Desktop Pro,2
+,Desktop Pro XL,2
+,Desktop High XL,2
+,Desktop High XQ,2
+,Server Power XC,3
+,Server Power TT,3
+,Server Dual C,3
+,Server Dual XC,3
+,Server Lion RX,3
+C,Portable PC's,
+,Notebook SX,1
+,Notebook GT,1
+,Notebook LXC,1
+,Notebook TT,1
+,Notebook SL,1
+,Subnote SL,1
+,Subnote XK,1
+C,Monitors,
+,TFT Monitor XA,1
+,TFT Monitor TL,1
+,TFT Monitor XP,1
+C,Peripherals,
+,Wireless Mouse XT,1
+,Optical Mouse TS,1
+,Laptop Mouse S,1
+,Keyboard XX,1
+,Keyboard GT,1
+C,All Products,
+,Stationary PC's,1
+,Portable PC's,1
+,Monitors,1
+,Peripherals,1

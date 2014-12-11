@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://schemas.jedox.com/etlcore"
+	xmlns:c="http://schemas.jedox.com/etlcore"
+	elementFormDefault="qualified">
+
+	<element name="alias_map" type="c:aliasmaptype" /> 
+	  	
+	<complexType name="aliastype">
+		<simpleContent>
+			<extension base="positiveInteger">
+				<attribute name="name" type="string"/>
+				<attribute name="default" type="string"/>
+				<attribute name="origin" type="string"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	
+	<complexType name="aliasmaptype">
+		<sequence>
+			<element name="alias" type="c:aliastype" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="name" type="string" default="default"/>
+		<anyAttribute processContents="lax"/>
+	</complexType>
+	  	
+</schema>

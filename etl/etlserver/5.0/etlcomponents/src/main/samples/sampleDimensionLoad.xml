@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleDimensionLoad" version="5.0">
+  <comment>
+<![CDATA[ETL Demo Project.
+Build up of a OLAP dimension for Customers from a Flat File.
+The Transforms FieldTransform and TreeFH are used.
+The different Update-Modes for the Export of dimensions are demonstrated.]]>
+  </comment>
+  <variables />
+  <connections>
+    <connection name="bikeretl" type="Jedox">
+      <comment>
+<![CDATA[Palo database as target system]]>
+      </comment>
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">pT89bsad549sNf7mGBHtkg==</password>
+      <database>Biker_ETL</database>
+    </connection>
+    <connection name="CustomerRegions_file" type="File">
+      <database>BikerCustomerRegions.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+  	  <quote>#none</quote>      
+      <encoding>latin1</encoding>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Customer_Extract" type="File">
+      <connection nameref="CustomerRegions_file" />
+      <query>
+<![CDATA[select "CustomerID", "CompanyName", "Country", "Region",
+"Phone", "SalesPerson" from "CustomerRegions_file"
+ order by "Region", "Country", "CompanyName"]]>
+      </query>
+      <alias_map>
+        <alias name="CustomerID">1</alias>
+        <alias name="CompanyName">2</alias>
+        <alias name="Country">3</alias>
+        <alias name="Region">4</alias>
+        <alias name="Phone">5</alias>
+        <alias name="SalesPerson">6</alias>
+      </alias_map>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="Customers_Tree" type="TreeFH">
+      <sources>
+        <source nameref="Customer_Extract" />
+      </sources>
+      <target type="numeric">
+        <levels>
+          <level>
+            <input constant="All Customers" />
+          </level>
+          <level>
+            <input nameref="Region" />
+          </level>
+          <level>
+            <input nameref="Country" />
+          </level>
+          <level>
+            <input nameref="CompanyName" />
+            <attributes>
+              <attribute name="Telephone">
+                <input nameref="Phone" />
+              </attribute>
+              <attribute name="SalesPerson">
+                <input nameref="SalesPerson" />
+              </attribute>
+            </attributes>
+          </level>
+        </levels>
+      </target>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="Customer_Load_Update" type="Dimension">
+      <comment>
+<![CDATA[Updates the complete Palo dimension. All elements and
+consolidations in the Palo dimension which are not in the source are deleted]]>
+      </comment>
+      <source nameref="Customers_Tree" />
+      <connection nameref="bikeretl" />
+      <dimension name="Customer" />
+      <mode>update</mode>
+    </load>
+    <load name="Customer_Load_AddUpdate" type="Dimension">
+      <comment>
+<![CDATA[Elements are added to the dimension without deleting
+existing elements, the consolidations are completely updated]]>
+      </comment>
+      <source nameref="Customers_Tree" />
+      <connection nameref="bikeretl" />
+      <dimension name="Customer">
+        <elements mode="add" />
+        <consolidations mode="update" />
+        <attributes mode="add" />
+      </dimension>
+    </load>
+    <load name="Customer_Load_AttributesOnly" type="Dimension">
+      <comment>
+<![CDATA[Only the attributes are updated in the Palo dimension]]>
+      </comment>
+      <source nameref="Customers_Tree" />
+      <connection nameref="bikeretl" />
+      <dimension name="Customer">
+        <attributes mode="add" />
+      </dimension>
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard">
+      <load nameref="Customer_Load_Update" />
+    </job>
+    <job name="Customer_Job_AttributesOnly" type="Standard">
+      <load nameref="Customer_Load_AttributesOnly" />
+    </job>
+    <job name="Customer_Job_AddUpdate" type="Standard">
+      <load nameref="Customer_Load_AddUpdate" />
+    </job>
+  </jobs>
+</project>
+

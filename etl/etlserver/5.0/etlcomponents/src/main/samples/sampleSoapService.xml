@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleSoapService" version="5.0">
+	<comment>
+<![CDATA[ETL Demo Project.
+Reads SOAP based Demo Webservices which are currently available on www.webservicex.net]]>
+	</comment>
+	<variables />
+	<connections>
+		<connection name="Service_Stockquote" type="Soap">
+			<operation>GetQuote</operation>
+			<wsdl>http://www.webservicex.net/stockquote.asmx?wsdl
+			</wsdl>
+			<parameters>
+			<!-- company symbol -->
+				<parameter name="symbol">sd</parameter>
+			</parameters>
+		</connection>
+		<connection name="Service_Weather" type="Soap">
+			<operation>GetWeather</operation>
+			<wsdl>http://www.webservicex.net/globalweather.asmx?wsdl
+			</wsdl>
+			<parameters>
+			<!-- company symbol -->
+				<parameter name="CityName">Amman</parameter>
+				<parameter name="CountryName">Jordan</parameter>
+			</parameters>
+		</connection>
+		<connection name="Service_ConversionRate" type="Soap">
+			<operation>ConversionRate</operation>
+			<wsdl>http://www.webservicex.net/CurrencyConvertor.asmx?wsdl
+			</wsdl>
+			<parameters>
+				<parameter name="FromCurrency">JOD</parameter>
+				<parameter name="ToCurrency">EUR</parameter>
+			</parameters>
+		</connection>
+	    <connection name="Service_AirportInfo" type="Soap">
+			<operation>GetAirportInformationByCountry</operation>
+			<wsdl>http://www.webservicex.net/airport.asmx?wsdl
+			</wsdl>
+			<parameters>
+				<parameter name="country">US</parameter>
+			</parameters>
+		</connection>
+		    <connection name="service_result" type="File">
+      <database>Result_service.txt</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+	</connections>
+	<extracts>
+		<extract name="Extract_Weather" type="Xml">
+			<connection nameref="Service_Weather" />
+			<query>
+				<level>
+					//CurrentWeather
+   				</level>
+				<fields>
+					<field>Location</field>
+					<field>Time</field>
+					<field>Wind</field>
+					<field>Visibility</field>
+					<field>Temperature</field>
+					<field>DewPoint</field>
+					<field>RelativeHumidity</field>
+					<field>Pressure</field>
+					<field>Status</field>
+				</fields>
+			</query>
+		</extract>
+		<extract name="Extract_Stockquote" type="Xml">
+			<connection nameref="Service_Stockquote" />
+			<query>
+				<level>
+					//Stock
+   				</level>
+				<fields>
+					<field>Name</field>
+					<field>Symbol</field>
+					<field>Last</field>
+					<field>Date</field>
+					<field>Time</field>
+					<field>Change</field>
+					<field>Open</field>
+					<field>High</field>
+					<field>Low</field>
+					<field>Volume</field>
+					<field>MktCap</field>
+					<field>PreviousClose</field>
+					<field>PercentageChange</field>
+					<field>AnnRange</field>
+					<field>Earns</field>
+					<field>P-E</field>
+				</fields>
+			</query>
+		</extract>
+		<extract name="Extract_ConversionRate" type="Xml">
+			<connection nameref="Service_ConversionRate" />
+			<query>
+				<level>
+					//ConversionRateResponse
+    			</level>
+				<fields>
+					<field>ConversionRateResult</field>
+				</fields>
+			</query>
+			<alias_map>
+				<alias name="rate">1</alias>
+			</alias_map>
+		</extract>
+		<extract name="Extract_AirportInfo" type="Xml">
+			<connection nameref="Service_AirportInfo" />
+			<query>
+				<level>
+					//Table
+    			</level>
+				<fields>
+					<field>AirportCode</field>
+					<field>CityOrAirportName</field>
+					<field>Country</field>
+					<field>CountryCode</field>
+					<field>GMTOffset</field>
+					<field>RunwayLengthFeet</field>
+					<field>RunwayElevationFeet</field>
+					<field>LatitudeDegree</field>
+					<field>LatitudeMinute</field>
+					<field>LongitudeDegree</field>
+					<field>LongitudeMinute</field>
+				</fields>
+			</query>
+			<alias_map>
+			</alias_map>
+		</extract>
+	</extracts>
+	<transforms />
+  <loads>
+    <load name="fileload" type="File">
+      <source nameref="Extract_AirportInfo" />
+      <connection nameref="service_result" />
+      <mode>create</mode>
+    </load>
+  </loads>
+  <jobs>
+    <job name="filejob" type="Standard">
+      <load nameref="fileload" />
+    </job>
+  </jobs>
+</project>

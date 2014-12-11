@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="project" type="c:projecttype">
+    	<unique name="datasourcenames">
+			<selector xpath=".//c:extracts/c:extract | .//c:transforms/c:transform" />
+			<field xpath="@name" />
+		</unique>
+    	<unique name="variablescriptnames">
+			<selector xpath=".//c:variables/c:variable | .//c:scripts/c:script" />
+			<field xpath="@name" />
+		</unique>		
+	</element>
+
+	<simpleType name="identifier">
+   		<restriction base="string">
+     		<minLength value="1"/>
+   		</restriction>
+	</simpleType>
+
+	<complexType name="variable">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="name" type="string" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="connection">
+		<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+        <attribute name="name" type="c:identifier" use="required"/>
+        <attribute name="type" type="string" use="required">
+        	<annotation>
+				<appinfo>
+					<get>components:/connection/@type</get>
+				</appinfo>
+			</annotation>
+		</attribute>
+        <anyAttribute processContents="lax"/>
+    </complexType>
+
+    <complexType name="extract">
+		<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+        <attribute name="name" type="c:identifier" use="required"/>
+        <attribute name="type" type="string" use="required">
+        	<annotation>
+				<appinfo>
+					<get>components:/extracts/@type</get>
+				</appinfo>
+			</annotation>
+		</attribute>
+        <anyAttribute processContents="lax"/>
+    </complexType>
+
+    <complexType name="transform">
+		<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+        <attribute name="name" type="c:identifier" use="required"/>
+        <attribute name="type" type="string" use="required">
+        	<annotation>
+				<appinfo>
+					<get>components:/transforms/@type</get>
+				</appinfo>
+			</annotation>
+		</attribute>
+        <anyAttribute processContents="lax"/>
+    </complexType>
+
+    <complexType name="load">
+		<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+        <attribute name="name" type="c:identifier" use="required"/>
+        <attribute name="type" type="string" use="required">
+        	<annotation>
+				<appinfo>
+					<get>components:/loads/@type</get>
+				</appinfo>
+			</annotation>
+		</attribute>
+        <anyAttribute processContents="lax"/>
+    </complexType>
+
+    <complexType name="job">
+		<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+        <attribute name="name" type="c:identifier" default="default"/>
+        <attribute name="type" type="string">
+        	<annotation>
+				<appinfo>
+					<get>components:/jobs/@type</get>
+				</appinfo>
+			</annotation>
+		</attribute>
+        <anyAttribute processContents="lax"/>
+    </complexType>
+
+    <complexType name="alias_map">
+		<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+        <attribute name="name" type="c:identifier" use="required"/>
+        <anyAttribute processContents="lax"/>
+    </complexType>
+
+
+	<complexType name="variablestype">
+		<sequence>
+			<element name="variable" type="c:variable" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+    </complexType>
+
+    <complexType name="connectionstype">
+		<sequence>
+        	<element name="connection" type="c:connection" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+     <complexType name="aliasmapstype">
+		<sequence>
+        	<element name="alias_map" type="c:alias_map" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="extractstype">
+		<sequence>
+        	<element name="extract" type="c:extract" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="transformstype">
+		<sequence>
+        	<element name="transform" type="c:transform" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="loadstype">
+		<sequence>
+        	<element name="load" type="c:load" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="jobstype">
+		<sequence>
+        	<element name="job" type="c:job" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+     <simpleType name="formattype">
+ 		 <restriction base="string">
+    		<enumeration value="lazy"/>
+    		<enumeration value="strict"/>
+  		</restriction>
+	</simpleType>
+
+
+    <complexType name="projecttype">
+        <all>
+        	<element name="variables" type="c:variablestype" minOccurs="0" maxOccurs="1">
+        		<unique name="variablenames">
+					<selector xpath=".//c:variable" />
+					<field xpath="@name" />
+				</unique>
+        	</element>
+            <element name="connections" type="c:connectionstype" minOccurs="0" maxOccurs="1">
+        		<unique name="connectionnames">
+					<selector xpath=".//c:connection" />
+					<field xpath="@name" />
+				</unique>
+        	</element>
+            <element name="alias_maps" type="c:aliasmapstype" minOccurs="0" maxOccurs="1">
+        		<unique name="mapnames">
+					<selector xpath=".//c:alias_map" />
+					<field xpath="@name" />
+				</unique>
+        	</element>
+            <element name="extracts" type="c:extractstype" minOccurs="0" maxOccurs="1"/>
+            <element name="transforms" type="c:transformstype" minOccurs="0" maxOccurs="1"/>
+            <element name="loads" type="c:loadstype" minOccurs="0" maxOccurs="1">
+        		<unique name="loadnames">
+					<selector xpath=".//c:load" />
+					<field xpath="@name" />
+				</unique>
+        	</element>
+            <element name="jobs" type="c:jobstype" minOccurs="0" maxOccurs="1">
+        		<unique name="jobnames">
+					<selector xpath=".//c:job" />
+					<field xpath="@name" />
+				</unique>
+        	</element>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="version" type="string"/>
+        <attribute name="format" type="c:formattype"/>
+    </complexType>
+</schema>

@@ -1,0 +1,122 @@
+@request_path /element/info
+
+@short_description Shows the element data.
+
+@long_description The elements of a dimension form a hierarchy. An
+element of a dimension can have one or more children. The children
+form an ordered list. An element can have zero, one, or more
+parents. The parents form an ordered list. An element without children
+is called a base-element, an element with children is called a
+consolidated element. 
+
+In addition to the hierarchy all elements of a dimension are kept
+in an ordered list. The position of an element is its position in this
+ordered list.
+
+The level describes how high an element is located in the dimension
+hierarchy. It starts with level 0 at the base-elements counting toward
+the height of the hierarchy at the root nodes. That is to say, the
+level of an element is the length of the longest path of the element
+to one of the base-elements.
+
+The depth of an element is analogon but starting from the root nodes.
+It starts with depth 0 at the root- nodes counting toward the height
+of the hierarchy at the base-elements. That i say, the depth of an
+element is the length of the longest path of the element to one of the
+root nodes.
+
+The indent is almost the same as the depth with the excepting that only
+the first parent of an element is taken into account.
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+
+@param dimension
+@param_type identifier
+@param_description Identifier of the dimension
+
+@param name_dimension
+@param_type string
+@param_description Name of the dimension. Used only if dimension parameter is omitted.
+ 
+@param element
+@param_type identifier
+@param_description Identifier of the element
+
+@param name_element
+@param_type string
+@param_description Name of the element. Used only if element parameter is omitted.
+
+@param show_permission
+@param_type boolean
+@param_description If 1 then additional information about the user's permission on element is returned (optional, default is 0)
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the
+<a href="/api/server/login">/server/login</a> request to get a valid
+session identifier.
+
+
+
+@result element
+@result_type identifier
+@result_description Identifier of the element
+
+@result name_element
+@result_type string
+@result_description Name of the element
+
+@result position
+@result_type integer
+@result_description Position of the element
+
+@result level
+@result_type integer
+@result_description Level of the element
+
+@result indent
+@result_type integer
+@result_description Indent of the element
+
+@result depth
+@result_type integer
+@result_description Depth of the element
+
+@result type
+@result_type integer
+@result_description Type of the element (1=NUMERIC, 2=STRING, 4=CONSOLIDATED)
+
+@result number_parents
+@result_type integer
+@result_description Number of parents
+
+@result parents
+@result_type identifier
+@result_description Comma separated list of parent identifiers
+
+@result number_children
+@result_type integer
+@result_description Number of children
+
+@result children
+@result_type identifier
+@result_description Comma separated list of children identifiers
+
+@result weights
+@result_type double
+@result_description Comma separated list of children weights
+
+@result permission
+@result_type string
+@result_description User's permission on element, maximum over all groups/roles ("N", "R", "W", "D")
+
+
+
+@example database=1&dimension=0&element=0
+@example_description Show element "0" of dimension "0"

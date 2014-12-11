@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<project default="main" basedir=".">
+
+	<echo message="setting up property files" />
+	<property name="workspace_loc" value="..\.."/>
+	<property name="dst.dir" value="${workspace_loc}\Eclipse_Tomcat_ETLserver\ETL\webapps\etlserver" />
+	<echo message="${dst.dir}" />
+	<property name="src.dir" value="${workspace_loc}\etl\etlserver\target\etlserver-3.2-SNAPSHOT" />
+	<echo message="${src.dir}" />
+
+	<echo message="calling the web services generation ant task: build_eclipse_tomcat" />
+	<target name="main">
+		<!--<delete includeEmptyDirs="true">
+			<fileset dir="${dst.dir}/data/db/etl_persistence">
+				<include name="**/*" />
+			</fileset>
+		</delete>-->
+		<delete dir="${dst.dir}/data" />
+		<copy todir="${dst.dir}/config">
+			<fileset dir="${src.dir}/config">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${dst.dir}/data">
+			<fileset dir="${src.dir}/data">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<mkdir dir="${dst.dir}/logs" />
+		<mkdir dir="${dst.dir}/customlib" />
+	</target>
+
+</project>

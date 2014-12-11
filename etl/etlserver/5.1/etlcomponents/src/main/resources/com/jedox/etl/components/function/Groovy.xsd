@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="function" type="c:transformertype" />
+    
+    <simpleType name="paramtype">
+ 		 <restriction base="string">
+    		<enumeration value="double"/>
+    		<enumeration value="int"/>
+    		<enumeration value="byte"/>
+    		<enumeration value="float"/>
+    		<enumeration value="short"/>
+    		<enumeration value="long"/>
+    		<enumeration value="boolean"/>
+    		<enumeration value="String"/>
+    		<enumeration value="Object"/>
+  		</restriction>
+	</simpleType> 
+    
+    <complexType name="inputref">
+		<attribute name="nameref" type="string">
+		</attribute>
+		<attribute name="constant" type="string"/>
+		<attribute name="type" type="c:paramtype"/>
+	</complexType>
+
+	 <complexType name="inputstype">
+        <sequence>
+        	<element name="input" type="c:inputref" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+	 <complexType name="parametertype">
+        <all>
+			<element name="script" type="string" minOccurs="1" maxOccurs="1"/>
+<!-- 			<element name="sources" type="string" minOccurs="0" maxOccurs="1"/>  -->
+        	<element name="type" type="c:paramtype" minOccurs="0" maxOccurs="1" default="String"/>
+        </all>
+    </complexType>
+    <complexType name="transformertype">
+        <all>
+        	 <element name="parameters" type="c:parametertype" minOccurs="1" maxOccurs="1"/>
+        	<element name="inputs" type="c:inputstype" minOccurs="1" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/> 
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+</schema>

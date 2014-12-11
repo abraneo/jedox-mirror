@@ -1,0 +1,41 @@
+i)
+If you use Visual Studio > 2005,
+you have to change TSRM\readir.h  in your php-5.2.x source tree.
+
+replace the line
+
+#define _WIN32_WINNT ...
+
+by
+
+#ifndef _WIN32_WINNT
+#define _WIN32_WINNT ...
+#endif
+
+It is a BUG in the PHP Source tree, but the PHP poeple made it clear, that there aren going to fix this.
+
+ii)
+you have to change TSRM\tsrm_config_common.h  in your php-5.2.x source tree.
+
+replace the line
+
+# if WINNT|WIN32
+
+by
+
+# if defined(WINNT)|| defined(WIN32)|| defined(WIN64)
+
+iii)
+you have to change main\config.w32.h  in your php-5.2.x source tree.
+
+tsrm_config_common
+
+replace the line
+
+#define _USE_32BIT_TIME_T 1
+
+by
+
+#ifndef _WIN64
+# define _USE_32BIT_TIME_T 1
+#endif

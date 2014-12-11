@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Jedox OLAP</title>
+    <link href="/inc/style_palo.css" rel="stylesheet" type="text/css">
+    <!--[if IE]>
+    <style>
+      body{
+        overflow:auto;
+      }
+    </style>
+    <![endif]-->
+  </head>
+
+  <body>
+	<script>
+    function httpGet(theUrl)
+    {
+      //alert(theUrl);
+      var xmlHttp = null;
+      xmlHttp = new XMLHttpRequest();
+      xmlHttp.open( "GET", theUrl, false );
+      xmlHttp.send( null );
+      //alert (xmlHttp.responseText);
+      if (xmlHttp.status != 200) {
+        alert(xmlHttp.responseText);
+        return false;
+      }
+      return true;
+    }
+    function createDimension(database,dimension)
+    {
+      var myurl = location.protocol+"//"+location.host+"/dimension/create?sid=0000&database="+database+"&new_name="+encodeURIComponent(dimension);
+      if (httpGet(myurl)) { 
+        location.reload();
+      }
+    }
+    function createCube(database,cube,dimensions)
+    {
+      if (cube == "" || dimensions == "") {
+        return;
+      }
+      var myurl = location.protocol+"//"+location.host+"/cube/create?sid=0000&database="+database+"&new_name="+cube+"&dimensions="+encodeURIComponent(dimensions);
+      if (httpGet(myurl)) {
+        location.reload();
+      }
+    }
+  </script>
+  
+    <div id="surround" align="center">
+      <div id="container">
+        <div id="clientHeader">&nbsp;</div>
+
+        <div id="left">
+          <a class="nav" href="/">Home</a>     
+          <a class="nav" href="/browser">Server browser</a>     
+          <a class="nav" href="/api">API Documentation</a>     
+          <a class="nav" href="http://www.jedox.com">Jedox OLAP Home</a>     
+        </div>
+
+        <div id="center">
+          <div style="margin: 10px;">
+            <h1>Jedox OLAP server browser</h1>
+
+            <table cellpadding="2" cellspacing="2" width="100%">
+		
+              <tr class="border_table">
+                <td colspan="2"><a href="/">home</a> > <a href="/browser">server</a> > database ></td>
+              </tr>
+
+							{@message}
+							
+              <tr>
+                <td colspan="2"><h2>Database</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">ID</td>
+                      <td           >name</td>
+                      <td width="50">status</td>
+                      <td width="50">type</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td>{@database_identifier}</td>
+                      <td>{@database_name}</td>
+                      <td>{@database_status}</td>
+                      <td>{@database_type}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="80">action</td>
+                      <td           >description</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><a href="/browser/database?database={@database_identifier}&action=load_database">load</a></td>
+                      <td>Reload database data from disk. All changes will be lost.</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><a href="/browser/database?database={@database_identifier}&action=save_database">save</a></td>
+                      <td>Save server, database and dimension data to disk. Cube data will not be saved.</td>
+                    </tr>
+                    <tr class="value_table">                    
+                      <td><a href="/browser/server?database={@database_identifier}&action=unload">unload</a></td>
+                      <td>Unload database from memory if it was saved before. All changes for dimensions and cubes will be lost.</td>
+                    </tr>                    
+                    <tr class="value_table">                    
+                      <td><a href="/browser/server?database={@database_identifier}&action=delete">delete</a></td>
+                      <td>Delete database from memory and disk.</td>
+                    </tr>                    
+                  </table>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td colspan="2"><h2>Dimensions</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">ID</td>
+                      <td           >name</td>
+                      <td width="80">num elements</td>
+                      <td width="80">max level</td>
+                      <td width="80">max indent</td>
+                      <td width="80">max depth</td>
+                      <td width="80">type</td>
+                    </tr>
+LOOP @dimension_identifier
+                    <tr class="value_table">
+                      <td><a href="/browser/dimension?database={@database_identifier}&dimension={@dimension_identifier[]}">{@dimension_identifier[]}</a></td>
+                      <td><a href="/browser/dimension?database={@database_identifier}&dimension={@dimension_identifier[]}">{@dimension_name[]}</a></td>
+                      <td class="value_cell">{@dimension_num_elements[]}</td>
+                      <td class="value_cell">{@dimension_max_level[]}</td>
+                      <td class="value_cell">{@dimension_max_indent[]}</td>
+                      <td class="value_cell">{@dimension_max_depth[]}</td>
+                      <td class="value_cell">{@dimension_type[]}</td>
+                    </tr>
+END_LOOP
+                    <tr class="value_table">
+                    <td>*</td>
+                    <td><input type="text" name="dimname" onkeyup="if(event.keyCode == 13) createDimension({@database_identifier},event.target.value)"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Cubes</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">ID</td>
+                      <td           >name</td>
+                      <td width="80">dimensions</td>
+                      <td width="50">status</td>
+                      <td width="50">type</td>
+                      <td width="50">rules</td>
+                      <td width="50"></td>
+                      <td width="50"></td>
+                      <td width="50"></td>
+                      <td width="50"></td>
+                    </tr>
+LOOP @cube_identifier
+                    <tr class="value_table">
+                      <td><a href="/browser/cube?database={@database_identifier}&cube={@cube_identifier[]}">{@cube_identifier[]}</a></td>
+                      <td><a href="/browser/cube?database={@database_identifier}&cube={@cube_identifier[]}">{@cube_name[]}</a></td>
+                      <td>{@cube_dimensions[]}</td>
+                      <td>{@cube_status[]}</td>
+                      <td>{@cube_type[]}</td>
+                      <td><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier[]}">{@cube_rules[]}</a></td>
+                      <td><a href="/browser/database?database={@database_identifier}&cube={@cube_identifier[]}&action=load">load</a></td>
+                      <td><a href="/browser/database?database={@database_identifier}&cube={@cube_identifier[]}&action=save">save</a></td>
+                      <td><a href="/browser/database?database={@database_identifier}&cube={@cube_identifier[]}&action=unload">unload</a></td>
+                      <td><a href="/browser/database?database={@database_identifier}&cube={@cube_identifier[]}&action=delete">delete</a></td>
+                    </tr>
+END_LOOP
+                    <tr class="value_table">
+                    <td>*</td>
+                    <td><input type="text" id="new_cubename" onkeyup="if(event.keyCode == 13) createCube({@database_identifier},event.target.value,document.getElementById('new_dimlist').value)"></td>
+                    <td><input type="text" id="new_dimlist" onkeyup="if(event.keyCode == 13) createCube({@database_identifier},document.getElementById('new_cubename').value,event.target.value)"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>  
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footerText">{@footerText}</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

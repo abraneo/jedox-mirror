@@ -1,0 +1,42 @@
+@request_path /cube/rollback
+
+@short_description rollback changes of a locked cube area
+
+@long_description 
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+@param lock
+@param_type integer
+@param_description Indentifier of the locked area
+
+@param steps
+@param_type integer
+@param_description number of steps to rollback (an empty value means undo all steps and remove lock)
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+@result OK
+@result_type boolean
+@result_description "1" means OK
+ 
+
+@example database=1&cube=7&lock=1
+@example_description Rollback all changes of locked area 1

@@ -1,0 +1,67 @@
+@request_path /cell/copy
+
+@short_description Copies a cell path or a calculated predictive value to an other cell path
+ 
+@long_description 
+    
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+@param function
+@param_type integer
+@param_description Optional predictive function.<br>(0 - no prediction (default), 1 - linear regression on consolidated level)
+
+@param path
+@param_type path
+@param_description Source cell path used for copy (function=0). Comma separated list of element identifiers.
+
+@param name_path
+@param_type npath
+@param_description Source cell path used for copy (function=0). Comma separated list of element names. Used only if path parameter is omitted.
+
+@param area
+@param_type area
+@param_description Source area used for the predictive function (function=1). Comma separated list of element identifiers list. Each element identifiers list is colon separated, only one list can contain multiple elements. The area is the cartesian product.
+
+@param path_to
+@param_type path
+@param_description Target cell path. Comma separated list of element identifiers. 
+
+@param name_path_to
+@param_type npath
+@param_description Target cell path. Comma separated list of element names. Used only if path_to parameter is omitted. 
+ 
+@param use_rules
+@param_type boolean
+@param_description If 1, then copy rule based cell values (default is 0)
+ 
+@param value
+@param_type double
+@param_description The numeric value of the target cube cell. (optional)
+
+@param locked_paths
+@param_type path
+@param_description Optional colon separated list of paths. Each path is a comma separated list of element identifiers. Splashing will not change locked paths and sources areas of these paths if they are consolidated.
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+  
+
+@result OK
+@result_type boolean
+@result_description "1" means OK
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="ETL-Server"
+	class="com.jedox.etl.service.ETLServiceLifeCycle" scope="application"
+	targetNamespace="http://ns.jedox.com/ETL-Server">
+	<description>Palo ETL-Server Service</description>
+
+	<messageReceivers>
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only"
+			class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
+			class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+	</messageReceivers>
+
+	<schema schemaNamespace="http://ns.jedox.com/ETL-Server" />
+
+	<parameter name="ServiceClass">
+		com.jedox.etl.service.ETLService
+	</parameter>
+	
+	<!--  <module ref="rampart"/>
+<wsp:Policy wsu:Id="UsernameToken" xmlns:wsu=
+    "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+    xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+  <wsp:ExactlyOne>
+    <wsp:All>
+      <sp:SupportingTokens
+          xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+        <wsp:Policy>
+          <sp:UsernameToken sp:IncludeToken=
+              "http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient">
+           <wsp:Policy>
+              <sp:HashPassword/>
+            </wsp:Policy>
+          </sp:UsernameToken>
+        </wsp:Policy>
+      </sp:SupportingTokens>
+
+      <ramp:RampartConfig xmlns:ramp="http://ws.apache.org/rampart/policy">
+        <ramp:passwordCallbackClass>com.jedox.etl.service.PWCBHandler</ramp:passwordCallbackClass>
+      </ramp:RampartConfig>
+
+    </wsp:All>
+  </wsp:ExactlyOne>
+</wsp:Policy> -->
+</service>

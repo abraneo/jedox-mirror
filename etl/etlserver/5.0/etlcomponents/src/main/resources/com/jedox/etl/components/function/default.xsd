@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="function" type="c:transformertype" />
+    
+    <complexType name="inputref">
+		<attribute name="nameref" type="string">
+			<annotation>
+				<appinfo>
+					<ref>source:/alias_map/alias/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="constant" type="string"/>
+		<anyAttribute processContents="lax"/>
+	</complexType>
+    
+    <complexType name="inputstype">
+        <sequence>
+        	<element name="input" type="c:inputref" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    
+    <complexType name="parameter">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="name" type="string" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+	
+	<complexType name="parameters">
+		<sequence>
+			<element name="parameter" type="c:parameter" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+    <complexType name="transformertype">
+        <all>
+        	<element name="inputs" type="c:inputstype" minOccurs="0" maxOccurs="1"/> 
+			<element name="parameters" type="c:parameters" minOccurs="0" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+    
+    <!--  enumeration types of parameters for specific transformers for client -->
+     <simpleType name="Aggregation">
+ 		 <restriction base="string">
+    		<enumeration value="aggregate"/>
+  		</restriction>
+	</simpleType> 
+	<simpleType name="Concatenation">
+ 		 <restriction base="string">
+    		<enumeration value="template"/>
+    		<enumeration value="delimiter"/>
+  		</restriction>
+	</simpleType>  	
+	<simpleType name="DateDimension">
+ 		 <restriction base="string">
+    		<enumeration value="sourceformat"/>
+    		<enumeration value="targetformat"/>
+  		</restriction>
+	</simpleType>  	
+	<simpleType name="Duration">
+ 		 <restriction base="string">
+    		<enumeration value="sourceformat"/>
+    		<enumeration value="targetformat"/>
+  		</restriction>
+	</simpleType>  
+	<simpleType name="Groovy">
+ 		 <restriction base="string">
+    		<enumeration value="script"/>
+  		</restriction>
+	</simpleType>  	
+	<simpleType name="JavaScript">
+ 		 <restriction base="string">
+    		<enumeration value="script"/>
+  		</restriction>
+	</simpleType>  	
+	<simpleType name="Lookup">
+ 		 <restriction base="string">
+    		<enumeration value="from"/>
+    		<enumeration value="to"/>
+    		<enumeration value="default"/>
+  		</restriction>
+	</simpleType>  	
+	<simpleType name="Map">
+ 		 <restriction base="string">
+    		<enumeration value="map"/>
+  		</restriction>
+	</simpleType>
+	<simpleType name="Python">
+ 		 <restriction base="string">
+    		<enumeration value="script"/>
+  		</restriction>
+	</simpleType>   
+	<simpleType name="RegExp">
+ 		 <restriction base="string">
+    		<enumeration value="regexp"/>
+    		<enumeration value="replacement"/>
+  		</restriction>
+	</simpleType>
+	<simpleType name="Selection">
+ 		 <restriction base="string">
+    		<enumeration value="id"/>
+    		<enumeration value="name"/>
+  		</restriction>
+	</simpleType>     
+	<simpleType name="SubString">
+ 		 <restriction base="string">
+    		<enumeration value="begin"/>
+    		<enumeration value="end"/>
+  		</restriction>
+	</simpleType>  
+	<simpleType name="UpperLower">
+ 		 <restriction base="string">
+    		<enumeration value="case"/>
+  		</restriction>
+	</simpleType>     
+	   	
+</schema>

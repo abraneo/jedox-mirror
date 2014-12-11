@@ -1,0 +1,310 @@
+@server                     /server/activate_license
+@server_description         Activates license.
+@server_token               server
+
+@server                     /server/change_password
+@server_description         Changes user's password.
+@server_token               server
+
+@server                     /server/databases
+@server_description         Shows the list of databases.
+@server_token               server
+
+@server                     /server/info
+@server_description         Shows information about the server.
+@server_token               server
+
+@server                     /server/licenses
+@server_description         Shows information about the server license.
+@server_token               server
+
+@server                     /server/load
+@server_description         Loads the server data (does not load database or cube data).
+@server_token               server
+
+@server                     /server/login
+@server_description         Login to server by user name and password.
+@server_token               server
+
+@server                     /server/logout
+@server_description         Logout the current user
+@server_token               server
+
+@server                     /server/save
+@server_description         Saves the server data (does not save database or cube data).
+@server_token               server
+
+@server                     /server/shutdown
+@server_description         Shuts down server (does not save database or cube data).
+@server_token               -
+
+@server                     /server/user_info
+@server_description         Shows information about user.
+@server_token               server
+
+
+
+@database                   /database/create
+@database_description       Creates new database.
+@database_token             database
+
+@database                   /database/cubes
+@database_description       Shows the list of cubes
+@database_token             database
+
+@database                   /database/destroy
+@database_description       Deletes a database.
+@database_token             server
+
+@database                   /database/dimensions
+@database_description       Shows the list of dimensions
+@database_token             database
+
+@database                   /database/info
+@database_description       Shows identifier, name, number of dimensions and number of cubes.
+@database_token             database
+
+@database                   /database/load
+@database_description       Loads the database data.
+@database_token             database
+
+@database                   /database/rename
+@database_description       Renames a database
+@database_token             database
+
+@database                   /database/save
+@database_description       Saves the database data (does not save cube data).
+@database_token             database
+
+@database                   /database/unload
+@database_description       Unloads the database, dimension and cube data from memory.
+@database_token             database
+
+
+
+@dimension                  /dimension/clear
+@dimension_description      Clears a dimension.
+@dimension_token            dimension
+
+@dimension                  /dimension/create
+@dimension_description      Creates a new dimension.
+@dimension_token            dimension
+
+@dimension                  /dimension/cubes
+@dimension_description      Shows the list cubes using a dimension
+@dimension_token            dimension
+
+@dimension                  /dimension/destroy
+@dimension_description      Deletes a dimension.
+@dimension_token            database
+
+@dimension                  /dimension/dfilter
+@dimension_description      Filters dimension elements.
+@dimension_token            dimension
+
+@dimension                  /dimension/element
+@dimension_description      Shows one element at a given position
+@dimension_token            dimension
+
+@dimension                  /dimension/elements
+@dimension_description      Shows the list of elements. The list contains identifer, name, position, level, depth, parents and children of the elements.
+@dimension_token            dimension
+
+@dimension                  /dimension/info
+@dimension_description      Shows identifier, name, maximum level, maximum depth and number of elements of a dimension.
+@dimension_token            dimension
+
+@dimension                  /dimension/rename
+@dimension_description      Renames a dimension.
+@dimension_token            dimension
+
+
+@element                    /element/append
+@element_description        Adds children to consolidated elements.
+@element_token              dimension
+
+@element                    /element/create
+@element_description        Creates new element.
+@element_token              dimension
+
+@element                    /element/create_bulk
+@element_description        Creates multiple elements of the same type.
+@element_token              dimension
+
+@element                    /element/destroy
+@element_description        Deletes an element.
+@element_token              dimension
+
+@element                    /element/destroy_bulk
+@element_description        Delete list of elements.
+@element_token              dimension
+
+@element                    /element/info
+@element_description        Shows identifer, name, position, level, depth, parents and children of an element.
+@element_token              dimension
+
+@element                    /element/move
+@element_description        Changes the position of an element.
+@element_token              dimension
+
+@element                    /element/move_bulk
+@element_description        Changes the position of elements.
+@element_token              dimension
+
+@element                    /element/rename
+@element_description        Renames an element.
+@element_token              dimension
+
+@element                    /element/replace
+@element_description        Changes or creates a new element. Replaces children in consolidated elements.
+@element_token              dimension
+
+@element                    /element/replace_bulk
+@element_description        Changes or creates list of new elements. Replaces children in consolidated elements.
+@element_token              dimension
+
+
+@cube                       /cube/clear
+@cube_description           Clears a cube.
+@cube_token                 cube, client cache
+
+@cube                       /cube/clear_cache
+@cube_description           Clears a cube cache.
+@cube_token                 cube
+
+@cube                       /cube/commit
+@cube_description           Commits a locked cube area.
+@cube_token                 cube
+
+@cube                       /cube/convert 
+@cube_description           Convert cube
+@cube_token                 cube, client cache
+
+@cube                       /cube/create 
+@cube_description           Creates a new cube.
+@cube_token                 cube, client cache
+
+@cube                       /cube/destroy
+@cube_description           Deletes a cube.
+@cube_token                 database
+
+@cube                       /cube/info 
+@cube_description           Show identifier, name and dimension identifiers of a cube.
+@cube_token                 cube, client cache
+
+@cube                       /cube/load 
+@cube_description           Loads cube data.
+@cube_token                 cube
+
+@cube                       /cube/lock
+@cube_description           Lock cube areas.
+@cube_token                 cube
+
+@cube                       /cube/locks
+@cube_description           Lists locked cube areas.
+@cube_token                 cube
+
+@cube                       /cube/rename 
+@cube_description           Renames a cube.
+@cube_token                 cube, client cache
+
+@cube                       /cube/rollback
+@cube_description           Rollback a locked cube area.
+@cube_token                 cube
+
+@cube                       /cube/rules
+@cube_description           Lists all rules for a cube.
+@cube_token                 cube
+
+@cube                       /cube/save
+@cube_description           Saves cube data.
+@cube_token                 cube
+
+@cube                       /cube/unload 
+@cube_description           Unloads cube data from memory.
+@cube_token                 cube
+
+
+@cell                       /cell/area
+@cell_description           Shows datatype and value of an area of cube cells.
+@cell_token                 cube
+
+@cell                       /cell/copy
+@cell_description           Copies cells.
+@cell_token                 cube
+
+@cell                       /cell/drillthrough
+@cell_description           Retrieves detailed data for a cube cell.
+@cell_token                 cube
+
+@cell                       /cell/export
+@cell_description           Exports cells.
+@cell_token                 cube
+
+@cell                       /cell/goalseek
+@cell_description           Sets value of a cell and sister cells in a way that values of parent cells remain unchanged.
+@cell_token                 cube
+
+@cell                       /cell/replace
+@cell_description           Sets value of a cube cell.
+@cell_token                 cube
+
+@cell                       /cell/replace_bulk
+@cell_description           Sets values of cube cells.
+@cell_token                 cube
+
+@cell                       /cell/value
+@cell_description           Shows datatype and value of a cube cell.
+@cell_token                 cube
+
+@cell                       /cell/values
+@cell_description           Shows datatype and value of a list of cube cells.
+@cell_token                 cube
+
+
+
+@event                      /event/begin
+@event_description          Requests an exclusive lock.
+@event_token                server
+
+@event                      /event/end
+@event_description          Releases an exclusive lock.
+@event_token                server
+
+
+
+
+@rule                       /rule/create
+@rule_description           Creates a new enterprise rule for a cube.
+@rule_token                 cube
+
+@rule                       /rule/destroy
+@rule_description           Removes specified enterprise rules from a cube.
+@rule_token                 cube
+
+@rule                       /rule/functions
+@rule_description           Lists all available functions
+@rule_token                 -
+
+@rule                       /rule/info
+@rule_description           Shows an enterprise rule of a cube.
+@rule_token                 cube
+
+@rule                       /rule/modify
+@rule_description           Modifies enterprise rules of a cube.
+@rule_token                 cube
+
+@rule                       /rule/parse
+@rule_description           Parse an enterprise rule.
+@rule_token                 -
+
+
+
+
+@svs                        /svs/info
+@svs_description            Gets information about Supervision Server.
+@svs_token                  -
+
+@svs                        /svs/restart
+@svs_description            Restarts all SVS processes to reload PHP scripts.
+@svs_token                  -

@@ -1,0 +1,28 @@
+@request_path /server/logout
+
+@short_description This request is used to close a connection
+
+@long_description
+The session identifier can no longer be used after this request.
+It becomes invalid.
+
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the
+<a href="/api/server/login">/server/login</a> request to get a valid
+session identifier.
+
+@param type
+@param_type integer
+@param_description When 1 all session jobs are terminated.
+
+
+
+@result OK
+@result_type boolean
+@result_description "1" means OK
+
+@example
+@example_description The current user is logged out.
+

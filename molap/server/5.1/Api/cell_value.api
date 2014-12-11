@@ -1,0 +1,79 @@
+@request_path /cell/value
+
+@short_description Shows the value of a cube cell
+ 
+@long_description 
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+@param path
+@param_type path
+@param_description Comma separated list of element identifiers
+ 
+@param name_path
+@param_type npath
+@param_description Comma separated list of element names. Used only if path parameter is omitted.
+ 
+@param show_rule
+@param_type boolean
+@param_description If 1, then additional information about the cell value is returned, in case the value originates from an enterprise rule.
+
+@param show_lock_info
+@param_type boolean
+@param_description If 1, then additional information about the cell lock is returned.
+
+@param properties
+@param_type identifier
+@param_description Comma separated list of cell property ids.
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+@result type
+@result_type integer
+@result_description Type of the value (1=NUMERIC, 2=STRING)
+
+@result exists
+@result_type boolean
+@result_description 1 if numeric value is non-zero or string value is non-empty
+
+@result value
+@result_type double/string
+@result_description Value of the cell
+
+@result rule
+@result_type identifier
+@result_description Identifier of the rule, this cell values originates from or empty. Only available if show_rule is 1.
+
+@result lock_info
+@result_type identifier
+@result_description Lock info (0 - cell is not locked, 1 - cell is locked by user wich sent request, 2 - cell is locked by another user). Only available if show_lock_info is 1.
+
+@result property_values
+@result_type double/string
+@result_description Values of specified cell properties.
+
+
+
+@example database=1&cube=13&path=0,0,2,3,0,0
+@example_description Show value of cell path "0,0,2,3,0,0" of cube "0"
+
+@example database=1&cube=13&path=0,0,0,0,0,0
+@example_description Show value of cell path "0,0,0,0,0,0" of cube "0"

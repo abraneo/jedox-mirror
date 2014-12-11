@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://schemas.jedox.com/etlcore"
+	elementFormDefault="qualified" 
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:c="http://schemas.jedox.com/etlcore"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
+	jaxb:version="2.1"
+	jaxb:extensionBindingPrefixes="inheritance">
+
+	<include schemaLocation="resource.xsd"/>
+	<element name="connection" type="c:connectiontype" /> 
+	  	
+	<complexType name="password">
+		<annotation>
+			<appinfo>
+				<inheritance:implements>com.jedox.etl.core.config.IEncryptablePassword</inheritance:implements>
+			</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="string">
+				<attribute name="encrypted" type="boolean" default="false"/>
+			</extension>
+		</simpleContent>
+	</complexType> 
+	
+	<complexType name="connectiontype">
+		<annotation>
+			<appinfo>
+				<inheritance:extends>com.jedox.etl.core.config.ConnectionConfigurator</inheritance:extends>
+			</appinfo>
+		</annotation>
+		<all>
+ 			<element name="host" type="string" minOccurs="1" maxOccurs="1"/>
+			<element name="port" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="database" type="string" minOccurs="1" maxOccurs="1"/>
+			<element name="user" type="string" minOccurs="1" maxOccurs="1"/>
+			<element name="password" type="c:password" minOccurs="1" maxOccurs="1"/>
+			<element name="ssl" type="c:serversslmode" minOccurs="0" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+		</all>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="type" type="string" use="required"/>
+		<attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+	</complexType>
+	  	
+</schema>

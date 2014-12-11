@@ -1,0 +1,3 @@
+Documentation.xml: review and adjust
+XLL: localize (XLFuncsDoc::getDecl() and xl_func_get_func() need parameter "lang")
+SpreadsheetFuncs: maybe "bool GenericContext::spreadsheet_behaviour" will be required

@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Util">
+      <UniqueIdentifier>{637e7ecc-5619-4fda-8ab8-20f585800246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\Impl">
+      <UniqueIdentifier>{ddafeb1c-4975-42f2-884a-5cb240108096}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{67c65b9e-3884-4f58-9164-f1f01e95808a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\HttpClient">
+      <UniqueIdentifier>{b0f5678c-8d2f-4580-8f78-127835265f28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\HttpClient\Impl">
+      <UniqueIdentifier>{6259a0a4-2d1e-44f5-8b52-1b2752f660d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\TcpDevice">
+      <UniqueIdentifier>{9a503598-5cd1-459d-b42d-59c60494b6f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\TcpDevice\Impl">
+      <UniqueIdentifier>{01103071-6c7b-434a-829a-995a60293098}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Impl">
+      <UniqueIdentifier>{6d863550-4493-4f2d-9f36-938836095a8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo">
+      <UniqueIdentifier>{a7ba06d2-d2ba-455a-8277-a8edd36edb20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo\Impl">
+      <UniqueIdentifier>{1193851f-c05b-4f68-921b-472a6d8d2a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo\Exceptions">
+      <UniqueIdentifier>{5e86db03-5cd0-4f15-b63e-4506cfd1f54f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo\Exceptions\Impl">
+      <UniqueIdentifier>{c3c83744-7f62-4a47-b105-2df54c0a130d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo\Cache">
+      <UniqueIdentifier>{c761c266-9ed3-42c7-99b5-b72ee9ac46ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo\Cache\Impl">
+      <UniqueIdentifier>{f0038bb0-d013-4efc-a720-4d5e92eb517c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo\Network">
+      <UniqueIdentifier>{0e6df1e1-bdd8-446e-be9e-7478c4b8975f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo\Network\Impl">
+      <UniqueIdentifier>{c7e0c4ca-bcdf-4f10-b8d3-d256cfb24b90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo\Logging">
+      <UniqueIdentifier>{7157d165-2f90-4d69-9d57-943c394f6d78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo\Logging\Impl">
+      <UniqueIdentifier>{7c57d2f6-cd31-4501-9f9e-efd2137673ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo\Config">
+      <UniqueIdentifier>{371e5ff6-a227-4086-a454-f27329f463eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Palo\Config\Impl">
+      <UniqueIdentifier>{10917f68-c953-42d6-bca7-f715fbcc5dde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\Util\CsvLineDecoder.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Util\CsvTokenFromStream.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Util\global.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Util\StringUtils.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Network\ClientSocket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Network\NetInitialisation.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Network\Socket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Network\SocketAddress.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Network\SocketException.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Network\HttpClient\BasicAuthentication.h">
+      <Filter>Network\HttpClient</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Network\HttpClient\Http.h">
+      <Filter>Network\HttpClient</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Network\HttpClient\HttpClientException.h">
+      <Filter>Network\HttpClient</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Network\HttpClient\HttpExceptionFactory.h">
+      <Filter>Network\HttpClient</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Network\HttpClient\HttpRequestHandler.h">
+      <Filter>Network\HttpClient</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Network\HttpClient\HttpsClientConnection.h">
+      <Filter>Network\HttpClient</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Network\HttpClient\HttpsClientConnectionPool.h">
+      <Filter>Network\HttpClient</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Network\TcpDevice\TcpDevice.h">
+      <Filter>Network\TcpDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cube.h">
+      <Filter>Palo</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cubes.h">
+      <Filter>Palo</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Database.h">
+      <Filter>Palo</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Dimension.h">
+      <Filter>Palo</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Dimensions.h">
+      <Filter>Palo</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Element.h">
+      <Filter>Palo</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Server.h">
+      <Filter>Palo</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\ServerImpl.h">
+      <Filter>Palo</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\View.h">
+      <Filter>Palo</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\ServerPool.h">
+      <Filter>Palo</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\types.h">
+      <Filter>Palo</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\Exception\CacheInvalidException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\CubeNotFoundException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\Exception\CubeTokenOutdatedException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\DatabaseNotFoundException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\Exception\DatabaseTokenOutdatedException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\DimensionNotFoundException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\Exception\DimensionTokenOutdatedException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\ElementNotFoundException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\ExceptionFactory.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\Exception\MaximumServerRetrysReachedException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\PaloException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\PaloExceptionFactory.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\Exception\PaloNGGeneralException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\Exception\PaloNGTypeErrorException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\PaloServerException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\ResolveException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\Exception\ServerTokenOutdatedException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\Exception\TokenOutdatedException.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\AbstractCache.h">
+      <Filter>Palo\Cache</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\Cache.h">
+      <Filter>Palo\Cache</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\CubeCache.h">
+      <Filter>Palo\Cache</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\CubesCache.h">
+      <Filter>Palo\Cache</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\DatabaseCache.h">
+      <Filter>Palo\Cache</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\DimensionCache.h">
+      <Filter>Palo\Cache</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\DimensionsCache.h">
+      <Filter>Palo\Cache</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\ElementCache.h">
+      <Filter>Palo\Cache</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\ServerCache.h">
+      <Filter>Palo\Cache</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\CubeToken.h">
+      <Filter>Palo\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\DatabaseToken.h">
+      <Filter>Palo\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\DimensionToken.h">
+      <Filter>Palo\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\PaloClient.h">
+      <Filter>Palo\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\ServerToken.h">
+      <Filter>Palo\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\Token.h">
+      <Filter>Palo\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\Tokens.h">
+      <Filter>Palo\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\Palo\Logging\Logging.h">
+      <Filter>Palo\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Palo\Config\Config.h">
+      <Filter>Palo\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Ressourcendateien</Filter>
+    </ClInclude>
+    <ClInclude Include="source\include\libpalo_ng\config_ng.h" />
+    <ClInclude Include="source\include\libpalo_ng\libpalo_ng_version.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\LibPaloNGExceptionFactory.h">
+      <Filter>Palo\Exceptions</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Util\CsvLineDecoder.cpp">
+      <Filter>Util\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Util\CsvTokenFromStream.cpp">
+      <Filter>Util\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Util\StringUtils.cpp">
+      <Filter>Util\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\HttpClient\BasicAuthentication.cpp">
+      <Filter>Network\HttpClient\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\HttpClient\HttpClient.cpp">
+      <Filter>Network\HttpClient\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\HttpClient\HttpClientConnection.cpp">
+      <Filter>Network\HttpClient\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\HttpClient\HttpClientConnectionPool.cpp">
+      <Filter>Network\HttpClient\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\HttpClient\HttpClientRequest.cpp">
+      <Filter>Network\HttpClient\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\HttpClient\HttpClientResponse.cpp">
+      <Filter>Network\HttpClient\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\HttpClient\HttpExceptionFactory.cpp">
+      <Filter>Network\HttpClient\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\HttpClient\HttpsClientConnection.cpp">
+      <Filter>Network\HttpClient\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\HttpClient\HttpsClientConnectionPool.cpp">
+      <Filter>Network\HttpClient\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\HttpClient\Url.cpp">
+      <Filter>Network\HttpClient\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\TcpDevice\TcpDevice.cpp">
+      <Filter>Network\TcpDevice\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\ClientSocket.cpp">
+      <Filter>Network\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\NetInitialisation.cpp">
+      <Filter>Network\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\Socket.cpp">
+      <Filter>Network\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\SocketAddress.cpp">
+      <Filter>Network\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Network\SocketException.cpp">
+      <Filter>Network\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Cube.cpp">
+      <Filter>Palo\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Cubes.cpp">
+      <Filter>Palo\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Database.cpp">
+      <Filter>Palo\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Dimension.cpp">
+      <Filter>Palo\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Dimensions.cpp">
+      <Filter>Palo\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Element.cpp">
+      <Filter>Palo\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Server.cpp">
+      <Filter>Palo\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\ServerPool.cpp">
+      <Filter>Palo\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\ServerImpl.cpp">
+      <Filter>Palo\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\View.cpp">
+      <Filter>Palo\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\types.cpp">
+      <Filter>Palo\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Exception\LibPaloNGExceptionFactory.cpp">
+      <Filter>Palo\Exceptions\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Exception\MaximumServerRetrysReachedException.cpp">
+      <Filter>Palo\Exceptions\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Exception\PaloExceptionFactory.cpp">
+      <Filter>Palo\Exceptions\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Network\CubeToken.cpp">
+      <Filter>Palo\Network\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Network\DatabaseToken.cpp">
+      <Filter>Palo\Network\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Network\DimensionToken.cpp">
+      <Filter>Palo\Network\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Network\PaloClient.cpp">
+      <Filter>Palo\Network\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Network\ServerToken.cpp">
+      <Filter>Palo\Network\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Network\Token.cpp">
+      <Filter>Palo\Network\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Logging\Logging.cpp">
+      <Filter>Palo\Logging\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Palo\Config\Config.cpp">
+      <Filter>Palo\Config\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="source\libpalo_ng.cpp" />
+    <ClCompile Include="source\libpalo_ng_version.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="libpalo_ng.rc">
+      <Filter>Ressourcendateien</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="source\Network\HttpClient\HttpClient.h">
+      <Filter>Network\HttpClient</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="source\Network\HttpClient\HttpClientConnection.h">
+      <Filter>Network\HttpClient</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="source\Network\HttpClient\HttpClientConnectionPool.h">
+      <Filter>Network\HttpClient</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="source\Network\HttpClient\HttpClientRequest.h">
+      <Filter>Network\HttpClient</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="source\Network\HttpClient\HttpClientResponse.h">
+      <Filter>Network\HttpClient</Filter>
+    </CustomBuildStep>
+    <CustomBuildStep Include="source\Network\HttpClient\Url.h">
+      <Filter>Network\HttpClient</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+</Project>

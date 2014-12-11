@@ -1,0 +1,290 @@
+ABS;english;"ABS(number)";double;numeric argument;
+ABS;german;"ABS(Zahl)";Double;numerischer Parameter;
+
+ACOS;english;"ACOS(number)";double;numeric argument;
+ACOS;german;"ACOS(Zahl)";Double;numerischer Parameter;
+
+ADD;english;"ADD(number A,number B)";double;numeric argument;double numeric argument;
+ADD;german;"ADD(Zahl A, Zahl B)";Double;numerischer Parameter,Double; numerischer Parameter;
+
+AND;english;"AND(a1, a2)";boolean;boolean argument;boolean;boolean argument;
+AND;german;"AND(a1, a2)";boolean;boolean argument;boolean;boolean argument;
+
+ASIN;english;"ASIN(number)";double;numeric argument;
+ASIN;german;"ASIN(Zahl)";Double;numerischer Parameter;
+
+ATAN;english;"ATAN(number)";double;numeric argument;
+ATAN;german;"ATAN(Zahl)";Double;numerischer Parameter;
+
+AVERAGE;english;"AVERAGE(a1, a2)";double;numeric argument;double;numeric argument;
+AVERAGE;german;"AVERAGE(a1, a2)";double;numeric argument;double;numeric argument;
+
+CEILING;english;"CEILING(number)";double;numeric argument;
+CEILING;german;"CEILING(Zahl)";Double;numerischer Parameter;
+
+CHAR;english;"CHAR(number)";integer;character code;
+CHAR;german;"CHAR(Zahl)";Integer;Buchstaben Code;
+
+CLEAN;english;"CLEAN(text)";string;string to be cleaned;
+CLEAN;german;"CLEAN(Text)";String;Zu saeubernder String;
+
+CODE;english;"CODE(text)";string;string argument;
+CODE;german;"CODE(Text)";String;string parameter;
+
+CONCATENATE;english;"CONCATENATE(text1,text2)";string;1st part -- head;string;2nd part -- tail;
+CONCATENATE;german;"CONCATENATE(Text1,Text2)";String;vorderer Teilstring;hinterer Teilstring;
+
+CONTINUE;english;"CONTINUE()";
+CONTINUE;german;"CONTINUE()";
+
+COS;english;"COS(number)";double;numeric argument;
+COS;german;"COS(Zahl)";Double;numerischer Parameter;
+
+COUNT;english;"COUNT(a1, a2)";double;numeric argument;double;numeric argument;
+COUNT;german;"COUNT(a1, a2)";double;numeric argument;double;numeric argument;
+
+DATE;english;"DATE(year,month,day)";integer;year of date;integer;month of date;integer;day of date;
+DATE;german;"DATE(Jahr,Monat,Tag)";Integer;Jahr des Datums;Integer;Monat des Datums;Integer;Tag des Datums;
+
+DATEFORMAT;english;"DATEFORMAT(date, format)";double;date to format;string;format of date;
+DATEFORMAT;german;"DATEFORMAT(date, format)";double;date to format;string;format of date;
+
+DATEVALUE;english;"DATEVALUE(date_text)";string;date-string to convert;
+DATEVALUE;german;"DATEVALUE(Datum_Text)";string;zu konvertierendes String-Datum;
+
+DEL;english;"DEL(number A, number B)";double;numeric argument;double;numeric argument;
+DEL;german;"DEL(Zahl A, Zahl B)";Double;numerischer Parameter;Double;numerischer Parameter;
+
+DIV;english;"DIV(number A, number B)";double;numeric argument;double;numeric argument;
+DIV;german;"DIV(Zahl A, Zahl B)";Double;numerischer Parameter;Double;numerischer Parameter;
+
+EQ;english;"EQ(operand A, operand B)";double OR string;comparison arg;double OR string;comparison arg;
+EQ;german;"EQ(Operand A, Operand B)";Double ODER String;Vergleichs-Argument; Double ODER String;Vergleichs-Argument;
+
+EVEN;english;"EVEN(number)";double;numeric argument;
+EVEN;german;"EVEN(Zahl)";Double;numerisches Argument;
+
+EXACT;english;"EXACT(text1,text2)";string;comparison arg;string;comparison arg;
+EXACT;german;"EXACT(Text1,Text2)";String;Vergleichs-Argument;String;Vergleichs-Argument;
+
+EXP;english;"EXP(number)";double;numeric argument;
+EXP;german;"EXP(number)";double;numerischer Parameter;
+
+FACT;english;"FACT(number)";integer;numeric argument;
+FACT;german;"FACT(Zahl)";Integer;numerischer Parameter;
+
+FIRST;english;"FIRST(a1, a2)";double;numeric argument;double;numeric argument;
+FIRST;german;"FIRST(a1, a2)";double;numeric argument;double;numeric argument;
+
+FLOOR;english;"FLOOR(number)";integer;numeric argument;
+FLOOR;german;"FLOOR(Zahl)";Integer;numerischer Parameter;
+
+GE;english;"GE(operand A;operand B)";double OR string;comparison argument;double OR string;comparison argument;
+GE;german;"GE(Operand A;Operand B)";Double ODER String;Vergleichs-Argument;Double ODER String;Vergleichs-Argument;
+
+GT;english;"GT(operand A;operand B)";double OR string;comparison argument;double OR string;comparison argument;
+GT;german;"GT(Operand A; Operand B)";Double ODER String;Vergleichs-Argument;Double ODER String;Vergleichs-Argument;
+
+IF;english;"IF(test, value-if-true, value-if-false)";boolean;condition;object;true value;object;false value;
+IF;german;"IF(test, wert-bei-wahr, wert-bei-falsch)";boolean;Bedingung;object;Wahr-Wert;object;Falsch-Wert;
+
+INT;english;"INT(number)";integer;numeric argument;
+INT;german;"INT(Zahl)";Integer;numerischer Parameter;
+
+ISERROR;english;"ISERROR(test)";double OR string;test expression;
+ISERROR;german;"ISERROR(test)";double OR string;test expression;
+
+LAST;english;"LAST(a1, a2)";double;numeric argument;double;numeric argument;
+LAST;german;"LAST(a1, a2)";double;numeric argument;double;numeric argument;
+
+LE;english;"LE(operand A;operand B)";double OR string;comparison argument;double OR string;comparison argument;
+LE;german;"LE(Operand A;Operand B)";Double ODER String;Vergleichs-Argument;Double ODER String;Vergleichs-Argument;
+
+LEFT;english;"LEFT(text,num_chars)";string;base-string;integer;number of chars;
+LEFT;german;"LEFT(Text,Zahl_Zeichen)";String;Basis-String;Integer;Zahl der Zeichen;
+
+LEN;english;"LEN(text)";string;string to be counted;
+LEN;german;"LEN(Text)";String;zu zaehlender String;
+
+LN;english;"LN(number)";integer;numeric argument;
+LN;german;"LN(Zahl)";Integer;numerischer Parameter;
+
+LOG;english;"LOG(number, base)";double;numeric argument;double;numeric argument;
+LOG;german;"LOG(Zahl, Basis)";Double;numerischer Parameter;Double;numerischer Parameter;
+
+LOG10;english;"LOG10(number)";integer;numeric argument;
+LOG10;german;"LOG10(Zahl)";Integer;numerischer Parameter;
+
+LOWER;english;"LOWER(text)";string;string to be uncapitalised;
+LOWER;german;"LOWER(Text)";String;klein zu schreibender String;
+
+LT;english;"LT(operand A;operand B)";double OR string;comparison argument;double OR string;comparison argument;
+LT;german;"LT(Operand A; Operand B)";Double ODER String;Vergleichs-Argument;Double ODER String;Vergleichs-Argument;
+
+MAX:english;"MAX(a1, a2)";double;numeric argument;double;numeric argument;
+MAX:german;"MAX(a1, a2)";double;numeric argument;double;numeric argument;
+
+MID;english;"MID(text,start_num,num_chars)";string;base-string;integer;position;integer;number of chars;
+MID;german;"MID(Text,Zahl_Anfang, Zahl_Groesse)";String;Basis-String;Integer;Position;Integer;Zahl der Zeichen;
+
+MIN:english;"MIN(a1, a2)";double;numeric argument;double;numeric argument;
+MIN:german;"MIN(a1, a2)";double;numeric argument;double;numeric argument;
+
+MOD;english;"MOD(number, divisor)";integer;numeric argument;integer;numeric argument;
+MOD;german;"MOD(Zahl,Divisor)";Integer;numerischer Parameter;Integer;numerischer Parameter;
+
+MUL;english;"MUL(number A, number B)";double;numeric argument;double;numeric argument;
+MUL;german;"MUL(Zahl A, Zahl B)";Double;numerischer Parameter;Double;numerischer Parameter;
+
+EQU;english;"EQU(operand A, operand B)";double OR string;comparison arg;double OR string;comparison arg;
+EQU;german;"EQU(Operand A, Operand B)";Double ODER String;Vergleichs-Argument; Double ODER String;Vergleichs-Argument;
+
+NOT;english;"NOT(boolean)";double;boolean argument;
+NOT;german;"NOT(boolean)";Double;boolean Argument;
+
+NOW;english;"NOW()";
+NOW;german;"NOW()";
+
+ODD;english;"ODD(number)";double;numeric argument;
+ODD;german;"ODD(Zahl)";Double;numerisches Argument;
+
+OR;english;"OR(a1, a2)";boolean;boolean argument;boolean;boolean argument;
+OR;german;"OR(a1, a2)";boolean;boolean argument;boolean;boolean argument;
+
+PI;english;"PI()";
+PI;german;"PI()";
+
+POWER;english;"POWER(number , power)";double;numeric argument;double;numeric argument;
+POWER;german;"POWER(Zahl , Exponent)";Double;numerischer Parameter;Double;numerischer Parameter;
+
+PROPER;english;"PROPER(text)";string;string to be changed;
+PROPER;german;"PROPER(Text)";String;zu veraendernder String;
+
+QUOTIENT;english;"QUOTIENT(numerator, denominator)";double;numeric argument;double;numeric argument;
+QUOTIENT;german;"QUOTIENT(Zaehler, Nenner)";Double;numerischer Parameter der Division;Double;numerischer Parameter der Division;
+
+RAND;english;"RAND()";
+RAND;german;"RAND()";
+
+RANDBETWEEN;english;"RANDBETWEEN(bottom, top)";double;numeric argument;double;numeric argument;
+RANDBETWEEN;german;"RANDBETWEEN(Anfang, Ende)";Double;numerischer Parameter;Double;numerischer Parameter;
+
+REPLACE;english;"REPLACE(old_text,start_num,num_chars,new_text)";string;base-string;integer;start index;integer;end index;string;replacement
+REPLACE;german;"REPLACE(Text_Alt,Anfang,Laenge,Text_Neu)";String;Basis-String;Integer;Anfangs-Index;Integer;End-Index;String;Ersatz-String;
+
+REPT;english;"REPT(text,num_times)";string;base-string;integer;number of repetitions;
+REPT;german;"REPT(Text,Zahl_Wiederholungen)";String;Basis-String;Integer;Zahl der Wiederholungen;
+
+RIGHT;english;"RIGHT(text,num_chars)";string;base-string;integer;number of chars;
+RIGHT;german;"RIGHT(Text,Zahl_Zeichen)";String;Basis-String;Integer;Zahl der Zeichen;
+
+ROUND;english;"ROUND(num_base, num_digits)";double;real to be rounded;integer;number of digits;
+ROUND;german;"ROUND(Zahl_Basis,Zahl_Stellen)";Double;zu rundende reelle Zahl;Double;Nachkommastellen;
+
+SEARCH;english;"SEARCH(find_text,within_text)";string;string we search for;string;string in which you want to search for find_text;
+SEARCH;german;"SEARCH(Text_Suche,Text_Basis)";String;der zu findende Text;String;Suchbereich für Text_Suche;
+
+SIGN;english;"SIGN(number)";double;numeric parmeter;
+SIGN;german;"SIGN(Zahl)";Double;numerisches Argument;
+
+SIN;english;"SIN(number)";double;numeric parameter;
+SIN;german;"SIN(Zahl)";Double;numerisches Argument;
+
+SQRT;english;"SQRT(number)";double;numeric parameter;
+SQRT;german;"SQRT(Zahl)";Double;numerisches Argument;
+
+STET;english;"STET()";
+STET;german;"STET()";
+
+STR;english;"STR(number, width, precision)";double;number to be converted;integer;total length of resulting string;integer;number of decimal places;
+STR;german;"STR(Zahl, Weite, Praezision)";double;zu konvertierende Zahl;integer;Gesamtanzahl des Resultatstringes; integer;Anzahl von Dezimalstellen;
+
+SUBSTITUTE;english;"SUBSTITUTE(text_base,old_text,new_text)";string;base-string;string;string to be replaced;string;replacement;
+SUBSTITUTE;german;"SUBSTITUTE(Text,Text_alt,Text_neu)";String;Basis-String;String;zu ersetzende Zeichenkette;String;Ersatz;
+
+SUM;english;"SUM(a1, a2)";double;numeric argument;double;numeric argument;
+SUM;german;"SUM(a1, a2)";double;numeric argument;double;numeric argument;
+
+TAN;english;"TAN(number)";double;numeric parameter;
+TAN;german;"TAN(Zahl)";Double;numerisches Argument;
+
+TRIM;english;"TRIM(text)";string;string to be trimmed;
+TRIM;german;"TRIM(Text)";String;zu pflegender String;
+
+TRUNC;english;"TRUNC(number)";double;numeric parameter;
+TRUNC;german;"TRUNC(Zahl)";Double;numerisches Argument;
+
+UPPER;english;"UPPER(text)";string;string to be capitalised;
+UPPER;german;"UPPER(Text)";String;gross zu schreibender String;
+
+VALUE;english;"VALUE(text)";string;string to be converted;
+VALUE;german;"VALUE(Text)";String;zu konvertierender String;
+
+VALUEDATE;english;"VALUEDATE(number)";double;numeric parameter representing a date;
+VALUEDATE;german;"VALUEDATE(Zahl)";Double;numerisches Argument, das ein Datum repraesentiert;
+
+WEEKDAY;english;"WEEKDAY(serial_number)";double;numeric parameter representing day;
+WEEKDAY;german;"WEEKDAY(Folgezahl)";Double;numerisches Argument, das Tag repraesentiert;
+
+PALO.DATA;english;"PALO.DATA(Database, Cube, Coordinate1, Coordinate2,...,CoordinateN)";string;database name;string;cube name;string;1st dim coordinate;
+PALO.DATA;german;"PALO.DATA(Datenbank, Wuerfel, Koordinate1, Koordinate2,...,KoordinateN)";String;Datenbank Name;String;Wuerfel Name;String;1te Dimensions-Koordinate;
+
+PALO.ECHILD;english;"PALO.ECHILD(Database,Dimension,Parent Element,num_child)";string;database;string;dimension;string;parent;integer;number of child;
+PALO.ECHILD;german;"PALO.ECHILD(Datenbank,Dimension,Eltern Element,KindIndex)";String;Datenbank;String;Dimension;String;Eltern Element;Integer;Index des Kindes;
+
+PALO.ECHILDCOUNT;english;"PALO.ECHILDCOUNT(Database,Dimension,Element)";string;database;string;dimension;string;element;
+PALO.ECHILDCOUNT;german;"PALO.ECHILDCOUNT(Datenbank,Dimension,Element)";String;Datenbank;String;Dimension;String;Element;
+
+PALO.ECOUNT;english;"PALO.ECOUNT(Database,Dimension)";string;database;string;dimension;
+PALO.ECOUNT;german;"PALO.ECOUNT(Datenbank,Dimension)";String;Datenbank;String;Dimension;
+
+PALO.EFIRST;english;"PALO.EFIRST(Database,Dimension)";string;database;string;dimension;
+PALO.EFIRST;german;"PALO.EFIRST(Datenbank,Dimension)";String;Datenbank;String;Dimension;
+
+PALO.EINDENT;english;"PALO.EINDENT(Database,Dimension,Element)";string;database;string;dimension;string;element;
+PALO.EINDENT;german;"PALO.EINDENT(Datenbank,Dimension,Element)";String;Datenbank;String;Dimension;String;Element;
+
+PALO.EINDEX;english;"PALO.EINDEX(Database,Dimension,Element)";string;database;string;dimension;string;element;
+PALO.EINDEX;german;"PALO.EINDEX(Datenbank,Dimension,Element)";String;Datenbank;String;Dimension;String;Element;
+
+PALO.EISCHILD;english;"PALO.EISCHILD(Database,Dimension,Parent Element,Element)";string;database;string;dimension;string;parent;string;child;
+PALO.EISCHILD;german;"PALO.EISCHILD(Datenbank,Dimension,Eltern Element,Element)";String;Datenbank;String;Dimension;String;Eltern Element;String;Kind;
+
+PALO.ELEVEL;english;"PALO.ELEVEL(Database,Dimension,Element)";string;database;string;dimension;string;element;
+PALO.ELEVEL;german;"PALO.ELEVEL(Datenbank,Dimension,Element)";String;Datenbank;String;Dimension;String;Element;
+
+PALO.ENAME;english;"PALO.ENAME(Database,Dimension,Position)";string;database;string;dimension;integer;position;
+PALO.ENAME;german;"PALO.ENAME(Datenbank,Dimension,Position)";String;Datenbank;String;Dimension;Integer;Position;
+
+PALO.ENEXT;english;"PALO.ENEXT(Database,Dimension,Element)";string;database;string;dimension;string;element;
+PALO.ENEXT;german;"PALO.ENEXT(Datenbank,Dimension,Element)";String;Datenbank;String;Dimension;String;Element;
+
+PALO.EOFFSET;english;"PALO.EOFFSET(Database,Dimension,Element,Index)";string;database;string;dimension;string;element;integer;index of offset;
+PALO.EOFFSET;german;"PALO.EOFFSET(Datenbank,Dimension,Element,Index)";String;Datenbank;String;Dimension;String;Element;Integer;Index des Offsets;
+
+PALO.EPARENT;english;"PALO.EPARENT(Database,Dimension,Element,num_n)";string;database;string;dimension;string;element;integer;index of parent;
+PALO.EPARENT;german;"PALO.EPARENT(Datenbank,Dimension,Element,Zahl_n)";String;Datenbank;String;Dimension;String;Element;Integer;Index des Elternelementes;
+
+PALO.EPARENTCOUNT;english;"PALO.EPARENTCOUNT(Database,Dimension,Element)";string;database;string;dimension;string;element;
+PALO.EPARENTCOUNT;german;"PALO.EPARENTCOUNT(Datenbank,Dimension,Element)";String;Datenbank;String;Dimension;String;Element;
+
+PALO.EPREV;english;"PALO.EPREV(Database,Dimension,Element)";string;database;string;dimension;string;element;
+PALO.EPREV;german;"PALO.EPREV(Datenbank,Dimension,Element)";String;Datenbank;String;Dimension;String;Element;
+
+PALO.ESIBLING;english;"PALO.ESIBLING(Database,Dimension,Element,Index)";string;database;string;dimension;string;element;integer;index of sibling;
+PALO.ESIBLING;german;"PALO.ESIBLING(Datenbank,Dimension,Element,Index)";String;Datenbank;String;Dimension;String;Element;Integer;Index des Geschwisterelements;
+
+PALO.ETYPE;english;"PALO.ETYPE(Database,Dimension,Element)";string;database;string;dimension;string;element;
+PALO.ETYPE;german;"PALO.ETYPE(Datenbank,Dimension,Element)";String;Datenbank;String;Dimension;String;Element;
+
+PALO.ETOPLEVEL;english;"PALO.ETOPLEVEL(Database,Dimension)";string;database;string;dimension;
+PALO.ETOPLEVEL;german;"PALO.ETOPLEVEL(Datenbank,Dimension)";String;Datenbank;String;Dimension;
+
+PALO.EWEIGHT;english;"PALO.EWEIGHT(Database,Dimension,Parent,Child)";string;database;string;dimension;string;parent;string;child;
+PALO.EWEIGHT;german;"PALO.EWEIGHT(Datenbank,Dimension,Parent,Child)";String;Datenbank;String;Dimension;String;Elternteil;String;Kind;
+
+PALO.CUBEDIMENSION;english;"PALO.CUBEDIMENSION(Database,Cube,num_n)";string;database;string;cube;integer;dimension-index;
+PALO.CUBEDIMENSION;german;"PALO.CUBEDIMENSION(Datenbank,Cube,Zahl_n)";String;Datenbank;String;Cube;Integer;Dimensions-Index;
+
+PALO.MARKER;english;"PALO.MARKER(Database, Cube, Coordinate1, Coordinate2,...,CoordinateN)";string;database name;string;cube name;string;1st marker coordinate;
+PALO.MARKER;german;"PALO.MARKER(Datenbank, Wuerfel, Koordinate1, Koordinate2,...,KoordinateN)";String;Datenbank Name;String;Wuerfel Name;String;1te Marker-Koordinate;

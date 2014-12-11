@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jedox</groupId>
+  <artifactId>palojlib</artifactId>
+  <version>5.1</version>
+  <packaging>jar</packaging>
+  <name>palojlib</name>
+  <description>Java client library to read/write data to Jedox Olap database</description>
+  <url>http://www.jedox.com</url>
+  <licenses>
+		<license>
+			<name>The GNU General Public License, Version 2</name>
+			<url>
+				http://www.gnu.org/licenses/old-licenses/library.txt
+			</url>
+		</license>
+</licenses>
+  <properties> 
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <developers>
+    <developer>
+      <id>Kais Haddadin</id>
+      <name>Kais Haddadin</name>
+      <email>kais.haddadin@jedox.com</email>
+      <organization>jedox</organization>
+      <organizationUrl>http://www.jedox.com</organizationUrl>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+    </developer>
+  </developers>
+  <dependencies>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.17</version>
+				<scope>compile</scope>
+				<exclusions>
+					<exclusion>
+						<artifactId>jmxri</artifactId>
+						<groupId>com.sun.jmx</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>jmxtools</artifactId>
+						<groupId>com.sun.jdmk</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>jms</artifactId>
+						<groupId>javax.jms</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+  </dependencies>
+
+  <build>
+	<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+				<version>3.0</version>
+			</plugin>
+			   <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+        <configuration>
+          <excludePackageNames>com.jedox.palojlib.premium.*:com.jedox.palojlib.test:com.jedox.palojlib.util</excludePackageNames>
+
+        </configuration>
+      </plugin>
+		</plugins>
+	</pluginManagement>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+         <artifactId>wagon-ssh</artifactId>
+         <version>1.0-beta-6</version>
+      </extension>
+    </extensions>
+  </build>
+
+  <profiles>
+	
+	  </profiles>
+  	<distributionManagement>
+	</distributionManagement>
+	
+</project>

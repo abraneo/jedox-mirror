@@ -1,0 +1,88 @@
+@request_path /cell/replace_bulk
+
+@short_description Sets or changes the value of cube cell
+ 
+@long_description The server calculates the list of all base element
+for a numeric path, which contains one or more consolidate
+element. The given value will be distributed among these base paths
+using the following method:
+
+<ul>
+  <li>no splashing: will result in an error message
+  <li>default:
+    <ul>
+      <li>value = 0.0:<br>
+          clear all base paths</li>
+      <li>value <> 0.0 and old_value = 0.0:<br>
+          compute the splash value according to the weights of the path and set this value to all base paths.</li>
+      <li>value <> 0.0 and old_value <> 0.0:<br>
+          scale all value so that the sum is the new value.</li>
+    </ul>
+  </li>
+  <li>add: add given value to all base paths</li>
+  <li>set: set all base paths to the given value</li>
+</ul>
+
+Note that a cell replace bulk can only be executed within a transaction block started with push_rule/begin and 
+ended with push_rule/end when used within a worker.
+    
+    
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+@param paths
+@param_type path
+@param_description Colon separated list of paths. Each path is a comma separated list of element identifiers.
+
+@param name_paths
+@param_type npath
+@param_description Colon separated list of paths. Each path is a comma separated list of element names. Used only if paths parameter is omitted.
+ 
+@param values
+@param_type double/string
+@param_description Colon separated list of values. Each value is the new numeric or string value for the cell corresponding to the above path. If you specify a string value, the value has to be csv encoded.
+ 
+@param add
+@param_type boolean
+@param_description If 0 (the default), then a numeric value given is stored in the cube. If 1, then a numeric value given is added to the existing value or set if no value currently exists. Setting add to 1, requires splash mode 0 or 1.
+ 
+@param splash
+@param_type integer
+@param_description Optional splash mode for setting values if the comma
+separated list of elements contains consolidated elements.<br>(0=no splashing, 1=default, 2=add, 3=set)
+
+@param locked_paths
+@param_type path
+@param_description Optional colon separated list of paths. Each path is a comma separated list of element identifiers. Splashing will not change locked paths and sources areas of these paths if they are consolidated.
+ 
+@param event_processor
+@param_type boolean
+@param_description If 1 (the default), then setting a new value will possibly call the supervision event processor. If 0, then the supervision event processor is circumvented. Note that you need extra permissions to use this feature.
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+
+@result OK
+@result_type boolean
+@result_description "1" means OK
+
+
+
+@example database=1&cube=7&paths=1,1,1,1,1,1:2,2,2,2,2,2&values=123.00:-1&splash=1
+@example_description Set value of cell path "1,1,1,1,1,1" to value "123.00" and "2,2,2,2,2,2" to "-1" (default splash mode)

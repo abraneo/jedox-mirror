@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="transform" type="c:transformtype" />
+    
+    <complexType name="inputref">
+		<attribute name="nameref" type="string">
+			<annotation>
+				<appinfo>
+					<ref>source:/alias_map/alias/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="constant" type="string"/>
+	</complexType>
+	
+	<complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>sources:/source/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+	 </complexType>
+	 
+	<complexType name="sourcerefs">
+		<sequence>
+			<element name="source" type="c:sourceref" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+	</complexType>
+    
+    <complexType name="key">
+         <attribute name="nameref" type="string" use="required"/>
+	</complexType>
+    
+     <simpleType name="viewformat">
+ 		 <restriction base="string">
+    		<enumeration value="fh"/>
+    		<enumeration value="fhw"/>
+    		<enumeration value="pc"/>
+    		<enumeration value="pcw"/>
+    		<enumeration value="pcwa"/>
+    		<enumeration value="pcwat"/>
+    		<enumeration value="ncw"/>
+    		<enumeration value="ncwa"/>
+    		<enumeration value="ea"/>
+  		</restriction>
+	</simpleType>  
+	
+	<simpleType name="filtertype">
+ 		 <restriction base="string">
+    		<enumeration value="and"/>
+    		<enumeration value="or"/>
+  		</restriction>
+	</simpleType>  
+	
+	<simpleType name="filterrangenumeric">
+ 		 <restriction base="token">
+    		<pattern value="(\[|\()((\-?\d*\.?\d*)|\$\{\w+\}),((\-?\d*\.?\d*)|\$\{\w+\})(\]|\))"/>
+  		</restriction>
+	</simpleType>  
+	
+	<simpleType name="filterrangealpha">
+ 		 <restriction base="token">
+    		<pattern value="(\[|\()((\w|[\.;+\- ])*|\$\{\w+\}),((\w|[\.;+\- ])*|\$\{\w+\})(\]|\))"/>
+  		</restriction>
+	</simpleType>  
+
+	<simpleType name="operator">
+ 		 <restriction base="string">
+			<enumeration value="equal" />
+			<enumeration value="inAlphaRange" />
+			<enumeration value="inRange" />
+			<enumeration value="isEmpty" />
+			<enumeration value="like" />
+  		</restriction>
+	</simpleType>
+	
+	<complexType name="columnfilteroperator">
+		<attribute name="operator" type="c:operator" use="required"/>
+		<attribute name="value" type="string" />
+	</complexType>	
+	
+	<complexType name="filterinput">
+		<choice minOccurs="1" maxOccurs="unbounded">
+			<element name="accept" type="c:columnfilteroperator"/>
+			<element name="deny" type="c:columnfilteroperator"/>
+		</choice>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>source:/alias_map/alias/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	
+	<complexType name="filter">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="input" type="c:filterinput"/>
+			<element name="script" type="string"/>
+		</choice>
+		<attribute name="type" type="c:filtertype" default="and"/>
+	</complexType>	
+	
+	<simpleType name="sortertype">
+ 		 <restriction base="string">
+    		<enumeration value="asc"/>
+    		<enumeration value="desc"/>
+  		</restriction>
+	</simpleType>   
+	
+	<complexType name="sorterinputref">
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>source:/alias_map/alias/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="order" type="c:sortertype" default="asc"/>
+	</complexType>	
+	
+	<complexType name="sorter">
+		<sequence>
+			<element name="input" type="c:sorterinputref" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>	
+   
+    <complexType name="transformtype">
+        <all>
+            <element name="sources" type="c:sourcerefs" minOccurs="1" maxOccurs="1"/>
+            <element name="filter" type="c:filter" minOccurs="0" maxOccurs="1"/>
+			<element name="sorter" type="c:sorter" minOccurs="0" maxOccurs="1"/>
+			<element name="start" type="nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+            <element name="end" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>      
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+
+</schema>

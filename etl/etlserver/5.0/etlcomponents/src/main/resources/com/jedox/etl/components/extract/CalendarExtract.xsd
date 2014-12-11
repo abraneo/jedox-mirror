@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="extract" type="c:extracttype" />
+
+	<simpleType name="languageList">
+ 		 <restriction base="string">
+    		<enumeration value="ar"/>
+    		<enumeration value="cs"/>
+    		<enumeration value="da"/>
+    		<enumeration value="de"/>
+    		<enumeration value="en"/>
+    		<enumeration value="es"/>
+    		<enumeration value="et"/>
+    		<enumeration value="fa"/>
+    		<enumeration value="fr"/>
+    		<enumeration value="he"/>
+    		<enumeration value="hr"/>
+    		<enumeration value="hu"/>
+    		<enumeration value="it"/>
+    		<enumeration value="ja"/>
+    		<enumeration value="nl"/>
+    		<enumeration value="pl"/>
+    		<enumeration value="pt"/>
+    		<enumeration value="ru"/>
+    		<enumeration value="sr"/>
+    		<enumeration value="zh"/>
+  		</restriction>
+	</simpleType>
+
+	<simpleType name="TTDmode">
+ 		 <restriction base="string">
+    		<enumeration value="toRoot"/>
+    		<enumeration value="toNext"/>
+  		</restriction>
+	</simpleType>
+
+	<complexType name="attributetype">
+		<all>
+			<element name="pattern" type="string" minOccurs="1" maxOccurs="1"/>
+			<element name="language" type="string" minOccurs="0" maxOccurs="1"/>
+		</all>
+		<attribute name="name" type="string" use="required"/>
+	</complexType>
+
+	<complexType name="attributestype">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="attribute" type="c:attributetype"/>
+		</choice>
+	</complexType>
+
+	<complexType name="ttdtype">
+		<all>
+			<element name="pattern" type="string" minOccurs="1" maxOccurs="1"/>
+		</all>
+	</complexType>
+
+	<complexType name="leveltype">
+		<all>
+			<element name="start" type="integer" minOccurs="0" maxOccurs="1"/>
+			<element name="end" type="integer" minOccurs="0" maxOccurs="1"/>
+			<element name="pattern" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="timetodate" type="c:ttdtype" minOccurs="0" maxOccurs="1"/>
+			<element name="attributes" type="c:attributestype" minOccurs="0" maxOccurs="1"/>
+		</all>
+	</complexType>
+
+	<complexType name="optiontype">
+		<all>
+			<element name="language" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="TTDmode" type="c:TTDmode" minOccurs="0" maxOccurs="1"/>
+			<element name="root" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="firstDayOfWeek" type="integer" minOccurs="0" maxOccurs="1"/>
+        	<element name="minDaysInWeek" type="integer" minOccurs="0" maxOccurs="1"/>
+        	<element name="completeWeek" type="boolean" minOccurs="0" maxOccurs="1"/>
+		</all>
+	</complexType>
+
+	<complexType name="levelstype">
+		<all>
+			<element name="years" type="c:leveltype" minOccurs="0" maxOccurs="1"/>
+        	<element name="quarters" type="c:leveltype" minOccurs="0" maxOccurs="1"/>
+        	<element name="months" type="c:leveltype" minOccurs="0" maxOccurs="1"/>
+        	<element name="weeks" type="c:leveltype" minOccurs="0" maxOccurs="1"/>
+        	<element name="days" type="c:leveltype" minOccurs="0" maxOccurs="1"/>
+        	<element name="hours" type="c:leveltype" minOccurs="0" maxOccurs="1"/>
+        	<element name="minutes" type="c:leveltype" minOccurs="0" maxOccurs="1"/>
+        	<element name="seconds" type="c:leveltype" minOccurs="0" maxOccurs="1"/>
+		</all>
+	</complexType>
+
+    <complexType name="extracttype">
+        <all>
+        	<element name="options" type="c:optiontype" minOccurs="0" maxOccurs="1"/>
+        	<element name="levels" type="c:levelstype" minOccurs="1" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+</schema>

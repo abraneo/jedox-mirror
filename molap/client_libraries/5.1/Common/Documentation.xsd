@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Documentation" targetNamespace="http://tempuri.org/Palo/SpreadsheetFuncs/Documentation.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/Palo/SpreadsheetFuncs/Documentation.xsd" xmlns:mstns="http://tempuri.org/Palo/SpreadsheetFuncs/Documentation.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Functions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Function" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PHPSpecific" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute name="pass_by_ref" type="xs:boolean" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ExcelSpecific" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="special" type="xs:boolean" use="required" />
+                  <xs:attribute name="func_type" type="xl_func_type" use="required" />
+                  <xs:attribute name="volatile" type="xs:boolean" use="required" />
+                  <xs:attribute name="xl_helper" type="xs:boolean" use="optional" default="false" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ShortDescription" type="LocalizedStrings" />
+              <xs:element name="LongDescription" type="LocalizedStrings" minOccurs="1" maxOccurs="1" />
+              <xs:element name="ArgumentPool">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Argument" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ShortDescription" type="LocalizedStrings" minOccurs="1" maxOccurs="1" />
+                          <xs:element name="LongDescription" type="LocalizedStrings" minOccurs="1" maxOccurs="1" />
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="type" type="ArgumentType" use="required" />
+                        <xs:attribute name="repeat" type="xs:boolean" default="false" />
+                        <xs:attribute name="allow_error" type="xs:boolean" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Signatures" minOccurs="1" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Signature" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ArgumentRef" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                              </xs:sequence>
+                              <xs:attribute name="name" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                      <xs:keyref name="ArgumentArgumentRef" refer="ArgumentKey">
+                        <xs:selector xpath="./Signatures/Signature/ArgumentRef" />
+                        <xs:field xpath="@name" />
+                      </xs:keyref>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="PaloWebSpecific" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                  </xs:sequence>
+                  <xs:attribute name="is_view_independent" type="xs:boolean" use="optional" default="false" />
+                  <xs:attribute name="execute_on_set" type="xs:boolean" use="optional" default="false" />
+                  </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="internal_name" type="xs:string" use="required" />
+            <xs:attribute name="c_name" type="xs:string" use="required" />
+          </xs:complexType>
+          <xs:key name="ArgumentKey">
+            <xs:selector xpath="./Argument" />
+            <xs:field xpath="@name" />
+          </xs:key>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:unique name="c_name_unique">
+      <xs:selector xpath="mstns:Function" />
+      <xs:field xpath="@c_name" />
+    </xs:unique>
+  </xs:element>
+  <xs:simpleType name="ArgumentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="int" />
+      <xs:enumeration value="string" />
+      <xs:enumeration value="CellValue" />
+      <xs:enumeration value="double" />
+      <xs:enumeration value="bool" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LocalizedString">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="lang" type="xs:language" default="en" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="LocalizedStrings">
+    <xs:sequence>
+      <xs:element name="Value" type="LocalizedString" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="xl_func_type">
+    <xs:restriction base="xs:short">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

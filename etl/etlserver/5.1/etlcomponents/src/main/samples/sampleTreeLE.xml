@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleTreeLE" version="5.1">
+	<comment>
+<![CDATA[ETL Demo Project. Shows the creation of a tree available in the LE-format
+]]>
+	</comment>
+	<variables />
+	<connections>
+		<connection name="palotarget" type="Jedox">
+			<host>localhost</host>
+			<port>7777</port>
+			<user>admin</user>
+			<password encrypted="true">WnJvyLJxqFhZbHrt1Ajr9g==</password>
+			<database>Demo_ETL</database>
+		</connection>
+	</connections>
+	<extracts>
+		<extract name="ConstantTable" type="ConstantTable">
+			<data>
+				<header>
+					<value>:level</value>
+					<value>:element</value>
+					<value>:weight</value>
+					<value>:nodetype</value>
+					<value>id</value>
+				</header>
+				<row>
+					<value>1</value>
+					<value>Bikes</value>
+					<value>1</value>
+					<value>C</value>
+					<value>B</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Mountain Bikes</value>
+					<value>1</value>
+					<value>N</value>
+					<value>MB</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Road Bikes</value>
+					<value>1</value>
+					<value>N</value>
+					<value>RB</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Touring Bikes</value>
+					<value>1</value>
+					<value>N</value>
+					<value>TB</value>
+				</row>
+				<row>
+					<value>1</value>
+					<value>Components</value>
+					<value>1</value>
+					<value>C</value>
+					<value>CO</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Handlebars</value>
+					<value>1</value>
+					<value>N</value>
+					<value>HB</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Bottom Brackets</value>
+					<value>1</value>
+					<value>N</value>
+					<value>BB</value>
+				</row>
+				<row>
+					<value>1</value>
+					<value>Clothing</value>
+					<value>1</value>
+					<value>C</value>
+					<value>CL</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Bib-Shorts</value>
+					<value>1</value>
+					<value>N</value>
+					<value>BS</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Caps</value>
+					<value>1</value>
+					<value>N</value>
+					<value>CAP</value>
+				</row>
+				<row>
+					<value>1</value>
+					<value>default</value>
+					<value>1</value>
+					<value>S</value>
+					<value>default Element</value>
+
+				</row>
+			</data>
+		</extract>
+	</extracts>
+	<transforms>
+		<transform name="TransformTreeLE" type="TreeLE">
+			<sources>
+				<source nameref="ConstantTable" />
+			</sources>
+			<target>
+				<element>
+					<input nameref=":element" />
+				</element>
+				<level>
+					<input nameref=":level" />
+				</level>
+				<weight>
+					<input nameref=":weight" />
+				</weight>
+				<type>
+					<input nameref=":nodetype" />
+				</type>
+				<attributes>
+					<attribute name="SmallName" type="string">
+						<input nameref="id" />
+					</attribute>
+				</attributes>
+			</target>
+		</transform>
+	</transforms>
+	<loads>
+		<load name="TreeLE" type="Dimension">
+			<source nameref="TransformTreeLE" />
+			<connection nameref="palotarget" />
+			<dimension>
+				<elements mode="update" />
+				<consolidations mode="update" />
+				<attributes mode="update" />
+			</dimension>
+		</load>
+	</loads>
+</project>
+

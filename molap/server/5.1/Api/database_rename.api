@@ -1,0 +1,57 @@
+@request_path /database/rename
+
+@short_description Renames a database. 
+
+@long_description 
+
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+
+@param new_name
+@param_type string
+@param_description New name of the database
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+
+@result database
+@result_type identifier
+@result_description Identifier of the database
+
+@result name_database
+@result_type string
+@result_description Name of the database
+
+@result number_dimensions
+@result_type integer
+@result_description Number of dimensions in the database
+
+@result number_cubes
+@result_type integer
+@result_description Number of cubes in the database
+
+@result status
+@result_type integer
+@result_description Status of database (0=unloaded, 1=loaded and 2=changed)
+
+@result type
+@result_type integer
+@result_description Type of database (0=normal, 1=system)
+
+@result database_token
+@result_type integer
+@result_description The database token
+
+
+@example database=1&new_name=Demo
+@example_description Change name of database "1" to "Demo"

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.jedox.com/etlcore"
+	xmlns:c="http://schemas.jedox.com/etlcore" elementFormDefault="qualified">
+
+	<element name="extract" type="c:extracttype" />
+
+	<complexType name="aliastype">
+		<simpleContent>
+			<extension base="positiveInteger">
+				<attribute name="name" type="string"/>
+				<attribute name="default" type="string" />
+				<attribute name="origin" type="string">
+					<annotation>
+						<appinfo>hidden</appinfo>
+					</annotation>
+				</attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="aliasmap">
+		<sequence>
+			<element name="alias" type="c:aliastype" minOccurs="0"
+				maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="nameref" type="string">
+		</attribute>
+	</complexType>
+
+	<complexType name="connectionref">
+		<sequence>
+			<any minOccurs="0" maxOccurs="unbounded" processContents="lax" />
+		</sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<anyAttribute processContents="lax" />
+	</complexType>
+	
+	<simpleType name="cacheType">
+ 		 <restriction base="string">
+    		<enumeration value="none"/>
+    		<enumeration value="memory"/>
+    		<enumeration value="disk"/>
+  		</restriction>
+	</simpleType> 
+	
+	<simpleType name="scopeType">
+ 		 <restriction base="string">
+    		<enumeration value="base"/>
+    		<enumeration value="one"/>
+    		<enumeration value="subtree"/>
+  		</restriction>
+	</simpleType> 	
+
+	<complexType name="extracttype">
+		<all>
+			<element name="connection" type="c:connectionref" />
+			<element name="base" type="string" minOccurs="0" maxOccurs="1" />
+			<element name="scope" type="c:scopeType" minOccurs="0" maxOccurs="1" />
+			<element name="classes" type="string" minOccurs="0"
+				maxOccurs="1" />
+			<element name="attributes" type="string" minOccurs="0"
+				maxOccurs="1" />
+			<element name="query" type="string" minOccurs="1" maxOccurs="1" />
+			<element name="alias_map" type="c:aliasmap" minOccurs="0"
+				maxOccurs="1" />
+			<element name="comment" type="string" minOccurs="0"
+				maxOccurs="1" />
+			<element name="cache" type="c:cacheType" minOccurs="0"
+				maxOccurs="1" />	
+		</all>
+		<attribute name="name" type="string" use="required" />
+		<attribute name="type" type="string" use="required" />
+		<attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+	</complexType>
+</schema>

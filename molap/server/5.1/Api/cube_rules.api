@@ -1,0 +1,67 @@
+@request_path /cube/rules
+
+@short_description Lists the rules for a cube
+
+@long_description 
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+@param use_identifier
+@param_type boolean
+@param_description Use identifier in textual representation of the rule
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+@result rule
+@result_type identifier
+@result_description Identifier of the rule
+
+@result rule_string
+@result_type string
+@result_description Textual representation for the rule
+
+@result external_identifier
+@result_type string
+@result_description external identifier of the rule
+
+@result comment
+@result_type string
+@result_description comment for the rule
+
+@result timestamp
+@result_type string
+@result_description creation time of the rule in seconds since 1970-01-01
+
+@result active
+@result_type integer
+@result_description 0=rule is not active,  1=rule is active
+
+@result position
+@result_type double
+@result_description Position of the rule within list of cube rules 
+
+@example database=2&cube=8
+@example_description List all rules of cube "8" in database "2"
+
+@example database=2&cube=8&use_identifier=1
+@example_description List all rules of cube "8" in database "2" in identifier notation
+
+

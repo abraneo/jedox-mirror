@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://schemas.jedox.com/etlcore"
+	xmlns:c="http://schemas.jedox.com/etlcore"
+	elementFormDefault="qualified">
+
+	<element name="connection" type="c:connectiontype" />
+
+	<complexType name="connectiontype">
+		<all>
+			<element name="host" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="port" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="delimiter" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="quote" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="encoding" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+		</all>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="type" type="string" use="required"/>
+		<attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+	</complexType>
+
+	<simpleType name="encodingList">
+ 		 <restriction base="string">
+    		<enumeration value="UTF-8"/>
+    		<enumeration value="UTF-16"/>
+    		<enumeration value="latin1"/>
+    		<enumeration value="iso-8859-2"/>
+    		<enumeration value="iso-8859-3"/>
+    		<enumeration value="iso-8859-4"/>
+    		<enumeration value="iso-8859-5"/>
+    		<enumeration value="iso-8859-6"/>
+    		<enumeration value="iso-8859-7"/>
+    		<enumeration value="iso-8859-8"/>
+    		<enumeration value="iso-8859-9"/>
+    		<enumeration value="cp1250"/>
+    		<enumeration value="cp1251"/>
+    		<enumeration value="cp1252"/>
+    		<enumeration value="cp1253"/>
+    		<enumeration value="cp1254"/>
+    		<enumeration value="cp1255"/>
+    		<enumeration value="cp1256"/>
+    		<enumeration value="cp1257"/>
+    		<enumeration value="ASCII"/>
+  		</restriction>
+	</simpleType>
+
+	<simpleType name="delimiterList">
+ 		 <restriction base="string">
+    		<enumeration value=";"/>
+    		<enumeration value=","/>
+    		<enumeration value="\t"/>
+  		</restriction>
+	</simpleType>
+
+	<simpleType name="quoteList">
+ 		 <restriction base="string">
+    		<enumeration value="NONE"/>
+    		<enumeration value="&quot;"/>
+    		<enumeration value="&apos;"/>
+  		</restriction>
+	</simpleType>
+
+</schema>

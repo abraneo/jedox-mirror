@@ -1,0 +1,593 @@
+Products[1];Area[1,Country];Regions[2,Country,CONCAT];Country[3,Country,CONCAT];Text[ATTR,3,Country,Region];Pos[DRILL];Day[DATE,dd.MM.yyyy,dd MMM yyyy,en];Units[IGNORE];Cost of Sales[ATTR,3,Country];Turnover
+Desktop Pro;Europe;East;Czech Republic;East;2;13.05.2010;1948.01;9634.09;10547.8
+Desktop L;Europe;West;Netherlands;West;3;01.05.2012;2248.88;8897.85;11363.9
+Desktop L;Europe;West;United Kingdom;West;4;23.02.2011;3001.6;12142.7;16502.5
+Desktop Pro;Europe;South;Italy;South;5;13.01.2013;2130.47;9750.5;11525.4
+Desktop Pro XL;Europe;East;Poland;East;6;09.08.2011;4929.79;20392.1;22393.9
+Desktop L;Europe;West;Germany;West;7;09.10.2010;60674625,00;254170422,00;297372141,00
+Desktop L;Europe;North;Finland;North;8;09.10.2010;1113.0;4428.96;5133.6
+Desktop Pro;Europe;West;United Kingdom;West;9;29.11.2012;4434.44;19224.1;21459.8
+Desktop L;Europe;West;France;West;10;24.12.2012;6647.47;31170.5;30265.7
+Desktop Pro;Europe;North;Denmark;North;11;09.10.2010;1171.45;5033.25;5700.78
+Desktop Pro XL;Europe;North;Norway;North;12;13.05.2010;1701.53;7279.84;8297.25
+Desktop L;Europe;South;Portugal;South;13;09.10.2010;1622.28;7203.11;8603.11
+Desktop Pro;Europe;East;Slovakia;East;14;24.12.2012;317773,00;1455.37;1452.79
+Desktop L;Europe;East;Austria;East;15;29.11.2012;1522.71;6762.41;7470.72
+Desktop L;Europe;West;Belgium;West;16;13.07.2010;4989.36;23615.5;26069.7
+Desktop Pro;Europe;West;Ireland;West;17;23.04.2011;810454,00;3374.92;4333.42
+Desktop Pro;Europe;South;Italy;South;18;23.02.2011;6378.37;30188.4;28799.2
+Desktop L;Europe;East;Czech Republic;East;19;13.07.2010;6070.01;23479.8;30219.5
+Desktop Pro;Europe;West;United Kingdom;West;20;17.07.2010;2595.72;12121.4;13836.0
+Desktop L;Europe;South;Spain;South;21;13.05.2010;8146.73;34608.7;38219.1
+Desktop Pro;Europe;West;Netherlands;West;22;23.04.2011;3260.03;14635.4;16854.2
+Desktop L;Europe;West;Belgium;West;23;19.08.2010;3499.97;15747.3;18845.1
+Desktop L;Europe;West;Luxembourg;West;24;29.11.2012;666982,00;3308.2;3160.38
+Desktop L;Europe;West;Netherlands;West;25;09.08.2011;2634.28;11266.1;13347.3
+Desktop L;Europe;East;Austria;East;26;17.07.2010;1739.72;7677.12;8243.36
+Desktop Pro XL;Europe;West;United Kingdom;West;27;13.01.2013;3434.73;17289.1;18563.7
+Desktop L;Europe;East;Poland;East;28;29.11.2012;1889.63;7827.19;9708.94
+Desktop L;Europe;East;Czech Republic;East;29;19.08.2010;943988,00;4202.71;4546.25
+Desktop Pro XL;Europe;East;Austria;East;30;13.07.2010;1145.8;5490.36;5324.44
+Desktop Pro;Europe;West;France;West;31;01.05.2012;7430.54;35665.9;37770.3
+Desktop Pro XL;Europe;North;Denmark;North;32;17.07.2010;978457,00;4841.82;4897.47
+Desktop Pro XL;Europe;North;Denmark;North;33;29.11.2012;1756.47;7753.92;8016.36
+Desktop Pro XL;Europe;West;Ireland;West;34;01.05.2012;468578,00;1862.9;2367.76
+Desktop Pro XL;Europe;West;Switzerland;West;35;09.10.2010;2214.93;10288.5;10681.2
+Desktop Pro XL;Europe;East;Austria;East;36;19.08.2010;6741.24;32844.3;36249.0
+Desktop L;Europe;West;Luxembourg;West;37;17.07.2010;774.35;3489.02;3787.97
+Desktop Pro XL;Europe;South;Spain;South;38;23.04.2011;4523.82;19264.2;24654.8
+Desktop Pro XL;Europe;East;Poland;East;39;13.07.2010;1482.41;6982.22;7154.73
+Desktop L;Europe;East;Poland;East;40;17.07.2010;1743.21;8313.3;9123.15
+Desktop Pro;Europe;West;Ireland;West;41;13.05.2010;544342,00;2145.77;2565.31
+Desktop Pro XL;Europe;West;Netherlands;West;42;01.05.2012;2689.38;13056.0;14077.5
+Desktop Pro XL;Europe;West;United Kingdom;West;43;23.02.2011;10400.9;45599.6;54786.1
+Desktop L;Europe;North;Sweden;North;44;09.10.2010;592841,00;2519.73;3203.94
+Desktop L;Europe;West;Belgium;West;45;29.11.2012;1425.77;7182.78;7493.53
+Desktop Pro XL;Europe;West;Luxembourg;West;46;19.08.2010;965087,00;4198.64;4557.01
+Desktop Pro XL;Europe;North;Finland;North;47;09.10.2010;1445.09;6359.98;7206.68
+Desktop L;Europe;East;Czech Republic;East;48;29.11.2012;6691.5;30899.5;32455.4
+Desktop Pro;Europe;East;Austria;East;49;09.10.2010;4897.16;24340.6;22450.9
+Desktop Pro XL;Europe;West;France;West;50;24.12.2012;7380.34;35096.1;34532.2
+Desktop Pro XL;Europe;East;Poland;East;51;19.08.2010;3993.6;17499.6;20424.2
+Desktop L;Europe;North;Denmark;North;52;24.12.2012;1337.04;5939.99;6091.94
+Desktop Pro XL;Europe;South;Portugal;South;53;09.10.2010;1285.15;5704.94;6920.01
+Desktop Pro;Europe;West;France;West;54;09.08.2011;7398.42;35531.8;34504.9
+Desktop L;Europe;West;Switzerland;West;55;01.05.2012;4911.95;22670.8;24372.9
+Desktop L;Europe;North;Norway;North;56;09.10.2010;830478,00;3828.98;4338.75
+Desktop L;Europe;West;Belgium;West;57;17.07.2010;5170.69;23005.0;25495.0
+Desktop L;Europe;South;Italy;South;58;23.04.2011;2927.72;12866.9;14335.5
+Desktop Pro;Europe;West;Luxembourg;West;59;09.10.2010;250049,00;1209.01;1237.32
+Desktop L;Europe;West;Ireland;West;60;13.07.2010;1280.29;5722.95;6379.94
+Desktop L;Europe;East;Czech Republic;East;61;17.07.2010;2191.97;10563.1;10736.5
+Desktop Pro XL;Europe;East;Czech Republic;East;62;13.07.2010;3468.17;15221.4;18038.2
+Desktop Pro;Europe;East;Poland;East;63;09.10.2010;3436.96;14216.5;15890.9
+Desktop Pro XL;Europe;South;Spain;South;64;13.05.2010;2085.65;9524.26;9582.04
+Desktop Pro XL;Europe;West;Belgium;West;65;19.08.2010;1914.55;8268.87;9284.04
+Desktop L;Europe;West;Germany;West;66;01.05.2012;61636275,00;292371453,00;327159558,00
+Desktop L;Europe;West;Netherlands;West;67;13.07.2010;2405.27;9508.11;12222.5
+Desktop Pro XL;Europe;East;Austria;East;68;17.07.2010;3136.9;13229.2;15205.0
+Desktop L;Europe;North;Finland;North;69;01.05.2012;2642.46;12102.9;12037.0
+Desktop Pro XL;Europe;East;Poland;East;70;29.11.2012;4007.96;16834.7;19483.1
+Desktop Pro XL;Europe;East;Czech Republic;East;71;19.08.2010;2339.62;10023.3;12462.5
+Desktop L;Europe;West;Ireland;West;72;19.08.2010;1276.04;6004.35;6157.17
+Desktop Pro;Europe;North;Denmark;North;73;01.05.2012;1277.35;6222.09;6914.92
+Desktop Pro XL;Europe;West;Luxembourg;West;74;29.11.2012;738918,00;3540.1;3636.64
+Desktop L;Europe;South;Portugal;South;75;01.05.2012;1005.05;4612.46;5148.75
+Desktop L;Europe;West;Netherlands;West;76;19.08.2010;3892.89;17246.9;19610.2
+Desktop Pro;Europe;West;Switzerland;West;77;23.04.2011;2780.35;11128.1;15220.3
+Desktop Pro XL;Europe;West;Luxembourg;West;78;17.07.2010;724815,00;3753.01;3407.37
+Desktop Pro;Europe;West;Belgium;West;79;09.10.2010;6090.87;28206.9;31045.6
+Desktop Pro XL;Europe;East;Poland;East;80;17.07.2010;2524.2;11608.1;12150.6
+Desktop L;Europe;West;Switzerland;West;81;09.08.2011;905.39;4074.63;4666.51
+Desktop L;Europe;South;Italy;South;82;13.05.2010;10955.1;48566.8;50986.7
+Desktop Pro XL;Europe;North;Sweden;North;83;09.10.2010;1894.23;7294.37;9121.51
+Desktop Pro;Europe;West;United Kingdom;West;84;24.12.2012;7968.2;38990.8;36044.1
+Desktop Pro XL;Europe;West;Belgium;West;85;29.11.2012;5851.69;26391.6;29877.4
+Desktop Pro;Europe;West;Germany;West;86;23.04.2011;58390425,00;258307533,00;273722328,00
+Desktop Pro XL;Europe;East;Czech Republic;East;87;29.11.2012;2216.47;10744.2;11381.9
+Desktop L;Europe;West;Ireland;West;88;29.11.2012;2003.69;9180.74;9829.61
+Desktop L;Europe;East;Austria;East;89;24.12.2012;5714.11;23957.2;29306.6
+Desktop L;Europe;West;Germany;West;90;09.08.2011;366746625,00;162235953,00;193827843,00
+Desktop Pro XL;Europe;North;Denmark;North;91;24.12.2012;1401.84;5519.56;7307.81
+Desktop L;Europe;North;Finland;North;92;09.08.2011;1465.64;6417.42;6970.97
+Desktop Pro;Europe;West;France;West;93;13.07.2010;2113.93;9349.29;11235.2
+Desktop Pro;Europe;South;Portugal;South;94;23.04.2011;1268.69;5275.71;6473.49
+Desktop Pro XL;Europe;West;Switzerland;West;95;01.05.2012;3740.02;16684.0;18407.0
+Desktop L;Europe;West;Netherlands;West;96;29.11.2012;4553.98;19659.5;23096.2
+Desktop Pro XL;Europe;West;Belgium;West;97;17.07.2010;1112.3;4986.36;5486.36
+Desktop Pro;Europe;North;Denmark;North;98;09.08.2011;4751.41;21077.4;25384.2
+Desktop L;Europe;South;Portugal;South;99;09.08.2011;1014.64;4504.53;5464.31
+Desktop Pro;Europe;North;Finland;North;100;23.04.2011;619501,00;2972.61;3328.34
+Desktop Pro XL;Europe;West;Ireland;West;101;13.07.2010;1456.68;6076.62;6706.29
+Desktop Pro;Europe;West;Switzerland;West;102;13.05.2010;963378,00;4756.17;4794.6
+Desktop L;Europe;West;France;West;103;13.01.2013;10018.6;43062.7;51413.6
+Desktop Pro XL;Europe;East;Czech Republic;East;104;17.07.2010;2489.54;10342.6;13384.2
+Desktop L;Europe;West;Luxembourg;West;105;24.12.2012;845348,00;3617.32;3909.8
+Desktop L;Europe;East;Poland;East;106;24.12.2012;7941.71;32480.2;40925.7
+Desktop L;Europe;South;Spain;South;107;09.10.2010;2666.33;11193.8;12624.0
+Desktop L;Europe;West;Ireland;West;108;17.07.2010;2197.11;9979.89;10897.8
+Desktop Pro XL;Europe;West;Germany;West;109;01.05.2012;5311305,00;23629122,00;277219107,00
+Desktop Pro XL;Europe;West;Netherlands;West;110;13.07.2010;1852.31;7684.33;10126.1
+Desktop L;Europe;West;Netherlands;West;111;17.07.2010;5300.3;23006.0;24873.8
+Desktop Pro XL;Europe;North;Finland;North;112;01.05.2012;645236,00;2973.05;3424.53
+Desktop Pro;Europe;East;Austria;East;113;01.05.2012;3473.77;14535.0;18648.5
+Desktop Pro XL;Europe;North;Norway;North;114;09.10.2010;594.17;2291.02;3088.79
+Desktop L;Europe;North;Sweden;North;115;01.05.2012;3401.47;16356.3;17355.2
+Desktop Pro XL;Europe;West;Ireland;West;116;19.08.2010;1413.7;7111.97;7256.08
+Desktop Pro;Europe;West;Germany;West;117;13.05.2010;106457175,00;445184289,00;559381185,00
+Desktop Pro;Europe;West;France;West;118;19.08.2010;14028.6;54724.5;73835.4
+Desktop Pro;Europe;North;Finland;North;119;13.05.2010;1160.74;5329.48;6243.43
+Desktop L;Europe;West;France;West;120;23.02.2011;8759.71;40643.0;39701.9
+Desktop L;Europe;North;Norway;North;121;01.05.2012;1814.55;8631.73;8759.64
+Desktop Pro XL;Europe;West;Netherlands;West;122;19.08.2010;4784.69;21276.9;25497.3
+Desktop Pro;Europe;East;Slovakia;East;123;23.02.2011;480427,00;2215.77;2524.36
+Desktop Pro;Europe;West;Luxembourg;West;124;01.05.2012;566138,00;2569.62;2817.51
+Desktop L;Europe;West;Belgium;West;125;24.12.2012;3612.79;16984.4;18040.1
+Desktop L;Europe;West;Switzerland;West;126;13.07.2010;3905.53;18983.6;17822.3
+Desktop Pro XL;Europe;West;Switzerland;West;127;09.08.2011;2184.05;10208.6;10113.8
+Desktop Pro;Europe;East;Poland;East;128;01.05.2012;1526.56;6413.43;7227.2
+Desktop Pro;Europe;West;France;West;129;29.11.2012;10520.8;44248.6;53162.0
+Desktop Pro;Europe;West;Ireland;West;130;09.10.2010;1582.1;6622.86;7200.6
+Desktop L;Europe;East;Czech Republic;East;131;24.12.2012;2222.15;9232.32;10202.7
+Desktop Pro;Europe;North;Sweden;North;132;23.04.2011;576821,00;2959.73;2903.82
+Desktop Pro XL;Europe;South;Italy;South;133;23.04.2011;2374.4;11661.3;10937.2
+Desktop Pro XL;Europe;South;Italy;South;134;13.05.2010;4311.37;16948.6;20396.5
+Desktop L;Europe;North;Sweden;North;135;09.08.2011;1373.8;6897.31;6904.41
+Desktop Pro;Europe;West;Netherlands;West;136;09.10.2010;1565.68;7273.45;7247.72
+Desktop L;Europe;West;Switzerland;West;137;19.08.2010;1209.1;5618.11;5812.7
+Desktop Pro XL;Europe;East;Austria;East;138;24.12.2012;2271.1;10358.5;10655.5
+Desktop L;Europe;West;Germany;West;139;13.07.2010;65045475,00;311273226,00;292057821,00
+Desktop Pro XL;Europe;West;Germany;West;140;09.08.2011;249672375,00;116909595,00;110200266,00
+Desktop L;Europe;North;Finland;North;141;13.07.2010;1003.92;3927.63;5035.18
+Desktop Pro;Europe;East;Austria;East;142;09.08.2011;4729.78;19153.7;24712.4
+Desktop Pro;Europe;West;France;West;143;17.07.2010;2793.25;11550.7;13464.5
+Desktop Pro;Europe;North;Denmark;North;144;13.07.2010;4134.67;18961.9;22347.3
+Desktop Pro XL;Europe;West;Netherlands;West;145;29.11.2012;4936.06;21199.8;22382.9
+Desktop Pro;Europe;North;Norway;North;146;23.04.2011;1053.48;4979.9;4873.89
+Desktop Pro XL;Europe;North;Finland;North;147;09.08.2011;1152.26;5052.1;5538.7
+Desktop L;Europe;South;Portugal;South;148;13.07.2010;2114.34;10099.5;10759.9
+Desktop Pro;Europe;West;Belgium;West;149;01.05.2012;2810.74;14079.3;14754.1
+Desktop L;Europe;West;Germany;West;150;19.08.2010;609685875,00;30203415,00;266289903,00
+Desktop L;Europe;North;Norway;North;151;09.08.2011;2288.99;9363.38;11826.0
+Desktop Pro XL;Europe;West;France;West;152;13.01.2013;3633.84;16367.9;17379.7
+Desktop L;Europe;North;Denmark;North;153;13.01.2013;2393.69;9391.42;11703.9
+Desktop L;Europe;North;Finland;North;154;19.08.2010;703276,00;2922.69;3226.12
+Desktop Pro XL;Europe;East;Poland;East;155;24.12.2012;1387.32;6256.3;7025.83
+Desktop Pro;Europe;East;Czech Republic;East;156;01.05.2012;5226.07;20699.6;28239.3
+Desktop Pro;Europe;West;Luxembourg;West;157;09.08.2011;648121,00;3104.58;3179.21
+Desktop Pro;Europe;North;Denmark;North;158;19.08.2010;2188.35;9863.95;9872.21
+Desktop Pro XL;Europe;West;Netherlands;West;159;17.07.2010;1929.79;9411.02;9453.8
+Desktop L;Europe;South;Portugal;South;160;19.08.2010;1780.0;8529.86;8210.69
+Desktop Pro;Europe;East;Poland;East;161;09.08.2011;8657.9;40073.4;46729.1
+Desktop Pro;Europe;North;Sweden;North;162;13.05.2010;454777,00;2257.51;2422.08
+Desktop L;Europe;West;Switzerland;West;163;29.11.2012;4503.43;21254.1;22847.3
+Desktop Pro XL;Europe;West;Luxembourg;West;164;24.12.2012;174118,00;823896,00;848891,00
+Desktop Pro XL;Europe;South;Portugal;South;165;09.08.2011;1807.33;8271.43;9374.61
+Desktop Pro XL;Europe;North;Sweden;North;166;01.05.2012;1414.37;6669.86;6580.67
+Desktop Pro XL;Europe;South;Spain;South;167;09.10.2010;6841.14;32121.7;34174.2
+Desktop Pro XL;Europe;West;Ireland;West;168;17.07.2010;707241,00;3204.97;3402.16
+Desktop Pro XL;Europe;North;Norway;North;169;01.05.2012;1332.76;5947.5;6186.46
+Desktop L;Europe;West;Germany;West;170;29.11.2012;969692625,00;444269529,00;502389459,00
+Desktop Pro;Europe;North;Norway;North;171;13.05.2010;1722.65;8265.22;8500.55
+Desktop Pro XL;Europe;West;Switzerland;West;172;13.07.2010;962708,00;4165.68;5257.55
+Desktop L;Europe;North;Finland;North;173;29.11.2012;3351.81;14894.6;15796.0
+Desktop L;Europe;South;Italy;South;174;09.10.2010;7773.22;36839.9;37114.2
+Desktop L;Europe;South;Spain;South;175;01.05.2012;7562.66;35331.3;34079.7
+Desktop L;Europe;West;Ireland;West;176;24.12.2012;590334,00;2544.28;3041.02
+Desktop L;Europe;West;Switzerland;West;177;17.07.2010;1316.21;5781.58;6793.87
+Desktop Pro;Europe;North;Denmark;North;178;29.11.2012;4854.73;22562.4;23134.1
+Desktop Pro XL;Europe;West;Belgium;West;179;24.12.2012;2239.54;9328.9;10158.3
+Desktop L;Europe;South;Portugal;South;180;29.11.2012;4823.8;21099.1;24330.4
+Desktop L;Europe;North;Sweden;North;181;13.07.2010;465.48;1938.51;2443.63
+Desktop Pro XL;Europe;North;Sweden;North;182;09.08.2011;1232.84;5269.51;6562.51
+Desktop Pro XL;Europe;West;Switzerland;West;183;19.08.2010;3280.14;15772.9;16318.0
+Desktop L;Europe;West;Netherlands;West;184;24.12.2012;2539.22;11061.0;11606.5
+Desktop Pro XL;Europe;West;Germany;West;185;13.07.2010;7051725,00;291043962,00;309157299,00
+Desktop L;Europe;West;Germany;West;186;17.07.2010;2688075,00;122063832,00;142492383,00
+Desktop Pro XL;Europe;North;Finland;North;187;13.07.2010;1020.1;4485.93;5571.31
+Desktop L;Europe;North;Finland;North;188;17.07.2010;630084,00;2791.4;3129.3
+Desktop Pro;Europe;East;Austria;East;189;13.07.2010;4569.84;21384.7;23995.5
+Desktop Pro;Europe;West;United Kingdom;West;190;13.01.2013;8633.96;42593.8;46359.9
+Desktop Pro;Europe;North;Denmark;North;191;17.07.2010;4487.75;19526.3;24674.7
+Desktop Pro XL;Europe;South;Portugal;South;192;13.07.2010;1481.14;6486.48;7568.62
+Desktop L;Europe;South;Portugal;South;193;17.07.2010;782.19;3357.81;4194.95
+Desktop L;Europe;North;Norway;North;194;13.07.2010;1389.86;5696.55;7149.77
+Desktop L;Europe;East;Austria;East;195;13.01.2013;1462.34;7209.02;7188.75
+Desktop Pro XL;Europe;West;Germany;West;196;19.08.2010;274876875,00;1028544165,00;130588524,00
+Desktop Pro;Europe;West;Ireland;West;197;01.05.2012;2222.76;10202.3;12090.6
+Desktop Pro;Europe;West;Switzerland;West;198;09.10.2010;5605.53;25936.8;29771.6
+Desktop Pro XL;Europe;North;Denmark;North;199;13.01.2013;1581.7;7000.3;7928.9
+Desktop L;Europe;East;Slovakia;East;200;13.05.2010;325576,00;1426.0;1736.32
+Desktop Pro;Europe;West;Luxembourg;West;201;13.07.2010;231205,00;941819,00;1080.71
+Desktop Pro;Europe;South;Spain;South;202;23.04.2011;5361.14;24246.0;25621.5
+Desktop Pro;Europe;East;Austria;East;203;19.08.2010;3151.64;14253.2;15666.5
+Desktop Pro;Europe;East;Poland;East;204;13.07.2010;6781.66;28624.3;30750.4
+Desktop Pro XL;Europe;South;Portugal;South;205;19.08.2010;1531.62;6627.55;7442.6
+Desktop Pro;Europe;West;Netherlands;West;206;01.05.2012;925991,00;4593.7;4188.74
+Desktop L;Europe;South;Spain;South;207;09.08.2011;4076.99;19929.3;21915.2
+Desktop Pro XL;Europe;West;Switzerland;West;208;29.11.2012;3680.81;16174.4;20044.8
+Desktop Pro;Europe;West;United Kingdom;West;209;23.02.2011;4673.95;20127.8;24851.6
+Desktop Pro XL;Europe;North;Finland;North;210;19.08.2010;983878,00;4534.3;5092.37
+Desktop L;Europe;East;Austria;East;211;23.02.2011;1867.8;8070.84;8590.3
+Desktop L;Europe;East;Poland;East;212;13.01.2013;1319.86;5879.32;6624.2
+Desktop Pro;Europe;West;Germany;West;213;09.10.2010;500767875,00;223548831,00;232638714,00
+Desktop Pro;Europe;East;Poland;East;214;19.08.2010;2647.17;11366.6;12915.1
+Desktop L;Europe;North;Sweden;North;215;29.11.2012;1462.49;6859.06;7364.38
+Desktop Pro;Europe;West;France;West;216;24.12.2012;4992.38;21114.6;26745.6
+Desktop Pro XL;Europe;West;Germany;West;217;29.11.2012;19589175,00;905623289999999,00;934754039999999,00
+Desktop Pro;Europe;West;Luxembourg;West;218;19.08.2010;280668,00;1258.27;1363.03
+Desktop Pro;Europe;South;Portugal;South;219;09.10.2010;1593.98;6860.44;8042.89
+Desktop Pro XL;Europe;North;Finland;North;220;29.11.2012;406255,00;1951.48;1943.31
+Desktop Pro;Europe;East;Austria;East;221;29.11.2012;1344.56;6372.57;6636.15
+Desktop Pro XL;Europe;South;Italy;South;222;09.10.2010;1884.64;9207.24;9613.16
+Desktop Pro;Europe;West;Belgium;West;223;13.07.2010;1424.69;6540.69;6996.9
+Desktop Pro XL;Europe;West;Ireland;West;224;24.12.2012;984637,00;5035.83;4737.55
+Desktop L;Europe;West;Luxembourg;West;225;23.02.2011;289909,00;1332.43;1322.27
+Desktop Pro;Europe;North;Finland;North;226;09.10.2010;965757,00;4649.12;4890.63
+Desktop Pro XL;Europe;East;Slovakia;East;227;23.04.2011;399731,00;1630.63;1858.02
+Desktop L;Europe;East;Poland;East;228;23.02.2011;2449.03;11368.1;11685.1
+Desktop Pro;Europe;West;Ireland;West;229;09.08.2011;548659,00;2650.43;2810.56
+Desktop L;Europe;North;Norway;North;230;29.11.2012;876063,00;4031.12;4135.49
+Desktop L;Europe;North;Sweden;North;231;17.07.2010;600339,00;2600.55;3017.87
+Desktop Pro;Europe;South;Spain;South;232;13.05.2010;1774.75;8276.65;9083.78
+Desktop L;Europe;West;Belgium;West;233;13.01.2013;4803.61;22771.2;24722.9
+Desktop Pro;Europe;East;Czech Republic;East;234;13.07.2010;5800.96;26757.4;30742.3
+Desktop Pro XL;Europe;West;Germany;West;235;17.07.2010;289148625,00;130957695,00;130011354,00
+Desktop Pro;Europe;West;Belgium;West;236;19.08.2010;5302.36;23795.1;25060.2
+Desktop Pro;Europe;West;Luxembourg;West;237;29.11.2012;316052,00;1456.41;1689.18
+Desktop Pro;Europe;West;Netherlands;West;238;09.08.2011;2299.97;10129.5;11150.1
+Desktop L;Europe;East;Czech Republic;East;239;13.01.2013;2829.2;12100.6;14594.5
+Desktop Pro XL;Europe;North;Finland;North;240;17.07.2010;471202,00;2168.52;2182.29
+Desktop Pro;Europe;East;Poland;East;241;29.11.2012;3699.4;17688.8;19618.8
+Desktop Pro;Europe;East;Czech Republic;East;242;19.08.2010;2617.3;11155.4;12659.0
+Desktop Pro XL;Europe;South;Spain;South;243;01.05.2012;1522.28;7066.25;8189.95
+Desktop Pro;Europe;East;Austria;East;244;17.07.2010;5404.53;24762.0;29393.2
+Desktop Pro XL;Europe;South;Portugal;South;245;17.07.2010;1524.51;6885.91;6915.15
+Desktop Pro XL;Europe;North;Sweden;North;246;19.08.2010;1080.89;4359.45;5383.85
+Desktop Pro XL;Europe;West;Netherlands;West;247;24.12.2012;872601,00;3751.91;4384.63
+Desktop Pro XL;Europe;East;Austria;East;248;13.01.2013;3126.17;13401.2;15098.9
+Desktop Pro XL;Europe;North;Norway;North;249;13.07.2010;463726,00;1849.44;2442.27
+Desktop L;Europe;South;Italy;South;250;01.05.2012;3977.46;17082.6;20083.1
+Desktop L;Europe;West;Belgium;West;251;23.02.2011;1624.77;7255.48;8190.4
+Desktop L;Europe;West;Switzerland;West;252;24.12.2012;3712.11;17152.3;20239.6
+Desktop Pro XL;Europe;East;Slovakia;East;253;13.05.2010;547932,00;2388.4;2594.1
+Desktop Pro XL;Europe;North;Sweden;North;254;13.07.2010;1297.32;5470.9;6144.18
+Desktop L;Europe;East;Czech Republic;East;255;23.02.2011;6061.59;26971.2;30480.5
+Desktop Pro;Europe;East;Poland;East;256;17.07.2010;1389.79;5527.12;6963.73
+Desktop L;Europe;South;Spain;South;257;13.07.2010;1942.29;9745.34;8753.6
+Desktop Pro XL;Europe;South;Spain;South;258;09.08.2011;4492.74;22859.3;22344.3
+Desktop Pro XL;Europe;South;Portugal;South;259;29.11.2012;2322.29;10265.2;12069.6
+Desktop L;Europe;West;United Kingdom;West;260;23.04.2011;4314.59;17164.7;22098.7
+Desktop Pro XL;Europe;West;Luxembourg;West;261;13.01.2013;198323,00;926676,00;1061.01
+Desktop Pro;Europe;West;Belgium;West;262;29.11.2012;1226.55;5764.87;6309.41
+Desktop Pro;Europe;North;Sweden;North;263;09.10.2010;1748.98;8325.85;8986.69
+Desktop Pro XL;Europe;East;Austria;East;264;23.02.2011;1286.74;5865.95;6242.23
+Desktop L;Europe;West;Germany;West;265;24.12.2012;747840375,00;339446745,00;329593473,00
+Desktop Pro XL;Europe;North;Norway;North;266;19.08.2010;1304.02;5333.02;6791.79
+Desktop Pro;Europe;East;Czech Republic;East;267;29.11.2012;3727.38;17246.0;20479.7
+Desktop L;Europe;North;Finland;North;268;24.12.2012;3056.36;12961.7;15818.7
+Desktop Pro XL;Europe;North;Sweden;North;269;29.11.2012;777166,00;3557.55;3567.29
+Desktop L;Europe;South;Spain;South;270;19.08.2010;1935.2;8064.74;10256.7
+Desktop Pro;Europe;North;Denmark;North;271;24.12.2012;3132.78;13173.4;14796.1
+Desktop L;Europe;South;Portugal;South;272;24.12.2012;971.96;4265.93;5070.66
+Desktop Pro;Europe;West;Switzerland;West;273;01.05.2012;1827.87;8335.86;9800.01
+Desktop Pro;Europe;West;Belgium;West;274;17.07.2010;5575.69;23411.6;29207.9
+Desktop Pro;Europe;South;Italy;South;275;23.04.2011;6039.34;26039.7;32166.3
+Desktop Pro XL;Europe;East;Poland;East;276;23.02.2011;2880.12;11586.3;13461.2
+Desktop Pro;Europe;West;Ireland;West;277;13.07.2010;461447,00;2158.81;2165.29
+Desktop Pro;Europe;East;Czech Republic;East;278;17.07.2010;1308.03;5855.06;6673.59
+Desktop Pro XL;Europe;North;Norway;North;279;29.11.2012;2276.7;8876.34;10412.1
+Desktop Pro XL;Europe;North;Sweden;North;280;17.07.2010;461557,00;1928.2;2527.86
+Desktop Pro;Europe;West;Germany;West;281;01.05.2012;83593575,00;388401651,00;411318567,00
+Desktop Pro;Europe;West;Netherlands;West;282;13.07.2010;1797.76;7597.73;9004.8
+Desktop Pro XL;Europe;East;Czech Republic;East;283;13.01.2013;3785.42;18369.4;19995.0
+Desktop L;Europe;West;Ireland;West;284;13.01.2013;1285.8;5402.97;6216.44
+Desktop L;Europe;West;United Kingdom;West;285;13.05.2010;23070.5;98157.7;118788.0
+Desktop Pro;Europe;West;Ireland;West;286;19.08.2010;1278.23;6117.03;6356.16
+Desktop L;Europe;South;Spain;South;287;29.11.2012;2303.98;10714.3;10933.6
+Desktop Pro;Europe;North;Finland;North;288;01.05.2012;2818.53;13815.6;13333.2
+Desktop Pro;Europe;South;Portugal;South;289;01.05.2012;3999.55;16978.8;18937.8
+Desktop L;Europe;West;Netherlands;West;290;13.01.2013;3634.11;14744.4;17464.5
+Desktop Pro XL;Europe;South;Italy;South;291;01.05.2012;4218.23;21873.7;23060.7
+Desktop Pro;Europe;West;Netherlands;West;292;19.08.2010;2026.28;8964.5;9129.68
+Desktop Pro XL;Europe;West;Belgium;West;293;23.02.2011;5143.55;22978.2;25774.2
+Desktop Pro XL;Europe;West;Switzerland;West;294;24.12.2012;2320.82;11414.4;11931.0
+Desktop L;Europe;East;Slovakia;East;295;09.10.2010;291.42;1359.98;1486.61
+Desktop Pro XL;Europe;East;Czech Republic;East;296;23.02.2011;3895.13;18024.5;17730.8
+Desktop Pro;Europe;West;Switzerland;West;297;09.08.2011;1921.22;8452.68;9479.5
+Desktop Pro;Europe;South;Italy;South;298;13.05.2010;2434.32;9881.21;12596.0
+Desktop L;Europe;South;Spain;South;299;17.07.2010;4682.74;22978.7;23838.6
+Desktop Pro XL;Europe;West;United Kingdom;West;300;23.04.2011;4881.75;19814.2;23358.1
+Desktop L;Europe;North;Sweden;North;301;24.12.2012;1834.91;8567.64;9053.42
+Desktop Pro XL;Europe;South;Spain;South;302;13.07.2010;4016.66;20849.9;18142.4
+Desktop L;Europe;West;Netherlands;West;303;23.02.2011;3028.26;12799.8;14477.0
+Desktop Pro XL;Europe;West;Germany;West;304;24.12.2012;83028825,00;382196529,00;376055658,00
+Desktop Pro;Europe;West;Ireland;West;305;29.11.2012;346031,00;1602.25;1684.51
+Desktop Pro;Europe;East;Austria;East;306;24.12.2012;2576.59;11140.3;14150.4
+Desktop Pro;Europe;West;Germany;West;307;09.08.2011;83232225,00;386941302,00;375758361,00
+Desktop Pro;Europe;North;Finland;North;308;09.08.2011;1008.43;4424.95;4829.7
+Desktop Pro XL;Europe;South;Portugal;South;309;24.12.2012;1629.8;6661.57;8798.41
+Desktop Pro;Europe;West;Netherlands;West;310;29.11.2012;4003.35;17260.7;18150.9
+Desktop Pro XL;Europe;North;Finland;North;311;24.12.2012;987108,00;4443.48;5426.08
+Desktop L;Europe;North;Norway;North;312;24.12.2012;1248.26;5764.96;5643.3
+Desktop Pro;Europe;South;Portugal;South;313;09.08.2011;1937.25;8711.75;8839.92
+Desktop L;Europe;South;Italy;South;314;13.07.2010;2507.07;12925.0;12284.3
+Desktop Pro;Europe;West;France;West;315;13.01.2013;1907.06;7746.68;9950.11
+Desktop Pro;Europe;West;Luxembourg;West;316;24.12.2012;660096,00;3211.95;3488.77
+Desktop Pro XL;Europe;South;Italy;South;317;09.08.2011;1446.41;7156.96;7258.0
+Desktop Pro;Europe;West;Ireland;West;318;17.07.2010;486121,00;2013.04;2321.56
+Desktop Pro;Europe;North;Sweden;North;319;01.05.2012;1390.06;6322.58;6825.55
+Desktop Pro;Europe;South;Spain;South;320;09.10.2010;1872.73;7881.43;9189.68
+Desktop Pro XL;Europe;West;United Kingdom;West;321;13.05.2010;3168.73;15564.6;15166.6
+Desktop Pro XL;Europe;South;Spain;South;322;29.11.2012;8505.08;41636.5;39594.1
+Desktop Pro XL;Europe;West;Netherlands;West;323;13.01.2013;859228,00;3567.92;4411.65
+Desktop Pro;Europe;West;France;West;324;23.02.2011;3548.98;14804.9;18229.1
+Desktop Pro XL;Europe;East;Slovakia;East;325;09.10.2010;902217,00;3772.03;4121.82
+Desktop Pro;Europe;West;Belgium;West;326;24.12.2012;1354.58;5543.18;6787.46
+Desktop Pro;Europe;West;Switzerland;West;327;13.07.2010;3511.67;17783.3;17402.2
+Desktop Pro XL;Europe;West;Ireland;West;328;23.02.2011;741734,00;3429.17;3444.34
+Desktop Pro XL;Europe;South;Spain;South;329;17.07.2010;1495.13;7031.72;7624.76
+Desktop Pro XL;Europe;North;Sweden;North;330;24.12.2012;920762,00;3942.32;4519.63
+Desktop Pro XL;Europe;West;Netherlands;West;331;23.02.2011;653421,00;2793.08;3060.73
+Desktop L;Europe;West;Switzerland;West;332;13.01.2013;1801.35;8526.93;9797.22
+Desktop L;Europe;South;Italy;South;333;29.11.2012;7079.13;31459.1;32426.9
+Desktop Pro;Europe;West;Switzerland;West;334;19.08.2010;2366.84;9765.02;11941.3
+Desktop Pro;Europe;West;Germany;West;335;13.07.2010;237817125,00;1018137681,00;122351328,00
+Desktop Pro XL;Europe;North;Norway;North;336;24.12.2012;2028.27;9710.38;9560.02
+Desktop L;Europe;West;Germany;West;337;13.01.2013;11270925,00;468952803,00;559894104,00
+Desktop L;Europe;East;Slovakia;East;338;01.05.2012;252763,00;1189.82;1339.93
+Desktop Pro;Europe;North;Norway;North;339;09.08.2011;3659.79;17966.9;18644.8
+Desktop Pro;Europe;West;Germany;West;340;19.08.2010;15782175,00;595949804999999,00;804067505999999,00
+Desktop L;Europe;South;Italy;South;341;17.07.2010;1979.09;8897.02;10510.8
+Desktop Pro;Europe;North;Denmark;North;342;13.01.2013;2280.64;10692.0;10892.0
+Desktop Pro;Europe;North;Finland;North;343;19.08.2010;556.12;2200.39;2583.54
+Desktop L;Europe;North;Finland;North;344;13.01.2013;1236.9;5695.2;5622.14
+Desktop L;Europe;West;Switzerland;West;345;23.02.2011;3987.64;18389.6;18887.2
+Desktop L;Europe;South;Portugal;South;346;13.01.2013;1812.18;7315.61;9635.53
+Desktop Pro;Europe;South;Portugal;South;347;13.07.2010;2532.73;12764.2;12717.6
+Desktop Pro;Europe;West;Switzerland;West;348;29.11.2012;4795.28;21954.5;24666.1
+Desktop Pro XL;Europe;South;Italy;South;349;19.08.2010;6157.57;30756.7;30623.9
+Desktop L;Europe;West;Germany;West;350;23.02.2011;985467374999999,00;44260227,00;432353691,00
+Desktop Pro;Europe;North;Denmark;North;351;23.02.2011;6030.09;26316.7;28398.4
+Desktop L;Europe;South;Portugal;South;352;23.02.2011;1873.76;8739.06;10018.6
+Desktop Pro;Europe;West;Germany;West;353;29.11.2012;11835.9;481867254,00;57893418,00
+Desktop Pro;Europe;East;Slovakia;East;354;23.04.2011;498466,00;2529.9;2702.71
+Desktop Pro;Europe;West;Switzerland;West;355;17.07.2010;2887.05;12666.8;13268.7
+Desktop Pro;Europe;South;Italy;South;356;09.10.2010;6379.55;29914.7;34339.2
+Desktop Pro;Europe;South;Spain;South;357;01.05.2012;10660.6;47256.2;48567.2
+Desktop Pro;Europe;West;Ireland;West;358;24.12.2012;921805,00;4291.78;4570.66
+Desktop Pro XL;Europe;West;Switzerland;West;359;13.01.2013;3179.77;13803.1;16322.8
+Desktop Pro;Europe;North;Sweden;North;360;13.07.2010;1775.92;7741.21;9170.84
+Desktop Pro XL;Europe;South;Italy;South;361;29.11.2012;8154.44;35965.0;42327.6
+Desktop Pro;Europe;West;Netherlands;West;362;24.12.2012;918.98;4038.07;4517.39
+Desktop Pro;Europe;West;Germany;West;363;17.07.2010;314240625,00;125787123,00;146628405,00
+Desktop L;Europe;North;Sweden;North;364;13.01.2013;669.39;3038.67;3126.1
+Desktop Pro;Europe;North;Sweden;North;365;19.08.2010;793041,00;3158.75;4127.12
+Desktop Pro XL;Europe;West;Germany;West;366;13.01.2013;4088.07;178246431,00;189264933,00
+Desktop Pro;Europe;South;Portugal;South;367;17.07.2010;724839,00;2890.8;3680.55
+Desktop Pro XL;Europe;East;Slovakia;East;368;01.05.2012;750231,00;3307.14;3569.56
+Desktop Pro;Europe;North;Norway;North;369;13.07.2010;1181.93;6098.14;5604.72
+Desktop L;Europe;West;France;West;370;13.05.2010;3087.64;14279.9;16746.1
+Desktop Pro;Europe;East;Austria;East;371;13.01.2013;3644.78;15227.2;18384.2
+Desktop Pro XL;Europe;North;Finland;North;372;13.01.2013;903102,00;3638.51;4659.93
+Desktop Pro XL;Europe;West;Switzerland;West;373;23.02.2011;2380.25;10136.0;12294.1
+Desktop Pro;Europe;East;Slovakia;East;374;13.05.2010;318433,00;1582.06;1613.85
+Desktop Pro XL;Europe;South;Portugal;South;375;13.01.2013;2282.07;11139.5;11849.5
+Desktop Pro XL;Europe;South;Spain;South;376;24.12.2012;1377.98;5983.0;7514.5
+Desktop L;Europe;North;Norway;North;377;13.01.2013;848543,00;3582.51;4498.27
+Desktop L;Europe;North;Sweden;North;378;23.02.2011;592165,00;2751.9;2714.33
+Desktop Pro;Europe;South;Spain;South;379;09.08.2011;1427.01;6773.71;7102.33
+Desktop Pro;Europe;North;Norway;North;380;19.08.2010;3500.58;14270.0;18145.2
+Desktop Pro XL;Europe;West;United Kingdom;West;381;09.10.2010;6529.21;26745.6;30364.9
+Desktop Pro;Europe;West;Luxembourg;West;382;13.01.2013;267684,00;1117.42;1465.15
+Desktop Pro XL;Europe;North;Finland;North;383;23.02.2011;1795.38;7234.66;9355.73
+Desktop Pro;Europe;East;Poland;East;384;13.01.2013;1534.5;6604.73;7279.87
+Desktop Pro;Europe;North;Sweden;North;385;29.11.2012;1633.98;7739.6;7510.92
+Desktop Pro XL;Europe;South;Portugal;South;386;23.02.2011;754301,00;3336.34;3778.55
+Desktop Pro XL;Europe;South;Italy;South;387;17.07.2010;4945.38;21389.2;22439.1
+Desktop L;Europe;East;Slovakia;East;388;13.07.2010;962638,00;4027.21;5219.67
+Desktop L;Europe;South;Italy;South;389;24.12.2012;2776.81;12953.0;13469.3
+Desktop Pro;Europe;West;Luxembourg;West;390;23.02.2011;2187.51;9731.27;9944.82
+Desktop Pro XL;Europe;East;Slovakia;East;391;09.08.2011;746.35;3627.33;3463.47
+Desktop Pro;Europe;North;Norway;North;392;29.11.2012;1670.3;7283.93;7897.79
+Desktop L;Europe;West;United Kingdom;West;393;01.05.2012;13985.6;61702.8;65389.2
+Desktop Pro;Europe;West;Belgium;West;394;13.01.2013;1607.78;6704.25;7713.84
+Desktop L;Europe;East;Slovakia;East;395;19.08.2010;293.52;1180.77;1487.83
+Desktop Pro;Europe;East;Czech Republic;East;396;13.01.2013;3897.58;17846.3;20273.0
+Desktop Pro XL;Europe;North;Sweden;North;397;13.01.2013;2282.03;9841.92;10473.6
+Desktop Pro;Europe;North;Norway;North;398;17.07.2010;727632,00;3110.84;3888.15
+Desktop Pro XL;Europe;West;France;West;399;13.05.2010;1834.21;8759.75;9749.54
+Desktop L;Europe;North;Denmark;North;400;13.05.2010;1370.1;6805.93;7450.21
+Desktop Pro;Europe;South;Italy;South;401;01.05.2012;3651.88;14988.3;19004.4
+Desktop Pro;Europe;West;Belgium;West;402;23.02.2011;4335.71;20114.4;23645.5
+Desktop Pro;Europe;West;Switzerland;West;403;24.12.2012;2096.6;10053.7;11457.1
+Desktop Pro XL;Europe;North;Norway;North;404;13.01.2013;1221.38;5444.56;6285.71
+Desktop Pro;Europe;East;Czech Republic;East;405;23.02.2011;3126.89;14860.7;15749.2
+Desktop Pro XL;Europe;North;Sweden;North;406;23.02.2011;608804,00;2684.74;3157.83
+Desktop Pro;Europe;South;Spain;South;407;13.07.2010;1644.93;6888.42;7689.7
+Desktop Pro;Europe;West;United Kingdom;West;408;23.04.2011;9578.61;45935.6;51197.6
+Desktop L;Europe;East;Slovakia;East;409;29.11.2012;1013.54;4668.84;4994.99
+Desktop L;Europe;West;United Kingdom;West;410;09.08.2011;8630.63;33637.6;47371.3
+Desktop Pro;Europe;West;Germany;West;411;24.12.2012;56164275,00;229937994,00;291259584,00
+Desktop L;Europe;East;Austria;East;412;23.04.2011;1728.03;7916.48;9341.28
+Desktop Pro;Europe;North;Finland;North;413;24.12.2012;584171,00;2612.37;2635.12
+Desktop Pro XL;Europe;North;Denmark;North;414;23.04.2011;3917.5;18896.8;18208.0
+Desktop Pro;Europe;South;Spain;South;415;19.08.2010;10661.9;41895.5;56940.9
+Desktop L;Europe;South;Spain;South;416;13.01.2013;7166.03;28458.1;35114.2
+Desktop Pro XL;Europe;North;Norway;North;417;23.02.2011;3399.95;15838.6;17052.3
+Desktop Pro;Europe;South;Portugal;South;418;24.12.2012;1609.2;6606.57;8459.51
+Desktop Pro XL;Europe;East;Slovakia;East;419;13.07.2010;462701,00;2179.96;2403.97
+Desktop L;Europe;East;Slovakia;East;420;17.07.2010;310071,00;1384.33;1438.66
+Desktop Pro XL;Europe;South;Italy;South;421;24.12.2012;2001.68;8950.92;9698.4
+Desktop Pro;Europe;South;Italy;South;422;09.08.2011;7198.97;31073.0;35447.5
+Desktop L;Europe;South;Spain;South;423;23.02.2011;10914.2;43436.8;54257.4
+Desktop L;Europe;East;Poland;East;424;23.04.2011;1409.96;6341.7;7164.53
+Desktop Pro XL;Europe;West;United Kingdom;West;425;01.05.2012;5019.51;21915.5;22924.0
+Desktop Pro XL;Europe;East;Slovakia;East;426;19.08.2010;397084,00;1793.69;2117.26
+Desktop Pro;Europe;West;United Kingdom;West;427;13.05.2010;4587.48;21777.0;20892.5
+Desktop Pro;Europe;West;Ireland;West;428;13.01.2013;462511,00;2282.7;2338.28
+Desktop Pro;Europe;South;Spain;South;429;29.11.2012;4022.46;17145.1;18351.6
+Desktop L;Europe;East;Austria;East;430;13.05.2010;2005.79;8548.49;10699.0
+Desktop Pro;Europe;West;Netherlands;West;431;13.01.2013;2157.89;8529.61;10010.0
+Desktop Pro XL;Europe;North;Denmark;North;432;13.05.2010;6175.06;27369.2;31303.8
+Desktop L;Europe;West;France;West;433;09.10.2010;5393.3;23339.8;27306.9
+Desktop L;Europe;West;Belgium;West;434;23.04.2011;4988.01;21599.1;26879.4
+Desktop Pro;Europe;East;Slovakia;East;435;09.10.2010;505798,00;2339.33;2741.97
+Desktop Pro;Europe;West;Ireland;West;436;23.02.2011;1595.0;7417.41;8568.81
+Desktop Pro;Europe;South;Spain;South;437;17.07.2010;2359.19;11447.1;12445.7
+Desktop L;Europe;East;Czech Republic;East;438;23.04.2011;2835.74;13167.5;14462.0
+Desktop L;Europe;West;Luxembourg;West;439;13.05.2010;640252,00;3037.26;3029.61
+Desktop Pro;Europe;North;Sweden;North;440;24.12.2012;957981,00;4569.63;4571.86
+Desktop L;Europe;East;Poland;East;441;13.05.2010;4312.07;19602.7;21865.4
+Desktop L;Europe;West;United Kingdom;West;442;13.07.2010;6140.05;25359.8;31794.5
+Desktop Pro XL;Europe;West;United Kingdom;West;443;09.08.2011;4138.32;20225.5;22614.5
+Desktop Pro;Europe;West;Netherlands;West;444;23.02.2011;1822.56;9282.16;9524.56
+Desktop Pro XL;Europe;East;Austria;East;445;23.04.2011;3927.55;17629.0;17777.8
+Desktop Pro XL;Europe;South;Spain;South;446;13.01.2013;1879.12;8358.43;10125.9
+Desktop L;Europe;West;United Kingdom;West;447;19.08.2010;9544.35;48321.7;46155.8
+Desktop Pro XL;Europe;East;Slovakia;East;448;17.07.2010;495811,00;2195.44;2469.53
+Desktop Pro XL;Europe;West;Luxembourg;West;449;23.04.2011;564821,00;2484.37;2577.97
+Desktop Pro;Europe;South;Italy;South;450;13.07.2010;1696.72;7432.28;7984.35
+Desktop Pro XL;Europe;South;Spain;South;451;23.02.2011;1784.98;8974.27;9265.12
+Desktop Pro XL;Europe;East;Poland;East;452;23.04.2011;2263.23;10888.4;11161.6
+Desktop L;Europe;West;Belgium;West;453;13.05.2010;6738.36;30201.7;35721.6
+Desktop L;Europe;East;Czech Republic;East;454;13.05.2010;2150.72;9731.16;10276.5
+Desktop L;Europe;South;Italy;South;455;13.01.2013;7437.89;30737.9;34762.9
+Desktop Pro;Europe;South;Italy;South;456;19.08.2010;4174.98;21071.7;21929.6
+Desktop Pro XL;Europe;East;Austria;East;457;13.05.2010;2824.37;12049.3;13791.5
+Desktop L;Europe;West;United Kingdom;West;458;29.11.2012;8277.33;36467.2;41615.2
+Desktop L;Europe;North;Denmark;North;459;09.10.2010;3815.42;18285.8;17382.8
+Desktop Pro XL;Europe;West;Belgium;West;460;23.04.2011;3277.68;15158.1;18024.5
+Desktop L;Europe;South;Italy;South;461;23.02.2011;4580.68;22722.4;23618.0
+Desktop L;Europe;East;Slovakia;East;462;24.12.2012;723308,00;3208.39;3591.49
+Desktop L;Europe;West;Ireland;West;463;23.04.2011;535521,00;2452.77;2501.67
+Desktop Pro XL;Europe;East;Poland;East;464;13.05.2010;2921.33;12472.0;13646.3
+Desktop Pro XL;Europe;West;United Kingdom;West;465;13.07.2010;4673.78;21796.8;22976.6
+Desktop L;Europe;West;United Kingdom;West;466;17.07.2010;2901.84;14849.8;14402.0
+Desktop Pro;Europe;West;Switzerland;West;467;13.01.2013;2101.06;10640.8;10915.7
+Desktop L;Europe;West;Netherlands;West;468;23.04.2011;990002,00;4826.91;4881.71
+Desktop Pro;Europe;South;Italy;South;469;29.11.2012;5459.38;26269.8;25076.8
+Desktop L;Europe;West;France;West;470;01.05.2012;5478.78;26847.7;30042.2
+Desktop Pro XL;Europe;West;United Kingdom;West;471;19.08.2010;12875.4;60279.6;66720.6
+Desktop Pro;Europe;West;Germany;West;472;13.01.2013;21454425,00;843613451999999,00;1083566979,00
+Desktop Pro;Europe;East;Slovakia;East;473;01.05.2012;276828,00;1278.04;1435.04
+Desktop Pro;Europe;North;Finland;North;474;13.01.2013;971225,00;4731.16;5078.24
+Desktop Pro;Europe;West;Switzerland;West;475;23.02.2011;2885.29;13849.4;13319.3
+Desktop Pro;Europe;South;Italy;South;476;17.07.2010;4542.34;19512.2;24944.3
+Desktop Pro XL;Europe;West;Belgium;West;477;13.05.2010;2271.09;9136.51;10435.3
+Desktop Pro;Europe;South;Portugal;South;478;13.01.2013;2548.64;12384.6;12822.0
+Desktop Pro XL;Europe;East;Czech Republic;East;479;13.05.2010;1897.14;9150.34;9202.53
+Desktop L;Europe;West;Ireland;West;480;13.05.2010;642295,00;2786.08;2925.35
+Desktop Pro;Europe;West;Germany;West;481;23.02.2011;39926025,00;161225361,00;198514899,00
+Desktop L;Europe;West;Netherlands;West;482;13.05.2010;4033.35;19002.0;21832.9
+Desktop Pro;Europe;North;Finland;North;483;23.02.2011;1209.61;5496.82;6157.87
+Desktop L;Europe;East;Austria;East;484;09.10.2010;4942.52;24000.6;23228.7
+Desktop Pro XL;Europe;West;United Kingdom;West;485;29.11.2012;8197.07;35773.1;37251.5
+Desktop Pro;Europe;West;France;West;486;23.04.2011;5190.26;23719.7;25135.2
+Desktop Pro XL;Europe;North;Denmark;North;487;09.10.2010;1542.99;7288.41;8108.5
+Desktop Pro;Europe;South;Portugal;South;488;23.02.2011;2719.62;12457.2;12554.7
+Desktop L;Europe;West;France;West;489;09.08.2011;3259.97;14897.7;17798.7
+Desktop Pro XL;Europe;East;Slovakia;East;490;24.12.2012;816464,00;3534.64;4152.83
+Desktop Pro XL;Europe;South;Italy;South;491;23.02.2011;2269.43;10723.9;10544.6
+Desktop Pro XL;Europe;West;Ireland;West;492;23.04.2011;1736.47;8457.86;7933.14
+Desktop Pro;Europe;East;Slovakia;East;493;09.08.2011;652484,00;2980.76;3488.15
+Desktop L;Europe;West;Luxembourg;West;494;09.10.2010;661586,00;2865.2;3500.24
+Desktop Pro XL;Europe;West;United Kingdom;West;495;17.07.2010;4419.08;18532.1;23897.4
+Desktop Pro XL;Europe;West;Netherlands;West;496;23.04.2011;1655.71;7981.58;8539.29
+Desktop Pro XL;Europe;West;France;West;497;01.05.2012;4721.16;21698.0;25456.3
+Desktop L;Europe;North;Denmark;North;498;01.05.2012;4985.88;24277.7;27188.2
+Desktop Pro;Europe;West;France;West;499;13.05.2010;9462.86;40880.1;51366.5
+Desktop L;Europe;West;Switzerland;West;500;23.04.2011;977446,00;4209.69;4821.11
+Desktop Pro;Europe;North;Norway;North;501;13.01.2013;1538.43;7211.35;7811.17
+Desktop Pro XL;Europe;West;Ireland;West;502;13.05.2010;976261,00;4442.51;5062.38
+Desktop Pro;Europe;North;Sweden;North;503;23.02.2011;2365.89;10575.9;10799.0
+Desktop L;Europe;East;Czech Republic;East;504;09.10.2010;2073.19;9572.8;10639.2
+Desktop L;Europe;West;United Kingdom;West;505;24.12.2012;8751.98;40786.7;40153.1
+Desktop Pro XL;Europe;West;Netherlands;West;506;13.05.2010;2848.15;13400.8;14549.9
+Desktop Pro XL;Europe;East;Austria;East;507;09.10.2010;4199.45;18905.3;22398.0
+Desktop L;Europe;North;Finland;North;508;23.04.2011;1091.66;4579.35;5922.88
+Desktop Pro;Europe;North;Denmark;North;509;23.04.2011;5251.21;23165.6;27331.9
+Desktop L;Europe;West;France;West;510;13.07.2010;5781.82;28583.4;26818.9
+Desktop Pro;Europe;North;Norway;North;511;23.02.2011;1191.73;5623.22;6350.59
+Desktop L;Europe;North;Denmark;North;512;09.08.2011;9719.8;42244.0;47190.0
+Desktop Pro XL;Europe;West;France;West;513;09.08.2011;2219.31;10735.5;10119.4
+Desktop Pro;Europe;East;Slovakia;East;514;13.07.2010;974.61;3815.27;5067.93
+Desktop Pro;Europe;South;Italy;South;515;24.12.2012;7080.17;33354.0;37184.1
+Desktop L;Europe;West;Switzerland;West;516;13.05.2010;2253.22;9158.84;11392.8
+Desktop Pro XL;Europe;East;Poland;East;517;09.10.2010;1231.65;5291.22;5798.51
+Desktop L;Europe;West;France;West;518;19.08.2010;5419.43;27735.0;24452.7
+Desktop Pro;Europe;West;United Kingdom;West;519;01.05.2012;3619.07;15097.5;19531.4
+Desktop L;Europe;East;Slovakia;East;520;13.01.2013;305634,00;1339.79;1576.21
+Desktop Pro;Europe;East;Slovakia;East;521;19.08.2010;406107,00;1790.34;2123.42
+Desktop L;Europe;East;Austria;East;522;01.05.2012;4312.76;19860.1;23284.0
+Desktop Pro XL;Europe;North;Denmark;North;523;01.05.2012;2266.73;11226.8;11648.2
+Desktop L;Europe;West;Germany;West;524;13.05.2010;3473595,00;155508111,00;182365029,00
+Desktop L;Europe;North;Finland;North;525;13.05.2010;2241.3;11291.4;12068.9
+Desktop Pro;Europe;North;Denmark;North;526;13.05.2010;3677.9;15696.4;19818.8
+Desktop L;Europe;East;Slovakia;East;527;23.02.2011;493.92;2235.95;2332.71
+Desktop L;Europe;South;Portugal;South;528;13.05.2010;695974,00;2875.78;3451.45
+Desktop L;Europe;West;Luxembourg;West;529;01.05.2012;2075.72;9335.61;9671.14
+Desktop Pro XL;Europe;West;Belgium;West;530;09.10.2010;1286.88;5940.25;5975.19
+Desktop L;Europe;West;France;West;531;29.11.2012;8619.49;40796.1;46133.1
+Desktop Pro XL;Europe;East;Czech Republic;East;532;09.10.2010;938002,00;3614.26;4669.17
+Desktop L;Europe;North;Sweden;North;533;23.04.2011;1867.5;7883.03;8704.63
+Desktop Pro XL;Europe;West;United Kingdom;West;534;24.12.2012;5092.89;22691.7;26782.5
+Desktop Pro;Europe;East;Slovakia;East;535;29.11.2012;1079.77;4818.76;5831.39
+Desktop Pro;Europe;West;United Kingdom;West;536;09.08.2011;5215.69;24549.0;24675.4
+Desktop L;Europe;West;Netherlands;West;537;09.10.2010;3200.32;15803.6;16756.0
+Desktop Pro;Europe;East;Austria;East;538;23.04.2011;2554.46;11217.0;12479.9
+Desktop Pro;Europe;South;Spain;South;539;13.01.2013;6689.2;27172.3;33169.8
+Desktop Pro XL;Europe;North;Finland;North;540;23.04.2011;451178,00;2221.13;2160.25
+Desktop L;Europe;East;Austria;East;541;09.08.2011;1480.95;6445.44;7613.69
+Desktop L;Europe;West;France;West;542;17.07.2010;2389.4;11208.8;13084.7
+Desktop L;Europe;North;Denmark;North;543;13.07.2010;1360.68;6233.62;6525.57
+Desktop Pro XL;Europe;West;France;West;544;13.07.2010;6268.2;26725.8;28389.1
+Desktop L;Europe;North;Norway;North;545;23.04.2011;513939,00;2245.32;2528.31
+Desktop Pro XL;Europe;North;Denmark;North;546;09.08.2011;5725.22;25682.8;26199.6
+Desktop L;Europe;West;Belgium;West;547;01.05.2012;1620.39;7395.28;8044.94
+Desktop Pro;Europe;East;Slovakia;East;548;17.07.2010;1209.32;5930.68;5455.27
+Desktop Pro;Europe;West;Luxembourg;West;549;23.04.2011;785635,00;3672.06;4038.71
+Desktop Pro XL;Europe;West;Switzerland;West;550;13.05.2010;945365,00;3958.67;4298.49
+Desktop Pro;Europe;South;Spain;South;551;23.02.2011;9247.57;40666.9;47096.4
+Desktop Pro;Europe;East;Poland;East;552;23.04.2011;4735.19;21976.0;23684.9
+Desktop L;Europe;North;Denmark;North;553;19.08.2010;5893.99;29009.8;28622.4
+Desktop Pro XL;Europe;West;France;West;554;19.08.2010;2443.35;9444.85;11991.6
+Desktop Pro XL;Europe;East;Slovakia;East;555;13.01.2013;745868,00;3663.57;3596.03
+Desktop L;Europe;East;Poland;East;556;09.08.2011;5661.77;26396.7;30471.4
+Desktop Pro XL;Europe;East;Austria;East;557;01.05.2012;10537.3;47117.3;55064.5
+Desktop L;Europe;North;Sweden;North;558;13.05.2010;3072.16;13139.1;16704.1
+Desktop Pro XL;Europe;West;Germany;West;559;13.05.2010;206348625,00;953936774999999,00;1061724906,00
+Desktop Pro XL;Europe;South;Portugal;South;560;23.04.2011;2092.8;9415.6;9988.2
+Desktop Pro XL;Europe;North;Finland;North;561;13.05.2010;1027.65;4162.47;5086.97
+Desktop Pro;Europe;East;Austria;East;562;13.05.2010;1666.64;6971.2;8654.74
+Desktop Pro;Europe;West;France;West;563;09.10.2010;4451.27;20527.9;21362.6
+Desktop Pro XL;Europe;East;Slovakia;East;564;23.02.2011;614173,00;2838.16;2841.69
+Desktop Pro XL;Europe;West;Luxembourg;West;565;01.05.2012;454844,00;2101.75;2356.32
+Desktop Pro;Europe;West;Belgium;West;566;23.04.2011;5241.0;22929.9;25768.9
+Desktop L;Europe;North;Norway;North;567;13.05.2010;1070.32;4704.03;5195.49
+Desktop Pro XL;Europe;East;Poland;East;568;01.05.2012;2940.8;11973.7;16081.5
+Desktop Pro XL;Europe;West;France;West;569;29.11.2012;1741.26;8316.1;8583.6
+Desktop Pro XL;Europe;West;Ireland;West;570;09.10.2010;417617,00;1867.0;2230.92
+Desktop L;Europe;West;Belgium;West;571;09.08.2011;3913.85;17446.3;20751.6
+Desktop L;Europe;North;Denmark;North;572;29.11.2012;2856.21;11056.7;15295.6
+Desktop Pro;Europe;West;Luxembourg;West;573;13.05.2010;559349,00;2654.97;2847.74
+Desktop Pro;Europe;East;Czech Republic;East;574;23.04.2011;1110.97;5299.73;5383.19
+Desktop Pro XL;Europe;North;Sweden;North;575;23.04.2011;975031,00;4103.28;5193.21
+Desktop L;Europe;East;Czech Republic;East;576;09.08.2011;5590.43;22667.1;30703.5
+Desktop Pro;Europe;West;United Kingdom;West;577;13.07.2010;7264.63;34446.8;34889.3
+Desktop Pro XL;Europe;West;Netherlands;West;578;09.10.2010;722929,00;3352.02;3600.6
+Desktop Pro;Europe;East;Poland;East;579;13.05.2010;4972.7;20497.6;22494.5
+Desktop L;Europe;East;Austria;East;580;13.07.2010;2862.06;12708.1;15572.1
+Desktop Pro XL;Europe;West;France;West;581;17.07.2010;2570.21;12025.5;11938.6
+Desktop Pro XL;Europe;North;Denmark;North;582;13.07.2010;2384.89;11044.1;12608.2
+Desktop L;Europe;West;United Kingdom;West;583;13.01.2013;2231.18;9693.95;10546.6
+Desktop Pro XL;Europe;North;Norway;North;584;23.04.2011;1143.61;5071.94;6068.81
+Desktop Pro;Europe;West;United Kingdom;West;585;19.08.2010;12194.3;55878.5;61707.9
+Desktop Pro XL;Europe;East;Austria;East;586;09.08.2011;1169.83;5254.74;6301.93
+Desktop L;Europe;West;Ireland;West;587;01.05.2012;1177.79;5533.5;5721.58
+Desktop L;Europe;West;Switzerland;West;588;09.10.2010;2613.06;11633.4;14129.0
+Desktop Pro;Europe;West;Belgium;West;589;13.05.2010;1933.62;8699.14;9869.25
+Desktop L;Europe;West;Luxembourg;West;590;13.07.2010;1134.14;5184.78;5758.31
+Desktop Pro XL;Europe;North;Denmark;North;591;19.08.2010;1252.17;5677.28;6541.63
+Desktop L;Europe;East;Austria;East;592;19.08.2010;5848.88;27280.3;31321.9
+Desktop L;Europe;East;Poland;East;593;13.07.2010;4150.79;20129.1;19376.7

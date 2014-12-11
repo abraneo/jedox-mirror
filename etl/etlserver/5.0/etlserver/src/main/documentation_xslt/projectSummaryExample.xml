@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="transformer.xslt"?>
+<project name="sampleBiker">
+  <version>4.0</version>
+  <date>08.05.2012 03:35</date>
+  <description>ETL Demo Project.
+Data is extracted from Flat Files and loaded to OLAP database Biker_ETL which is similar to database Biker delivered with Setup. The sample demonstrates dimension and cube creation and some of the Transform possibilities. Note: More samples can uploaded from directory .\tomcat\webapps\etlserver\data\samples</description>
+  <variables />
+  <connections>
+    <connection type="Jedox" name="biker">
+      <description />
+      <xml>
+        <host>localhost</host>
+        <port>7777</port>
+        <user>admin</user>
+        <password encrypted="true">cFju7JN3KyVmTPxIbDA/1w==</password>
+        <database>Biker_ETL</database>
+      </xml>
+    </connection>
+    <connection type="File" name="CustomerRegions_file">
+      <description />
+      <usedby>
+        <extract>CustomerRegions</extract>
+      </usedby>
+      <xml>
+        <database>BikerCustomerRegions.csv</database>
+        <header>true</header>
+        <delimiter>;</delimiter>
+        <quote>#none</quote>
+        <encoding>latin1</encoding>
+      </xml>
+    </connection>
+    <connection type="File" name="Products_file">
+      <description />
+      <usedby>
+        <extract>Products</extract>
+      </usedby>
+      <xml>
+        <database>BikerProducts.csv</database>
+        <header>true</header>
+        <delimiter>;</delimiter>
+        <quote>#none</quote>
+        <encoding>latin1</encoding>
+      </xml>
+    </connection>
+    <connection type="File" name="Orderlines_file">
+      <description />
+      <usedby>
+        <extract>Orderlines</extract>
+      </usedby>
+      <xml>
+        <database>BikerOrderlines.csv</database>
+        <header>true</header>
+        <delimiter>;</delimiter>
+        <quote>#none</quote>
+        <encoding>latin1</encoding>
+      </xml>
+    </connection>
+    <connection type="File" name="ProductCategories_file">
+      <description />
+      <usedby>
+        <extract>ProductCategoriesAll</extract>
+      </usedby>
+      <xml>
+        <database>BikerProductCategories.csv</database>
+        <header>true</header>
+        <delimiter>;</delimiter>
+        <quote>#none</quote>
+        <encoding>latin1</encoding>
+      </xml>
+    </connection>
+  </connections>
+  <extracts>
+    <extract type="File" name="CustomerRegions">
+      <description />
+      <uses>
+        <connection>CustomerRegions_file</connection>
+      </uses>
+      <usedby>
+        <transform>OrdersData_Trans</transform>
+        <transform>Customers</transform>
+      </usedby>
+      <xml>
+        <connection nameref="CustomerRegions_file" />
+        <query><![CDATA[select "CustomerID", "CompanyName", "Country", "Region",
+"Phone", "SalesPerson" from "CustomerRegions_file"
+ order by "Region", "Country", "CompanyName"]]></query>
+        <alias_map>
+          <alias name="CustomerID">1</alias>
+          <alias name="CompanyName">2</alias>
+          <alias name="Country">3</alias>
+          <alias name="Region">4</alias>
+          <alias name="Phone">5</alias>
+          <alias name="SalesPerson">6</alias>
+        </alias_map>
+      </xml>
+    </extract>
+    <extract type="File" name="Products">
+      <description />
+      <uses>
+        <connection>Products_file</connection>
+      </uses>
+      <usedby>
+        <transform>Products_Join</transform>
+        <transform>OrdersData_Trans</transform>
+      </usedby>
+      <xml>
+        <connection nameref="Products_file" />
+        <alias_map>
+          <alias name="ProductID">1</alias>
+          <alias name="ProductName">2</alias>
+          <alias name="ProductCategoryID">8</alias>
+        </alias_map>
+      </xml>
+    </extract>
+    <extract type="File" name="ProductCategoriesAll">
+      <description />
+      <uses>
+        <connection>ProductCategories_file</connection>
+      </uses>
+      <usedby>
+        <transform>Products_Join</transform>
+      </usedby>
+      <xml>
+        <connection nameref="ProductCategories_file" />
+        <alias_map>
+          <alias name="ProductCategoryID">1</alias>
+          <alias name="CategoryName">3</alias>
+          <alias name="ParentCatName">4</alias>
+        </alias_map>
+      </xml>
+    </extract>
+    <extract type="File" name="Orderlines">
+      <description />
+      <uses>
+        <connection>Orderlines_file</connection>
+      </uses>
+      <usedby>
+        <transform>OrdersData_Trans</transform>
+        <transform>Orders</transform>
+      </usedby>
+      <xml>
+        <connection nameref="Orderlines_file" />
+        <alias_map>
+          <alias name="SalesOrderID">1</alias>
+          <alias name="OrderDate">2</alias>
+          <alias name="CustomerID">4</alias>
+          <alias name="ProductID">7</alias>
+          <alias name="OrderQty">9</alias>
+          <alias name="LineCost">12</alias>
+          <alias name="LineTotal">14</alias>
+          <alias name="Channel">18</alias>
+        </alias_map>
+      </xml>
+    </extract>
+    <extract type="Tree" name="Channels">
+      <description />
+      <usedby>
+        <load>Channels</load>
+      </usedby>
+      <xml>
+        <constants>
+          <constant name="All Channels">
+            <constant name="Fax/Phone/Mail" />
+            <constant name="Online Shop" />
+            <constant name="Walk-In" />
+          </constant>
+        </constants>
+      </xml>
+    </extract>
+    <extract type="Tree" name="Datatypes">
+      <description />
+      <usedby>
+        <load>Datatypes</load>
+      </usedby>
+      <xml>
+        <constants>
+          <constant name="Actual" />
+          <constant name="Work in progress" />
+          <constant name="Ready for review" />
+          <constant name="Reviewed" />
+          <constant name="Rejected" />
+          <constant name="Approved" />
+          <constant name="Budget" />
+        </constants>
+      </xml>
+    </extract>
+    <extract type="Tree" name="Measures">
+      <description />
+      <usedby>
+        <load>Measures</load>
+      </usedby>
+      <xml>
+        <constants>
+          <constant name="Units" />
+          <constant name="Gross Profit">
+            <constant name="Sales" />
+            <constant name="Cost of Sales" weight="-1" />
+          </constant>
+          <constant name="Freight" />
+          <constant name="Tax" />
+        </constants>
+      </xml>
+    </extract>
+    <extract type="Calendar" name="Months">
+      <description />
+      <usedby>
+        <load>Months</load>
+      </usedby>
+      <xml>
+        <options>
+          <root>All Months</root>
+          <language>en</language>
+        </options>
+        <levels>
+          <quarters>
+            <pattern>'Qtr' Q</pattern>
+            <attributes>
+              <attribute name="english">
+                <pattern>'Quarter' Q</pattern>
+                <language>en</language>
+              </attribute>
+              <attribute name="german">
+                <pattern>'Quartal' Q</pattern>
+                <language>de</language>
+              </attribute>
+            </attributes>
+          </quarters>
+          <months>
+            <pattern>MMM</pattern>
+            <attributes>
+              <attribute name="english">
+                <pattern>MMMM</pattern>
+                <language>en</language>
+              </attribute>
+              <attribute name="german">
+                <pattern>MMMM</pattern>
+                <language>de</language>
+              </attribute>
+            </attributes>
+          </months>
+        </levels>
+      </xml>
+    </extract>
+    <extract type="Calendar" name="Years">
+      <description />
+      <usedby>
+        <load>Years</load>
+      </usedby>
+      <xml>
+        <options>
+          <root>All Years</root>
+        </options>
+        <levels>
+          <years>
+            <start>2008</start>
+            <end>2016</end>
+            <pattern>yyyy</pattern>
+          </years>
+        </levels>
+      </xml>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform type="TableJoin" name="Products_Join">
+      <description />
+      <uses>
+        <extract>Products</extract>
+        <extract>ProductCategoriesAll</extract>
+      </uses>
+      <usedby>
+        <transform>ProductsAll</transform>
+      </usedby>
+      <xml>
+        <sources>
+          <source nameref="Products" />
+          <source nameref="ProductCategoriesAll" />
+        </sources>
+        <joins>
+          <join type="inner">
+            <left nameref="Products">
+              <key nameref="ProductCategoryID" />
+            </left>
+            <right nameref="ProductCategoriesAll">
+              <key nameref="ProductCategoryID" />
+            </right>
+          </join>
+        </joins>
+      </xml>
+    </transform>
+    <transform type="TreeFH" name="Customers">
+      <description />
+      <uses>
+        <extract>CustomerRegions</extract>
+      </uses>
+      <usedby>
+        <load>Customers</load>
+      </usedby>
+      <xml>
+        <sources>
+          <source nameref="CustomerRegions" />
+        </sources>
+        <target type="numeric">
+          <levels>
+            <level>
+              <input constant="All Customers" />
+            </level>
+            <level>
+              <input nameref="Region" />
+            </level>
+            <level>
+              <input nameref="Country" />
+            </level>
+            <level>
+              <input nameref="CompanyName" />
+              <attributes>
+                <attribute name="Telephone">
+                  <input nameref="Phone" />
+                </attribute>
+                <attribute name="SalesPerson">
+                  <input nameref="SalesPerson" />
+                </attribute>
+              </attributes>
+            </level>
+          </levels>
+        </target>
+      </xml>
+    </transform>
+    <transform type="TreeFH" name="ProductsAll">
+      <description />
+      <uses>
+        <transform>Products_Join</transform>
+      </uses>
+      <usedby>
+        <load>ProductsAll</load>
+      </usedby>
+      <xml>
+        <sources>
+          <source nameref="Products_Join" />
+        </sources>
+        <target type="numeric">
+          <levels>
+            <level>
+              <input constant="All Products" />
+            </level>
+            <level>
+              <input nameref="ParentCatName" />
+            </level>
+            <level>
+              <input nameref="CategoryName" />
+            </level>
+            <level>
+              <input nameref="ProductName" />
+            </level>
+          </levels>
+        </target>
+      </xml>
+    </transform>
+    <transform type="TreeFH" name="Orders">
+      <description />
+      <uses>
+        <extract>Orderlines</extract>
+      </uses>
+      <usedby>
+        <load>Orders</load>
+      </usedby>
+      <xml>
+        <sources>
+          <source nameref="Orderlines" />
+        </sources>
+        <target type="numeric">
+          <levels>
+            <level>
+              <input constant="All Orders" />
+            </level>
+            <level>
+              <input nameref="SalesOrderID" />
+            </level>
+          </levels>
+        </target>
+      </xml>
+    </transform>
+    <transform type="FieldTransform" name="OrdersData_Trans">
+      <description />
+      <uses>
+        <function>Year</function>
+        <function>Month</function>
+        <function>ProductText</function>
+        <function>CustomerText</function>
+        <extract>Orderlines</extract>
+      </uses>
+      <usedby>
+        <transform>OrdersData</transform>
+      </usedby>
+      <xml>
+        <sources>
+          <source nameref="Orderlines" />
+        </sources>
+        <functions>
+          <function name="Year" type="DateFormat">
+            <inputs>
+              <input nameref="OrderDate" />
+            </inputs>
+            <parameters>
+              <targetformat>yyyy</targetformat>
+              <sourceformat>dd.MM.yyyy</sourceformat>
+            </parameters>
+          </function>
+          <function name="Month" type="DateFormat">
+            <inputs>
+              <input nameref="OrderDate" />
+            </inputs>
+            <parameters>
+              <targetformat>MMM</targetformat>
+              <sourceformat>dd.MM.yyyy</sourceformat>
+              <language>en</language>
+            </parameters>
+          </function>
+          <function name="ProductText" type="Lookup">
+            <inputs>
+              <input nameref="ProductID" />
+            </inputs>
+            <parameters>
+              <source>Products</source>
+              <from>ProductID</from>
+              <to>ProductName</to>
+            </parameters>
+          </function>
+          <function name="CustomerText" type="Lookup">
+            <inputs>
+              <input nameref="CustomerID" />
+            </inputs>
+            <parameters>
+              <source>CustomerRegions</source>
+              <from>CustomerID</from>
+              <to>CompanyName</to>
+            </parameters>
+          </function>
+        </functions>
+      </xml>
+    </transform>
+    <transform type="TableTransform" name="OrdersData">
+      <description />
+      <uses>
+        <transform>OrdersData_Trans</transform>
+      </uses>
+      <usedby>
+        <load>OrdersCube</load>
+      </usedby>
+      <xml>
+        <sources>
+          <source nameref="OrdersData_Trans" />
+        </sources>
+        <target>
+          <coordinates>
+            <coordinate name="Orderlines">
+              <input nameref="SalesOrderID" />
+            </coordinate>
+            <coordinate name="Years">
+              <input nameref="Year" />
+            </coordinate>
+            <coordinate name="Months">
+              <input nameref="Month" />
+            </coordinate>
+            <coordinate name="Products">
+              <input nameref="ProductText" />
+            </coordinate>
+            <coordinate name="Customers">
+              <input nameref="CustomerText" />
+            </coordinate>
+            <coordinate name="Channels">
+              <input nameref="Channel" />
+            </coordinate>
+            <coordinate name="Datatypes">
+              <input constant="Actual" />
+            </coordinate>
+          </coordinates>
+          <measures normalize="Measures" valuename="Value">
+            <measure name="Units" aggregate="sum">
+              <input nameref="OrderQty" />
+            </measure>
+            <measure name="Cost of Sales" aggregate="sum">
+              <input nameref="LineCost" />
+            </measure>
+            <measure name="Sales" aggregate="sum">
+              <input nameref="LineTotal" />
+            </measure>
+          </measures>
+        </target>
+      </xml>
+    </transform>
+  </transforms>
+  <functions>
+    <function type="DateFormat" name="Year">
+      <description />
+      <xml>
+        <inputs>
+          <input nameref="OrderDate" />
+        </inputs>
+        <parameters>
+          <targetformat>yyyy</targetformat>
+          <sourceformat>dd.MM.yyyy</sourceformat>
+        </parameters>
+      </xml>
+      <usedby>
+        <transform>OrdersData_Trans</transform>
+      </usedby>
+    </function>
+    <function type="DateFormat" name="Month">
+      <description />
+      <xml>
+        <inputs>
+          <input nameref="OrderDate" />
+        </inputs>
+        <parameters>
+          <targetformat>MMM</targetformat>
+          <sourceformat>dd.MM.yyyy</sourceformat>
+          <language>en</language>
+        </parameters>
+      </xml>
+      <usedby>
+        <transform>OrdersData_Trans</transform>
+      </usedby>
+    </function>
+    <function type="Lookup" name="ProductText">
+      <description />
+      <uses>
+        <extract>Products</extract>
+      </uses>
+      <xml>
+        <inputs>
+          <input nameref="ProductID" />
+        </inputs>
+        <parameters>
+          <source>Products</source>
+          <from>ProductID</from>
+          <to>ProductName</to>
+        </parameters>
+      </xml>
+      <usedby>
+        <transform>OrdersData_Trans</transform>
+      </usedby>
+    </function>
+    <function type="Lookup" name="CustomerText">
+      <description />
+      <uses>
+        <extract>CustomerRegions</extract>
+      </uses>
+      <xml>
+        <inputs>
+          <input nameref="CustomerID" />
+        </inputs>
+        <parameters>
+          <source>CustomerRegions</source>
+          <from>CustomerID</from>
+          <to>CompanyName</to>
+        </parameters>
+      </xml>
+      <usedby>
+        <transform>OrdersData_Trans</transform>
+      </usedby>
+    </function>
+  </functions>
+  <loads>
+    <load type="Dimension" name="Customers">
+      <description />
+      <uses>
+        <transform>Customers</transform>
+      </uses>
+      <usedby>
+        <connection>biker</connection>
+        <job>Masterdata</job>
+      </usedby>
+      <xml>
+        <source nameref="Customers" />
+        <connection nameref="biker" />
+        <dimension>
+          <elements />
+          <consolidations />
+          <attributes />
+        </dimension>
+        <mode>update</mode>
+      </xml>
+    </load>
+    <load type="Dimension" name="ProductsAll">
+      <description />
+      <uses>
+        <transform>ProductsAll</transform>
+      </uses>
+      <usedby>
+        <connection>biker</connection>
+        <job>Masterdata</job>
+      </usedby>
+      <xml>
+        <source nameref="ProductsAll" />
+        <connection nameref="biker" />
+        <dimension name="Products">
+          <elements />
+          <consolidations />
+          <attributes />
+        </dimension>
+        <mode>update</mode>
+      </xml>
+    </load>
+    <load type="Dimension" name="Orders">
+      <description />
+      <uses>
+        <transform>Orders</transform>
+      </uses>
+      <usedby>
+        <connection>biker</connection>
+        <job>Masterdata</job>
+      </usedby>
+      <xml>
+        <source nameref="Orders" />
+        <connection nameref="biker" />
+        <dimension name="Orderlines">
+          <elements />
+          <consolidations />
+          <attributes />
+        </dimension>
+        <mode>update</mode>
+      </xml>
+    </load>
+    <load type="Dimension" name="Measures">
+      <description />
+      <uses>
+        <extract>Measures</extract>
+      </uses>
+      <usedby>
+        <connection>biker</connection>
+        <job>Initdata</job>
+      </usedby>
+      <xml>
+        <source nameref="Measures" />
+        <connection nameref="biker" />
+        <dimension>
+          <elements />
+          <consolidations />
+          <attributes />
+        </dimension>
+        <mode>update</mode>
+      </xml>
+    </load>
+    <load type="Dimension" name="Years">
+      <description />
+      <uses>
+        <extract>Years</extract>
+      </uses>
+      <usedby>
+        <connection>biker</connection>
+        <job>Initdata</job>
+      </usedby>
+      <xml>
+        <source nameref="Years" />
+        <connection nameref="biker" />
+        <dimension>
+          <elements />
+          <consolidations />
+          <attributes />
+        </dimension>
+        <mode>update</mode>
+      </xml>
+    </load>
+    <load type="Dimension" name="Months">
+      <description />
+      <uses>
+        <extract>Months</extract>
+      </uses>
+      <usedby>
+        <connection>biker</connection>
+        <job>Initdata</job>
+      </usedby>
+      <xml>
+        <source nameref="Months" />
+        <connection nameref="biker" />
+        <dimension>
+          <elements />
+          <consolidations />
+          <attributes />
+        </dimension>
+        <mode>update</mode>
+      </xml>
+    </load>
+    <load type="Dimension" name="Channels">
+      <description />
+      <uses>
+        <extract>Channels</extract>
+      </uses>
+      <usedby>
+        <connection>biker</connection>
+        <job>Initdata</job>
+      </usedby>
+      <xml>
+        <source nameref="Channels" />
+        <connection nameref="biker" />
+        <dimension>
+          <elements />
+          <consolidations />
+          <attributes />
+        </dimension>
+        <mode>update</mode>
+      </xml>
+    </load>
+    <load type="Dimension" name="Datatypes">
+      <description />
+      <uses>
+        <extract>Datatypes</extract>
+      </uses>
+      <usedby>
+        <connection>biker</connection>
+        <job>Initdata</job>
+      </usedby>
+      <xml>
+        <source nameref="Datatypes" />
+        <connection nameref="biker" />
+        <dimension>
+          <elements />
+          <consolidations />
+          <attributes />
+        </dimension>
+        <mode>update</mode>
+      </xml>
+    </load>
+    <load type="Cube" name="OrdersCube">
+      <description />
+      <uses>
+        <transform>OrdersData</transform>
+      </uses>
+      <usedby>
+        <connection>biker</connection>
+        <job>Cubedata</job>
+      </usedby>
+      <xml>
+        <source nameref="OrdersData" />
+        <connection nameref="biker" />
+        <cube name="Orders" />
+        <mode>update</mode>
+      </xml>
+    </load>
+  </loads>
+  <jobs>
+    <job type="Standard" name="Initdata">
+      <description />
+      <uses>
+        <load>Years</load>
+        <load>Months</load>
+        <load>Channels</load>
+        <load>Datatypes</load>
+        <load>Measures</load>
+      </uses>
+      <usedby>
+        <job>default</job>
+      </usedby>
+      <xml>
+        <load nameref="Years" />
+        <load nameref="Months" />
+        <load nameref="Channels" />
+        <load nameref="Datatypes" />
+        <load nameref="Measures" />
+      </xml>
+    </job>
+    <job type="Standard" name="Masterdata">
+      <description />
+      <uses>
+        <load>Customers</load>
+        <load>ProductsAll</load>
+        <load>Orders</load>
+      </uses>
+      <usedby>
+        <job>default</job>
+      </usedby>
+      <xml>
+        <load nameref="Customers" />
+        <load nameref="ProductsAll" />
+        <load nameref="Orders" />
+      </xml>
+    </job>
+    <job type="Standard" name="Cubedata">
+      <description />
+      <uses>
+        <load>OrdersCube</load>
+      </uses>
+      <usedby>
+        <job>default</job>
+      </usedby>
+      <xml>
+        <load nameref="OrdersCube" />
+      </xml>
+    </job>
+    <job type="Standard" name="default">
+      <description />
+      <uses>
+        <job>Initdata</job>
+        <job>Masterdata</job>
+        <job>Cubedata</job>
+      </uses>
+      <xml>
+        <job nameref="Initdata" />
+        <job nameref="Masterdata" />
+        <job nameref="Cubedata" />
+      </xml>
+    </job>
+  </jobs>
+</project>

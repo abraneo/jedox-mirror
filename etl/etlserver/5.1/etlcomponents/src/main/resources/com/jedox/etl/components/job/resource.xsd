@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+	 <simpleType name="executiontype">
+ 		 <restriction base="string">
+    		<enumeration value="load"/>
+    		<enumeration value="job"/>
+  		</restriction>
+	</simpleType>  	
+	
+	<complexType name="executionreftype">
+		<attribute name="nameref" type="string"/>
+		<attribute name="type" type="c:executiontype"/>	
+	</complexType>
+	
+	<complexType name="executionparallelreftype">
+		<attribute name="nameref" type="string"/>
+		<attribute name="type" type="c:executiontype"/>	
+		<attribute name="parallel" type="boolean"/>
+	</complexType>
+		
+	 <simpleType name="viewformat">
+ 		 <restriction base="string">
+    		<enumeration value="fh"/>
+    		<enumeration value="fhw"/>
+    		<enumeration value="pc"/>
+    		<enumeration value="pcw"/>
+    		<enumeration value="pcwa"/>
+    		<enumeration value="pcwat"/>
+    		<enumeration value="ncw"/>
+    		<enumeration value="ncwa"/>
+    		<enumeration value="ea"/>
+  		</restriction>
+	</simpleType>  
+	
+	<complexType name="dependency">
+		<attribute name="nameref" type="string" use="required"/>
+	</complexType>
+	
+	<complexType name="dependencies">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="connection" type="c:dependency"/>
+			<element name="source" type="c:dependency"/>
+			<element name="load" type="c:dependency"/>
+			<element name="job" type="c:dependency"/>
+		</choice>
+	</complexType>
+	
+	
+</schema>

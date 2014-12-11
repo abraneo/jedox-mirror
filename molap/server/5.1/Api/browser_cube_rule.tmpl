@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Jedox OLAP</title>
+    <link href="/inc/style_palo.css" rel="stylesheet" type="text/css">
+    <!--[if IE]>
+    <style>
+      body{
+        overflow:auto;
+      }
+    </style>
+    <![endif]-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="/js/rule_lexer.js"></script>
+    <script>
+	String.prototype.repeat = function(times) {
+		if (times < 0) {
+			return "";
+		}
+		return (new Array(times + 1)).join(this);
+	};    
+    function format(text) {
+		var lexer = new Lexer();
+		lexer.input(text);
+		var token = null;
+		var prevToken = "";
+		var formatted = "";
+		var indent = 0;
+		var equalCounter = 0;
+		var newLineIfNot = ""; 
+		var inArea = false;
+		while ((token = lexer.token()) != null) {
+			//console.log(token, newLineIfNot);
+			if (token.name == "R_PAREN") {
+				indent--;
+				if (newLineIfNot == "" || newLineIfNot != "R_PAREN") {
+					formatted += "\n"+" ".repeat(indent);
+				}
+			}
+			//console.log(newLineIfNot, newLineIfNot != token.value, typeof newLineIfNot, typeof token.value);
+			if (newLineIfNot != "" && newLineIfNot != token.name) {
+				formatted += "\n"+" ".repeat(indent);
+			}
+			newLineIfNot = "";
+			formatted += token.value;
+			if (token.name == "L_PAREN") {
+				newLineIfNot = "R_PAREN";
+				indent++;
+			} else if (token.name == "COMMA") {
+				if (!inArea) {
+					formatted += "\n"+" ".repeat(indent);
+				}
+			} else if (token.name == "COLON") {
+				newLineIfNot = "SQUOTE";
+			} else if (token.name == "EQUALS" && equalCounter == 0) {
+				newLineIfNot = "EQUALS";
+				equalCounter++;
+			} else if (token.name == "R_BRACKET") {
+				inArea = false;
+			} else if (token.name == "L_BRACKET") {
+				inArea = true;
+			}
+			prevToken = token.value;
+		}
+		return formatted;
+    }
+    </script>
+  </head>
+
+  <body>
+    <div id="surround" align="center">
+      <div id="container">
+        <div id="clientHeader">&nbsp;</div>
+
+        <div id="left">
+          <a class="nav" href="/">Home</a>     
+          <a class="nav" href="/browser">Server browser</a>     
+          <a class="nav" href="/api">API Documentation</a>     
+          <a class="nav" href="http://www.jedox.com">Jedox OLAP Home</a>     
+        </div>
+
+        <div id="center">
+          <div style="margin: 10px;">
+            <h1>Jedox OLAP server browser</h1>
+
+            <table cellpadding="2" cellspacing="2" width="100%">
+		
+              <tr class="border_table">
+                <td colspan="2"><a href="/">home</a> > <a href="/browser">server</a> > <a href="/browser/database?database={@database_identifier}">database</a> > <a href="/browser/cube?database={@database_identifier}&cube={@cube_identifier}">cube</a> > rules ></td>
+              </tr>
+
+              {@message}
+
+              <tr>
+                <td colspan="2"><h2>Enterprise rules</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+	                <h2><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}&rule={@rule_identifier[]}&mode=0&use_rules=1">{@check_markers}</a></h2>
+                    <tr class="doc_table">
+                      <td width="20"><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}&rule={@rule_identifier[]}&mode=0">ID<a></td>
+                      <td width="20"><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}&rule={@rule_identifier[]}&mode=1">position<a></td>
+                      <td>rule</td>
+	                    <td>external identifier</td>
+      	              <td>comment</td>
+      	              <td>time stamp</td>
+      	              <td>active</td>
+                      <td>action</td>
+      	              <td><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}&action=reset" title="reset counters">evaluated</a></td>
+      	              <td><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}&action=reset" title="reset counters">null results</a></td>
+                    </tr>
+LOOP @rule_identifier
+                    <tr class="value_table rules" ruleid="{@rule_identifier[]}">
+                      <td>{@rule_identifier[]}</td>
+                      <td>{@rule_position[]}</td>
+                      <td class="ruletext {@rule_hi[]}">{@rule_text[]}</td>
+                      <td>{@rule_external[]}</td>
+                      <td class="rulecomment">{@rule_comment[]}</td>
+                      <td>{@rule_timestamp[]}</td>
+                      <td><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}&rule={@rule_identifier[]}&action=activate">{@rule_active[]}</a></td>
+                      <td><a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}&rule={@rule_identifier[]}&action=delete">delete</a></td>
+                      <td>{@eval_counter[]}</td>
+                      <td>{@null_counter[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table id="RuleEditor" class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td>Rule</td>
+                      <td width="10"></td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><textarea name="definition" rows="10" cols="70" maxlength="4096" value="{@rule_new_rule}"></textarea><br/>
+                      <textarea name="comment" rows="2" cols="70" maxlength="4096" value="{@rule_new_rule}"></textarea></td>
+	                  <input name="database" type="hidden" value="{@database_identifier}">  
+	                  <input name="cube" type="hidden" value="{@cube_identifier}">
+	                  <input name="rule" type="hidden" value="">
+	                  <td><button id="format">Format</button><br/><button id="update"> Save </button></td>
+                    </tr>
+                  </table>
+				</td>
+              </tr>
+            </table>  
+          </div>
+        </div>
+        <div class="footer">
+          <div class="footerText">{@footerText}</div>
+        </div>
+      </div>
+    </div>
+    <script>$(document).ready(function() {
+    $("tr.rules").click(function() {
+        $("textarea[name='definition']").val($(this).children(".ruletext:first").text());
+        $("textarea[name='comment']").val($(this).children(".rulecomment:first").text());
+        $("input[name='rule']").val($(this).attr("ruleid"));
+		location.href = "#RuleEditor";
+    })
+    $("#update").click(function() {
+		var newUrl = location.protocol+"//"+location.host+"/browser/rule?database={@database_identifier}&cube={@cube_identifier}&rule=";
+		newUrl += $("input[name='rule']").val();
+		newUrl += "&definition="; 
+		newUrl += encodeURIComponent($("textarea[name='definition']").val()); 
+		newUrl += "&comment="; 
+		newUrl += encodeURIComponent($("textarea[name='comment']").val());
+		console.log("moving to: "+newUrl);
+		location.assign(newUrl); 
+    })
+    $("#format").click(function() {
+        //$("textarea[name='definition']").val($(this).children(".ruletext:first").text());
+        var definition = $("textarea[name='definition']"); 
+        var formatted = format($("textarea[name='definition']").val());
+        $("textarea[name='definition']").val(formatted);
+        //alert(formatted);
+    })
+});</script>
+  </body>
+</html>

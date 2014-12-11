@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleBiker" version="5.1" modified="1383649108759" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Data is extracted from Flat Files and loaded to OLAP database Biker_ETL which is similar to database Biker delivered with Setup. The sample demonstrates dimension and cube creation and some of the Transform possibilities.
+Note: More samples can uploaded from directory .\tomcat\webapps\etlserver\data\samples</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="biker" type="Jedox" modified="1383649108759" modifiedBy="">
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">cFju7JN3KyVmTPxIbDA/1w==</password>
+      <database>Biker_ETL</database>
+    </connection>
+    <connection name="CustomerRegions_file" type="File" modified="1383649108759" modifiedBy="">
+      <database>BikerCustomerRegions.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Products_file" type="File" modified="1383649108759" modifiedBy="">
+      <database>BikerProducts.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Orderlines_file" type="File" modified="1383649108759" modifiedBy="">
+      <database>BikerOrderlines.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="ProductCategories_file" type="File" modified="1383649108759" modifiedBy="">
+      <database>BikerProductCategories.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="CustomerRegions" type="File" modified="1383649108759" modifiedBy="">
+      <connection nameref="CustomerRegions_file" />
+      <query><![CDATA[select "CustomerID", "CompanyName", "Country", "Region",
+"Phone", "SalesPerson" from "CustomerRegions_file"
+ order by "Region", "Country", "CompanyName"]]></query>
+      <alias_map>
+        <alias name="CustomerID">1</alias>
+        <alias name="CompanyName">2</alias>
+        <alias name="Country">3</alias>
+        <alias name="Region">4</alias>
+        <alias name="Phone">5</alias>
+        <alias name="SalesPerson">6</alias>
+      </alias_map>
+    </extract>
+    <extract name="Products" type="File" modified="1383649108759" modifiedBy="">
+      <connection nameref="Products_file" />
+      <alias_map>
+        <alias name="ProductID">1</alias>
+        <alias name="ProductName">2</alias>
+        <alias name="ProductCategoryID">8</alias>
+      </alias_map>
+    </extract>
+    <extract name="ProductCategoriesAll" type="File" modified="1383649108759" modifiedBy="">
+      <connection nameref="ProductCategories_file" />
+      <alias_map>
+        <alias name="ProductCategoryID">1</alias>
+        <alias name="CategoryName">3</alias>
+        <alias name="ParentCatName">4</alias>
+      </alias_map>
+    </extract>
+    <extract name="Orderlines" type="File" modified="1383649108759" modifiedBy="">
+      <connection nameref="Orderlines_file" />
+      <alias_map>
+        <alias name="SalesOrderID">1</alias>
+        <alias name="OrderDate">2</alias>
+        <alias name="CustomerID">4</alias>
+        <alias name="ProductID">7</alias>
+        <alias name="OrderQty">9</alias>
+        <alias name="LineCost">12</alias>
+        <alias name="LineTotal">14</alias>
+        <alias name="Channel">18</alias>
+      </alias_map>
+    </extract>
+    <extract name="Channels" type="ConstantTree" modified="1383649108759" modifiedBy="">
+      <data>
+        <header>
+          <value>:level</value>
+          <value>:element</value>
+          <value>:weight</value>
+          <value>:nodetype</value>
+        </header>
+        <row>
+          <value>1</value>
+          <value>All Channels</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>2</value>
+          <value>Fax/Phone/Mail</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>2</value>
+          <value>Online Shop</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>2</value>
+          <value>Walk-In</value>
+          <value>1</value>
+          <value />
+        </row>
+      </data>
+    </extract>
+    <extract name="Datatypes" type="ConstantTree" modified="1383649108759" modifiedBy="">
+      <data>
+        <header>
+          <value>:level</value>
+          <value>:element</value>
+          <value>:weight</value>
+          <value>:nodetype</value>
+        </header>
+        <row>
+          <value>1</value>
+          <value>Actual</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>1</value>
+          <value>Work in progress</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>1</value>
+          <value>Ready for review</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>1</value>
+          <value>Reviewed</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>1</value>
+          <value>Rejected</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>1</value>
+          <value>Approved</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>1</value>
+          <value>Budget</value>
+          <value>1</value>
+          <value />
+        </row>
+      </data>
+    </extract>
+    <extract name="Measures" type="ConstantTree" modified="1383649108759" modifiedBy="">
+      <data>
+        <header>
+          <value>:level</value>
+          <value>:element</value>
+          <value>:weight</value>
+          <value>:nodetype</value>
+        </header>
+        <row>
+          <value>1</value>
+          <value>Units</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>1</value>
+          <value>Gross Profit</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>2</value>
+          <value>Sales</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>2</value>
+          <value>Cost of Sales</value>
+          <value>-1</value>
+          <value />
+        </row>
+        <row>
+          <value>1</value>
+          <value>Freight</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>1</value>
+          <value>Tax</value>
+          <value>1</value>
+          <value />
+        </row>
+      </data>
+    </extract>
+    <extract name="Months" type="Calendar" modified="1383649108759" modifiedBy="">
+      <options>
+        <root>All Months</root>
+        <language>en</language>
+      </options>
+      <levels>
+        <quarters>
+          <pattern>'Qtr' Q</pattern>
+          <attributes>
+            <attribute name="english">
+              <pattern>'Quarter' Q</pattern>
+              <language>en</language>
+            </attribute>
+            <attribute name="german">
+              <pattern>'Quartal' Q</pattern>
+              <language>de</language>
+            </attribute>
+          </attributes>
+        </quarters>
+        <months>
+          <pattern>MMM</pattern>
+          <attributes>
+            <attribute name="english">
+              <pattern>MMMM</pattern>
+              <language>en</language>
+            </attribute>
+            <attribute name="german">
+              <pattern>MMMM</pattern>
+              <language>de</language>
+            </attribute>
+          </attributes>
+        </months>
+      </levels>
+    </extract>
+    <extract name="Years" type="Calendar" modified="1383649108759" modifiedBy="">
+      <options>
+        <root>All Years</root>
+      </options>
+      <levels>
+        <years>
+          <start>2010</start>
+          <end>2016</end>
+          <pattern>yyyy</pattern>
+        </years>
+      </levels>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="Products_Join" type="TableJoin" modified="1383649108759" modifiedBy="">
+      <sources>
+        <source nameref="Products" />
+        <source nameref="ProductCategoriesAll" />
+      </sources>
+      <joins>
+        <join type="inner">
+          <left nameref="Products">
+            <key nameref="ProductCategoryID" />
+          </left>
+          <right nameref="ProductCategoriesAll">
+            <key nameref="ProductCategoryID" />
+          </right>
+        </join>
+      </joins>
+    </transform>
+    <transform name="Customers" type="TreeFH" modified="1383649108759" modifiedBy="">
+      <sources>
+        <source nameref="CustomerRegions" />
+      </sources>
+      <target type="numeric">
+        <levels>
+          <level>
+            <input constant="All Customers" />
+          </level>
+          <level>
+            <input nameref="Region" />
+          </level>
+          <level>
+            <input nameref="Country" />
+          </level>
+          <level>
+            <input nameref="CompanyName" />
+            <attributes>
+              <attribute name="Telephone">
+                <input nameref="Phone" />
+              </attribute>
+              <attribute name="SalesPerson">
+                <input nameref="SalesPerson" />
+              </attribute>
+            </attributes>
+          </level>
+        </levels>
+        <attributes>
+          <attribute name="Telephone" />
+          <attribute name="SalesPerson" />
+        </attributes>
+      </target>
+    </transform>
+    <transform name="ProductsAll" type="TreeFH" modified="1383649108759" modifiedBy="">
+      <sources>
+        <source nameref="Products_Join" />
+      </sources>
+      <target type="numeric">
+        <levels>
+          <level>
+            <input constant="All Products" />
+          </level>
+          <level>
+            <input nameref="ParentCatName" />
+          </level>
+          <level>
+            <input nameref="CategoryName" />
+          </level>
+          <level>
+            <input nameref="ProductName" />
+          </level>
+        </levels>
+        <attributes />
+      </target>
+    </transform>
+    <transform name="Orders" type="TreeFH" modified="1383649108759" modifiedBy="">
+      <sources>
+        <source nameref="Orderlines" />
+      </sources>
+      <target type="numeric">
+        <levels>
+          <level>
+            <input constant="All Orders" />
+          </level>
+          <level>
+            <input nameref="SalesOrderID" />
+          </level>
+        </levels>
+        <attributes />
+      </target>
+    </transform>
+    <transform name="OrdersData_Trans" type="FieldTransform" modified="1383649108759" modifiedBy="">
+      <sources>
+        <source nameref="Orderlines" />
+      </sources>
+      <functions>
+        <function name="Year" type="DateFormat">
+          <inputs>
+            <input nameref="OrderDate" />
+          </inputs>
+          <parameters>
+            <targetformat>yyyy</targetformat>
+            <sourceformat>dd.MM.yyyy</sourceformat>
+          </parameters>
+        </function>
+        <function name="Month" type="DateFormat">
+          <inputs>
+            <input nameref="OrderDate" />
+          </inputs>
+          <parameters>
+            <targetformat>MMM</targetformat>
+            <sourceformat>dd.MM.yyyy</sourceformat>
+            <language>en</language>
+          </parameters>
+        </function>
+        <function name="ProductText" type="Lookup">
+          <inputs>
+            <input nameref="ProductID" />
+          </inputs>
+          <parameters>
+            <source>Products</source>
+            <from>ProductID</from>
+            <to>ProductName</to>
+          </parameters>
+        </function>
+        <function name="CustomerText" type="Lookup">
+          <inputs>
+            <input nameref="CustomerID" />
+          </inputs>
+          <parameters>
+            <source>CustomerRegions</source>
+            <from>CustomerID</from>
+            <to>CompanyName</to>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="OrdersData" type="TableNormalization" modified="1383649108759" modifiedBy="">
+      <sources>
+        <source nameref="OrdersData_Trans" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Orderlines">
+            <input nameref="SalesOrderID" />
+          </coordinate>
+          <coordinate name="Years">
+            <input nameref="Year" />
+          </coordinate>
+          <coordinate name="Months">
+            <input nameref="Month" />
+          </coordinate>
+          <coordinate name="Products">
+            <input nameref="ProductText" />
+          </coordinate>
+          <coordinate name="Customers">
+            <input nameref="CustomerText" />
+          </coordinate>
+          <coordinate name="Channels">
+            <input nameref="Channel" />
+          </coordinate>
+          <coordinate name="Datatypes">
+            <input constant="Actual" />
+          </coordinate>
+        </coordinates>
+        <measures normalize="Measures" valuename="Value">
+          <measure name="Units" aggregate="none">
+            <input nameref="OrderQty" />
+          </measure>
+          <measure name="Cost of Sales" aggregate="none">
+            <input nameref="LineCost" />
+          </measure>
+          <measure name="Sales" aggregate="none">
+            <input nameref="LineTotal" />
+          </measure>
+        </measures>
+      </target>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="Customers" type="Dimension" modified="1383649108759" modifiedBy="">
+      <source nameref="Customers" />
+      <connection nameref="biker" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="ProductsAll" type="Dimension" modified="1383649108759" modifiedBy="">
+      <source nameref="ProductsAll" />
+      <connection nameref="biker" />
+      <dimension name="Products">
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Orders" type="Dimension" modified="1383649108759" modifiedBy="">
+      <source nameref="Orders" />
+      <connection nameref="biker" />
+      <dimension name="Orderlines">
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Measures" type="Dimension" modified="1383649108759" modifiedBy="">
+      <source nameref="Measures" />
+      <connection nameref="biker" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Years" type="Dimension" modified="1383649108759" modifiedBy="">
+      <source nameref="Years" />
+      <connection nameref="biker" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Months" type="Dimension" modified="1383649108759" modifiedBy="">
+      <source nameref="Months" />
+      <connection nameref="biker" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Channels" type="Dimension" modified="1383649108759" modifiedBy="">
+      <source nameref="Channels" />
+      <connection nameref="biker" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Datatypes" type="Dimension" modified="1383649108759" modifiedBy="">
+      <source nameref="Datatypes" />
+      <connection nameref="biker" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="OrdersCube" type="Cube" modified="1383649108759" modifiedBy="">
+      <source nameref="OrdersData" />
+      <connection nameref="biker" />
+      <cube name="Orders" />
+      <mode>update</mode>
+    </load>
+  </loads>
+  <jobs>
+    <job name="Initdata" type="Standard" modified="1383649108759" modifiedBy="">
+      <execution type="load" nameref="Years" />
+      <execution type="load" nameref="Months" />
+      <execution type="load" nameref="Channels" />
+      <execution type="load" nameref="Datatypes" />
+      <execution type="load" nameref="Measures" />
+    </job>
+    <job name="Masterdata" type="Standard" modified="1383649108759" modifiedBy="">
+      <execution type="load" nameref="Customers" />
+      <execution type="load" nameref="ProductsAll" />
+      <execution type="load" nameref="Orders" />
+    </job>
+    <job name="Cubedata" type="Standard" modified="1383649108759" modifiedBy="">
+      <execution type="load" nameref="OrdersCube" />
+    </job>
+    <job name="default" type="Standard" modified="1383649108759" modifiedBy="">
+      <execution type="job" nameref="Initdata" />
+      <execution type="job" nameref="Masterdata" />
+      <execution type="job" nameref="Cubedata" />
+    </job>
+  </jobs>
+</project>
+

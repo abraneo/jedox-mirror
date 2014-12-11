@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://schemas.jedox.com/etlcore"
+	elementFormDefault="qualified"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:c="http://schemas.jedox.com/etlcore">
+
+	<element name="connection" type="c:connectiontype" />
+
+	<complexType name="password">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="encrypted" type="boolean"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="connectiontype">
+		<all>
+			<element name="globalReference" type="string" minOccurs="1" maxOccurs="1"/>
+			<element name="database" type="string" minOccurs="1" maxOccurs="1"/>
+			<element name="timeout" type="integer" minOccurs="0" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+		</all>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="type" type="string" use="required"/>
+	</complexType>
+
+</schema>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+	<include schemaLocation="resource.xsd"/>
+    <element name="transform" type="c:transformtype" />
+
+    <complexType name="connectionref">
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<anyAttribute processContents="lax"/>
+	 </complexType>
+
+	 <simpleType name="mode">
+ 		 <restriction base="string">
+			<enumeration value="rootToBases" />
+			<enumeration value="rootToNodes" />
+			<enumeration value="rootToConsolidates" />
+			<enumeration value="nodesToBases" />
+			<enumeration value="onlyBases" />
+			<enumeration value="onlyNodes" />
+			<enumeration value="onlyRoots" />
+  		</restriction>
+	</simpleType>
+
+     <simpleType name="operator">
+ 		 <restriction base="string">
+			<enumeration value="equal" />
+			<enumeration value="like" />
+			<enumeration value="inRange" />
+			<enumeration value="inAlphaRange" />
+			<enumeration value="isEmpty" />
+  		</restriction>
+	</simpleType>
+
+	<simpleType name="logicaloperator">
+ 		 <restriction base="string">
+			<enumeration value="AND" />
+			<enumeration value="OR" />
+  		</restriction>
+	</simpleType>
+	
+	<simpleType name="type">
+ 		 <restriction base="string">
+    		<enumeration value="accept"/>
+    		<enumeration value="deny"/>
+  		</restriction>
+	</simpleType> 
+		
+	<complexType name="dimensionfilteroperator">
+		<attribute name="type" type="c:type" use="required"/>	
+		<attribute name="operator" type="c:operator" use="required"/>
+		<attribute name="value" type="string" />
+		<attribute name="mode" type="c:mode" />
+		<attribute name="attribute" type="string"/>
+		<attribute name="logicaloperator" type="c:logicaloperator">
+			<annotation>
+				<appinfo>hidden</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	
+	<complexType name="dimensionquery">
+		<sequence>
+			<element name="condition" type="c:dimensionfilteroperator" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required"/>
+		<attribute name="format" type="c:viewformat" default="ea"/>
+	 </complexType>
+	 	 
+	 <complexType name="sourcerefs">
+		<sequence>
+			<element name="source" type="c:sourceref" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<appinfo>source.tree</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="inputref">
+		<attribute name="nameref" type="string">
+		</attribute>
+		<attribute name="constant" type="string"/>
+	</complexType>
+	
+	<complexType name="transformerstype">
+		<sequence>
+			<element name="function" type="c:typedcomponent" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+    
+   <complexType name="typedcomponent">
+		<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required">
+		</attribute>
+        <anyAttribute processContents="lax"/>
+    </complexType>
+
+	<complexType name="coordinatetype">
+		<sequence>
+			<element name="input" type="c:inputref" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+		<attribute name="name" type="string"/>
+		<attribute name="type" type="string"/>
+	</complexType>
+		
+	<complexType name="coordinatestype">
+		<sequence>
+			<element name="attribute" type="c:coordinatetype" minOccurs="1" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="targettype">
+		<all>
+			<element name="attributes" type="c:coordinatestype" minOccurs="1" maxOccurs="1"/>
+		</all>
+	</complexType>   
+
+
+    <complexType name="transformtype">
+        <all>
+        	<element name="sources" type="c:sourcerefs" minOccurs="1" maxOccurs="1"/>
+        	<element name="query" type="c:dimensionquery" minOccurs="0" maxOccurs="1"/>
+        	<element name="functions" type="c:transformerstype" minOccurs="0" maxOccurs="1">
+            	<unique name="transformernames">
+					<selector xpath=".//c:transformer" />
+					<field xpath="@name" />
+				</unique>
+			</element>
+            <element name="target" type="c:targettype" minOccurs="0" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+        <attribute name="name" type="string" use="required"/>
+         <attribute name="type" type="string" use="required"/>
+         <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+</schema>

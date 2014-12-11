@@ -1,0 +1,111 @@
+@request_path /dimension/elements
+
+@short_description Shows all elements of a dimension
+
+@long_description 
+
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+
+@param dimension
+@param_type identifier
+@param_description Identifier of the dimension
+
+@param name_dimension
+@param_type string
+@param_description Name of the dimension. Used only if dimension parameter is omitted.
+
+@param parent
+@param_type identifier
+@param_description Identifier of parent for element filtering or empty parameter for root elements. Root elements includes children of hidden elements. (no filter by default)   
+
+@param limit
+@param_type identifier
+@param_description Comma delimited offset of first element returned (0-default) and maximal count of returned element (all elements by default)  
+
+@param element
+@param_type identifier
+@param_description Element identifier. If it's specified, server goes from limit start and finds block that contains this element. Actual start is returned before the list of elements.  
+
+@param show_permission
+@param_type boolean
+@param_description If 1 then additional information about the user's permission on element is returned (optional, default is 0)
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the
+<a href="/api/server/login">/server/login</a> request to get a valid
+session identifier.
+  
+
+
+@result element
+@result_type identifier
+@result_description Identifier of the element
+
+@result name_element
+@result_type string
+@result_description Name of the element
+
+@result position
+@result_type integer
+@result_description Position of the element
+
+@result level
+@result_type integer
+@result_description Level of the element
+
+@result indent
+@result_type integer
+@result_description Indent of the element
+
+@result depth
+@result_type integer
+@result_description Depth of the element
+
+@result type
+@result_type integer
+@result_description Type of the element (1=NUMERIC, 2=STRING, 4=CONSOLIDATED)
+
+@result number_parents
+@result_type integer
+@result_description Number of parents
+
+@result parents
+@result_type identifier
+@result_description Comma separated list of parent identifiers
+
+@result number_children
+@result_type integer
+@result_description Number of children
+
+@result children
+@result_type identifier
+@result_description Comma separated list of children identifiers
+
+@result weights
+@result_type double
+@result_description Comma separated list of children weights
+
+@result permission
+@result_type string
+@result_description User's permission on element, maximum over all groups/roles ("N", "R", "W", "D")
+
+
+
+@example database=1&dimension=0
+@example_description Show elements of dimension "0" of database "1"
+
+@example database=1&dimension=0&parent=&limit=0,10
+@example_description Show first 10 root elements of dimension "0"
+
+@example database=1&dimension=0&parent=7&limit=0,5
+@example_description Show first 5 child elements of element "7" in dimension "0"
+

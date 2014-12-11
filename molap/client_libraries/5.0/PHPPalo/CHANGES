@@ -1,0 +1,6 @@
+CHANGES
+-------
+
+palo_register_server():
+	additional signatur for internal usage in svs
+	palo_register_server(string connection_name, string hostname, long port, string sid)

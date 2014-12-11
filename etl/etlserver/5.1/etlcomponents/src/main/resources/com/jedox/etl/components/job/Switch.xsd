@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+	<include schemaLocation="resource.xsd"/>
+    <element name="job" type="c:jobtype" />
+    
+    <complexType name="inputref">
+		<attribute name="nameref" type="string">
+		</attribute>
+		<attribute name="constant" type="string"/>
+	</complexType>
+	
+	<complexType name="sourcereftype">
+     	<sequence>
+        	<element name="input" type="c:inputref" minOccurs="1" maxOccurs="1" />
+        	<element name="row" type="positiveInteger" minOccurs="0" maxOccurs="1" />
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+	 </complexType>
+
+	<simpleType name="filterrangenumeric">
+ 		 <restriction base="token">
+    		<pattern value="(\[|\()((\-?\d*\.?\d*)|\$\{\w+\}),((\-?\d*\.?\d*)|\$\{\w+\})(\]|\))"/>
+  		</restriction>
+	</simpleType>  
+	
+	<simpleType name="filterrangealpha">
+ 		 <restriction base="token">
+    		<pattern value="(\[|\()((\w|[\.;+\- ])*|\$\{\w+\}),((\w|[\.;+\- ])*|\$\{\w+\})(\]|\))"/>
+  		</restriction>
+	</simpleType>  
+
+	<simpleType name="operator">
+ 		 <restriction base="string">
+			<enumeration value="equal" />
+			<enumeration value="inAlphaRange" />
+			<enumeration value="inRange" />
+			<enumeration value="isEmpty" />
+			<enumeration value="like" />
+  		</restriction>
+	</simpleType>
+	
+	<simpleType name="type">
+ 		 <restriction base="string">
+    		<enumeration value="accept"/>
+    		<enumeration value="deny"/>
+  		</restriction>
+	</simpleType> 
+	
+	<complexType name="columnfilteroperator">
+		<attribute name="type" type="c:type" use="required"/>
+		<attribute name="operator" type="c:operator" use="required"/>
+		<attribute name="value" type="string" />
+	</complexType>	
+	
+	<complexType name="switchtype">
+		<sequence>
+			<element name="condition" type="c:columnfilteroperator"/>
+			<element name="execution" type="c:executionreftype">
+				<annotation>
+					<appinfo>source</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="switchstype">
+		<choice minOccurs="1" maxOccurs="unbounded">
+			<element name="switch" type="c:switchtype"/>		
+		</choice>
+	</complexType>
+	
+	<complexType name="defaulttype">
+		<all>
+			<element name="execution" type="c:executionreftype">
+				<annotation>
+					<appinfo>source</appinfo>
+				</annotation>
+			</element>
+		</all>
+	</complexType>
+	   
+    <complexType name="jobtype">
+        <sequence>
+           <choice minOccurs="1" maxOccurs="1">
+				<element name="source" type="c:sourcereftype"/>
+				<element name="execution" type="c:executionreftype">
+					<annotation>
+						<appinfo>source</appinfo>
+					</annotation>
+				</element>
+			</choice>
+            <element name="switchs" type="c:switchstype" minOccurs="1" maxOccurs="1"/>
+            <element name="default" type="c:defaulttype" minOccurs="0" maxOccurs="1"/>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>       
+        </sequence>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+        <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+
+</schema>

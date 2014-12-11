@@ -1,0 +1,45 @@
+@request_path /event/begin
+
+@short_description Starts an event.
+
+@long_description 
+Request an exclusive lock. The function will wait until a lock is
+acquired. If the lock is aquired, the whole server will block any
+request for any other session.
+
+
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection.  A
+supervision server has to use his session identifier here which is
+communicated by Palo to a supervision server during startup. A
+supervision must not use login to obtain a session identifier.
+
+@param source
+@param_type string
+@param_description Session identifier used for logging during the
+event. All requests between the "event/begin" and "event/end" are
+logged with the user of the source session instead of the user of the
+current session denoted by the "sid" parameter. A supervision server
+has to fill the source parameter with the session identfier which
+triggered the supervision server.
+
+@param event
+@param_type string
+@param_description String used for logging during the event. All
+requests between the "event/begin" and "event/end" are logged with
+this string as event. A supervision server has to fill the event
+parameter with the area identifier which triggered the supervision
+server.
+
+
+
+@result OK
+@result_type integer
+@result_description "1" means OK
+
+
+
+@example -
+@example_description Requests a lock.

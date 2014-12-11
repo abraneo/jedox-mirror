@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+	<include schemaLocation="resource.xsd"/>
+    <element name="transform" type="c:transformtype" />
+    
+    <complexType name="inputref">
+		<attribute name="nameref" type="string">
+		</attribute>
+		<attribute name="constant" type="string"/>
+	</complexType>
+	
+	<complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+	 </complexType>
+	 
+	 <complexType name="sourcerefs">
+		<sequence>
+			<element name="source" type="c:sourceref" minOccurs="1" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="script">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="dataset" type="string"/>
+				<attribute name="buffer" type="c:buffertype"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	
+	<simpleType name="buffertype">
+ 		 <restriction base="string">
+    		<enumeration value="memory"/>
+    		<enumeration value="file"/>
+  		</restriction>
+	</simpleType>  
+	
+	 <simpleType name="cacheType">
+ 		 <restriction base="string">
+    		<enumeration value="none"/>
+    		<enumeration value="memory"/>
+    		<enumeration value="disk"/>
+  		</restriction>
+	</simpleType>    
+    
+    <complexType name="transformtype">
+        <all>
+            <element name="sources" type="c:sourcerefs" minOccurs="1" maxOccurs="1"/>
+   			<element name="script" type="c:script" minOccurs="1" maxOccurs="1">
+   				<annotation>
+					<appinfo>script.rsrc</appinfo>
+				</annotation>
+   			</element>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/> 
+            <element name="cache" type="c:cacheType" minOccurs="0"
+				maxOccurs="1" />	     
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+        <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+
+</schema>

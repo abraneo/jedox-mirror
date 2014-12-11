@@ -1,0 +1,55 @@
+@request_path /server/licenses
+
+@short_description Information about the server license
+
+@long_description 
+First line represents server's hardware key. Other lines represent available licenses as described below.
+
+
+@param -
+@param_type -
+@param_description Needs no parameter
+
+@result licensekey
+@result_type string
+@result_description License key
+
+@result customer
+@result_type string
+@result_description Customer name
+
+@result version
+@result_type integer
+@result_description License version
+
+@result numconcurrent
+@result_type integer
+@result_description Number of concurrent users
+
+@result numnamed
+@result_type integer
+@result_description Number of named users
+
+@result activationdate
+@result_type integer
+@result_description Activation date
+
+@result expirationdate
+@result_type integer
+@result_description Expiration date
+
+@result sharinglimit
+@result_type integer
+@result_description Sharing limit (number of users from same machine that can use one license)
+
+@result numgpu
+@result_type integer
+@result_description Number of allowed GPU cards
+
+@result features
+@result_type string
+@result_description Available features
+
+
+@example 
+@example_description Retrieves information about the server license.

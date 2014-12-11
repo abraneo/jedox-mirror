@@ -1,0 +1,7 @@
+README
+
+==Libpalo_ng Configure documentation==
+
+-Installation is done by entering ./configure  -- make -- make install
+-To rebuild the configure-script, automake1.10, autoconf2.61 and
+appropriate helper tools (autoreconf ...) are needed.

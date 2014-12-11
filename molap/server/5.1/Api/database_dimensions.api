@@ -1,0 +1,101 @@
+@request_path /database/dimensions
+
+@short_description Returns the list of dimensions.
+
+@long_description 
+
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+
+@param show_normal
+@param_type identifier
+@param_description Show dimensions of type normal (0=do not show normal dimensions, 1=show (default))
+
+@param show_system
+@param_type identifier
+@param_description Show dimensions of type system (0=do not show system dimensions (default), 1=show)
+
+@param show_attribute
+@param_type identifier
+@param_description Show dimensions of type attribute (0=do not show attribute dimensions (default), 1=show)
+ 
+@param show_info
+@param_type identifier
+@param_description Show dimensions of type user info (0=do not show user info dimensions (default), 1=show)
+
+@param show_permission
+@param_type boolean
+@param_description If 1 then additional information about the user's permission on dimension is returned (optional, default is 0)
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+
+@result dimension
+@result_type identifier
+@result_description Identifier of the dimension
+
+@result name_dimension
+@result_type string
+@result_description Name of the dimension
+
+@result number_elements
+@result_type integer
+@result_description Number of elements
+
+@result maximum_level
+@result_type integer
+@result_description Maximum level of the dimension
+
+@result maximum_indent
+@result_type integer
+@result_description Maximum indent of the dimension
+
+@result maximum_depth
+@result_type integer
+@result_description Maximum depth of the dimension
+
+@result type
+@result_type integer
+@result_description Type of dimension (0=normal, 1=system, 2=attribute, 3=user info, 4=system id))
+
+@result attributes_dimension
+@result_type identifier
+@result_description Identifier of the attributes dimension of a normal dimension or the 
+identifier of the normal dimension associated to a attributes dimension.
+
+@result attributes_cube
+@result_type identifier
+@result_description Identifier of the attributes cube. (only for normal dimensions)
+
+@result rights_cube
+@result_type identifier
+@result_description Identifier of the rights cube. (only for normal dimensions)
+
+@result dimension_token
+@result_type integer
+@result_description The dimension token of the dimension
+
+@result permission
+@result_type string
+@result_description User's permission on dimension, maximum over all groups/roles ("N", "R", "W", "D")
+
+
+
+@example database=1
+@example_description List the dimensions of database "1"
+
+@example database=1&show_system=1&show_normal=0
+@example_description List the system dimensions of database "1"
+
+@example database=1&show_attribute=1&show_normal=0
+@example_description List the attribute dimensions of database "1"

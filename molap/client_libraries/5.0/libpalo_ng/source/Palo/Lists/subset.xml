@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!--!DOCTYPE subset SYSTEM "filters.dtd" -->
+<subset id="1234" sourceDimensionId="Products" Indent="0" Alias1="French" 
+xmlns="http://www.w3schools.com"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.w3schools.com subset.xsd">
+  <data_filter>
+    <cell_operator> 2 </cell_operator>
+    <par1> 10.0 </par1>
+    <op1>  ">"  </op1>
+    <source_cube>"Sales"</source_cube>
+    <subcube>
+      <dimension_coordinates>"2007"</dimension_coordinates>
+      <dimension_coordinates>"Units"</dimension_coordinates>
+      <dimension_coordinates> "*"   </dimension_coordinates>
+    </subcube>
+  </data_filter>
+  <hierarchical_filter>
+    <element> "Monitors" </element>
+    <exclusive/>
+  </hierarchical_filter>
+  <picklist>
+    <manual_definition>
+      <pick_elem> "TFT Eizo" </pick_elem>
+      <pick_elem> "TFT LG" </pick_elem>
+      <pick_elem> "CRT NEC" </pick_elem>
+    </manual_definition>
+  </picklist>
+  <attribute_filter>
+  <attribute_filters>
+    <filter_exp>"rot", "=50"  </filter_exp>
+    <filter_exp>"gelb","=40"  </filter_exp>
+  </attribute_filters>
+  </attribute_filter>
+  <text_filter>
+      <regexes>
+          <expression>
+              "b*"
+          </expression>
+          <expression>
+              "al$2
+          </expression>
+          <extended/>
+      </regexes>
+  </text_filter>
+</subset>   

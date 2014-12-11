@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="load" type="c:dimensionloadtype" />
+
+	<complexType name="connectionref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<anyAttribute processContents="lax"/>
+	 </complexType>
+	 
+	 <complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+	 </complexType>
+	 
+	 <simpleType name="elementmode">
+ 		 <restriction base="string">
+    		<enumeration value="create"/>
+    		<enumeration value="update"/>
+    		<enumeration value="add"/>
+    		<enumeration value="insert"/>
+    		<enumeration value="delete"/>
+    		<enumeration value="inactive"/>
+  		</restriction>
+	</simpleType> 
+	
+	<simpleType name="attributemode">
+ 		<restriction base="string">
+    		<enumeration value="create"/>
+    		<enumeration value="update"/>
+    		<enumeration value="add"/>
+    		<enumeration value="insert"/>
+    		<enumeration value="delete"/>
+    		<enumeration value="inactive"/>
+  		</restriction>
+	</simpleType> 
+	
+	 <simpleType name="consolidationmode">
+ 		 <restriction base="string">
+    		<enumeration value="update"/>
+    		<enumeration value="add"/>
+    		<enumeration value="insert"/>
+    		<enumeration value="insertParallel"/>
+    		<enumeration value="delete"/>
+    		<enumeration value="inactive"/>
+  		</restriction>
+	</simpleType> 	
+    
+    <complexType name="elementsteptype">
+        <attribute name="mode" type="c:elementmode"/>
+    </complexType> 
+    	
+    <complexType name="attributesteptype">
+        <attribute name="mode" type="c:attributemode"/>
+    </complexType>
+    
+    <complexType name="consolidationsteptype">
+        <attribute name="mode" type="c:consolidationmode"/>
+    </complexType>     
+
+	<complexType name="dimensiontype">
+		<all>
+			<element name="elements" type="c:elementsteptype" minOccurs="0" maxOccurs="1"/>
+			<element name="consolidations" type="c:consolidationsteptype" minOccurs="0" maxOccurs="1"/>
+			<element name="attributes" type="c:attributesteptype" minOccurs="0" maxOccurs="1"/>
+		</all>
+        <attribute name="name" type="string"/>
+         <attribute name="deactivateRules" type="boolean" default="false"/>
+    </complexType>
+
+    <complexType name="dimensionloadtype">
+        <all>
+            <element name="connection" type="c:connectionref"/>
+            <element name="source" type="c:sourceref"/>
+			<!-- <element name="mode" type="c:loadmode" minOccurs="0" maxOccurs="1"/> -->          
+            <element name="dimension" type="c:dimensiontype" minOccurs="0" maxOccurs="1">
+            	<annotation>
+					<appinfo>metadata.dimension.Name;mask=10000</appinfo>
+				</annotation>
+            </element>
+            <element name="attributeBulkSize" type="integer" minOccurs="0" maxOccurs="1"/>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>     
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+        <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+</schema>

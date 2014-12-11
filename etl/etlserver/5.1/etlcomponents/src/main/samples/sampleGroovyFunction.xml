@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleGroovyFunction" version="5.1" modified="1383649202725" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Flexible data transformations with Groovy-Scripts inside of a FieldTransform are shown.
+Simple numerical calcuations in transform Orders_Trans and enhanced use-cases in transform Customer_Trans.
+A simple data validation example is in transform OrderCheck</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="CustomerRegions_file" type="File" modified="1383649202725" modifiedBy="">
+      <database>BikerCustomerRegions.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Orderlines_file" type="File" modified="1383649202725" modifiedBy="">
+      <database>BikerOrderlines.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Orders_transform_file" type="File" modified="1383649202725" modifiedBy="">
+      <database>Result_Groovy_Orders.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Company_transform_file" type="File" modified="1383649202725" modifiedBy="">
+      <database>Result_Groovy_Company.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="Orders_check_file" type="File" modified="1383649202725" modifiedBy="">
+      <database>Result_Groovy_Check.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="palodemo" type="Jedox" modified="1383649202725" modifiedBy="">
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">UIIKTDp6jWhHfZhBpPByiA==</password>
+      <database>Demo</database>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="CustomerRegions" type="File" modified="1383649202725" modifiedBy="">
+      <connection nameref="CustomerRegions_file" />
+    </extract>
+    <extract name="OrderChannel" type="File" modified="1383649202725" modifiedBy="">
+      <connection nameref="Orderlines_file" />
+      <query><![CDATA[select "CustomerID","Channel"
+from "Orderlines_file"
+group by "CustomerID", "Channel"
+order by "CustomerID"]]></query>
+      <alias_map>
+        <alias name="OrderCustomer">1</alias>
+        <alias name="Channel">2</alias>
+      </alias_map>
+    </extract>
+    <extract name="Orderlines" type="File" modified="1383649202725" modifiedBy="">
+      <connection nameref="Orderlines_file" />
+    </extract>
+    <extract name="Regions_Extract" type="Dimension" modified="1383649202725" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query>
+        <dimension name="Regions" />
+      </query>
+      <withAttributes>false</withAttributes>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="Orders_Trans" type="FieldTransform" modified="1383649202725" modifiedBy="">
+      <comment><![CDATA[Simple Groovy samples]]></comment>
+      <sources>
+        <source nameref="Orderlines" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate>
+            <input nameref="SalesOrderID" />
+          </coordinate>
+          <coordinate>
+            <input nameref="OrderQty" />
+          </coordinate>
+          <coordinate>
+            <input nameref="UnitPrice" />
+          </coordinate>
+          <coordinate>
+            <input nameref="OrderValue" />
+          </coordinate>
+          <coordinate>
+            <input nameref="CondOrderValue" />
+          </coordinate>
+          <coordinate>
+            <input nameref="RoundedValue" />
+          </coordinate>
+        </coordinates>
+      </target>
+      <functions>
+        <function name="OrderValue" type="Groovy">
+          <inputs>
+            <input nameref="OrderQty" type="double" />
+            <input nameref="UnitPrice" type="double" />
+          </inputs>
+          <parameters>
+            <script><![CDATA[return OrderQty*UnitPrice]]></script>
+          </parameters>
+        </function>
+        <function name="CondOrderValue" type="Groovy">
+          <inputs>
+            <input nameref="OrderQty" type="double" />
+            <input nameref="UnitPrice" type="double" />
+          </inputs>
+          <parameters>
+            <script><![CDATA[if (OrderQty>100)
+   return OrderQty*UnitPrice/2
+else
+  return OrderQty*UnitPrice]]></script>
+          </parameters>
+        </function>
+        <function name="RoundedValue" type="Groovy">
+          <inputs>
+            <input nameref="OrderValue" type="double" />
+          </inputs>
+          <parameters>
+            <script><![CDATA[return Math.round(_input1*100)/100.0;]]></script>
+            <type><![CDATA[double]]></type>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="Customer_Trans" type="FieldTransform" modified="1383649202725" modifiedBy="">
+      <comment><![CDATA[Advanced Groovy samples]]></comment>
+      <sources>
+        <source nameref="CustomerRegions" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="TitleLanguage">
+            <input nameref="TitleLanguage" />
+          </coordinate>
+          <coordinate name="Customer">
+            <input nameref="CustomerID" />
+          </coordinate>
+          <coordinate name="Country">
+            <input nameref="Country" />
+          </coordinate>
+          <coordinate name="ChannelType">
+            <input nameref="ChannelType" />
+          </coordinate>
+          <coordinate name="PreviousCustomer">
+            <input nameref="PreviousCustomer" />
+          </coordinate>
+        </coordinates>
+      </target>
+      <functions>
+        <function name="TitleLanguage" type="Groovy">
+          <comment>Maps the title (Mr./Mrs) country dependant.</comment>
+          <inputs>
+            <input nameref="Title" />
+            <input nameref="Country" />
+            <input nameref="FirstName" />
+            <input nameref="LastName" />
+          </inputs>
+          <parameters>
+            <script><![CDATA[String prefix = "";
+if (Country.equals("Germany") || Country.equals("Austria")) {
+  if (Title.contains("Mr"))
+     prefix = "Herr";
+  else if (Title.contains("Ms"))
+     prefix = "Frau";
+};
+ else if  (Country.equals("France") || Country.equals("Belgium")) {
+  if (Title.equals("Mr."))
+     prefix = "Monsieur";
+  else if (Title.equals("Ms."))
+     prefix = "Madame";
+};
+else prefix = Title;
+
+return prefix + " " + FirstName + " " + LastName;]]></script>
+          </parameters>
+        </function>
+        <function name="ChannelType" type="Groovy">
+          <comment>Check the channel of all orders for the customer. Only online or also other channels?</comment>
+          <inputs>
+            <input nameref="CustomerID" />
+          </inputs>
+          <parameters>
+            <script><![CDATA[boolean online = false;
+boolean others = false;
+boolean found = false;
+
+/* Another source (extract or transform) is read  */
+source = API.initSource("OrderChannel");
+
+while (source.nextRow()) {
+  OrderCustomer = source.getColumnString("OrderCustomer");
+
+  if (OrderCustomer.equals(CustomerID)) {
+    Channel = source.getColumnString("Channel");
+    found=true;
+    if (Channel.equals("Online Shop"))
+       online=true;
+    else
+       others = true;
+  };
+};
+
+if (!found)
+  return "No order";
+else if (online && !others)
+  return "Only Online";
+else if (!online && others)
+  return "No Online";
+else return "Online and Others";]]></script>
+          </parameters>
+        </function>
+        <function name="RowNo" type="RowNumber">
+          <parameters>
+            <start>1</start>
+          </parameters>
+        </function>
+        <function name="PreviousCustomer" type="Groovy">
+          <inputs>
+            <input nameref="CustomerID" />
+            <input nameref="RowNo" type="int" />
+          </inputs>
+          <parameters>
+            <script><![CDATA[if (RowNo==1) {
+  setProperty("Customer_Cache",CustomerID);
+  return "";
+};
+
+String customer = getProperty("Customer_Cache");
+setProperty("Customer_Cache",CustomerID);
+return customer;]]></script>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="Orders_Check" type="FieldTransform" modified="1383649202725" modifiedBy="">
+      <comment><![CDATA[Data check with Groovy. Raises Warning Message]]></comment>
+      <sources>
+        <source nameref="Orderlines" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="SalesOrderID">
+            <input nameref="SalesOrderID" />
+          </coordinate>
+          <coordinate name="ProductID">
+            <input nameref="ProductID" />
+          </coordinate>
+          <coordinate name="OrderCheck">
+            <input nameref="OrderCheck" />
+          </coordinate>
+        </coordinates>
+      </target>
+      <functions>
+        <function name="OrderCheck" type="Groovy">
+          <inputs>
+            <input nameref="SalesOrderID" />
+            <input nameref="ProductID" />
+          </inputs>
+          <parameters>
+            <script><![CDATA[/* Refuse product 993 */
+if (ProductID.equals("993")) {
+  LOG.warn("Order "+SalesOrderID+" contains invalid product "+ProductID);
+  return "invalid"
+};
+return "valid";]]></script>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="Orders_info_load" type="File" modified="1383649202725" modifiedBy="">
+      <source nameref="Orders_Trans" />
+      <connection nameref="Orders_transform_file" />
+      <mode>create</mode>
+    </load>
+    <load name="Customers_info_load" type="File" modified="1383649202725" modifiedBy="">
+      <source nameref="Customer_Trans" />
+      <connection nameref="Company_transform_file" />
+      <mode>create</mode>
+    </load>
+    <load name="Orders_Check_Load" type="File" modified="1383649202725" modifiedBy="">
+      <source nameref="Orders_Check" />
+      <connection nameref="Orders_check_file" />
+    </load>
+  </loads>
+  <jobs>
+    <job name="Simple" type="Standard" modified="1383649202725" modifiedBy="">
+      <execution type="load" nameref="Orders_info_load" />
+    </job>
+    <job name="Orders_Check" type="Standard" modified="1383649202725" modifiedBy="">
+      <execution type="load" nameref="Orders_Check_Load" />
+    </job>
+    <job name="Advanced" type="Standard" modified="1383649202725" modifiedBy="">
+      <execution type="load" nameref="Customers_info_load" />
+    </job>
+  </jobs>
+</project>
+

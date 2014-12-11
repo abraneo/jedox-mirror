@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="function" type="c:transformertype" />
+
+	<simpleType name="languageList">
+ 		 <restriction base="string">
+     		<enumeration value="ar"/>
+    		<enumeration value="cs"/>
+    		<enumeration value="da"/>
+    		<enumeration value="de"/>
+    		<enumeration value="en"/>
+    		<enumeration value="es"/>
+    		<enumeration value="et"/>
+    		<enumeration value="fa"/>
+    		<enumeration value="fr"/>
+    		<enumeration value="he"/>
+    		<enumeration value="hr"/>
+    		<enumeration value="hu"/>
+    		<enumeration value="it"/>
+    		<enumeration value="ja"/>
+    		<enumeration value="nl"/>
+    		<enumeration value="pl"/>
+    		<enumeration value="pt"/>
+    		<enumeration value="ru"/>
+    		<enumeration value="sr"/>
+    		<enumeration value="zh"/>
+  		</restriction>
+	</simpleType>
+
+	<complexType name="inputref">
+		<attribute name="nameref" type="string">
+			<annotation>
+				<appinfo>
+					<ref>source:/alias_map/alias/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="constant" type="string"/>
+	</complexType>
+	
+	 <complexType name="inputstype">
+        <sequence>
+        	<element name="input" type="c:inputref" minOccurs="1" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+	 <complexType name="parametertype">
+        <all>
+			<element name="sourceformat" type="string" minOccurs="0" maxOccurs="1"/>
+        	<element name="targetformat" type="string" minOccurs="0" maxOccurs="1"/>
+        	<element name="language" type="string" minOccurs="0" maxOccurs="1"/>
+        	<element name="completeWeek" type="boolean" minOccurs="0" maxOccurs="1"/>        	
+        	<element name="firstDayOfWeek" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+        	<element name="minimalDaysInWeek" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+        </all>
+    </complexType>
+    <complexType name="transformertype">
+        <all>
+        	 <element name="parameters" type="c:parametertype" minOccurs="1" maxOccurs="1"/>
+        	<element name="inputs" type="c:inputstype" minOccurs="1" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/> 
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+</schema>

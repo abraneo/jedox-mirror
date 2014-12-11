@@ -1,0 +1,32 @@
+@request_path /cube/clear_cache
+
+@short_description Clears the cache of a cube
+ 
+@long_description 
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+
+
+@result OK
+@result_type boolean
+@result_description "1" means OK
+
+
+@example database=1&cube=13
+@example_description Clears the cache of cube "13" in database "1"

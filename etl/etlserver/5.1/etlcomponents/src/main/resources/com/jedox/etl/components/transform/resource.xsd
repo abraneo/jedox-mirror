@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+	 <simpleType name="viewformat">
+ 		 <restriction base="string">
+    		<enumeration value="ea"/>
+    		<enumeration value="fh"/>
+    		<enumeration value="fhw"/>
+    		<enumeration value="lew"/>
+    		<enumeration value="lewta"/>
+    		<enumeration value="ncw"/>
+    		<enumeration value="ncwa"/>
+    		<enumeration value="pc"/>
+    		<enumeration value="pcw"/>
+    		<enumeration value="pcwa"/>
+    		<enumeration value="pcwat"/>
+  		</restriction>
+	</simpleType>  
+	
+	    <simpleType name="aggregatemode">
+ 		 <restriction base="string">
+    		<enumeration value="sum"/>
+    		<enumeration value="min"/>
+    		<enumeration value="max"/>
+    		<enumeration value="avg"/>
+    		<enumeration value="count"/>
+    		<enumeration value="first"/>
+    		<enumeration value="last"/>
+    		<enumeration value="group_concat"/>
+    		<enumeration value="selectivity"/>
+    		<enumeration value="var_samp"/>
+    		<enumeration value="stddev_samp"/>
+    		<enumeration value="var_pop"/>
+    		<enumeration value="stddev_pop"/>
+    		<enumeration value="none"/>
+  		</restriction>
+	</simpleType> 
+	
+</schema>

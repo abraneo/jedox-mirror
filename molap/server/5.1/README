@@ -1,0 +1,56 @@
+PALO 5.1 - OpenSource MOLAP (www.jedox.com) 
+
+A) List of tools needed for building:
+
+   * SVN Client: subversion or other command line svn client
+   * CMake 2.8 or higher (http://www.cmake.org/cmake/resources/software.html)
+   
+   * VS2010 with SP1 for Windows OS (Vista, 7, 8, Sever 2008, Server 2012)
+   * gcc and g++ >= 4.4 for Linux OS
+
+B) Third party libraries needed for building:
+
+   * Boost
+   * OpenSSL
+   * ICU
+   * ZLIB     
+   * Google Performance Tools (http://code.google.com/p/gperftools/) needed only
+   for Linux build   
+
+C)  Build Palo Server
+
+   * create build directory - mkdir build
+   * change directory - cd build
+   * run cmake build configuration command: 
+   
+        cmake -G "[Generator]" ../
+        
+        - for Linux OS [Generator]=Unix Makefiles
+        - for Windows OS [Generator]=Visual Studio 10 or Visual Studio 10 Win64
+     
+   * optionally choose build configuration you need by setting corresponding 
+   flag -DFLAG and rerun cmake: 
+     	- to enable/disable bison generated RuleParser add -DENABLE_USE_BISON={ON|
+       OFF}
+     	- to enable/disable flex gererated RuleScanner add -DENABLE_USE_FLEX={ON|
+       OFF}
+     	- to enable/disable gperf generated PaloCommands add -DENABLE_USE_GPERF={
+       ON|OFF}
+   * start build process with:
+        - call make command for Linux OS or
+        - devenv palo.sln /build Release /project palo for Windows OS
+        - you can open palo.sln solution file in VS 2010 start build process too
+        - REMEMBER all changes you make in VS 2010 solution file or project 
+        files 
+          would be rewritten by next invoke of cmake configuration script 
+          
+HOWTO start palo
+
+	* start palo (Windows)
+	     palo.exe -h 127.0.0.1 7777 -d <PATH_TO_DATA_DIRECTORY>
+	  or (Linux)
+	     ./palo  -h 127.0.0.1 7777 -d <PATH_TO_DATA_DIRECTORY>
+    * replace "<PATH_TO_DATA_DIRECTORY>" with path to where you want you data to
+      be stored
+    * see palo --help for more options        
+

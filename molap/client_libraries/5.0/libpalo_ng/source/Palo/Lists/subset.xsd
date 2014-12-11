@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3schools.com" xmlns="http://www.w3schools.com" elementFormDefault="qualified">
+  <xs:element name="subset">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" ref="data_filter" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="hierarchical_filter" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="picklist" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="attribute_filter" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="text_filter" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="sorting_filter" />
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" />
+      <xs:attribute name="id" type="xs:integer" use="required" />
+      <xs:attribute name="sourceDimensionId" type="xs:integer" use="required" />
+      <xs:attribute name="Indent" type="xs:integer" />
+      <xs:attributeGroup ref="Alias" />
+      <xs:attribute name="activeStateId" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="Alias">
+    <xs:attribute name="Alias1" type="xs:string" />
+    <xs:attribute name="Alias2" type="xs:string" />
+  </xs:attributeGroup>
+  <!-- ***************************************************************************
+   ****************** Data Filter Begin ************************************
+   ******************************************************************************* -->
+  <xs:element name="data_filter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" ref="source_cube" />
+        <xs:element minOccurs="1" maxOccurs="1" ref="subcube" />   
+        <!-- when no op/par is passed, all elements are extracted (we could use values for sorting / TOP / etc) -->
+        <xs:element minOccurs="0" maxOccurs="1" ref="par1" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="op1" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="par2" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="op2" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="top" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="upper_percentage" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="lower_percentage" />
+        <xs:element ref="cell_operator" minOccurs="0" maxOccurs="1" />
+        <xs:element ref="no_rules" minOccurs="0" maxOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cell_operator" type="xs:integer" />
+  <xs:element name="upper_percentage" type="xs:decimal" />
+  <xs:element name="lower_percentage" type="xs:decimal" />
+  <!-- Set the cube that serves as our data source -->
+  <xs:element name="source_cube" type="xs:integer" />
+  <!-- first value to compare cell results with - uses operator1-->
+  <xs:element name="par1" type="xs:decimal" />
+  <!--second value to compare cell results with - uses operator2-->
+  <xs:element name="par2" type="xs:decimal" />
+  <!-- first operator  used to compare with par1 -->
+  <xs:element name="op1" type="xs:string" />
+  <!-- second operator  used to compare with par2 -->
+  <xs:element name="op2" type="xs:string" />
+  <!-- string array of coordinates that specify the cells we use as source for values-->
+  <xs:element name="subcube">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="dimension_coordinate" type="xs:integer" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="top" type="xs:integer" />
+  <!--Flag for not using rules-->
+  <xs:element name="no_rules" >
+    <xs:complexType />
+  </xs:element>
+  <!-- ***************************************************************************
+   ****************** Data Filter End ************************************
+   ******************************************************************************* -->
+  <!-- ***************************************************************************
+   ****************** Hierarchical Filter Begin ************************************
+   ******************************************************************************* -->
+  <xs:element name="hierarchical_filter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" ref="element" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="above" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="exclusive" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="hide" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="revolve_element" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="revolve_count" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="revolve_add" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="level_start" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="level_end" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="element" type="xs:integer" />
+  <xs:element name="above">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="exclusive">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="hide" type="xs:integer" />
+  <!-- changed from string to integer -->
+  <xs:element name="revolve_element" type="xs:integer" />
+  <xs:element name="revolve_count" type="xs:integer" />
+  <xs:element name="revolve_add" type="xs:integer" />
+  <!-- changed from string to integer -->
+  <xs:element name="level_start" type="xs:integer" />
+  <!-- changed from string to integer -->
+  <xs:element name="level_end" type="xs:integer" />
+  <!-- ***************************************************************************
+   ****************** Hierarchical Filter End **************************************
+   ******************************************************************************* -->
+  <!-- ***************************************************************************
+   ****************** Attribute Filter Begin *****************************************
+   ******************************************************************************* -->
+
+  <xs:element name="attribute_filter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="attribute_filters" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="attribute_column">
+    <xs:sequence>
+      <xs:element name="col_entry" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="attribute_filters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="filter_col" type="attribute_column" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ***************************************************************************
+   ****************** Attribute Filter End ************************************
+   ******************************************************************************* -->
+  <!-- ***************************************************************************
+   ****************** Sorting Filter Begin ************************************
+   ******************************************************************************* -->
+  <xs:element name="sorting_filter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" ref="whole" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="sorting_criteria" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="attribute" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="type_limitation" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="level_element" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="reverse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sorting_criteria" type="xs:integer" />
+  <xs:element name="reverse" type="xs:integer" />
+  <xs:element name="type_limitation" type="xs:integer" />
+  <xs:element name="whole" type="xs:integer" />
+  <!-- Set the attribute/alias according to which we want to sort -->
+  <xs:element name="attribute" type="xs:string" />
+  <!-- Set level we use for sorting by giving an element(ID)-->
+  <xs:element name="level_element" type="xs:integer" />
+  <!-- ***************************************************************************
+   ****************** Sorting Filter End ************************************
+   ******************************************************************************* -->
+  <!-- ***************************************************************************
+   ****************** Picklist Begin ************************************
+   ******************************************************************************* -->
+  <xs:element name="picklist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="manual_definition" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="pick_type" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- list of elements that are inside our subset, the others are removed -->
+  <xs:element name="pick_type" type="xs:integer" />
+  <xs:element name="manual_definition">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- changed from string to integer -->
+        <xs:element name="pick_elem" type="xs:integer" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- ***************************************************************************
+   ****************** Picklist End *********************************************
+   ******************************************************************************* -->
+  <!-- ***************************************************************************
+   ****************** Text Filter Begin ************************************
+   ******************************************************************************* -->
+  <xs:element name="text_filter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" ref="regexes" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="extended" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- define individual regexes inside a regex tag -->
+  <xs:element name="regexes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="expression" minOccurs="1" maxOccurs="unbounded" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--use a specific attribute column for searching regexes-->
+  <xs:element name="extended">
+    <xs:complexType />
+  </xs:element>
+  <!-- ***************************************************************************
+   ****************** Text Filter End ************************************
+   ******************************************************************************* -->
+</xs:schema>

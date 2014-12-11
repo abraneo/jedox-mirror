@@ -1,0 +1,47 @@
+@request_path /cube/locks
+
+@short_description Lists the locked cube areas
+
+@long_description 
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+@result lock
+@result_type integer
+@result_description Indentifier of the locked area
+
+@result area
+@result_type area
+@result_description Comma separated list of element identifiers list. Each element identifiers list is colon separated. The area is the cartesian product.
+
+@result user
+@result_type string
+@result_description The name of the user who locked the cube 
+
+@result steps
+@result_type integer
+@result_description Number of steps
+
+
+@example database=1&cube=7
+@example_description List locks

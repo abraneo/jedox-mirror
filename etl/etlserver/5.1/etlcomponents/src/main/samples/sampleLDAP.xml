@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleLDAP" version="5.1" modified="1383649219315" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Import from data of LDAP directory servers, export to Flat File.
+Note: This example cannot be executed directly: the LDAP-connection and Source Definition has to be adapted</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="ldap" type="Ldap" modified="1383649219315" modifiedBy="">
+      <host>ldaptestetl</host>
+      <port>983</port>
+      <user>cn=admin, dc=jedox, dc=internal</user>
+      <password>test</password>
+    </connection>
+    <connection name="Test_File" type="File" modified="1383649219315" modifiedBy="">
+      <database>Result_ldap.csv</database>
+      <header>true</header>
+      <delimiter>,</delimiter>
+      <encoding>latin1</encoding>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="E_Users" type="Ldap" modified="1383649219315" modifiedBy="">
+      <connection nameref="ldap" />
+      <base>dc=jedox,dc=internal</base>
+      <scope>subtree</scope>
+      <classes><![CDATA[person posixAccount inetOrgPerson]]></classes>
+      <query><![CDATA[(|(uid=user1)(uid=user2))]]></query>
+      <alias_map>
+        <alias name="Name">1</alias>
+        <alias name="Vname">2</alias>
+        <alias name="Adr">3</alias>
+      </alias_map>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="T_Users" type="FieldTransform" modified="1383649219315" modifiedBy="">
+      <sources>
+        <source nameref="E_Users" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Name">
+            <input nameref="Name" />
+          </coordinate>
+          <coordinate name="Vname">
+            <input nameref="Vname" />
+          </coordinate>
+          <coordinate name="Adr">
+            <input nameref="Adr" />
+          </coordinate>
+        </coordinates>
+      </target>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="L_Users" type="File" modified="1383649219315" modifiedBy="">
+      <source nameref="T_Users" />
+      <connection nameref="Test_File" />
+      <mode>create</mode>
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard" modified="1383649219315" modifiedBy="">
+      <execution type="load" nameref="L_Users" />
+    </job>
+  </jobs>
+</project>
+

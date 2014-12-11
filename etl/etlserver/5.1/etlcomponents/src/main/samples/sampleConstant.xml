@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleConstant" version="5.1">
+	<comment>
+<![CDATA[ETL Demo Project.
+Extracts for constant data definded inside of the ETL Project.
+Extract type ConstantTable for table based data and ConstantTree for tree based data. For ConstantTree the tree is generated based on Level-Element-Weight-Attribute format.
+]]>
+	</comment>
+	<variables />
+	<extracts>
+		<extract name="ConstantTree" type="ConstantTree">		    	
+			<data>
+				<header>
+					<value>:level</value>
+					<value>:element</value>
+					<value>:weight</value>
+					<value>:nodetype</value>					
+					<value>Description</value>					
+				</header>			
+				<row>
+					<value>1</value>
+					<value>All Products</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Europe</value>
+					<value>1</value>
+				</row>
+				<row>
+					<value>3</value>
+					<value>Germany</value>
+					<value>0.5</value>
+					<value>N</value>					
+					<value>Deutschland</value>
+				</row>
+				<row>
+					<value>3</value>
+					<value>Austria</value>
+					<value>0.5</value>
+					<value></value>										
+					<value>Oesterreich</value>					
+				</row>
+				<row>
+					<value>4</value>
+					<value>Vienna</value>
+					<value>1</value>
+					<value></value>										
+					<value>Wien</value>					
+				</row>
+				<row>
+					<value>2</value>
+					<value>Asia</value>
+					<value>1</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Africa</value>
+					<value>1</value>
+				</row>
+				<row>
+					<value>1</value>
+					<value>Text</value>
+					<value>1</value>
+					<value>S</value>
+				</row>				
+			</data>
+		</extract>
+		<extract name="ConstantTable" type="ConstantTable">
+			<data>
+				<header>
+					<value>Level Index</value>
+					<value>Element name</value>
+					<value>Weight</value>
+				</header>			
+				<row>
+					<value>1</value>
+					<value>All Products</value>
+					<value>0</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Europe</value>
+					<value>1</value>
+				</row>
+				<row>
+					<value>3</value>
+					<value>Germany</value>
+					<value>0.5</value>
+				</row>
+				<row>
+					<value>3</value>
+					<value>Austria</value>
+					<value>0.5</value>
+				</row>
+				<row>
+					<value>4</value>
+					<value>Vienna</value>
+					<value>1</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Asia</value>
+					<value>1</value>
+				</row>
+				<row>
+					<value>2</value>
+					<value>Africa</value>
+					<value>1</value>
+				</row>
+			</data>
+		</extract>
+	</extracts>
+</project>
+

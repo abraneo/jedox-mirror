@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<project default="main" basedir=".">
+
+	<echo message="setting up property files" />
+	<property name="workspace_loc" value="..\.."/>
+	<property name="src.dir" value="${workspace_loc}\etl" />
+	<echo message="Source is ${src.dir}" />
+	<property name="dst.dir" value="${workspace_loc}\etl\etlserver\target\needed_sc_files" />
+	<echo message="Destination is ${dst.dir}" />
+	<echo message="Start copying the needed directories and zip it afterwords:" />
+	<target name="main">
+		<delete dir="${dst.dir}" />
+		<mkdir dir="${dst.dir}" />
+		<copy todir="${dst.dir}/etlserver/src/main/webapp/axis2-web">
+			<fileset dir="${src.dir}/etlserver/src/main/webapp/axis2-web">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${dst.dir}/etlserver/src/main/resources">
+			<fileset dir="${src.dir}/etlserver/src/main/resources">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${dst.dir}/etlserver/src/main/tomcat">
+			<fileset dir="${src.dir}/etlserver/src/main/tomcat">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${dst.dir}/etlserver/src/main/webapp/WEB-INF/conf">
+			<fileset dir="${src.dir}/etlserver/src/main/webapp/WEB-INF/conf">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		  <zip basedir="${dst.dir}"
+		       destfile="${src.dir}/etlserver/target/etl_compile_prerequisites.zip"
+		  />
+	</target>
+</project>

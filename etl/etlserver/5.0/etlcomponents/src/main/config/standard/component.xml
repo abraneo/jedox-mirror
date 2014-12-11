@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns="http://schemas.jedox.com/component"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://schemas.jedox.com/component  component.xsd">
+
+	<projects>
+		<component name="default" class="com.jedox.etl.components.project.Project" default="true"/>
+	</projects>
+
+	<jobs>
+		<component name="Standard" class="com.jedox.etl.components.job.Default" default="true" />
+		<component name="default" class="com.jedox.etl.components.job.Default" status="deprecated" />
+	</jobs>
+
+	<connections>
+		<component name="Jedox" jdbc="palo" driver="org.palo.api.impl.ConnectionFactoryImpl" class="com.jedox.etl.components.connection.OLAPConnection">
+			<parameter name="Timeout">1200</parameter>
+			<parameter name="debug">false</parameter>
+		</component>
+		<component name="JedoxGlobal" jdbc="palo" driver="org.palo.api.impl.ConnectionFactoryImpl" class="com.jedox.etl.components.connection.OLAPGlobalConnection">
+			<parameter name="Timeout">1200</parameter>
+		</component>
+		<component name="GenericDB" jdbc="" driver=""  class="com.jedox.etl.components.connection.GenericDBConnection">
+		    <!-- possible values are 0,2,1,4 and 8: 
+		    0 for TRANSACTION_NONE,
+		    2 for TRANSACTION_READ_COMMITTED
+		    1 for TRANSACTION_READ_UNCOMMITTED, 
+		    4 for TRANSACTION_REPEATABLE_READ, 
+		    8 for TRANSACTION_SERIALIZABLE-->
+			<parameter name="transactionIsolationLevel"></parameter>
+			<!-- possible values for are true and false-->
+			<parameter name="autoCommit"></parameter>
+		</component>
+		<component name="File" jdbc="file" class="com.jedox.etl.components.connection.FileConnection">
+			<parameter name="ssl">trust</parameter>
+		</component>
+		<component name="Postgresql" jdbc="postgresql" driver="org.postgresql.Driver" class="com.jedox.etl.components.connection.PostgresqlConnection"/>
+		<component name="Mysql" jdbc="mysql" driver="com.mysql.jdbc.Driver" class="com.jedox.etl.components.connection.MySQLConnection"/>
+		<component name="Maxdb" jdbc="sapdb" driver="com.sap.dbtech.jdbc.DriverSapDB" class="com.jedox.etl.components.connection.RelationalConnection"/>
+		<component name="Directory" jdbc="directory" class="com.jedox.etl.components.connection.DirectoryConnection" />
+		<component name="Db2" jdbc="db2" driver="com.ibm.db2.jcc.DB2Driver" class="com.jedox.etl.components.connection.RelationalConnection"/>
+		<component name="Oracle" jdbc="oracle:thin" driver="oracle.jdbc.driver.OracleDriver" class="com.jedox.etl.components.connection.OracleConnection"/>
+		<component name="Sqlserver" jdbc="sqlserver" driver="com.microsoft.sqlserver.jdbc.SQLServerDriver" class="com.jedox.etl.components.connection.SQLServerConnection"/>
+		<component name="Odbc" jdbc="odbc" driver="sun.jdbc.odbc.JdbcOdbcDriver" class="com.jedox.etl.components.connection.ODBCConnection">
+			<!-- Windows Locale possible values: "", "en", "de", "fr", ..., etc. Empty value ("") means no localization will be applied. -->
+			<parameter name="WindowsLocale"></parameter>
+			<parameter name="#backend">none</parameter>
+		</component>
+		<component name="Access" jdbc="odbc" driver="sun.jdbc.odbc.JdbcOdbcDriver" class="com.jedox.etl.components.connection.AccessConnection">
+			<parameter name="OdbcDrivers">MicroSoft Access Driver (*.mdb, *.accdb)|MicroSoft Access Driver (*.mdb)</parameter> 
+			<parameter name="WindowsLocale"></parameter>
+		</component>
+		<component name="DerbyFile" jdbc="derby" driver="org.apache.derby.jdbc.EmbeddedDriver" class="com.jedox.etl.components.connection.DerbyConnection">
+		  	<parameter name="#singleton">true</parameter>
+			<parameter name="#backend">gen</parameter>
+		</component>
+		<component name="Derby" jdbc="derby" driver="org.apache.derby.jdbc.EmbeddedDriver" class="com.jedox.etl.components.connection.DerbyConnection" status="deprecated" />
+		<component name="HsqldbFile" jdbc="hsqldb:file" driver="org.hsqldb.jdbcDriver" class="com.jedox.etl.components.connection.HsqlConnection"/>
+		<component name="Hsqldb" jdbc="hsqldb:hsql" driver="org.hsqldb.jdbcDriver" class="com.jedox.etl.components.connection.HsqlConnection"/>
+		<component name="Ldap" jdbc="ldap" driver="com.sun.jndi.ldap.LdapCtxFactory" class="com.jedox.etl.components.connection.LDAPConnection"/>
+		<component name="XmlFile" jdbc="xml" class="com.jedox.etl.components.connection.XmlFileConnection">
+			<parameter name="ssl">trust</parameter>
+		</component>	
+		<component name="Soap" jdbc="soap" class="com.jedox.etl.components.connection.ServiceConnection" />
+		<component name="Ingres" jdbc="ingres" driver="com.ingres.jdbc.IngresDriver" class="com.jedox.etl.components.connection.RelationalConnection"/>
+		<component name="H2File" jdbc="h2" driver="org.h2.Driver" class="com.jedox.etl.components.connection.H2Connection" >
+			<parameter name="#createSchemata">true</parameter>
+		</component>
+		<component name="Sqlite" jdbc="sqlite" driver="org.sqlite.JDBC" class="com.jedox.etl.components.connection.SqliteConnection"  status="experimental"/>
+		<component name="Excel" jdbc="file" class="com.jedox.etl.components.connection.ExcelConnection"  status="experimental"/>
+	</connections>
+
+	<extracts>
+		<component name="File"
+			class="com.jedox.etl.components.extract.SQLExtract">
+			<parameter name="fetch">buffered</parameter>
+			<parameter name="bulkSize">10000</parameter>
+		</component>
+		<component name="Relational"
+			class="com.jedox.etl.components.extract.SQLExtract">
+			<parameter name="fetch">buffered</parameter>
+			<parameter name="bulkSize">10000</parameter>
+		</component>
+		<component name="Dimension"
+			class="com.jedox.etl.components.extract.DimensionExtract"/>
+		<component name="Cube"
+			class="com.jedox.etl.components.extract.CubeExtract" >
+			<parameter name="bulkSize">10000</parameter>
+		</component>
+		<component name="CubeSlice"
+			class="com.jedox.etl.components.extract.CubeSliceExtract" >
+		</component>
+		<component name="Rule"
+			class="com.jedox.etl.components.extract.RuleExtract"/>
+		<component name="Tree"
+			class="com.jedox.etl.components.extract.TreeExtract"/>
+		<component name="Date" status="deprecated"
+			class="com.jedox.etl.components.extract.DateExtract" />
+		<component name="Time2Date" status="experimental"
+			class="com.jedox.etl.components.extract.TimeToDateExtract" />
+		<component name="Count"
+			class="com.jedox.etl.components.extract.NumberExtract" />
+		<component name="Calendar"
+			class="com.jedox.etl.components.extract.CalendarExtract" />
+		<component name="LDAP"
+			class="com.jedox.etl.components.extract.LDAPExtract" />
+		<component name="Xml"
+			class="com.jedox.etl.components.extract.XmlExtract" />
+		<component name="XmlTree" status="experimental"
+			class="com.jedox.etl.components.extract.XmlTreeExtract" />
+		<component name="MDX" status="experimental"
+			class="com.jedox.etl.components.extract.MDXExtract"/>
+		<component name="Metadata"
+			class="com.jedox.etl.components.extract.MetadataExtract"/>
+		<component name="Excel" status="experimental"
+			class="com.jedox.etl.components.extract.ExcelExtract"/>
+	</extracts>
+
+	<functions>
+		<!-- <component name="Date2Dim"
+			class="com.jedox.etl.components.function.DateDimension" /> -->
+		<component name="DateFormat"
+			class="com.jedox.etl.components.function.DateFormat" />
+		<component name="DateDuration"
+			class="com.jedox.etl.components.function.Duration" />
+		<component name="Aggregation"
+			class="com.jedox.etl.components.function.Aggregation" />
+		<component name="Concatenation"
+			class="com.jedox.etl.components.function.Concatenation" />
+		<component name="Java"
+			class="com.jedox.etl.components.function.Java" />
+		<component name="JavaScript"
+			class="com.jedox.etl.components.function.JavaScript" />
+		<component name="Groovy"
+			class="com.jedox.etl.components.function.Groovy" />
+		<component name="Python" status="experimental"
+			class="com.jedox.etl.components.function.Python" />
+		<component name="Map"
+			class="com.jedox.etl.components.function.Map" />
+		<component name="Replace"
+			class="com.jedox.etl.components.function.RegExp"/>
+		<component name="Lookup"
+			class="com.jedox.etl.components.function.Lookup"/>
+		<component name="SubString"
+			class="com.jedox.etl.components.function.SubString"/>
+		<component name="UpperLower"
+			class="com.jedox.etl.components.function.UpperLower"/>
+		<component name="Selector" status="experimental"
+			class="com.jedox.etl.components.function.Selection"/>
+		<component name="NumberFormat"
+			class="com.jedox.etl.components.function.NumberFormat"/>
+		<component name="RowNumber"
+			class="com.jedox.etl.components.function.RowNumber">
+			<parameter name="buffered">false</parameter>
+		</component>
+		<component name="Hash" status="experimental"
+			class="com.jedox.etl.components.function.Hash">
+		</component>
+		<component name="OlapData"
+			class="com.jedox.etl.components.function.OlapData" />
+		<component name="Split" 
+			class="com.jedox.etl.components.function.Split" />
+		<component name="LastNonEmpty" 
+			class="com.jedox.etl.components.function.LastNonEmpty">
+			<parameter name="buffered">false</parameter>
+			<parameter name="forceEval">true</parameter>
+		</component>
+		<component name="Previous"
+			class="com.jedox.etl.components.function.Previous">
+			<parameter name="buffered">false</parameter>
+		</component>			
+	</functions>
+
+	<transforms>
+		<component name="FieldTransform"
+			class="com.jedox.etl.components.transform.FieldTransform" />
+		<component name="TableTransform"
+			class="com.jedox.etl.components.transform.TableTransform">
+			<parameter name="aggregate">none</parameter>
+		</component>
+		<component name="TableJoin"
+			class="com.jedox.etl.components.transform.TableJoin" />
+		<component name="TableView"
+			class="com.jedox.etl.components.transform.TableView" />
+		<component name="TableUnion"
+			class="com.jedox.etl.components.transform.TableUnion" />
+		<component name="TableCompare"
+			class="com.jedox.etl.components.transform.TableCompare" status="experimental"/>
+		<component name="TreeFH"
+			class="com.jedox.etl.components.transform.TreeFH" />
+		<component name="TreePC"
+			class="com.jedox.etl.components.transform.TreePC" />
+		<component name="TreeLE"
+			class="com.jedox.etl.components.transform.TreeLE" status="experimental"/>
+		<component name="TreeNC"
+			class="com.jedox.etl.components.transform.TreeNC" />
+		<component name="TreeJoin"
+			class="com.jedox.etl.components.transform.TreeJoin" />
+		<component name="TreeView"
+			class="com.jedox.etl.components.transform.TreeView" />
+		<component name="Xslt"
+			class="com.jedox.etl.components.transform.XsltTransform" status="experimental"/>
+		<component name="RScript"
+			class="com.jedox.etl.components.transform.RTransform"  status="experimental"/>
+	</transforms>
+
+	<loads>
+		<component name="Cube"
+			class="com.jedox.etl.components.load.CubeLoad">
+			<parameter name="bulkSize">100000</parameter>
+			<parameter name="separateWriteThread">true</parameter>
+			<parameter name="drillThroughExternalBulkSize">10000</parameter>
+		</component>
+		<component name="Dimension"
+			class="com.jedox.etl.components.load.DimensionLoad">
+			<parameter name="attributeBulkSize">100000</parameter>
+			<parameter name="consolidateBulkSize">500000</parameter>
+		</component>
+		<component name="Rule"
+			class="com.jedox.etl.components.load.RuleLoad">
+		</component>
+		<component name="File"
+			class="com.jedox.etl.components.load.FileLoad">
+		</component>
+		<component name="XMLFile" status="experimental"
+			class="com.jedox.etl.components.load.XMLLoad">
+		</component>
+		<component name="Relational"
+			class="com.jedox.etl.components.load.RelationalLoad">
+			<parameter name="bulkSize">1000</parameter>
+		</component>
+	</loads>
+	
+	<scriptapis>
+		<component name="JobAPI"
+			class="com.jedox.etl.components.scriptapi.JobAPI">
+			<parameter name="extensionPoint">API</parameter>
+		</component>
+		<component name="FunctionAPI"
+			class="com.jedox.etl.components.scriptapi.FunctionAPI">
+			<parameter name="extensionPoint">API</parameter>
+		</component>
+		<component name="OlapAPI"
+			class="com.jedox.etl.components.scriptapi.OlapAPI">
+			<parameter name="extensionPoint">OLAP</parameter>
+		</component>
+		<component name="FilterAPI"
+			class="com.jedox.etl.core.scriptapi.FilterAPI">
+			<parameter name="extensionPoint">API</parameter>
+		</component>
+	</scriptapis>
+
+</components>
+

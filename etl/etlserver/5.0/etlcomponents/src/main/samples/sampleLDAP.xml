@@ -1,0 +1,72 @@
+<project name="sampleLDAP" version="5.0">
+  <comment>
+<![CDATA[ETL Demo Project.
+Import from data of LDAP directory servers, export to Flat File.
+Note: This example cannot be executed directly: the LDAP-connection and Source Definition has to be adapted]]>
+  </comment>
+  <variables/>
+  <connections>
+    <connection name="ldap" type="Ldap">
+      <host>ldaptestetl</host>
+      <port>983</port>
+      <user>cn=admin, dc=jedox, dc=internal</user>
+      <password>test</password>
+    </connection>
+    <connection name="Test_File" type="File">
+      <database>Result_ldap.csv</database>
+      <header>true</header>
+      <delimiter>,</delimiter>
+      <encoding>latin1</encoding>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="TLD" type="LDAP">
+      <connection nameref="ldap"/>
+      <base>dc=jedox,dc=internal</base>
+      <scope>sub</scope>
+      <classes>
+<![CDATA[person posixAccount inetOrgPerson]]>
+      </classes>
+      <query>
+<![CDATA[(|(uid=user1)(uid=user2))]]>
+      </query>
+      <alias_map>
+        <alias name="Name">1</alias>
+        <alias name="Vname">2</alias>
+        <alias name="Adr">3</alias>
+      </alias_map>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="UDaten" type="TableTransform">
+      <sources>
+        <source nameref="TLD"/>
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Name">
+            <input nameref="Name"/>
+          </coordinate>
+          <coordinate name="Vname">
+            <input nameref="Vname"/>
+          </coordinate>
+          <coordinate name="Adr">
+            <input nameref="Adr"/>
+          </coordinate>
+        </coordinates>
+      </target>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="UDaten" type="File">
+      <source nameref="UDaten"/>
+      <connection nameref="Test_File"/>
+      <mode>create</mode>
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard">
+      <load nameref="UDaten"/>
+    </job>
+  </jobs>
+</project>

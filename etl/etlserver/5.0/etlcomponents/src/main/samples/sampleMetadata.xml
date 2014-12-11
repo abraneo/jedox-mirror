@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleMetadata" version="5.0">
+  <comment>
+<![CDATA[ETL Demo Project.
+The names of databases, cubes and dimensions are extracted from an OLAP connection.
+The names of catalogs, schemas, tables and columns are extracted from a Relational connection.
+The file names are extracted from a Directory connection.]]>
+  </comment>
+  <variables />
+  <connections>
+    <connection name="LocalDir" type="Directory">
+      <database>.</database>
+      <pattern>csv$</pattern>
+      <header>false</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>UTF-8</encoding>
+    </connection>
+    <connection name="SQL_Conn" type="HsqldbFile">
+      <comment>
+<![CDATA[HSQLDB File with Sales-Database.]]>
+      </comment>
+      <database>./db1</database>
+    </connection>    
+    <connection name="palodemo" type="Jedox">
+      <comment>
+<![CDATA[Palo database from which the data is extracted]]>
+      </comment>
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">lbx+AiS9NDGEIyAkS36VtA==</password>
+      <database>Biker</database>
+    </connection>    
+  </connections>
+  <extracts>
+    <extract name="Cubes" type="Metadata">
+      <connection nameref="palodemo" />
+      <query>
+      	<selector>cube</selector>
+       	<filters> 
+        	<filter name="mask" value="10000" />        	
+        </filters>      	
+      </query>
+    </extract>    
+    <extract name="Dimensions" type="Metadata">
+      <connection nameref="palodemo" />
+      <query>
+      	<selector>dimension</selector>
+       	<filters> 
+        	<filter name="mask" value="1000" />        	
+        </filters>      	
+      </query>
+    </extract>
+    <extract name="CubeDimensions" type="Metadata">
+      <connection nameref="palodemo" />
+      <query>
+      	<selector>dimension</selector>
+       	<filters> 
+        	<filter name="mask" value="1000" />        	
+        	<filter name="cube" value="Orders" />        	
+        </filters>      	
+      </query>
+    </extract>   
+    <extract name="Databases" type="Metadata">
+      <connection nameref="palodemo" />
+      <query>
+      	<selector>database</selector>
+       	<filters> 
+        	<filter name="mask" value="100" />        	
+        </filters>      	
+      </query>
+    </extract>
+    <extract name="Directory" type="Metadata">
+      <connection nameref="LocalDir" />
+      <query>
+      	<selector>files</selector>
+      </query>
+    </extract> 
+    <extract name="Schema" type="Metadata">
+      <connection nameref="SQL_Conn" />
+      <query>
+      	<selector>schema</selector>
+      </query>
+    </extract>  
+    <extract name="Tables" type="Metadata">
+      <connection nameref="SQL_Conn" />
+      <query>
+      	<selector>table</selector>
+       	<filters> 
+        	<filter name="catalogPattern" value="PUBLIC" />        	
+        </filters>      	
+      </query>
+    </extract>  
+    <extract name="Columns" type="Metadata">
+      <connection nameref="SQL_Conn" />
+      <query>
+      	<selector>column</selector>
+       	<filters> 
+        	<filter name="schemaPattern" value="PUBLIC" />        	
+        	<filter name="tablePattern" value="SDOCHEAD" />        	
+        </filters>      	
+      </query>
+    </extract>
+    <extract name="Procedures" type="Metadata">
+      <connection nameref="SQL_Conn" />
+      <query>
+      	<selector>procedure</selector>    	
+      </query>
+    </extract>    	
+  </extracts>
+  <transforms>
+  </transforms>
+  <loads />
+  <jobs />
+</project>
+

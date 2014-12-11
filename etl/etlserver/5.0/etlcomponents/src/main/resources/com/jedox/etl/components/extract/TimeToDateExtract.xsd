@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="extract" type="c:extracttype" />
+ 
+    <complexType name="extracttype">
+        <all>
+        	<element name="start" type="integer" minOccurs="0" maxOccurs="1"/>
+        	<element name="end" type="integer" minOccurs="0" maxOccurs="1"/>
+        	<element name="format" type="string" minOccurs="1" maxOccurs="1"/>
+        	<element name="aggregate" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>  
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+</schema>

@@ -1,0 +1,53 @@
+@request_path /server/user_info
+
+@short_description Shows information about user
+
+@long_description 
+Returns user's id, name and groups.
+
+@param show_permission
+@param_type boolean
+@param_description If 1 then additional information about the user's permissions on right objects is returned (optional, default is 0)
+
+@param show_info
+@param_type boolean
+@param_description If 1 then license key used by this connection is returned
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the
+<a href="/api/server/login">/server/login</a> request to get a valid
+session identifier.
+
+@result id
+@result_type identifier
+@result_description User id
+
+@result name
+@result_type string
+@result_description User name
+
+@result groups
+@result_type identifier
+@result_description Comma separated list of user's groups
+
+@result group_names
+@result_type string
+@result_description Comma separated list of user's group names
+
+@result ttl
+@result_type string
+@result_description Timeout intervall in seconds. If no request is
+made within this intervall the session becomes inactive.
+
+@result permission
+@result_type string
+@result_description Comma separated list of permissions on right objects, maximum over all groups/roles ("N", "R", "W", "D", "S") for each object
+
+@result license
+@result_type string
+@result_description License key
+
+
+@example 
+@example_description Retrieves information about the user.

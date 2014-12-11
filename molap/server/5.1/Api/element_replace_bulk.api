@@ -1,0 +1,72 @@
+@request_path /element/replace_bulk
+
+@short_description Creates or updates list of elements
+
+@long_description This request creates or changes multiple elements. For
+consolidated elements this request replaces the existing elements with the
+given children elements.
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+
+@param dimension
+@param_type identifier
+@param_description Identifier of the dimension
+
+@param name_dimension
+@param_type string
+@param_description Name of the dimension. Used only if dimension parameter is omitted.
+ 
+@param elements
+@param_type identifier
+@param_description Comma separated list of element identifiers
+
+@param name_elements
+@param_type string
+@param_description Comma separated list of names of elements. Used only if elements parameter is omitted.
+
+@param type
+@param_type integer
+@param_description Type of the element (1=NUMERIC, 2=STRING, 4=CONSOLIDATED)
+
+@param types
+@param_type integer
+@param_description Type of the elements (1=NUMERIC, 2=STRING, 4=CONSOLIDATED) as comma
+separated list. Either type or types must be specified. If type is specified all 
+elements are of the same type. If types is specified then children and weights must be
+empty for elements of numeric or string type.
+
+@param children
+@param_type identifier
+@param_description Comma and colon separate list of children identifiers. (Only for type=4)
+
+@param weights 
+@param_type double 
+@param_description Optional comma and colon separate list of children weight. (defaults to weight=1 for each child) (Only for type=4)
+ 
+@param sid 
+@param_type string 
+@param_description Session identifier
+for a server connection. Use the <a
+href="/api/server/login">/server/login</a> request to get a valid
+session identifier.
+
+
+
+@result OK
+@result_type boolean
+@result_description "1" means OK
+
+
+
+@example database=1&dimension=0&name_elements=new+element+1,new+element+2&type=4&children=6,7,8:9,10,11&weights=0.1,0.5,0.4:0.1,0.5,0.4
+@example_description Create consolidated elements "new element 1" with children "6,7,8" and "new element 2" with children "9,10,11"
+
+@example database=1&dimension=0&elements=30,31&type=4&children=6,7,8:9,10,11&weights=0.1,0.5,0.4:0.1,0.5,0.4
+@example_description Updates consolidated elements "30" with children "6,7,8" and "31" with children "9,10,11" 

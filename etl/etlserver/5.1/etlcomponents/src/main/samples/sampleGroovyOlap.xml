@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleGroovyFunction" version="5.1" modified="1383649202725"
+	modifiedBy="">
+	<headers>
+		<header name="comment">
+			<comment>ETL Demo Project.
+				Flexible data transformations with Groovy-Scripts inside of a FieldTransform
+				are shown.
+				Simple numerical calculations in transform Orders_Trans and enhanced
+				use-cases in transform Customer_Trans.
+				A simple data validation example is in transform OrderCheck
+			</comment>
+		</header>
+	</headers>
+	<variables />
+	<connections>
+		<connection name="olapdemo" type="Jedox" modified="1383649202725"
+			modifiedBy="">
+			<host>localhost</host>
+			<port>7777</port>
+			<user>admin</user>
+			<password encrypted="true">UIIKTDp6jWhHfZhBpPByiA==</password>
+			<database>Demo</database>
+		</connection>
+		<connection name="olapbiker" type="Jedox" modified="1383649202725"
+			modifiedBy="">
+			<host>localhost</host>
+			<port>7777</port>
+			<user>admin</user>
+			<password encrypted="true">UIIKTDp6jWhHfZhBpPByiA==</password>
+			<database>Biker</database>
+		</connection>
+		<connection name="palotarget" type="Jedox" modified="1390216661050"
+			modifiedBy="">
+			<password encrypted="true">UIIKTDp6jWhHfZhBpPByiA==</password>
+			<host>localhost</host>
+			<port>7777</port>
+			<user>admin</user>
+			<database>Demo_ETL</database>
+		</connection>
+	</connections>
+	<extracts>
+		<extract name="Regions_Extract" type="Dimension" modified="1383649202725"
+			modifiedBy="">
+			<connection nameref="olapdemo" />
+			<query>
+				<dimension name="Regions" />
+			</query>
+			<withAttributes>false</withAttributes>
+		</extract>
+	</extracts>
+	<transforms>
+		<transform name="Regions_Sort" type="TableView" modified="1390216445541"
+			modifiedBy="">
+			<sources>
+				<source nameref="Regions_Extract" format="ea" />
+			</sources>
+			<sorter>
+				<input nameref=":element" order="asc" />
+			</sorter>
+		</transform>
+		<transform name="ElementChildrenCount" type="FieldTransform"
+			modified="1383649202725" modifiedBy="">
+			<comment></comment>
+			<sources>
+				<source nameref="Regions_Extract" format="ea" />
+			</sources>
+			<target>
+				<coordinate name="region">
+					<input nameref=":element" />
+				</coordinate>
+				<coordinate name="numberOfChildren">
+					<input nameref="RegionChildren" />
+				</coordinate>
+			</target>
+			<functions>
+				<function name="RegionChildren" type="Groovy">
+					<inputs>
+						<input nameref=":element" type="String" />
+					</inputs>
+					<parameters>
+						<script><![CDATA[
+            IDatabase db = OLAP.getDatabase("olapdemo");
+            IElement e = db.getDimensionByName("Regions").getElementByName(_input1,false);
+            if(e==null){
+            	LOG.warn("Element " + _input1 + " does not exists.");
+            	return -1;
+            };            
+			return e.getChildCount();
+		]]></script>
+					</parameters>
+				</function>
+			</functions>
+		</transform>
+		<transform name="ElementParents" type="FieldTransform" modified="1383649202725" modifiedBy="">
+			<comment></comment>
+			<sources>
+				<source nameref="Regions_Extract" format="ea" />
+			</sources>
+			<target>
+				<coordinate name="region">
+					<input nameref=":element" />
+				</coordinate>
+				<coordinate name="numberOfParents">
+					<input nameref="numberOfParents" />				
+				</coordinate>
+				<coordinate name="firstParent">
+					<input nameref="firstParent" />
+				</coordinate>				
+			</target>
+			<functions>
+				<function name="numberOfParents" type="Groovy">
+					<inputs>
+						<input nameref=":element" type="String" />
+					</inputs>
+					<parameters>
+						<script><![CDATA[
+            IDatabase db = OLAP.getDatabase("olapdemo");
+            IElement e = db.getDimensionByName("Regions").getElementByName(_input1,false);
+            if(e==null){
+            	LOG.warn("Element " + _input1 + " does not exists.");
+            	return -1;
+            };            
+			return e.getParentCount();
+		]]></script>
+					</parameters>
+				</function>
+				<function name="firstParent" type="Groovy">
+					<inputs>
+						<input nameref=":element" type="String" />
+					</inputs>
+					<parameters>
+						<script><![CDATA[
+            IDatabase db = OLAP.getDatabase("olapdemo");
+            IElement e = db.getDimensionByName("Regions").getElementByName(_input1,false);
+            if(e==null){
+            	LOG.warn("Element " + _input1 + " does not exists.");
+            	return -1;
+            };  
+            IElement[] parents = e.getParents();
+            if (parents.length==0)
+              return "";
+            else
+              return parents[0].getName();      
+		]]></script>
+					</parameters>
+				</function>				
+			</functions>
+		</transform>		
+		<transform name="Position" type="FieldTransform" modified="1383649202725"
+			modifiedBy="">
+			<comment><![CDATA[Functions with Connection to OLAP Server via the Scripting-API]]></comment>
+			<sources>
+				<source nameref="Regions_Extract" format="ea" />
+			</sources>
+			<functions>
+				<function name="ElementPositions" type="Groovy">
+					<inputs>
+						<input nameref=":element" />
+					</inputs>
+					<parameters>
+						<script><![CDATA[
+            IDatabase db = OLAP.getDatabase("olapdemo");
+            IElement e = db.getDimensionByName("Regions").getElementByName(_input1,false);
+            if(e==null){
+            	LOG.warn("Element " + _input1 + " does not exists.");
+            	return -1;
+            };            
+			return e.getPosition();
+]]></script>
+					</parameters>
+				</function>
+			</functions>
+		</transform>
+	</transforms>
+	<loads>
+		<load name="Regions_Load" type="Dimension" modified="1390216445541"
+			modifiedBy="">
+			<source nameref="Regions_Extract" />
+			<connection nameref="palotarget" />
+			<dimension name="Regions">
+				<elements mode="update" />
+				<consolidations mode="update" />
+				<attributes mode="update" />
+			</dimension>
+		</load>
+	</loads>
+	<jobs>
+		<job name="GetDatabasesList" type="Groovy">
+				<jobscript><![CDATA[
+			IConnection conn = OLAP.getConnection("olapbiker");
+			if (conn!=null) {
+				LOG.info("list of databases:");
+				for(IDatabase db:conn.getDatabases()){
+					LOG.info(db.getName());
+				};
+			}
+			
+			]]></jobscript>
+		</job>
+		<job name="RenameElements" type="Groovy" modified="1390216445541"
+			modifiedBy="">
+			<jobscript><![CDATA[API.executeLoad("Regions_Load");
+
+LOG.info("Start renaming elements");
+source = API.initSource("Regions_Extract","EA",0);
+def oldNames = [];
+def newNames = [];
+while (source.nextRow()) {
+  oldName=source.getColumnString(":element");
+  newName=oldName+" NEW";
+  oldNames.add(oldName);
+  newNames.add(newName);
+};
+OLAP.erename("palotarget","Regions",oldNames as String[],newNames as String[]);
+LOG.info("Finished renaming elements");]]></jobscript>
+			<comment><![CDATA[Sample for renaming dimension elements. The suffix NEW is added to each element]]></comment>
+		</job>
+		<job name="MoveElements" type="Groovy" modified="1390216445541"
+			modifiedBy="">
+			<jobscript><![CDATA[
+API.executeLoad("Regions_Load");
+LOG.info("Move elements to sorted order");
+IDatabase db = OLAP.getDatabase("palotarget");
+IDimension dim = db.getDimensionByName("Regions");
+
+source = API.initSource("Regions_Sort");
+int elcount=0;
+while (source.nextRow()) {
+  IElement e = dim.getElementByName(source.getColumnString(":element"),false);
+  e.move(elcount);
+  elcount++;
+};
+LOG.info("Finished moving elements");]]></jobscript>
+			<comment><![CDATA[Sample for renaming dimension elements. The suffix NEW is added to each element]]></comment>
+		</job>
+
+		<job name="ReadCubeCellValue" type="Groovy" modified="1390216445541"
+			modifiedBy="">
+			<jobscript><![CDATA[String[] coordinates = [ "All Products","Europe","Year","2009","All Datatypes","Units" ];
+String s = OLAP.data("olapdemo","Sales",coordinates);
+LOG.info("Cube cell value: "+s);]]></jobscript>
+			<comment><![CDATA[Sample for reading single Palo cube cell values without defining an extract for it.]]></comment>
+		</job>
+		<job name="WriteCubeCellValue" type="Groovy" modified="1390216445541"
+			modifiedBy="">
+			<jobscript><![CDATA[
+            IDatabase db = OLAP.getDatabase("olapbiker");
+            ICube cube = db.getCubeByName("Status");
+            
+            String [] path = ["2010","Jan","Future Bikes","Comment"];
+            IElement [] ePath = cube.getCellPath(path);
+            IElement [][] paths = new IElement[1][];
+            paths[0] = ePath;
+            Object [] values = ["Cell written with ETL."];
+            
+            cube.loadCells(paths, values, cube.getCellLoadContext(ICube.SplashMode.SPLASH_DEFAULT, 1, false, true),null);
+            LOG.info("Cell was written correctly.");
+]]></jobscript>
+			<comment><![CDATA[]]>
+			</comment>
+		</job>
+
+		<job name="CreateCubeDimension" type="Groovy" modified="1390216445541"
+			modifiedBy="">
+			<jobscript><![CDATA[
+            IDatabase db = OLAP.getDatabase("olapbiker");
+          
+            IDimension dim1 = db.getDimensionByName("NewSampleDim1");
+            if(dim1==null){
+            	dim1 = db.addDimension("NewSampleDim1");
+            	LOG.info("Dimension NewSampleDim1 was created.");
+            };
+            IDimension dim2 = db.getDimensionByName("NewSampleDim2");
+            if(dim2==null){
+            	dim2 = db.addDimension("NewSampleDim2");
+            	LOG.info("Dimension NewSampleDim2 was created.");
+            };
+            ICube cube = db.getCubeByName("NewSampleCube");
+            if(cube==null){
+            	cube = db.addCube("NewSampleCube", [dim1,dim2] as IDimension[]);
+            	LOG.info("Cube NewSampleCube was created.");
+            };
+            
+            /* do some stuff where you need the new cube*/
+            LOG.info("Doing some ETL ...");
+            
+            /* Cleanup by deleting the structures that were created, we should start with the cubes, 
+            since we can not directly delete a dimension that is already used in a cube,
+            all cubes using that dimension should be deleted before.*/
+            
+            db.removeCube(cube);
+            LOG.info("Cube NewSampleCube was deleted.");
+            db.removeDimension(dim1);
+            LOG.info("Dimension NewSampleDim1 was deleted.");
+            db.removeDimension(dim2);
+            LOG.info("Dimension NewSampleDim2 was deleted.");
+            
+            
+]]></jobscript>
+			<comment><![CDATA[]]>
+			</comment>
+		</job>
+	</jobs>
+</project>
+

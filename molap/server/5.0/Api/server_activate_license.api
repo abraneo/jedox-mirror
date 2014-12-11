@@ -1,0 +1,30 @@
+@request_path /server/activate_license
+
+@short_description Activate license
+
+@long_description 
+Activates license key with activation code
+
+
+@param lickey
+@param_type string
+@param_description License key
+
+@param actcode
+@param_type string
+@param_description Activation code. When empty license is deactivated.
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the
+<a href="/api/server/login">/server/login</a> request to get a valid
+session identifier.
+
+@result OK
+@result_type boolean
+@result_description "1" means OK
+
+
+
+@example lickey=CCJAM-93D2B-IG62E-8BO68-BXM5M-QNFUV-LKSCX&actcode=CZ7HZ-9Z9Z9-Z7UAT-JT4UQ-KHXDH-EPFTB-EFUQQ-7OKDF-7EMVF-4RTFE
+@example_description Activates license.

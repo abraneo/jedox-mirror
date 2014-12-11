@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Jedox OLAP</title>
+    <link href="/inc/style_palo.css" rel="stylesheet" type="text/css">
+    <!--[if IE]>
+    <style>
+      body{
+        overflow:auto;
+      }
+    </style>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div id="surround" align="center">
+      <div id="container">
+        <div id="clientHeader">&nbsp;</div>
+
+        <div id="left">
+          <a class="nav" href="/">Home</a>     
+          <a class="nav" href="/browser">Server browser</a>     
+          <a class="nav" href="/api">API Documentation</a>     
+          <a class="nav" href="http://www.jedox.com">Jedox OLAP Home</a>     
+        </div>
+
+        <div id="center">
+          <div style="margin: 10px;">
+            <h1>Jedox OLAP server browser</h1>
+
+            <table cellpadding="2" cellspacing="2" width="100%">
+		
+              <tr class="border_table">
+                <td colspan="2"><a href="/">home</a> > <a href="/browser">server</a> > <a href="/browser/database?database={@database_identifier}">database</a> > <a href="/browser/dimension?database={@database_identifier}&dimension={@dimension_identifier}">dimension</a> > element ></td>
+              </tr>
+
+							{@message}
+							
+              <tr>
+                <td colspan="2"><h2>Element</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">ID</td>
+                      <td           >name</td>
+                      <td width="50">position</td>
+                      <td width="70">type</td>
+                      <td width="40">level</td>
+                      <td width="40">indent</td>
+                      <td width="40">depth</td>
+                      <td width="50">parents</td>
+                      <td width="50">children</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td>{@element_identifier}</td>
+                      <td>{@element_name}</td>
+                      <td>{@element_position}</td>
+                      <td>{@element_type}</td>
+                      <td class="value_cell">{@element_level}</td>
+                      <td class="value_cell">{@element_indent}</td>
+                      <td class="value_cell">{@element_depth}</td>
+                      <td class="value_cell">{@element_parents}</td>
+                      <td class="value_cell">{@element_children}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Parents</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">ID</td>
+                      <td           >name</td>
+                      <td width="50">position</td>
+                      <td width="70">type</td>
+                      <td width="40">level</td>
+                      <td width="40">indent</td>
+                      <td width="40">depth</td>
+                      <td width="50">parents</td>
+                      <td width="50">children</td>
+                    </tr>
+LOOP @parent_identifier
+                    <tr class="value_table">
+                      <td><a href="/browser/element?database={@database_identifier}&dimension={@dimension_identifier}&element={@parent_identifier[]}">{@parent_identifier[]}</a></td>
+                      <td><a href="/browser/element?database={@database_identifier}&dimension={@dimension_identifier}&element={@parent_identifier[]}">{@parent_name[]}</a></td>
+                      <td>{@parent_position[]}</td>
+                      <td>{@parent_type[]}</td>
+                      <td class="value_cell">{@parent_level[]}</td>
+                      <td class="value_cell">{@parent_indent[]}</td>
+                      <td class="value_cell">{@parent_depth[]}</td>
+                      <td class="value_cell">{@parent_parents[]}</td>
+                      <td class="value_cell">{@parent_children[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Children</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">ID</td>
+                      <td           >name</td>
+                      <td width="50">weight</td>
+                      <td width="50">position</td>
+                      <td width="70">type</td>
+                      <td width="40">level</td>
+                      <td width="40">indent</td>
+                      <td width="40">depth</td>
+                      <td width="50">parents</td>
+                      <td width="50">children</td>
+                    </tr>
+LOOP @child_identifier
+                    <tr class="value_table">
+                      <td><a href="/browser/element?database={@database_identifier}&dimension={@dimension_identifier}&element={@child_identifier[]}">{@child_identifier[]}</a></td>
+                      <td><a href="/browser/element?database={@database_identifier}&dimension={@dimension_identifier}&element={@child_identifier[]}">{@child_name[]}</a></td>
+                      <td>{@child_weight[]}</td>
+                      <td>{@child_position[]}</td>
+                      <td>{@child_type[]}</td>
+                      <td class="value_cell">{@child_level[]}</td>
+                      <td class="value_cell">{@child_indent[]}</td>
+                      <td class="value_cell">{@child_depth[]}</td>
+                      <td class="value_cell">{@child_parents[]}</td>
+                      <td class="value_cell">{@child_children[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+            </table>  
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footerText">{@footerText}</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="load" type="c:loadtype" />
+    
+     <complexType name="connectionref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>connections:/connection/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<anyAttribute processContents="lax"/>
+	 </complexType>
+	 
+	 <simpleType name="viewformat">
+ 		 <restriction base="string">
+    		<enumeration value="fh"/>
+    		<enumeration value="fhw"/>
+    		<enumeration value="pc"/>
+    		<enumeration value="pcw"/>
+    		<enumeration value="pcwa"/>
+    		<enumeration value="pcwat"/>
+    		<enumeration value="ncw"/>
+    		<enumeration value="ncwa"/>
+    		<enumeration value="ea"/>
+  		</restriction>
+	</simpleType>   
+	 	 
+	 <complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>sources:/source/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+	 </complexType>
+
+	  <simpleType name="updatemode">
+ 		 <restriction base="string">
+    		<enumeration value="key"/>
+    		<enumeration value="sum"/>
+    		<enumeration value="min"/>
+    		<enumeration value="max"/>
+    		<enumeration value="avg"/>
+    		<enumeration value="count"/>
+    		<enumeration value="first"/>
+    		<enumeration value="last"/>
+  		</restriction>
+	</simpleType>  	
+	 
+	 <complexType name="columntype">
+     	<attribute name="nameref" type="string" use="required">
+     		<annotation>
+				<appinfo>
+					<ref>source:/alias_map/alias/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+        <attribute name="mode" type="c:updatemode"/>
+	 </complexType>
+	 
+	  <complexType name="tabletype">
+     	<sequence>
+        	<element name="column" type="c:columntype" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="name" type="string"/>
+        <attribute name="schema" type="string"/>
+        <attribute name="aggregate" type="c:aggregatemode"/>
+        <attribute name="primaryKey" type="string"/>
+        <attribute name="primaryKeyGeneration" type="c:generationmode"/>
+	 </complexType>
+	 
+
+	<simpleType name="aggregatemode">
+ 		 <restriction base="string">
+    		<enumeration value="true"/>
+    		<enumeration value="false"/>
+    		<enumeration value="row"/>
+    		<enumeration value="bulk"/>
+  		</restriction>
+	</simpleType>  
+	
+	<simpleType name="generationmode">
+ 		 <restriction base="string">
+    		<enumeration value="assigned"/>
+    		<enumeration value="native"/>
+    		<enumeration value="identity"/>
+    		<enumeration value="sequence"/>
+    		<enumeration value="hilo"/>
+    		<enumeration value="increment"/>
+    		<enumeration value="guid"/>
+  		</restriction>
+	</simpleType>  		
+
+	 <simpleType name="loadmode">
+ 		 <restriction base="string">
+    		<enumeration value="update"/>
+    		<enumeration value="create"/>
+    		<enumeration value="delete"/>
+    		<enumeration value="insert"/>
+    		<enumeration value="add"/>
+  		</restriction>
+	</simpleType>  	
+    
+     <complexType name="loadtype">
+        <all>
+            <element name="connection" type="c:connectionref"/>
+            <element name="source" type="c:sourceref"/>
+			<element name="mode" type="c:loadmode" minOccurs="0" maxOccurs="1"/>                        
+            <element name="table" type="c:tabletype" minOccurs="0" maxOccurs="1"/>
+            <element name="start" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <element name="end" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>      
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+
+</schema>

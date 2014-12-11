@@ -1,0 +1,61 @@
+@request_path /cube/lock
+
+@short_description locks a cube area
+
+@long_description 
+If an area is locked by an user, then only the user can make changes to the given area. 
+All changes to the area are stored and can be reverted with the cube/rollback request.
+To delete the lock use the cube/commit (confirm changes) or the cube/rollback (undo changes) request.
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+@param area
+@param_type area
+@param_description Comma separated list of element identifier lists. Identifier lists are separated by colons. The area is the cartesian product.
+
+@param name_area
+@param_type narea
+@param_description Comma separated list of element name lists. Name lists are separated by colons. The area is the cartesian product. Used only if area parameter is omitted.
+
+@param complete
+@param_type integer
+@param_description If 1 and no area is specified, special lock for whole cube is applied. No other user can read the cube and it's not sorted and markers are not generated until commit.
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+@result lock
+@result_type integer
+@result_description Indentifier of the locked area
+
+@result area
+@result_type area
+@result_description Comma separated list of element identifiers list. Each element identifiers list is colon separated. The area is the cartesian product.
+
+@result user
+@result_type string
+@result_description The name of the user who locked the cube 
+
+@result steps
+@result_type integer
+@result_description Number of steps
+
+
+@example database=1&cube=7&area=0:1,1:2,2:3,3:4,0,0
+@example_description Lock cube area "(0,1) x (1,2) x (2,3) x (3,4) x 0 x 0"

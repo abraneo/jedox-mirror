@@ -1,0 +1,96 @@
+%{
+#include "palo.h"
+
+#include "PaloHttpServer/PaloRequestHandler.h"
+%}
+struct CommandOption {
+  const char * option;
+  int code;
+};
+%%
+actcode, palo::PaloRequestHandler::CMD_ACTCODE
+activate, palo::PaloRequestHandler::CMD_ACTIVATE
+action, palo::PaloRequestHandler::CMD_ACTION,
+add, palo::PaloRequestHandler::CMD_ADD
+base_only, palo::PaloRequestHandler::CMD_BASE_ONLY
+blocksize, palo::PaloRequestHandler::CMD_BLOCKSIZE
+comment, palo::PaloRequestHandler::CMD_COMMENT
+complete, palo::PaloRequestHandler::CMD_COMPLETE
+condition, palo::PaloRequestHandler::CMD_CONDITION
+definition, palo::PaloRequestHandler::CMD_DEFINITION
+extern_password, palo::PaloRequestHandler::CMD_EXTERN_PASSWORD
+external_identifier, palo::PaloRequestHandler::CMD_EXTERNAL_IDENTIFIER
+event, palo::PaloRequestHandler::CMD_EVENT
+event_processor, palo::PaloRequestHandler::CMD_EVENT_PROCESSOR
+functions, palo::PaloRequestHandler::CMD_FUNCTIONS
+area, palo::PaloRequestHandler::CMD_ID_AREA
+children, palo::PaloRequestHandler::CMD_ID_CHILDREN
+cube, palo::PaloRequestHandler::CMD_ID_CUBE
+database, palo::PaloRequestHandler::CMD_ID_DATABASE
+dimension, palo::PaloRequestHandler::CMD_ID_DIMENSION
+dimensions, palo::PaloRequestHandler::CMD_ID_DIMENSIONS
+element, palo::PaloRequestHandler::CMD_ID_ELEMENT
+elements, palo::PaloRequestHandler::CMD_ID_ELEMENTS
+lickey, palo::PaloRequestHandler::CMD_LICKEY
+limit, palo::PaloRequestHandler::CMD_ID_LIMIT
+lock, palo::PaloRequestHandler::CMD_ID_LOCK
+locked_paths, palo::PaloRequestHandler::CMD_ID_LOCKED_PATHS
+mode, palo::PaloRequestHandler::CMD_ID_MODE
+parent, palo::PaloRequestHandler::CMD_ID_PARENT
+path, palo::PaloRequestHandler::CMD_ID_PATH
+paths, palo::PaloRequestHandler::CMD_ID_PATHS
+path_to, palo::PaloRequestHandler::CMD_ID_PATH_TO
+rule, palo::PaloRequestHandler::CMD_ID_RULE
+type, palo::PaloRequestHandler::CMD_ID_TYPE
+types, palo::PaloRequestHandler::CMD_ID_TYPES
+machine, palo::PaloRequestHandler::CMD_MACHINE
+required, palo::PaloRequestHandler::CMD_REQUIRED
+optional, palo::PaloRequestHandler::CMD_OPTIONAL
+name_area, palo::PaloRequestHandler::CMD_NAME_AREA
+name_children, palo::PaloRequestHandler::CMD_NAME_CHILDREN
+name_cube, palo::PaloRequestHandler::CMD_NAME_CUBE
+name_database, palo::PaloRequestHandler::CMD_NAME_DATABASE
+name_dimension, palo::PaloRequestHandler::CMD_NAME_DIMENSION
+name_dimensions, palo::PaloRequestHandler::CMD_NAME_DIMENSIONS
+name_element, palo::PaloRequestHandler::CMD_NAME_ELEMENT
+name_elements, palo::PaloRequestHandler::CMD_NAME_ELEMENTS
+name_path, palo::PaloRequestHandler::CMD_NAME_PATH
+name_paths, palo::PaloRequestHandler::CMD_NAME_PATHS
+name_path_to, palo::PaloRequestHandler::CMD_NAME_PATH_TO
+user, palo::PaloRequestHandler::CMD_NAME_USER
+new_name, palo::PaloRequestHandler::CMD_NEW_NAME
+steps, palo::PaloRequestHandler::CMD_NUM_STEPS
+password, palo::PaloRequestHandler::CMD_PASSWORD
+position, palo::PaloRequestHandler::CMD_POSITION
+positions, palo::PaloRequestHandler::CMD_POSITIONS
+properties, palo::PaloRequestHandler::CMD_PROPERTIES
+sid, palo::PaloRequestHandler::CMD_SID
+show_attribute, palo::PaloRequestHandler::CMD_SHOW_ATTRIBUTE
+show_gputype, palo::PaloRequestHandler::CMD_SHOW_GPUTYPE
+show_normal, palo::PaloRequestHandler::CMD_SHOW_NORMAL
+show_rule, palo::PaloRequestHandler::CMD_SHOW_RULE
+show_rules, palo::PaloRequestHandler::CMD_SHOW_RULES
+show_system, palo::PaloRequestHandler::CMD_SHOW_SYSTEM
+show_user_info, palo::PaloRequestHandler::CMD_SHOW_USER_INFO
+show_info, palo::PaloRequestHandler::CMD_SHOW_INFO
+skip_empty, palo::PaloRequestHandler::CMD_SKIP_EMPTY
+source, palo::PaloRequestHandler::CMD_SOURCE
+splash, palo::PaloRequestHandler::CMD_SPLASH
+use_identifier, palo::PaloRequestHandler::CMD_USE_IDENTIFIER
+use_rules, palo::PaloRequestHandler::CMD_USE_RULES
+value, palo::PaloRequestHandler::CMD_VALUE
+values, palo::PaloRequestHandler::CMD_VALUES
+weights, palo::PaloRequestHandler::CMD_WEIGHTS
+show_lock_info, palo::PaloRequestHandler::CMD_SHOW_LOCK_INFO
+function, palo::PaloRequestHandler::CMD_FUNCTION
+expand, palo::PaloRequestHandler::CMD_EXPAND
+show_permission, palo::PaloRequestHandler::CMD_SHOW_PERMISSION
+view_subsets, palo::PaloRequestHandler::CMD_VIEW_SUBSETS
+view_axes, palo::PaloRequestHandler::CMD_VIEW_AXES
+view_area, palo::PaloRequestHandler::CMD_VIEW_AREA
+X-PALO-SV, palo::PaloRequestHandler::CMD_X_PALO_SERVER
+X-PALO-DB, palo::PaloRequestHandler::CMD_X_PALO_DATABASE
+X-PALO-DIM, palo::PaloRequestHandler::CMD_X_PALO_DIMENSION
+X-PALO-CB, palo::PaloRequestHandler::CMD_X_PALO_CUBE
+X-PALO-CC, palo::PaloRequestHandler::CMD_X_PALO_CUBE_CLIENT_CACHE
+Content-Length, palo::PaloRequestHandler::CMD_CONTENT_LENGTH

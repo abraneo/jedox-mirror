@@ -1,0 +1,42 @@
+ProductCategoryID;ParentProductCategoryID;Name;ParentName
+1;;Bikes;
+2;;Components;
+3;;Clothing;
+4;;Accessories;
+5;1;Mountain Bikes;Bikes
+6;1;Road Bikes;Bikes
+7;1;Touring Bikes;Bikes
+8;2;Handlebars;Components
+9;2;Bottom Brackets;Components
+10;2;Brakes;Components
+11;2;Chains;Components
+12;2;Cranksets;Components
+13;2;Derailleurs;Components
+14;2;Forks;Components
+15;2;Headsets;Components
+16;2;Mountain Frames;Components
+17;2;Pedals;Components
+18;2;Road Frames;Components
+19;2;Saddles;Components
+20;2;Touring Frames;Components
+21;2;Wheels;Components
+22;3;Bib-Shorts;Clothing
+23;3;Caps;Clothing
+24;3;Gloves;Clothing
+25;3;Jerseys;Clothing
+26;3;Shorts;Clothing
+27;3;Socks;Clothing
+28;3;Tights;Clothing
+29;3;Vests;Clothing
+30;4;Bike Racks;Accessories
+31;4;Bike Stands;Accessories
+32;4;Bottles and Cages;Accessories
+33;4;Cleaners;Accessories
+34;4;Fenders;Accessories
+35;4;Helmets;Accessories
+36;4;Hydration Packs;Accessories
+37;4;Lights;Accessories
+38;4;Locks;Accessories
+39;4;Panniers;Accessories
+40;4;Pumps;Accessories
+41;4;Tires and Tubes;Accessories

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<persistence>
+		<parameter name="backend">gen</parameter>
+		<parameter name="storage">disk</parameter>
+		<parameter name="optimize">false</parameter>
+		<parameter name="projectsBackend">file</parameter>
+	</persistence>
+	<encryption>
+		<parameter name="password">proclos</parameter>
+		<parameter name="repositoryEncryption">false</parameter>
+		<parameter name="sslPreferred">false</parameter>
+	</encryption>
+	<directories>
+		<parameter name="customlib">customlib</parameter>
+		<parameter name="logs">logs</parameter>
+		<parameter name="localdata"></parameter>
+		<parameter name="files">files</parameter>
+		<parameter name="persistence">db</parameter>
+		<parameter name="projects">projects</parameter>
+		<parameter name="suiteconfig">../httpd/app/etc/config.php</parameter>
+	</directories>
+	<projects>
+		<parameter name="validate">true</parameter>
+		<parameter name="loglevel">info</parameter>
+		<parameter name="logFileSize">10MB</parameter>
+		<parameter name="logBackupIndex">20</parameter>
+		<parameter name="logDebugClasses"></parameter>				
+	</projects>
+	<executions>
+		<parameter name="#failOnError">true</parameter>
+		<parameter name="#logLimitInfo">10000</parameter>
+		<parameter name="#logLimitWarn">1000</parameter>
+		<parameter name="#logLimitError">10000</parameter>
+		<parameter name="#syncMode">single</parameter>
+		<parameter name="#logBlockSize">0</parameter>
+		<parameter name="#forceEval">true</parameter>					
+		<parameter name="maxDirectThreads">7</parameter>
+		<parameter name="maxParallelThreads">5</parameter>
+		<parameter name="removeOldStandard">2400</parameter>
+		<parameter name="removeOldOthers">168</parameter>
+		<parameter name="#persistDetails">true</parameter>
+	</executions>
+</config>
+

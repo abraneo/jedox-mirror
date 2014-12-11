@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleVariables" version="5.1" modified="1383649423529" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Example for variables to parameterise Jobs. Variables are defined globally with a default value. They are used e.g. in Connection definitions, SQL-Query and OLAP-Filter. Specific values for variables are either assigned to Jobs or are transferred on job execution.</comment>
+    </header>
+  </headers>
+  <variables>
+    <variable name="country" modified="1383649423529" modifiedBy="">
+      <default>AT</default>
+    </variable>
+    <variable name="filename" modified="1383649423529" modifiedBy="">
+      <default>Result_SalesOut.csv</default>
+    </variable>
+    <variable name="Month" modified="1383649423529" modifiedBy="">
+      <default>.</default>
+    </variable>
+    <variable name="palodb" modified="1383649423529" modifiedBy="">
+      <default>Demo_ETL</default>
+    </variable>
+    <variable name="Year" modified="1383649423529" modifiedBy="">
+      <default>.</default>
+    </variable>
+  </variables>
+  <connections>
+    <connection name="palodemo" type="Jedox" modified="1383649423529" modifiedBy="">
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password>admin</password>
+      <database>Demo</database>
+    </connection>
+    <connection name="HSSQL_Conn" type="Hsqldb" modified="1383649423529" modifiedBy="">
+      <database>./hsqldb/db1</database>
+      <mode>Embedded</mode>
+    </connection>
+    <connection name="palotarget" type="Jedox" modified="1383649423529" modifiedBy="">
+      <comment><![CDATA[Palo database to which the data is loaded]]></comment>
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password>admin</password>
+      <database>${palodb}</database>
+    </connection>
+    <connection name="file_out" type="File" modified="1383649423529" modifiedBy="">
+      <database>${filename}</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Customer_Extract" type="Relational" modified="1383649423529" modifiedBy="">
+      <connection nameref="HSSQL_Conn" />
+      <query><![CDATA[select cust.kunnr, cust.name1, cust.ort01, cust.pstlz, country.land1, country.landx from customers as cust, countries as country
+where cust.land1 = country.land1 and cust.kunnr between '1000' and '3000' and country.land1 = '${country}'
+order by cust.land1, cust.kunnr]]></query>
+      <alias_map>
+        <alias name="CustomerID" default="Customer n.a.">1</alias>
+        <alias name="CustomerName">2</alias>
+        <alias name="City">3</alias>
+        <alias name="PLZ">4</alias>
+        <alias name="CountryID" default="Country n.a.">5</alias>
+        <alias name="CountryName">6</alias>
+      </alias_map>
+    </extract>
+    <extract name="Sales_Extract" type="Cube" modified="1383649423529" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query>
+        <cube name="Sales" valuename="Value" />
+        <dimensions>
+          <dimension name="Years">
+            <condition operator="like" value="${Year}" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Months">
+            <condition operator="like" value="${Month}" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Datatypes">
+            <condition operator="like" value="Budget|Actual" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Measures">
+            <condition operator="like" value="Units|Turnover|Cost of Sales" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Products">
+            <condition operator="equal" value="Stationary PC's" mode="onlyBases" type="accept" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="Customer_TreeFH" type="TreeFH" modified="1383649423529" modifiedBy="">
+      <sources>
+        <source nameref="Customer_Extract" />
+      </sources>
+      <target>
+        <levels>
+          <level>
+            <input nameref="CountryID" />
+          </level>
+          <level>
+            <input nameref="CustomerID" />
+          </level>
+        </levels>
+        <attributes />
+      </target>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="Customer_Dim_Load" type="Dimension" modified="1383649423529" modifiedBy="">
+      <source nameref="Customer_TreeFH" />
+      <connection nameref="palotarget" />
+      <dimension name="CustomerVar">
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Sales_File_Load" type="File" modified="1383649423529" modifiedBy="">
+      <source nameref="Sales_Extract" />
+      <connection nameref="file_out" />
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard" modified="1383649423529" modifiedBy="">
+      <execution type="load" nameref="Sales_File_Load" />
+      <execution type="load" nameref="Customer_Dim_Load" />
+    </job>
+    <job name="SalesMonth" type="Standard" modified="1383649423529" modifiedBy="">
+      <variable name="Month">
+        <default>Feb</default>
+      </variable>
+      <variable name="Year">
+        <default>2011</default>
+      </variable>
+      <execution type="load" nameref="Sales_File_Load" />
+    </job>
+  </jobs>
+</project>
+

@@ -1,0 +1,79 @@
+@request_path /cell/values
+
+@short_description Shows the values of cube cells
+ 
+@long_description 
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+@param paths
+@param_type path
+@param_description Colon separated list of paths. Each path is a comma separated list of element identifiers.
+
+@param name_paths
+@param_type npath
+@param_description Colon separated list of paths. Each path is a comma separated list of element names. Used only if paths parameter is omitted.
+ 
+@param show_rule
+@param_type boolean
+@param_description If 1, then additional information about the cell value is returned, in case the value originates from an enterprise rule.
+
+@param show_lock_info
+@param_type boolean
+@param_description If 1, then additional information about the cell lock is returned.
+ 
+@param properties
+@param_type identifier
+@param_description Comma separated list of cell property ids.
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+
+@result type
+@result_type integer
+@result_description Type of the value (1=NUMERIC, 2=STRING, 99=ERROR)
+
+@result exists/error
+@result_type integer
+@result_description 1 if numeric value is non-zero or string value is non-empty. In case of an error the error code.
+
+@result value
+@result_type double/string
+@result_description Value of the cell. In case of an error the error message
+
+@result rule
+@result_type identifier
+@result_description Identifier of the rule, this cell values originates from or empty. Only available if show_rule is 1.
+
+@result lock_info
+@result_type identifier
+@result_description Lock info (0 - cell is not locked, 1 - cell is locked by user wich sent request, 2 - cell is locked by another user). Only available if show_lock_info is 1.
+
+@result property_values
+@result_type double/string
+@result_description Values of specified cell properties.
+
+
+
+@example database=1&cube=7&paths=0,0,0,0,0,0:1,0,0,0,0,0
+@example_description Show values of cells "0,0,0,0,0,0" and "1,0,0,0,0,0"
+@example database=1&cube=43&paths=0,2,0:1,2,0&properties=0,1,2
+@example_description Show values of cells "0,2,0" and "1,2,0" including their system cell properties #_Rights(0), FormatString(1) and CellNote(2)

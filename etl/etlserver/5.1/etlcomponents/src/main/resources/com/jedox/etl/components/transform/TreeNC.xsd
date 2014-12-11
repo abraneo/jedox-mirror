@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+	<include schemaLocation="resource.xsd"/>
+    <element name="transform" type="c:transformtype" />
+    
+    <complexType name="inputref">
+		<attribute name="nameref" type="string">
+		</attribute>
+		<attribute name="constant" type="string"/>
+	</complexType>
+	
+	<complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+	 </complexType>
+	 
+	 
+	 <complexType name="sourcerefs">
+		<sequence>
+			<element name="source" type="c:sourceref" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+		<attribute name="format" type="c:viewformat"/>
+	</complexType>
+        
+   <complexType name="typedcomponent">
+		<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required">
+		</attribute>
+        <anyAttribute processContents="lax"/>
+    </complexType>
+    
+    <simpleType name="datatype">
+ 		 <restriction base="string">
+    		<enumeration value="numeric"/>
+    		<enumeration value="string"/>
+  		</restriction>
+	</simpleType> 
+	
+	<simpleType name="attributedatatype">
+ 		 <restriction base="string">
+    		<enumeration value="numeric"/>
+    		<enumeration value="string"/>
+  		</restriction>
+	</simpleType> 	
+ 
+      
+	<complexType name="attributetype">
+		<sequence>
+			<element name="input" type="c:inputref" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="type" type="c:attributedatatype"/>
+	</complexType>
+	
+	<complexType name="attributestype">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="attribute" type="c:attributetype"/>
+		</choice>
+	</complexType>
+	
+	<complexType name="coordinatetype">
+		<all>
+			<element name="input" type="c:inputref" minOccurs="1" maxOccurs="1"/>
+		</all>
+		<attribute name="name" type="string"/>
+		<attribute name="default" type="string"/>
+	</complexType>
+	
+	<complexType name="targettype">
+		<all>
+			<element name="type" type="c:coordinatetype" minOccurs="1" maxOccurs="1"/>
+			<element name="element" type="c:coordinatetype" minOccurs="1" maxOccurs="1"/>
+			<element name="weight" type="c:coordinatetype" minOccurs="0" maxOccurs="1"/>
+			<element name="attributes" type="c:attributestype" minOccurs="0" maxOccurs="1"/>
+		</all>
+		<attribute name="default" type="string"/>
+		<attribute name="parent" type="string"/>		
+	</complexType>
+    
+    <complexType name="transformtype">
+        <all>
+            <element name="sources" type="c:sourcerefs" minOccurs="1" maxOccurs="1"/>
+            <element name="target" type="c:targettype" minOccurs="1" maxOccurs="1"/>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>      
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+        <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+
+</schema>

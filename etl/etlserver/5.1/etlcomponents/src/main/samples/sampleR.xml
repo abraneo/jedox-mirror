@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleR" version="5.1" modified="1383649260688" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project for R Transform</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="Biker" type="Jedox" modified="1383649260688" modifiedBy="">
+      <comment><![CDATA[Palo database from which the data is extracted]]></comment>
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">lbx+AiS9NDGEIyAkS36VtA==</password>
+      <database>Biker</database>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="E_Status" type="Cube" modified="1383649260688" modifiedBy="">
+      <connection nameref="Biker" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="Status" valuename="Value" />
+      </query>
+    </extract>
+    <extract name="E_NewYears" type="Count" modified="1383649260688" modifiedBy="">
+      <start>2014</start>
+      <end>2017</end>
+      <step>1</step>
+      <alias>Years</alias>
+    </extract>
+    <extract name="E_Orders2" type="Cube" modified="1383649260688" modifiedBy="">
+      <connection nameref="Biker" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="Orders2" valuename="Value" />
+        <dimensions>
+          <dimension name="Datatypes">
+            <condition operator="equal" value="Actual" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Measures">
+            <condition operator="equal" value="Units" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Years">
+            <condition operator="equal" value="2013" mode="onlyNodes" type="deny" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+    <extract name="E_Orders" type="Cube" modified="1383649260688" modifiedBy="">
+      <connection nameref="Biker" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="Orders" valuename="Value" />
+        <dimensions>
+          <dimension name="Products">
+            <condition operator="like" value="." mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Channels">
+            <condition operator="like" value="." mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Datatypes">
+            <condition operator="equal" value="Actual" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Measures">
+            <condition operator="equal" value="Units" mode="onlyBases" type="accept" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+    <extract name="E_Products" type="Dimension" modified="1383649260688" modifiedBy="">
+      <connection nameref="Biker" />
+      <query>
+        <dimension name="Products" />
+      </query>
+      <withAttributes>true</withAttributes>
+    </extract>
+    <extract name="Dummy" type="Count" modified="1383649260688" modifiedBy="">
+      <start>1</start>
+      <end>1</end>
+    </extract>
+    <extract name="E_Products_Bases" type="Dimension" modified="1383649260688" modifiedBy="">
+      <connection nameref="Biker" />
+      <query>
+        <dimension name="Products">
+          <condition operator="like" value="." mode="onlyBases" type="accept" />
+        </dimension>
+      </query>
+      <withAttributes>false</withAttributes>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="T_YearsValue" type="TableAggregation" modified="1383649260688" modifiedBy="">
+      <sources>
+        <source nameref="E_Orders2" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate>
+            <input nameref="Years" />
+          </coordinate>
+        </coordinates>
+        <measures>
+          <measure name="Value" aggregate="sum">
+            <input nameref="Value" />
+          </measure>
+        </measures>
+      </target>
+    </transform>
+    <transform name="Transpone" type="RScript" modified="1383649260688" modifiedBy="">
+      <sources>
+        <source nameref="E_Status" />
+      </sources>
+      <script dataset="return"><![CDATA[return <- t(E_Status)]]></script>
+    </transform>
+    <transform name="Generate" type="RScript" modified="1383649260688" modifiedBy="">
+      <sources>
+        <source nameref="Dummy" />
+      </sources>
+      <script dataset="return"><![CDATA[return <- array(1:20, dim=c(4,5))]]></script>
+    </transform>
+    <transform name="Predict_1" type="RScript" modified="1383649260688" modifiedBy="">
+      <sources>
+        <source nameref="T_YearsValue" />
+        <source nameref="E_NewYears" />
+      </sources>
+      <script dataset="JResult"><![CDATA[JModel <- lm(Value~Years,data=T_YearsValue)
+JPredict <- predict(JModel,newdata=E_NewYears)
+JResult <- data.frame(Year=E_NewYears$Years, Result=JPredict)]]></script>
+    </transform>
+    <transform name="T1_Orders" type="TableDenormalization" modified="1383649260688" modifiedBy="">
+      <sources>
+        <source nameref="E_Orders" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Products">
+            <input nameref="Products" />
+          </coordinate>
+        </coordinates>
+        <measures denormalize="Channels">
+          <measure name="Fax/Phone/Mail" aggregate="sum">
+            <input nameref="Value" />
+          </measure>
+          <measure name="Online Shop" aggregate="sum">
+            <input nameref="Value" />
+          </measure>
+          <measure name="Walk-In" aggregate="sum">
+            <input nameref="Value" />
+          </measure>
+        </measures>
+      </target>
+    </transform>
+    <transform name="T2_Orders" type="FieldTransform" modified="1383649260688" modifiedBy="">
+      <sources>
+        <source nameref="T1_Orders" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Phone">
+            <input nameref="Fax/Phone/Mail" />
+          </coordinate>
+          <coordinate name="Online">
+            <input nameref="Online Shop" />
+          </coordinate>
+          <coordinate name="WalkIn">
+            <input nameref="Walk-In" />
+          </coordinate>
+          <coordinate name="ProdGruppe">
+            <input nameref="ProdGruppe" />
+          </coordinate>
+        </coordinates>
+      </target>
+      <functions>
+        <function name="ProdGruppe" type="Lookup">
+          <inputs>
+            <input nameref="Products" />
+          </inputs>
+          <parameters>
+            <source>E_Products</source>
+            <treeformat>fh</treeformat>
+            <from>level4</from>
+            <to>level2</to>
+            <default>XXX</default>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="Quantile" type="RScript" modified="1383649260688" modifiedBy="">
+      <sources>
+        <source nameref="T2_Orders" />
+      </sources>
+      <script dataset="result"><![CDATA[Q <- c(0,.05,.25,.5,.75,.95,1)
+result <- data.frame(Q,quantile(T2_Orders$Phone,Q),quantile(T2_Orders$Online,Q),quantile(T2_Orders$WalkIn,Q))]]></script>
+    </transform>
+    <transform name="T_HistoryData" type="TableAggregation" modified="1383649260688" modifiedBy="">
+      <sources>
+        <source nameref="E_Orders2" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Years">
+            <input nameref="Years" />
+          </coordinate>
+          <coordinate name="Products">
+            <input nameref="Products" />
+          </coordinate>
+        </coordinates>
+        <measures>
+          <measure name="Value" aggregate="sum">
+            <input nameref="Value" />
+          </measure>
+        </measures>
+      </target>
+    </transform>
+    <transform name="T_NewData" type="FieldTransform" modified="1383649260688" modifiedBy="">
+      <sources>
+        <source nameref="E_Products_Bases" format="ea" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Products">
+            <input nameref=":element" />
+          </coordinate>
+          <coordinate name="Years">
+            <input constant="2013" />
+          </coordinate>
+        </coordinates>
+      </target>
+    </transform>
+    <transform name="Predict_Products" type="RScript" modified="1383649260688" modifiedBy="">
+      <sources>
+        <source nameref="T_HistoryData" />
+        <source nameref="T_NewData" />
+      </sources>
+      <script dataset="JResult"><![CDATA[JModel <- lm(Value~Products*Years,data=T_HistoryData)
+JPredict <- predict(JModel,newdata=T_NewData)
+JResult <- data.frame(Years=T_NewData$Years, Products=T_NewData$Products,  Result=JPredict)]]></script>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="L_Predict_Product" type="Cube" modified="1383649260688" modifiedBy="">
+      <source nameref="Predict_Products" />
+      <connection nameref="Biker" />
+      <cube name="Predict" splash="disabled">
+        <dimensions>
+          <dimension input="Years" name="Years" />
+          <dimension input="Products" name="Products" />
+        </dimensions>
+      </cube>
+      <mode>update</mode>
+    </load>
+  </loads>
+  <jobs>
+    <job name="NewJob" type="Standard" modified="1383649260688" modifiedBy="">
+      <execution type="load" nameref="L_Predict_Product" />
+    </job>
+  </jobs>
+</project>
+

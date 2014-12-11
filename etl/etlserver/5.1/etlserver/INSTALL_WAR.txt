@@ -1,0 +1,106 @@
+
+
+This file covers the installation of the war distribution for tomcat and jetty.
+For the jetty bundle installation see README.txt.
+
+DEPLOYMENT
+==========
+
+The etlserver.war can be deployed as any other war into a servlet container.
+The simplest deployment for jetty is copying the war into the webapps folder of the servlet
+container installation. The etlserver servlet needs to find the configuration directory. The 
+location of this directory can be configured with a servlet context parameter. Depending on the
+chosen container (jetty, tomcat), this can be done in several ways. 
+
+The servlet tries to find a context parameter named "etlserver.configdir". If it does not find
+this variable, the servlet assumes a folder named "config" und the current working directory.
+
+INSTALLATION JETTY
+==================
+
+Jetty offers basically two mechanisms to configure a servlet context. The first variant adds
+entries into the webdefault.xml (or override.xml), and the second variant uses jetty's context
+deployment mechanism.
+
+webdefault.xml/override.xml:
+--------------------
+
+Just add the following xml snippet to one of the global "web.xml" files.
+
+  <context-param>
+        <param-name>etlserver.configdir</param-name>               
+        <param-value>/absolute/path/to/config</param-value>                             
+  </context-param>
+
+It is also possible to use relative path names for this parameter, but then the absolute location
+of the config directory depends on how jetty is started.
+
+Context deployment:
+-------------------
+
+In addition to the web app deployer, jetty offers a context deployer. The default location for 
+context description is in a folder named "contexts" in the jetty installation directory.
+Jetty reads all xml files in this folder and tries to deploy the web applications described with
+this xml files.
+
+As a starting point you can place the following xml in ${jetty.home}/contexts/etlserver.xml
+
+<?xml version="1.0"  encoding="ISO-8859-1"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<!-- Do a manual/hot deployment of etlserver, to override configuration elements in WEB-INF/web.xml -->
+<!-- contextPath should be the same as the name of the war-file. else the war will be deployed twice. -->
+<!-- storing the war-file in another folder than the one where WebAppDeployer is configured would also avoid double deployment. -->
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+  <!-- Required -->
+  <Set name="contextPath">/etlserver</Set>
+  <Set name="war"><SystemProperty name="jetty.home" default="."/>/webapps/etlserver.war</Set>
+
+  <!-- load the jetty webdefaults.xml descriptor for this context -->
+  <Set name="defaultsDescriptor"><SystemProperty name="jetty.home" default="."/>/etc/webdefault.xml</Set>
+  
+  <!-- Uncomment and change the following to load an override descriptor for this context -->
+  <!-- <Set name="overrideDescriptor"><SystemProperty name="jetty.home" default="."/>/etc/etloverride.xml</Set> -->
+  
+  
+  <!-- This is a little hack, but it can use the SystemProperty element from jetty-config.xml
+       to find the jetty home directory, and hence is better suited for relative path configuration. -->
+  <Set name="initParams">
+    <New class="java.util.Properties">
+        <Call name="setProperty">
+            <Arg>etlserver.configdir</Arg>
+            <Arg><SystemProperty name="jetty.home" default="."/>/config</Arg>
+        </Call>
+    </New>
+  </Set>
+</Configure>
+
+Please see the Jetty documentation for more details.
+
+INSTALLATION TOMCAT
+===================
+
+Tomcat offers similar context configuration options. It is possible to add definitions into
+a global web.xml file or in context.xml configuration files in the "config" folder in the
+tomcat installation. Please see the tomcat documentation for details where to place these files.  
+
+global web.xml:
+---------------
+
+This is exactly the same as the jetty webdefaults/override mechanism. Just add the following xml 
+snippet to "config/web.xml".
+
+  <context-param>
+        <param-name>etlserver.configdir</param-name>               
+        <param-value>/absolute/path/to/config</param-value>                             
+  </context-param>
+  
+global context.xml:
+-------------------
+
+The following xml-snippet can be added to the global context.xml.
+
+  <Parameter name="etlserver.configdir" value="${catalina.base}/etlconfig" />
+
+The "Parameter" element can be placed in a "Context" element in the tomcat configuration. 
+The "Context" element can be found in the global "context.xml" file or und a special folder structure
+for tomcat-engines and virtual hosts. (see tomcat documentation for details)

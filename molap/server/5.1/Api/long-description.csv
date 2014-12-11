@@ -1,0 +1,290 @@
+ABS;english;"Returns the absolute value of a number. The absolute value of a number is the number without its sign.";
+ABS;german;"Gibt den Betrag einer Zahl zurueck. Der Betrag entspricht der vorzeichenlosen Zahl.";
+
+ACOS;english;"Returns the inverse cosine. The returned angle is given in radians.";
+ACOS;german;"Inverse Cosinusfunkion. Der Rueckgabewert ist im Bogenmass.";
+
+ADD;english;"Returns the sum of its two arguments.";
+ADD;german;"Gibt die Summe der beiden Argumente zurueck";
+
+AND;english;"Returns the logical of its arguments.";
+AND;german;"Returns the logical of its arguments.";
+
+ASIN;english;"Returns the inverse sine. The returned angle is given in radians.";
+ASIN;german;"Inverse Sinusfunkion. Der Rueckgabewert ist im Bogenmass.";
+
+ATAN;english;"Returns the inverse tangent. The returned angle is given in radians.";
+ATAN;german;"Inverse Tangensfunkion. Der Rueckgabewert ist im Bogenmass.";
+
+AVERAGE;english;"Returns average of its arguments.";
+AVERAGE;german;"Returns average of its arguments.";
+
+CEILING;english;"Rounds a number up, to the nearest integer or to the nearest multiple of significance.;";
+CEILING;german;"Rundet eine Zahl zur naechsten ganzen Zahl oder zum naechsten Vielfachen von Bedeutung auf."
+
+CHAR;english;"Returns the character specified by the code number.";
+CHAR;german;"Gibt den durch das Integer-Argument codierten Buchstaben zurueck.";
+
+CLEAN;english;"Removes all nonprintable characters from text.";
+CLEAN;german;"Entfernt alle nichtdarstellbaren Zeichen aus dem Text.";
+
+CODE;english;"Returns a numeric code for the first character in a text string";
+CODE;german;"Gibt den Zahlencode des ersten Buchstabens im String-Argument zurueck";
+
+CONCATENATE;english;"Joins two text items into one text item.";
+CONCATENATE;german;"Fuegt zwei Texte zu einem zusammen.";
+
+CONTINUE;english;"If a rule evaluates to CONTINUE then that rule is skipped and search for valid rule is continued.";
+CONTINUE;german;"Falls eine Regel zu CONTINUE evaluiert, wird diese Regel uebergangen und die Suche fuer gueltige Regeln wird fortgesetzt."
+
+COS;english;"Returns the cosine. The number is given in radians.";
+COS;german;"Gibt den Cosinus des Argumentes zurueck, welches im Bogenmass angegeben wird.";
+
+COUNT;english;"Returns the number of values provided";
+COUNT;german;"Returns the number of values provided";
+
+DATE;english;"Returns the serial number that represents a particular date. The year argument must be four digits and greater than or equal to 1900 and smaller than or equal to 10000. Month is a number representing the month of the year. If month is greater than 12, month adds that number of months to the first month in the year specified. For example, DATE(2008,14,2) returns the serial number representing February 2, 2009. Day is a number representing the day of the month. If day is greater than the number of days in the month specified, day adds that number of days to the first day in the month. For example, DATE(2008,1,35) returns the serial number representing February 4, 2008."
+DATE;german;"Gibt die Folgezahl fuer ein bestimmtes Datum zurueck. Das Jahres-Argument muss vier Ziffern lang sein, groesser oder gleich 1900 und kleiner oder gleich 10000. Das Monats-Argument steht fuer den Monat desJahres. Falls es groesser als 12 ist, so wird eine entsprechende Zahl zum Jahres-Argument hinzugezaehlt. Z.B. gibt DATE(2008,14,2) die Folgezahl fuer den zweiten Februar 2009 zurueck. Das Tages-Argument steht fuer den Tag des Monats. Falls Tag groesser als die Zahl der Tage des agegebenen Monats ist, so wird eine entsprechende Zahl zu Monaten hinzuaddiert. Z.B. gibt DATE(20,08,1,35) die Folgezahl fuer den vierten Februar 2008 zurueck.";
+
+DATEFORMAT;english;"Converts date to string using given format, where date is a numeric date value and format a string with the following switches: \y the last two digits of the year (97, 98, etc.) \Y the four digits of the year (1997, 1998, etc.) \m the two digits of the month (01 through 12) \M the abbreviation of the month (JAN, FEB, etc.) \d the two digits of the day (01 through 31) \D the digit of the day (1 through 31) \h the hour in military time (00 through 23) \H the standard hour (1 through 12) \i the minute (00 through 59) \s the second (00 through 59) \p a.m. or p.m."
+DATEFORMAT;german;"Converts date to string using given format, where date is a numeric date value and format a string with the following switches: \y the last two digits of the year (97, 98, etc.) \Y the four digits of the year (1997, 1998, etc.) \m the two digits of the month (01 through 12) \M the abbreviation of the month (JAN, FEB, etc.) \d the two digits of the day (01 through 31) \D the digit of the day (1 through 31) \h the hour in military time (00 through 23) \H the standard hour (1 through 12) \i the minute (00 through 59) \s the second (00 through 59) \p a.m. or p.m."
+
+DATEVALUE;english;"Returns the serial number of the date represented as MM-DD-YY"
+DATEVALUE;german;"Gibt die Folgezahl fuer ein Datum in der Form MM-TT-YY zurueck";
+
+DEL;english;"Returns the result of subtracting the second argument from the first.";
+DEL;german;"Gibt das zweite Argument subtrahiert vom ersten Argument zurueck.";
+
+DIV;english;"Returns the result of dividing the two arguments.";
+DIV;german;"Gibt das Resultat der Division der beiden Argumente zurueck.";
+
+EQ;english;"Checks if the two arguments, which can be of type string or double, are exactly equal. Returns true or false accordingly. Both arguments must have the same type."
+EQ;german;"Prueft ob die beiden Argumente. die vom Typ String oder Double seien koennen, genau gleich sind. Entsprechend wird wahr oder falsch zurueckgegeben."
+
+EVEN;english;"Rounds a number up to the nearest even integer";
+EVEN;german;"Rundet die Zahl auf zur naechsten geraden ganzen Zahl";
+
+EXACT;english;"Checks to see if two text values are identical Compares two text strings and returns 1 if they are exactly the same, 0 otherwise. EXACT is case-sensitive";
+EXACT;german;"Prueft, ob zwei String genau gleich sind. Entsprechend wird wahr oder falsch zurueckgegeben.Die Funktion ist Case-Sensitive.";
+
+EXP;english;"Returns e raised to the power of a given number.";
+EXP;german;"Gibt das Resultat der Exponentialfunktion angewendet auf den Wert zurueck.";
+
+FACT;english;"Returns the factorial of the argument.";
+FACT;german;"Gibt die Fakultaet des Argumentes zurueck";
+
+FIRST;english;"Returns first of its arguments.";
+FIRST;german;"Returns first of its arguments.";
+
+FLOOR;english;"Rounds a number down, toward zero.";
+FLOOR;german;"Rundet eine Zahl nach Null hin ab.";
+
+GE;english;"Checks if the first argument is greater than or equal to the second argument. Both arguments must have the same type, which can be Double or String.";
+GE;german;"Prueft, ob das erste Argument groesser oder gleich dem zweiten ist. Beide Argumente muessen den gleichen Typ haben. Dieser kann Double oder String sein.";
+
+GT;english;"Checks if the first argument is greater than the second argument. Both arguments must have the same type, which can be Double or String."
+GT;german;"Prueft, ob das erste Argument groesser als das zweite ist. Beide Argumente muessen den gleichen Typ haben. Dieser kann Double oder String sein.";
+
+IF;german;"IF testet, ob der erste Parameter WAHR zurueckliefert. In diesem Fall wird der zweite Parameter zurueckgeliefert. Anderenfalls der dritte";
+IF;english;"IF checks, if the first parameter is TRUE. In this case, the second parameter is returned. Otherwise, the third parameter is returned";
+
+ISERROR;english;"ISERROR returns TRUE if test expression can't be evaluated or evaluates to non string or non numeric value.";
+ISERROR;german;"ISERROR returns TRUE if test expression can't be evaluated or evaluates to non string or non numeric value.";
+
+INT;english;"Rounds a number down to the nearest integer";
+INT;german;"Rundet eine Zahl zur naechsten ganzen Zahl ab.";
+
+LAST;english;"Returns last of its arguments.";
+LAST;german;"Returns last of its arguments.";
+
+LE;english;;"Checks if the first argument is smaller than or equal to the second argument. Both arguments must have the same type, which can be Double or String.";
+LE;german;"Prueft, ob das erste Argument kleiner oder gleich dem zweiten ist. Beide Argumente muessen den gleichen Typ haben. Dieser kann Double oder String sein.";
+
+LEFT;english;"Returns the leftmost characters from a text value. Text is the text string that contains the characters you want to extract. Num_chars specifies the number of characters you want LEFT to extract. Num_chars must be greater than or equal to zero. If num_chars is greater than the length of text, LEFT returns all of the text. If num_chars is omitted, it is assumed to be 1.";
+LEFT;german;"Gibt soviele Buchstaben eines Textes zurueck, wie das Integer-Argument angibt.Der zurueckgegebene String beginnt am linken Ende des Ursprungstextes. Das Integer-Argument muss groesser oder gleich 0 sein. Falls die Zahl groesser oder gleich der Laenge des Textes ist, so wird der gesamte Text zurueckgegeben. Falls die Zahl weggelassen wird, so wird 1 ersetzt.";
+
+LEN;english;"Returns the number of characters in a text string";
+LEN;german;"Gibt die Zahl der Zeichen des String-Arguments zurueck.";
+
+LN;english;"Returns the natural logarithm of a number";
+LN;german;"Gibt den natuerlichen Logarithmus des Integer-Argumentes zurueck.";
+
+LOG;english;"Returns the logarithm of a number to a specified base";
+LOG;german;"Gibt den Logarithmus bezueglich der angegebenen Basis zurueck";
+
+LOG10;english;"Returns the base-10 logarithm of a number.";
+LOG10;german;"Gibt den Logarihmus des Argumentes zur Basis 10 zurueck.";
+
+LOWER;english;"Converts text to lowercase.";
+LOWER;german;"Wandelt einen Text nach Kleinschrift um.";
+
+LT;english;"Checks if the first argument is less than the second argument. Both arguments must have the same type, which can be Double or String."
+LT;german;"Prueft, ob das erste Argument kleiner als das zweite ist. Beide Argumente muessen den gleichen Typ haben. Dieser kann Double oder String sein.";
+
+MAX;english;"Returns maximal of values provided through function arguments.";
+MAX;german;"Returns maximal of values provided through function arguments.";
+
+MID;english;"MID returns a specific number of characters from a text string, starting at the position you specify, based on the number of characters you specify. Text is the text string containing the characters you want to extract. Start_num is the position of the first character you want to extract in text. Num_chars specifies the number of characters you want MID to return from text. If start_num is greater than the length of text, MID returns -empty text-. If start_num is less than the length of text, but start_num plus num_chars exceeds the length of text, MID returns the characters up to the end of text. If start_num is less than 1, MID returns -empty text-.If num_chars is negative, MID returns -empty text-.";
+MID;german;"MID gibt einen Teilstring zurueck, beginnend an der angegebenen Position, mit der angegebenen Laenge. Text ist der Basis-String, aus welchem ein Teilstring zu extrahieren ist. Zahl_Anfang gibt den Buchstaben an, ab welchem wir extrahieren. Zahl_Groesse gibt an, wieviel wir extrahieren. Falls Zahl_Anfanggroesser als die Laenge des Textes ist, so wird Leerstring zurueckgegeben. Gleiches geschieht, falls Zahl_Anfang kleiner als 1 oder Zahl_Groesse negativ ist. Falls Zahl_Anfang kleiner als die Laenge des Textes ist aber die Summe von Zahl_Anfang und Zahl_Groesse die Laenge des Textes ueberschreitet, so wird der String bis zum Ende des Textes zurueckgegeben."; 
+
+MIN;english;"Returns minimal of values provided through function arguments.";
+MIN;german;"Returns minimal of values provided through function arguments.";
+
+MOD;english;"Returns the remainder after number is divided by divisor. The result has the same sign as divisor.";
+MOD;german;"Gibt Zahl modulo Divisor zurueck, d.h. den ganzzahligen Rest bei Teilung durch den Divisor. Das Ergebnis hat stets das gleiche Vorzeichen wie der Divisor.";
+
+MUL;english;"Returns the arithmetical product of its two arguments.";
+MUL;german;"Gibt das arithmetische Produkt der beiden Argumente zurueck.";
+
+NE;english;"Checks if the two arguments, which can be of type string or double, are exactly equal. Returns true if there is no equality and false otherwise. Both arguments must have the same type.";
+NE;german;"Prueft ob die beiden Argumente, die vom Typ String oder Double sein koennen, genau gleich sind. Es wird wahr zurueckgegeben, falls keine Gleichheit besteht.";
+
+NOT;english;"Returns the logical not of given argument.";
+NOT;german;"Returns the logical not of given argument.";
+
+NOW;english;"Returns the serial number of the current date and time.";
+NOW;german;"Gibt die dem Zeitpunkt zugeordnete Folgezahl zurueck."
+
+ODD;english;"Returns number rounded up to the nearest odd integer.";
+ODD;german;"Gibt das zur naechsten ungeraden ganzen Zahl aufgerundete Argument zurueck.";
+
+OR;english;"Returns the logical or of its arguments.";
+OR;german;"Returns the logical or of its arguments.";
+
+PI;english;"Returns the value of pi.";
+PI;german;"Gibt den Wert der Konstanten PI zurueck.";
+
+POWER;english;"Returns the result of a number raised to a power.";
+POWER;german;"Gibt das Resultat von Zahl hoch Exponent zurueck.";
+
+PROPER;english;"Capitalizes the first letter in a text string and any other letters in text that follow any character other than a letter. Converts all other letters to lowercase letters.";
+PROPER;german;"Verwandelt alle Anfangsbuchstaben (Buchstaben, denen kein anderer Buchstabe vorausgeht) in Grossbuchstaben. Alle anderern Buchsteben werden in Kleinbuchstaben verwandelt.";
+
+QUOTIENT;english;"Returns the integer portion of a division";
+QUOTIENT;german;"Gibt den ganzzahligen Anteil des Divisionsergebnisses zurueck.";
+
+RAND;english;"Returns a random number between 0 and 1";
+RAND;german;"Gibt eine Zufallszahl zwischen 0 und 1 zurueck.";
+
+RANDBETWEEN;english;"Returns a random number in the range you specify.";
+RANDBETWEEN;german;"Gibt eine Zufallszahl aus dem uebergebenen Bereich zurueck.";
+
+REPLACE;english;"REPLACE replaces part of a text string, based on the number of characters you specify, with a different text string. Old_text is text in which you want to replace some characters. Start_num is the position of the character in old_text that you want to replace with new_text. Num_chars is the number of characters in old_text that you want REPLACE to replace with new_text. New_text is the text that will replace characters in old_text.";
+REPLACE;german;"REPLACE ersetzt einen Teil eines Strings durch einen neuen, wobei die Zahl der ersetzten Buchstaben und deren Position von den Argumenten abhaengt. Text_Alt ist der Basis-Text, in welchem wir etwas ersetzen wollen. Anfang ist die Position in diesem String, ab welcher wie ersetzen und Laenge die Anzahl der zu ersetzenden Buchstaben. Text_Neu ist der einzusetzende Ersatztext.";
+
+REPT;english;"Repeats text a given number of times. Text is the text you want to repeat. Number_times is a positive number specifying the number of times to repeat text. If number_times is 0 (zero), REPT returns  -empty text-. If number_times is not an integer, it is truncated.";
+REPT;german;"Wiederholt den Text so oft wie angegeben. Text ist der zu wiederholende Text. Zahl_Wiederholungen ist eine positive Zahl, welche angibt, wie oft der Text zu wiederholen ist. Falls Zahl_Wiederholungen 0 ist, so wird Leerstring zurueckgegeben. Falls Zahl_Wiederholungen keine ganze Zahl (sondern ein Double) ist, werden die Nachkommastellen abgeschnitten.";
+
+RIGHT;english;"Returns the rightmost characters from a text value. Text is the text string that contains the characters you want to extract. Num_chars specifies the number of characters you want RIGHT to extract. Num_chars must be greater than or equal to zero. If num_cahrs is greater than the length of text, RIGHT returns all of the text. If num_chars is omitted, it is assumed to be 1.";
+RIGHT;german;"Gibt soviele Buchstaben eines Textes zurueck, wie das Integer-Argument angibt.Der zurueckgegebene String beginnt am rechten Ende des Ursprungstextes. Das Integer-Argument muss groesser oder gleich 0 sein. Falls die Zahl groesser oder gleich der Laenge des Textes ist, so wird der gesamte Text zurueckgegeben.Falls das Integer-Argument weggelassen wird, so wird 1 ersetzt.";
+
+ROUND;english;"Rounds a number to a specified number of digits. If num_digits is 0, then number is rounded to the nearest integer. If num_digits is less than 0, then number is rounded to the left of the decimal point.";
+ROUND;german;"Rundet eine Zahl auf die angegebene Zahl von Nachkommastellen.Falls Zahl_Stellen 0 ist, so wird die Zahl auf die naechste ganze Zahl gerundet. Falls Zahl_Stelen kleiner 0 ist, so wird die Zahl vor dem Komma entsprechend gerundet.";
+
+SEARCH;english;"Finds one text value within another (not case-sensitive) Find_text is the text you want to find. You can use the wildcard characters, question mark (?) and asterisk (*) in find_text. A question mark matches any single character; an asterisk matches any sequence of characters. If you want to find an actual question mark or asterisk, type a tilde (~) before the character. Within_text is the text in which you want to search for find_text. If find_text is not found, then 0 is returned. If found, then position is returned.";
+SEARCH;german;"Findet einen Text-Wert in einem anderen.(nicht case-sensitiv) Text_Suche ist der zu findende Text. Man kann wildcards, ? und * in Text_Suche verwenden. Ein Fragezeichen passt zu jedem einzelnen Zeichen und ein Sternchen zu jeder Folge von Zeichen. Falls Fragezeichen oder Sternchen selbst gefunden werden sollen, muss eine Tilde ~ vorangestellt werden. Text_Basis ist der Text, in welchem Text_Suche gefunden werden soll. Falls Text_Suche nicht gefunden wird, wird 0 zurueckgeliefert. Wenn es gefunden wird, wird die Position zurueckgeliefert.";
+
+SIGN;english;"Returns the sign of a number";
+SIGN;german;"Gibt das Vorzeichen einer Zahl zurueck.";
+
+SIN;english;"Returns the sine. The number is given in radians.";
+SIN;german;"Gibt den Sinus des Arguments im Bogenmass angegeben wird.";
+
+SQRT;english;"Returns a positive square root.";
+SQRT;german;"Gibt eine positive Wurzel zurueck.";
+
+STR;english;"Converts number to string.";
+STR;german;"Konvertiert eine Zahl in einen String.";
+
+STET;english;"If a rule evaluates to STET, then the resulting cell behaves like no rule is existent for this cell";
+STET;german;"Falls die Auswertung einer Regel STET ergibt, so verhaelt sich die resultierende Zelle so, als gaebe es fuer sie keine Regel.";
+
+SUBSTITUTE;english;"Substitutes new text for old text in a text string. Text is the text or the reference to a cell containing text for which you want to substitute characters. Old_text is the text you want to replace. New_text is the text you want to replace old_text with.";
+SUBSTITUTE;german;"Ersetzt Text_alt mit Text_neu im String Text. Text ist der Text oder die Referenz zu der Zelle mit dem Text, in dem das Ersetzen stattfindet. Text_alt ist der zu ersetzende Text. Text_neu ist der Text, der anstelle von Text_alt einzusetzen ist.";
+
+SUM;english;"Returns sum of values provided through function arguments.";
+SUM;german;"Returns sum of values provided through function arguments.";
+
+TAN;english;"Returns the tangens. The number is given in radians.";
+TAN;german;"Gibt den Tangens des Argumentes zurueck, welches im Bogenmass angegeben.";
+
+TRIM;english;"Removes spaces from text.";
+TRIM;german;"Entfernt Leerzeichen aus dem Text.";
+
+TRUNC;english;"Truncates a number to an integer.";
+TRUNC;german;"Schneidet alle Nachkommastellen einer Zahl ab, sodass eine ganze Zahl resultiert.";
+
+UPPER;english;"Converts Text to uppercase.";
+UPPER;german;"Wandelt alle Kleinbuchstaben des Textes in Grossbuchstaben um.";
+
+VALUE;english;"Converts a string to a number. Returns 0 if the conversion fails.";
+VALUE;german;"Konvertiert einen String in eine Zahl. Gibt 0 zurueck, falls die Umwandlung fehlschlaegt.";
+
+VALUEDATE;english;"Return a date_text for a given serial number in the format MM-DD-YY. Targetarea must be of type string";
+VALUEDATE;german;"Wandle eine Folgezahl in einen Datums-Text im Format MM-TT-YY um. Zielgebiet muss vom Typ string sein"; 
+
+WEEKDAY;english;"Returns the day of the week corresponding to a date. The day is given as an integer, ranging from 1 (Sunday) to 7 (Saturday), by default.";
+WEEKDAY;german;"Gibt den Wochentag zurueck, der zu einem Datum gehoert. Der Tag wird als ganze Zahl gegebzwischen 1 (Sonntag) und 7 (Samstag) zurueckgegeben.";
+
+PALO.DATA;english;"Retrieves the value of the specified element from the cube.";
+PALO.DATA;german;"Gibt den Wert des angegebenen Wuerfel-Elements zurueck.";
+
+PALO.ECHILD;english;"Retrieves the name of the specified child-element.";
+PALO.ECHILD;german;"Gibt den Wert des angegebenen Kind-Elementes zurueck.";
+
+PALO.ECHILDCOUNT;english;"Retrieves the number of children in the specified consolidated element.";
+PALO.ECHILDCOUNT;german;"Gibt die Zahl der Kinder des angegebenen konsolidierten Elementes zurueck.";
+
+PALO.ECOUNT;english;"Retrieves the amount of dimension elements in the specified dimension.";
+PALO.ECOUNT;german;"Gibt die Zahl der Dimensionselemente der angegebenen Dimension zurueck.";
+
+PALO.EFIRST;english;"Retrieves the first element in the specified dimension.";
+PALO.EFIRST;german;"Gibt das erste Element in der angegebenen Dimension zurueck.";
+
+PALO.EINDENT;english;"Retrieves the indention level of the specified element.";
+PALO.EINDENT;german;"Liefert die Einrueckungsebene des angegebenen Elements zurueck.";
+
+PALO.EINDEX;english;"Retrieves the position of the specified dimension element.";
+PALO.EINDEX;german;"Liefert die Position des angegebenen Dimensionselements.";
+
+PALO.EISCHILD;english;"Checks if a consolidated element contains the specified element, results in 0 or 1."
+PALO.EISCHILD;german;"Prueft, ob ein konsolidiertes Element das angegebene Element enthaelt. Gibt 0 oder 1 zurueck.";
+
+PALO.ELEVEL;english;"Returns the level in the dimension hierarchy of a specified element.";
+PALO.ELEVEL;german;"Gibt die Ebene eines Elementes in der Dimensionshierarchie zurueck.";
+
+PALO.ENAME;english;"Retrieves the name of the element at the specified position (First Position is 1).";
+PALO.ENAME;german;"Gibt den Namen des Elementes an der angegebenen Position zurueck.";
+
+PALO.ENEXT;english;"Retrieves the name of the succeeding element of a dimension element.";
+PALO.ENEXT;german;"Gibt den Namen des Folgeelements eines Dimensionselements zurueck.";
+
+PALO.EOFFSET;english;"Retrieves the name of the dimension element distant by offset from specified element.";
+PALO.EOFFSET;german;"Liefert den Namen des Elementes, welches zum angegebenen Element in der Dimension den Abstand Offset hat.";
+
+PALO.EPARENT;english;"Retrieves the name of the n-th parent of the specified element.";
+PALO.EPARENT;german;"Gibt den Namen des n-ten Elternteils des angegebenen Elements zurueck.";
+
+PALO.EPARENTCOUNT;english;"Retrieves the number of consolidated elements which contain the specified element.";
+PALO.EPARENCOUNT;german;"Gibt die Zahl der konsolidierten Elemente zurueck, welche das angegebene Element enthalten.";
+
+PALO.EPREV;english;"Retrieves the name of the preceding element of a dimension element.";
+PALO.EPREV;german;"Gibt den Namen des Vorgaengerelements des angegebenen Dimensionselements zurueck.";
+
+PALO.ESIBLING;english;"Retrieves the name of the specified sibling";
+PALO.ESIBLING;german;"Gibt den Namen des angegebenen Geschwisterelements zurueck.";
+
+PALO.ETOPLEVEL;english;"Returns the level number of the highest element in the consolidation hierarchy of a dimension.";
+PALO.ETOPLEVEL;german;"Gibt die hoechste Ebene zurueck, die ein Element in der Konsolidierungshierarchie der angegebenen Dimension hat.";
+
+PALO.ETYPE;english;"Retrieves the type of the specified element.(numeric, string or consolidated)";
+PALO.ETYPE;german;"Gibt den Typ des angegebenen Elements zurueck.(Zahl,String oder konsolidiert)";
+
+PALO.EWEIGHT;english;"Returns the consolidation weight of a specified component of an element.";
+PALO.EWEIGHT;german;"Gibt das Konsolidierungs-Beitrag des angegebenen Teils eines Elementes zurueck.";
+
+PALO.CUBEDIMENSION;english;"Returns the name of the nth dimension in a specified hypercube.";
+PALO.CUBEDIMENSION;german;"Gibt den Namen der n-ten Dimension im angegebenen Wuerfel zurueck.";   
+
+PALO.MARKER;english;"Adds marker for a slice.";
+PALO.MARKER;german;"Fuegt Marker fuer Teil-Wuerfel zu.";

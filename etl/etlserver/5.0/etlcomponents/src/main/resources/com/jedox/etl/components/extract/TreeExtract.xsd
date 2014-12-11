@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="extract" type="c:extracttype" />
+
+    <complexType name="attributetype">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="name" type="string" use="required" />
+				<attribute name="type" type="c:attributedatatypeValidate"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	
+	<simpleType name="attributedatatype">
+ 		 <restriction base="string">
+    		<enumeration value="text"/>
+    		<enumeration value="numeric"/>
+  		</restriction>
+	</simpleType> 	
+    
+ 	<simpleType name="attributedatatypeValidate">
+ 		 <restriction base="string">
+    		<enumeration value="text"/>
+    		<enumeration value="numeric"/>
+    		<enumeration value="alias"/>
+  		</restriction>
+	</simpleType> 	
+     
+	<simpleType name="datatype">
+ 		 <restriction base="string">
+    		<enumeration value="text"/>
+    		<enumeration value="numeric"/>
+  		</restriction>
+	</simpleType> 	
+    
+    <complexType name="constant">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="attribute" type="c:attributetype"/>
+			<element name="constant" type="c:constant"/>
+		</choice>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="weight" type="decimal" default="1.0"/>
+		<attribute name="type" type="c:datatype"/>
+	</complexType>
+	
+	<complexType name="constants">
+		<sequence>
+			<element name="constant" type="c:constant" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+    <complexType name="extracttype">
+        <all>
+        	<element name="constants" type="c:constants" minOccurs="0" maxOccurs="1"/>
+        	<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+</schema>

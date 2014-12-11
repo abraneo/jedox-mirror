@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Exceptions">
+      <UniqueIdentifier>{4de32671-9386-4e41-b504-6a733c042954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Types">
+      <UniqueIdentifier>{230b9d5c-0d98-4d97-8b3b-8e51a896127c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Types\Impl">
+      <UniqueIdentifier>{11a3c9d1-5e37-40c5-b8d0-0afe430bc67d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{824f2d79-a44b-408a-823a-1c0d09031871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main\Impl">
+      <UniqueIdentifier>{4cb290d0-f1b4-4937-849b-392e1df057ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{901e34b0-f7b8-4ffb-ad1a-b0647e3d9d58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util\Impl">
+      <UniqueIdentifier>{6b1065e6-8ef8-42f0-8a1a-1aa1b28268f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="X">
+      <UniqueIdentifier>{6f584579-4ac4-4086-ac6a-c75263157079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Conversion">
+      <UniqueIdentifier>{3beb7290-4238-401f-9e23-7265121e355a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Conversion\Impl">
+      <UniqueIdentifier>{c48e2b99-ef8d-4eda-aa56-5dc0924b3525}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\AbstractLogger.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ArgumentException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericCellException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\InvalidRequestException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryCacheEntryNotFoundException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\SpreadsheetFuncsException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\WrongParamCountException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\CellValue.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\CellValueArray.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ConsolidationElement.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ConsolidationElementArray.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\CubeInfo.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\DatabaseInfo.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\DimensionElementInfo.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\DimensionElementInfoArray.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\DimensionElementType.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\DimensionInfo.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ElementList.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ElementListArray.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ErrorInfo.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\LicenseInfo.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\RuleInfo.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ServerInfo.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\StringArray.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\StringArrayArray.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\SubsetResult.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\XLError.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ConvertingCell.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericArgumentArray.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericArrayBuilder.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericCell.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="GenericCellCellSerializer.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericCellIterator.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericContext.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\QueryCache.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleCell.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\SpreadsheetFuncs.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\SpreadsheetFuncsBase.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\SpreadsheetFuncsMessages.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\Wrapper.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Bind.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\Messages.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\Poolable.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="StringTokenizer.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\conversion.hpp">
+      <Filter>Conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\Converter.hpp">
+      <Filter>Conversion</Filter>
+    </ClInclude>
+    <ClInclude Include="namespaces.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GoalSeekType.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\AggregationTypes.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\IntArray.h">
+      <Filter>Types</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CellValue.cpp">
+      <Filter>Types\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementListArray.cpp">
+      <Filter>Types\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="XLError.cpp">
+      <Filter>Types\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="ConvertingCell.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="GenericArgumentArray.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="GenericCell.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="GenericCellCellSerializer.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryCache.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleCell.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="SpreadsheetFuncs.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="SpreadsheetFuncsBase.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="SpreadsheetFuncsMessages.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Wrapper.cpp">
+      <Filter>Main\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="StringTokenizer.cpp">
+      <Filter>Util\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Conversion.cpp">
+      <Filter>Conversion\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Converter.cpp">
+      <Filter>Conversion\Impl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Poolable.ipp">
+      <Filter>Util</Filter>
+    </None>
+    <None Include="..\Common\Documentation.xsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="..\Common\Documentation.xsd">
+      <Filter>X</Filter>
+    </CustomBuildStep>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\Common\Documentation.xml">
+      <Filter>X</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleUnionLoop" version="5.1" modified="1383649406573" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Demonstrates transform type Union to append different sources and Transform type Loop to iterate over a source with a paramterisation source.</comment>
+    </header>
+  </headers>
+  <variables>
+    <variable name="Count" modified="1383649406573" modifiedBy="">
+      <default>1</default>
+    </variable>
+  </variables>
+  <connections>
+    <connection name="HierProducts_file" type="File" modified="1383649406573" modifiedBy="">
+      <database>HierarchyProductsNC.csv</database>
+      <header>false</header>
+      <delimiter>,</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="BikerProducts_file" type="File" modified="1383649406573" modifiedBy="">
+      <database>BikerProducts.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="out_Union" type="File" modified="1383649406573" modifiedBy="">
+      <database>Result_Union.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="out_Loop" type="File" modified="1383649406573" modifiedBy="">
+      <database>Result_Loop.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="BikerProducts_Extract" type="File" modified="1383649406573" modifiedBy="">
+      <connection nameref="BikerProducts_file" />
+      <alias_map>
+        <alias name="ProductID">1</alias>
+        <alias name="ProductName">2</alias>
+        <alias name="ProductCategoryID">8</alias>
+      </alias_map>
+    </extract>
+    <extract name="HierProducts_Extract" type="File" modified="1383649406573" modifiedBy="">
+      <connection nameref="HierProducts_file" />
+      <query><![CDATA[select "column2" from "HierProducts_file" where "column1"='N']]></query>
+      <alias_map>
+        <alias name="ProductID">1</alias>
+      </alias_map>
+    </extract>
+    <extract name="Counter" type="Count" modified="1383649406573" modifiedBy="">
+      <start>1</start>
+      <end>10</end>
+      <alias>Count</alias>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="Products_Union" type="TableUnion" modified="1383649406573" modifiedBy="">
+      <sources>
+        <source nameref="BikerProducts_Extract" />
+        <source nameref="HierProducts_Extract" />
+      </sources>
+    </transform>
+    <transform name="BikerProducts_Trans" type="FieldTransform" modified="1383649406573" modifiedBy="">
+      <sources>
+        <source nameref="BikerProducts_Extract" />
+      </sources>
+      <functions>
+        <function name="Product_Iterator" type="Concatenation">
+          <inputs>
+            <input constant="${Count}-" />
+            <input nameref="ProductID" />
+          </inputs>
+        </function>
+      </functions>
+      <target>
+        <coordinates>
+          <coordinate name="Iteration">
+            <input constant="Iteration ${Count}" />
+          </coordinate>
+          <coordinate>
+            <input nameref="Product_Iterator" />
+          </coordinate>
+          <coordinate>
+            <input nameref="ProductName" />
+          </coordinate>
+        </coordinates>
+      </target>
+    </transform>
+    <transform name="Products_Loop" type="TableLoop" modified="1383649406573" modifiedBy="">
+      <sources>
+        <source nameref="BikerProducts_Trans" />
+      </sources>
+      <loops>
+        <loop nameref="Counter" />
+      </loops>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="Products_Union_Load" type="File" modified="1383649406573" modifiedBy="">
+      <source nameref="Products_Union" />
+      <connection nameref="out_Union" />
+    </load>
+    <load name="Products_Loop_Load" type="File" modified="1383649406573" modifiedBy="">
+      <source nameref="Products_Loop" />
+      <connection nameref="out_Loop" />
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard" modified="1383649406573" modifiedBy="">
+      <execution type="load" nameref="Products_Union_Load" />
+      <execution type="load" nameref="Products_Loop_Load" />
+    </job>
+  </jobs>
+</project>
+

@@ -1,0 +1,89 @@
+@request_path /dimension/cubes
+
+@short_description Returns the list of cubes using a dimension
+
+@long_description 
+
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+
+@param dimension
+@param_type identifier
+@param_description Identifier of the dimension
+
+@param name_dimension
+@param_type string
+@param_description Name of the dimension. Used only if dimension parameter is omitted.
+
+@param show_normal
+@param_type identifier
+@param_description Show cubes of type normal (0=do not show normal cubes, 1=show (default))
+
+@param show_system
+@param_type identifier
+@param_description Show cubes of type system (0=do not show system cubes (default), 1=show)
+
+@param show_attribute
+@param_type identifier
+@param_description Show cubes of type attribute (0=do not show attribute cubes (default), 1=show)
+ 
+@param show_info
+@param_type identifier
+@param_description Show cubes of type user info (0=do not show user info cubes (default), 1=show)
+
+@param show_gputype
+@param_type identifier
+@param_description Show cubes of type gpu type (0=do not show gpu type cubes , 1=show (default))
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+
+@result cube
+@result_type identifier
+@result_description Identifier of the cube
+
+@result name_cube
+@result_type string
+@result_description Name of the cube
+
+@result number_dimensions
+@result_type integer
+@result_description Number of dimensions
+
+@result dimensions
+@result_type identifier
+@result_description Comma separated list of dimension identifiers
+
+@result number_cells
+@result_type double
+@result_description Total number of cells
+
+@result number_filled_cells
+@result_type integer
+@result_description Number of filled numeric base cells plus number of filled string cells
+
+@result status
+@result_type integer
+@result_description Status of cube (0=unloaded, 1=loaded and 2=changed)
+
+@result type
+@result_type integer
+@result_description Type of cube (0=normal, 1=system, 2=attribute, 3=user info, 4=gpu type)
+
+@result cube_token
+@result_type integer
+@result_description The cube token of the cube
+
+
+@example database=1&dimension=2
+@example_description List the cubes of dimension "2" of database "1"

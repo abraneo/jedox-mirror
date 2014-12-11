@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="source" type="c:sourcetype" />
+    <element name="loop" substitutionGroup="c:source"/>
+    
+    <simpleType name="viewformat">
+ 		 <restriction base="string">
+    		<enumeration value="fh"/>
+    		<enumeration value="fhw"/>
+    		<enumeration value="pc"/>
+    		<enumeration value="pcw"/>
+    		<enumeration value="pcwa"/>
+    		<enumeration value="pcwat"/>
+    		<enumeration value="ncw"/>
+    		<enumeration value="ncwa"/>
+    		<enumeration value="ea"/>
+  		</restriction>
+	</simpleType>  
+	
+	<simpleType name="filtertype">
+ 		 <restriction base="string">
+    		<enumeration value="and"/>
+    		<enumeration value="or"/>
+  		</restriction>
+	</simpleType>  
+	
+	<simpleType name="filterrangenumeric">
+ 		 <restriction base="token">
+    		<pattern value="(\[|\()((\-?\d*\.?\d*)|\$\{\w+\}),((\-?\d*\.?\d*)|\$\{\w+\})(\]|\))"/>
+  		</restriction>
+	</simpleType>  
+	
+	<simpleType name="filterrangealpha">
+ 		 <restriction base="token">
+    		<pattern value="(\[|\()((\w|[\.;+\- ])*|\$\{\w+\}),((\w|[\.;+\- ])*|\$\{\w+\})(\]|\))"/>
+  		</restriction>
+	</simpleType>  
+	
+	<complexType name="filteroperator">
+		<attribute name="range" type="c:filterrangenumeric"/>
+		<attribute name="value" type="string"/>
+		<attribute name="regexp" type="token"/>
+		<attribute name="between" type="c:filterrangealpha"/>
+	</complexType>	
+	
+	<complexType name="filterinput">
+		<choice minOccurs="1" maxOccurs="unbounded">
+			<element name="accept" type="c:filteroperator"/>
+			<element name="deny" type="c:filteroperator"/>
+		</choice>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>source:/alias_map/alias/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	
+	<complexType name="filter">
+		<sequence>
+			<element name="input" type="c:filterinput" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="type" type="c:filtertype" default="and"/>
+	</complexType>	
+	
+	<simpleType name="sortertype">
+ 		 <restriction base="string">
+    		<enumeration value="asc"/>
+    		<enumeration value="desc"/>
+  		</restriction>
+	</simpleType>   
+	
+	<complexType name="sorterinputref">
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>source:/alias_map/alias/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="order" type="c:sortertype" default="asc"/>
+	</complexType>	
+	
+	<complexType name="sorter">
+		<sequence>
+			<element name="input" type="c:sorterinputref" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>	
+
+	<complexType name="sourcetype">
+		<all>
+			<element name="filter" type="c:filter" minOccurs="0" maxOccurs="1"/>
+			<element name="sorter" type="c:sorter" minOccurs="0" maxOccurs="1"/>
+			<element name="sample" type="nonNegativeInteger" minOccurs="0" maxOccurs="1" default="0"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+		</all>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>sources:/source/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+		<attribute name="root" type="string" default="false"/>
+		<attribute name="weight" type="string"/>
+	</complexType>
+	
+</schema>

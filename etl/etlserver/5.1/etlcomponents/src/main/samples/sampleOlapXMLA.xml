@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleOlapXMLA" version="5.1" modified="1383649252282" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo.
+The connection via the XMLA (XML for Analysis) interface is shown to the Jedox OLAP database (using 3rd pary access) and to the financial consolidation software Lucanet.</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="JedoxXmla" type="JedoxXmla" modified="1383649252282" modifiedBy="">
+      <host>localhost</host>
+      <port>4242</port>
+      <user>admin</user>
+      <password encrypted="true">644+Yu6FCQasesByJMaJyw==</password>
+      <database>Demo</database>
+    </connection>
+    <connection name="Lucanet" type="Lucanet" modified="1383649252282" modifiedBy="">
+      <host>cloud3.lucanet.com</host>
+      <user>administrator</user>
+      <password>pwtest</password>
+      <database>x_jedox</database>
+      <virtualDB>LN.FOS</virtualDB>
+      <ssl>trust</ssl>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Products_Extract" type="Dimension" modified="1383649252282" modifiedBy="">
+      <connection nameref="JedoxXmla" />
+      <query>
+        <dimension name="Products" />
+      </query>
+      <withAttributes>false</withAttributes>
+    </extract>
+    <extract name="Sales_Extract" type="Cube" modified="1383649252282" modifiedBy="">
+      <connection nameref="JedoxXmla" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="Sales" />
+        <dimensions>
+          <dimension name="Regions">
+            <condition operator="like" value="." mode="onlyNodes" type="accept" />
+          </dimension>
+          <dimension name="Months">
+            <condition operator="like" value="." mode="onlyNodes" type="accept" />
+          </dimension>
+          <dimension name="Datatypes">
+            <condition operator="equal" value="Actual" mode="onlyNodes" type="accept" />
+          </dimension>
+          <dimension name="Measures">
+            <condition operator="like" value="." mode="onlyNodes" type="accept" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+    <extract name="Sales_Extract_Blocks" type="Cube" modified="1383649252282" modifiedBy="">
+      <connection nameref="JedoxXmla" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="Sales" />
+        <dimensions>
+          <dimension name="Regions">
+            <condition operator="like" value="." mode="onlyNodes" type="accept" />
+          </dimension>
+          <dimension name="Months">
+            <condition operator="like" value="." mode="onlyNodes" type="accept" />
+          </dimension>
+          <dimension name="Datatypes">
+            <condition operator="equal" value="Actual" mode="onlyNodes" type="accept" />
+          </dimension>
+          <dimension name="Measures">
+            <condition operator="like" value="." mode="onlyNodes" type="accept" />
+          </dimension>
+        </dimensions>
+        <blocksize>#Measures</blocksize>
+      </query>
+    </extract>
+    <extract name="GuV_Lucanet" type="Cube" modified="1383649252282" modifiedBy="">
+      <connection nameref="Lucanet" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="GuV" />
+        <dimensions>
+          <dimension name="Bewertungsebene">
+            <condition operator="like" value="HB I" mode="onlyNodes" type="accept" />
+          </dimension>
+          <dimension name="Datenebene">
+            <condition operator="like" value="Ist" mode="onlyNodes" type="accept" />
+          </dimension>
+          <dimension name="Gesellschaften">
+            <condition operator="equal" value="Tochter 1 GmbH" mode="onlyNodes" type="accept" />
+          </dimension>
+          <dimension name="Periode">
+            <condition operator="like" value="." mode="onlyNodes" type="accept" />
+          </dimension>
+          <dimension name="GuV - Konten">
+            <condition operator="like" value="." mode="onlyNodes" type="accept" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+    <extract name="GuVKonten" type="Dimension" modified="1383649252282" modifiedBy="">
+      <connection nameref="Lucanet" />
+      <query>
+        <dimension name="GuV - Konten" />
+      </query>
+      <withAttributes>false</withAttributes>
+    </extract>
+  </extracts>
+  <transforms />
+  <loads />
+  <jobs />
+</project>
+

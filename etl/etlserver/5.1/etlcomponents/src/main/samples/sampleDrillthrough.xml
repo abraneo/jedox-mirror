@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleDrillthrough" version="5.1" modified="1383649177761" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Project sampleBiker has to be executed before to create the necessary dimensions!
+Demonstration of Drillthrough functionality.
+SalesOrderDetails are not written to cube but is available for Drillthrough request.
+Variant 1: Drillthrough with additional persistence of detailed data in relational table, here in internal Derby Database. Job DrillthroughPersist which creates Cube Orders2.
+Variant 2: Drillthrough without additional persistence. The detailed data is already present via the RelationalExtract Orders_Extract. The Cube load just links the Cube with this extract for Drillthrough request. Job DrillthroughDirect which creates Cube Orders2.
+Note: For the Drillthrough from Excel AddIn, the use of Supervision Server is necessary.</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="biker" type="Jedox" modified="1383649177761" modifiedBy="">
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">usTXJGYaZ+cpbkNzB6SdyA==</password>
+      <database>Biker_ETL</database>
+    </connection>
+    <connection name="CustomerRegions_file" type="File" modified="1383649177761" modifiedBy="">
+      <database>BikerCustomerRegions.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+      <enableEscape>false</enableEscape>
+    </connection>
+    <connection name="Products_file" type="File" modified="1383649177761" modifiedBy="">
+      <database>BikerProducts.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+      <enableEscape>false</enableEscape>
+    </connection>
+    <connection name="Orderlines_file" type="File" modified="1383649177761" modifiedBy="">
+      <database>BikerOrderlines.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+      <enableEscape>false</enableEscape>
+    </connection>
+    <connection name="SQL_Conn" type="Hsqldb" modified="1383649177761" modifiedBy="">
+      <comment><![CDATA[File based HSQL database. Replace this connection with another Relational Database.]]></comment>
+      <database>./demodrillthrough</database>
+      <user>SA</user>
+      <mode>Embedded</mode>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Orders_Extract" type="Relational" modified="1383649177761" modifiedBy="">
+      <connection nameref="SQL_Conn" />
+      <query><![CDATA[select * from ORDERDETAILS]]></query>
+      <alias_map>
+        <alias origin="Orderlines">1</alias>
+        <alias origin="Years">2</alias>
+        <alias origin="Months">3</alias>
+        <alias origin="Products" name="products">4</alias>
+        <alias origin="Customers">5</alias>
+        <alias origin="Channels">6</alias>
+        <alias origin="Datatypes">7</alias>
+        <alias origin="SalesOrderDetailID">8</alias>
+        <alias origin="Measures">9</alias>
+        <alias origin="Value">10</alias>
+      </alias_map>
+    </extract>
+    <extract name="CustomerRegions" type="File" modified="1383649177761" modifiedBy="">
+      <connection nameref="CustomerRegions_file" />
+      <query><![CDATA[select "CustomerID", "CompanyName" from	"CustomerRegions_file"]]></query>
+      <alias_map>
+        <alias name="CustomerID">1</alias>
+        <alias name="CompanyName">2</alias>
+      </alias_map>
+    </extract>
+    <extract name="Products" type="File" modified="1383649177761" modifiedBy="">
+      <connection nameref="Products_file" />
+      <query><![CDATA[select "ProductID", "Name" from "Products_file"]]></query>
+      <alias_map>
+        <alias name="ProductID">1</alias>
+        <alias name="ProductName">2</alias>
+      </alias_map>
+    </extract>
+    <extract name="Orderlines" type="File" modified="1383649177761" modifiedBy="">
+      <connection nameref="Orderlines_file" />
+      <alias_map>
+        <alias name="SalesOrderID">1</alias>
+        <alias name="OrderDate">2</alias>
+        <alias name="CustomerID">4</alias>
+        <alias name="ProductID">7</alias>
+        <alias name="OrderQty">9</alias>
+        <alias name="LineCost">12</alias>
+        <alias name="LineTotal">14</alias>
+        <alias name="Channel">18</alias>
+        <alias name="SalesOrderDetailID">6</alias>
+      </alias_map>
+    </extract>
+    <extract name="CubeSlice_Delete" type="CubeSlice" modified="1383649177761" modifiedBy="">
+      <connection nameref="biker" />
+      <query mode="exclude">
+        <cube name="Orders2" valuename="Value" />
+        <dimensions>
+          <dimension name="Years">
+            <condition operator="equal" value="2012" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Months">
+            <condition operator="equal" value="Jan" mode="onlyBases" type="accept" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+    <extract name="Drillthrough_Data" type="Cube" modified="1383649177761" modifiedBy="">
+      <connection nameref="biker" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both" drillthrough="true">
+        <cube name="Orders2" valuename="Value" />
+        <dimensions>
+          <dimension name="Years">
+            <condition operator="equal" value="2012" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Months">
+            <condition operator="equal" value="Feb" mode="onlyBases" type="accept" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="OrdersData_Trans" type="FieldTransform" modified="1383649177761" modifiedBy="">
+      <sources>
+        <source nameref="Orderlines" />
+      </sources>
+      <functions>
+        <function name="Year" type="DateFormat">
+          <inputs>
+            <input nameref="OrderDate" />
+          </inputs>
+          <parameters>
+            <targetformat>yyyy</targetformat>
+            <sourceformat>dd.MM.yyyy</sourceformat>
+          </parameters>
+        </function>
+        <function name="Month" type="DateFormat">
+          <inputs>
+            <input nameref="OrderDate" />
+          </inputs>
+          <parameters>
+            <targetformat>MMM</targetformat>
+            <sourceformat>dd.MM.yyyy</sourceformat>
+            <language>en</language>
+          </parameters>
+        </function>
+        <function name="ProductText" type="Lookup">
+          <inputs>
+            <input nameref="ProductID" />
+          </inputs>
+          <parameters>
+            <source>Products</source>
+            <from>ProductID</from>
+            <to>ProductName</to>
+          </parameters>
+        </function>
+        <function name="CustomerText" type="Lookup">
+          <inputs>
+            <input nameref="CustomerID" />
+          </inputs>
+          <parameters>
+            <source>CustomerRegions</source>
+            <from>CustomerID</from>
+            <to>CompanyName</to>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="OrdersData_Normalise" type="TableNormalization" modified="1383649177761" modifiedBy="">
+      <sources>
+        <source nameref="OrdersData_Trans" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate name="Orderlines">
+            <input nameref="SalesOrderID" />
+          </coordinate>
+          <coordinate name="Years">
+            <input nameref="Year" />
+          </coordinate>
+          <coordinate name="Months">
+            <input nameref="Month" />
+          </coordinate>
+          <coordinate name="Products">
+            <input nameref="ProductText" />
+          </coordinate>
+          <coordinate name="Customers">
+            <input nameref="CustomerText" />
+          </coordinate>
+          <coordinate name="Channels">
+            <input nameref="Channel" />
+          </coordinate>
+          <coordinate name="Datatypes">
+            <input constant="Actual" />
+          </coordinate>
+          <coordinate>
+            <input nameref="SalesOrderDetailID" />
+          </coordinate>
+        </coordinates>
+        <measures normalize="Measures" valuename="Value">
+          <measure name="Units">
+            <input nameref="OrderQty" />
+          </measure>
+          <measure name="Cost of Sales">
+            <input nameref="LineCost" />
+          </measure>
+          <measure name="Sales">
+            <input nameref="LineTotal" />
+          </measure>
+        </measures>
+      </target>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="DrillthroughPersist" type="Cube" modified="1383649177761" modifiedBy="">
+      <source nameref="OrdersData_Normalise" />
+      <connection nameref="biker" />
+      <cube name="Orders2" splash="disabled">
+        <dimensions>
+          <dimension input="Orderlines" name="Orderlines" />
+          <dimension input="Years" name="Years" />
+          <dimension input="Months" name="Months" />
+          <dimension input="Products" name="Products" />
+          <dimension input="Customers" name="Customers" />
+          <dimension input="Channels" name="Channels" />
+          <dimension input="Datatypes" name="Datatypes" />
+          <dimension input="SalesOrderDetailID" />
+          <dimension input="Measures" name="Measures" />
+        </dimensions>
+        <drillthrough aggregate="false" />
+      </cube>
+      <mode>update</mode>
+    </load>
+    <load name="DrillthroughDirect" type="Cube" modified="1383649177761" modifiedBy="">
+      <source nameref="Orders_Extract" />
+      <connection nameref="biker" />
+      <cube name="Orders3" splash="disabled">
+        <dimensions>
+          <dimension input="Orderlines" name="Orderlines" />
+          <dimension input="Years" name="Years" />
+          <dimension input="Months" name="Months" />
+          <dimension input="Products" name="products" />
+          <dimension input="Customers" name="Customers" />
+          <dimension input="Channels" name="Channels" />
+          <dimension input="Datatypes" name="Datatypes" />
+          <dimension input="SalesOrderDetailID" />
+          <dimension input="Measures" name="Measures" />
+        </dimensions>
+        <drillthrough aggregate="false" directextract="Orders_Extract" />
+      </cube>
+      <mode>update</mode>
+    </load>
+    <load name="PrepareRelational" type="Relational" modified="1383649177761" modifiedBy="">
+      <source nameref="OrdersData_Normalise" />
+      <connection nameref="SQL_Conn" />
+      <mode>update</mode>
+      <table name="ORDERDETAILS" aggregate="false" />
+    </load>
+    <load name="DrillthroughDelete" type="Cube" modified="1383649177761" modifiedBy="">
+      <source nameref="CubeSlice_Delete" />
+      <connection nameref="biker" />
+      <cube name="Orders2" splash="disabled">
+        <drillthrough aggregate="false" />
+      </cube>
+      <mode>delete</mode>
+    </load>
+  </loads>
+  <jobs>
+    <job name="DrillthroughPersist" type="Standard" modified="1383649177761" modifiedBy="">
+      <execution type="load" nameref="DrillthroughPersist" />
+    </job>
+    <job name="DrillthroughDelete" type="Standard" modified="1383649177761" modifiedBy="">
+      <execution type="load" nameref="DrillthroughDelete" />
+    </job>
+    <job name="DrillthroughDirect" type="Standard" modified="1383649177761" modifiedBy="">
+      <execution type="load" nameref="PrepareRelational" />
+      <execution type="load" nameref="DrillthroughDirect" />
+    </job>
+  </jobs>
+</project>
+

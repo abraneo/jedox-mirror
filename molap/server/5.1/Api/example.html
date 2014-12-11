@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Palo - Open-Source MOLAP</title>
+    <link href="/inc/style_palo.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <div id="surround" align="center">
+      <div id="container">
+        <div id="clientHeader">&nbsp;</div>
+
+        <div id="left">
+          <a class="nav" href="/">Home</a>     
+          <a class="nav" href="/browser">Server browser</a>     
+          <a class="nav" href="/api">API Documentation</a>     
+          <a class="nav" href="http://www.jedox.com">Palo Home</a>     
+        </div>
+
+        <div id="center">
+          <div style="margin: 10px;">
+            <h1>PALO documentation</h1>
+
+            <table cellpadding="2" cellspacing="2" width="100%">
+
+              <tr class="border_table">
+                <td colspan="2"><a href="/">home</a> > <a href="/api">API</a> > Example ></td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Example server login</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  Login request to the palo server:
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="value_table">
+                      <td class="doc_table" width="100">Request header</td>
+                      <td>GET /server/login?user=admin&password=21232f297a57a5a743894a0e4a801fc3 HTTP/1.1<br>Host: localhost<br>&nbsp;</td>
+                    </tr>
+                  </table>
+                Note: The password is MD5 encoded.
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  The response of the server login (username and password is valid):
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="value_table">
+                      <td class="doc_table" width="100">Response header</td>
+                      <td>HTTP/1.1 200 OK<br>Server: Palo
+                        <br>Content-Type: text/plain;charset=utf-8<br>Content-Length: 16<br>&nbsp;
+                      </td>
+                    </tr>
+                    <tr class="value_table">
+                      <td class="doc_table">Respose body</td>
+                      <td>f92i;1159364625;</td>
+                    </tr>
+                  </table>
+                Note: "f92i" is the session identifier of the connection.
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  The response of the server login (username or password is not valid):
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="value_table">
+                      <td class="doc_table" width="100">Response header</td>
+                      <td>HTTP/1.1 400 Bad Request<br>Server: Palo
+                        <br>Content-Type: text/plain;charset=utf-8<br>Content-Length: 46<br>&nbsp;
+                      </td>
+                    </tr>
+                    <tr class="value_table">
+                      <td class="doc_table">Respose body</td>
+                      <td>1003;"illegal parameter value";"login error";</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+
+
+              <tr>
+                <td colspan="2"><a name="example1"><h2>Example 1</h2></a></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  Request for the list of OLAP databases:
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="value_table">
+                      <td class="doc_table" width="100">Request header</td>
+                      <td>GET /server/databases?sid=f92i HTTP/1.1
+                        <br>Host: localhost
+                        <br>&nbsp;
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+              <td colspan="2">
+                  The response of a server with two databases:
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="value_table">
+                      <td class="doc_table" width="100">Response header</td>
+                      <td>HTTP/1.1 200 OK
+                        <br>Server: Palo
+                        <br>X-PALO-SV: 846931642
+                        <br>Content-Type: text/plain;charset=utf-8
+                        <br>Content-Length: 55
+                        <br>&nbsp;
+                      </td>
+                    </tr>
+                    <tr class="value_table">
+                      <td class="doc_table">Respose body</td>
+                      <td>0;"Sample Database 1";5;1;1;<br>1;"a new database";0;0;2;</td>
+                    </tr>
+                  </table>
+                Note: "846931642" is the server token.
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  The response of an empty server:
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="value_table">
+                      <td class="doc_table" width="100">Response header</td>
+                      <td>HTTP/1.1 200 OK<br>Server: Palo
+                        <br>Content-Type: text/plain;charset=utf-8<br>Content-Length: 0<br>&nbsp;
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  Request for the list of OLAP databases using a server token:
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="value_table">
+                      <td class="doc_table" width="100">Request header</td>
+                      <td>GET /server/databases?sid=f92i HTTP/1.1
+                        <br>Host: localhost
+                        <br>X-PALO-SV: 846931642
+                        <br>&nbsp;
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  If the token is outdated:
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="value_table">
+                      <td class="doc_table" width="100">Response header</td>
+                      <td>HTTP/1.1 400 Bad Request
+												<br>Server: Palo
+												<br>Content-Type: text/plain;charset=utf-8
+												<br>Content-Length: 54
+												<br>&nbsp;
+                      </td>
+                    </tr>
+                    <tr class="value_table">
+                      <td class="doc_table">Respose body</td>
+                      <td>5001;"server token outdated";"server token outdated";</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+
+
+
+              <tr>
+                <td colspan="2"><h2>Example 2</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  Request for the list of dimension of a not existing database:
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="value_table">
+                      <td class="doc_table" width="100">Request header</td>
+                      <td>GET /database/dimensions?database=2&sid=f92i HTTP/1.1<br>Host: localhost<br>&nbsp;</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  The response:
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="value_table">
+                      <td class="doc_table" width="100">Response header</td>
+                      <td>HTTP/1.1 400 Bad Request
+                      <br>Server: Palo<br>Content-Type: text/plain;charset=utf-8
+                      <br>Content-Length: 48<br>&nbsp;</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td class="doc_table">Respose body</td>
+                      <td>1004;"database not found";"database not found";</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+            </table>  
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footerText">Copyright 2006-2012 Jedox AG</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

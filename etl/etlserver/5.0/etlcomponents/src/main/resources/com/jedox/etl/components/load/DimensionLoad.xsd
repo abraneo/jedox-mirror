@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="load" type="c:dimensionloadtype" />
+
+	<simpleType name="datatype">
+ 		 <restriction base="string">
+    		<enumeration value="text"/>
+    		<enumeration value="numeric"/>
+  		</restriction>
+	</simpleType> 	
+	
+	<complexType name="connectionref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>connections:/connection/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<anyAttribute processContents="lax"/>
+	 </complexType>
+	 
+	 <complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>sources:/source/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="format" type="string"/>
+	 </complexType>
+	 
+	 <simpleType name="loadmode">
+ 		 <restriction base="string">
+    		<enumeration value="update"/>
+    		<enumeration value="add"/>
+    		<enumeration value="create"/>
+    		<enumeration value="delete"/>
+    		<enumeration value="insert"/>
+  		</restriction>
+	</simpleType> 
+    
+    <complexType name="loadsteptype">
+        <attribute name="mode" type="c:loadmode"/>
+    </complexType> 	
+
+	<complexType name="dimensiontype">
+		<all>
+			<element name="elements" type="c:loadsteptype" minOccurs="0" maxOccurs="1"/>
+			<element name="consolidations" type="c:loadsteptype" minOccurs="0" maxOccurs="1"/>
+			<element name="attributes" type="c:loadsteptype" minOccurs="0" maxOccurs="1"/>
+		</all>
+        <attribute name="name" type="string"/>
+    </complexType>
+
+    <complexType name="dimensionloadtype">
+        <all>
+            <element name="connection" type="c:connectionref"/>
+            <element name="source" type="c:sourceref"/>
+			<element name="mode" type="c:loadmode" minOccurs="0" maxOccurs="1"/>            
+            <element name="dimension" type="c:dimensiontype" minOccurs="0" maxOccurs="1"/>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>     
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+</schema>

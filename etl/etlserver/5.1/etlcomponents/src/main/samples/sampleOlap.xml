@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleOlap" version="5.1" modified="1383649244728" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Import Dimensions and Cube with a filter from one OLAP database and load them to another.</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="palodemo" type="Jedox" modified="1383649244728" modifiedBy="">
+      <comment><![CDATA[Palo database from which the data is extracted]]></comment>
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">lbx+AiS9NDGEIyAkS36VtA==</password>
+      <database>Demo</database>
+    </connection>
+    <connection name="palotarget" type="Jedox" modified="1383649244728" modifiedBy="">
+      <comment><![CDATA[Palo database to which the data is loaded]]></comment>
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">WnJvyLJxqFhZbHrt1Ajr9g==</password>
+      <database>Demo_ETL</database>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Years" type="Dimension" modified="1383649244728" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query>
+        <dimension name="Years">
+          <condition operator="inRange" value="[2006,2020]" mode="rootToBases" type="accept" />
+        </dimension>
+      </query>
+      <withAttributes>true</withAttributes>
+    </extract>
+    <extract name="Months" type="Dimension" modified="1383649244728" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query>
+        <dimension name="Months" />
+      </query>
+      <withAttributes>true</withAttributes>
+    </extract>
+    <extract name="Regions" type="Dimension" modified="1383649244728" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query>
+        <dimension name="Regions" />
+      </query>
+      <withAttributes>true</withAttributes>
+    </extract>
+    <extract name="Datatypes" type="Dimension" modified="1383649244728" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query>
+        <dimension name="Datatypes">
+          <condition operator="like" value="Budget|Actual" mode="onlyNodes" type="accept" />
+        </dimension>
+      </query>
+      <withAttributes>true</withAttributes>
+    </extract>
+    <extract name="Measures" type="Dimension" modified="1383649244728" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query>
+        <dimension name="Measures" />
+      </query>
+      <withAttributes>true</withAttributes>
+    </extract>
+    <extract name="Products" type="Dimension" modified="1383649244728" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query>
+        <dimension name="Products">
+          <condition operator="equal" value="Stationary PC's" mode="nodesToBases" type="accept" />
+        </dimension>
+      </query>
+      <withAttributes>true</withAttributes>
+    </extract>
+    <extract name="Sales_Extract" type="Cube" modified="1383649244728" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="Sales" valuename="Value" />
+        <dimensions>
+          <dimension name="Years">
+            <condition operator="inRange" value="[2000,2005]" mode="onlyBases" type="deny" />
+          </dimension>
+          <dimension name="Datatypes">
+            <condition operator="like" value="Actual" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Products">
+            <condition operator="equal" value="Stationary PC's" mode="onlyBases" type="accept" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+  </extracts>
+  <transforms />
+  <loads>
+    <load name="Years" type="Dimension" modified="1383649244728" modifiedBy="">
+      <source nameref="Years" />
+      <connection nameref="palotarget" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Months" type="Dimension" modified="1383649244728" modifiedBy="">
+      <source nameref="Months" />
+      <connection nameref="palotarget" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Measures" type="Dimension" modified="1383649244728" modifiedBy="">
+      <source nameref="Measures" />
+      <connection nameref="palotarget" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Datatypes" type="Dimension" modified="1383649244728" modifiedBy="">
+      <source nameref="Datatypes" />
+      <connection nameref="palotarget" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Regions" type="Dimension" modified="1383649244728" modifiedBy="">
+      <source nameref="Regions" />
+      <connection nameref="palotarget" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Products" type="Dimension" modified="1383649244728" modifiedBy="">
+      <source nameref="Products" />
+      <connection nameref="palotarget" />
+      <dimension>
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+    <load name="Sales_Load" type="Cube" modified="1383649244728" modifiedBy="">
+      <source nameref="Sales_Extract" />
+      <connection nameref="palotarget" />
+      <cube name="SalesCopy" />
+    </load>
+  </loads>
+  <jobs>
+    <job name="Dimensions" type="Standard" modified="1383649244728" modifiedBy="">
+      <execution type="load" nameref="Years" />
+      <execution type="load" nameref="Datatypes" />
+      <execution type="load" nameref="Measures" />
+      <execution type="load" nameref="Months" />
+      <execution type="load" nameref="Products" />
+      <execution type="load" nameref="Regions" />
+    </job>
+    <job name="Cubedata" type="Standard" modified="1383649244728" modifiedBy="">
+      <execution type="load" nameref="Sales_Load" />
+    </job>
+    <job name="default" type="Standard" modified="1383649244728" modifiedBy="">
+      <execution type="job" nameref="Dimensions" />
+      <execution type="job" nameref="Cubedata" />
+    </job>
+  </jobs>
+</project>
+

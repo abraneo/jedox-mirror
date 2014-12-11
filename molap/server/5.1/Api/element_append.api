@@ -1,0 +1,104 @@
+@request_path /element/append
+
+@short_description Updates the children of an element
+
+@long_description This request changes the type of an element to consolidated if necessary and adds the
+given children elements to the existing children.
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+
+@param dimension
+@param_type identifier
+@param_description Identifier of the dimension
+
+@param name_dimension
+@param_type string
+@param_description Name of the dimension. Used only if dimension parameter is omitted.
+ 
+@param element
+@param_type identifier
+@param_description Identifier of the element
+
+@param name_element
+@param_type string
+@param_description Name of the element. Used only if element parameter is omitted.
+
+@param children
+@param_type identifier
+@param_description Comma separated list of children identifiers
+
+@param name_children
+@param_type string
+@param_description Comma separated list of children names. Used only if children parameter is omitted.
+
+@param weights
+@param_type double
+@param_description Optional comma separated list of children
+weights. (defaults to weight=1 for each child)
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the
+<a href="/api/server/login">/server/login</a> request to get a valid
+session identifier.
+
+
+
+@result element
+@result_type identifier
+@result_description Identifier of the element
+
+@result name_element
+@result_type string
+@result_description Name of the element
+
+@result position
+@result_type integer
+@result_description Position of the element
+
+@result level
+@result_type integer
+@result_description Level of the element
+
+@result indent
+@result_type integer
+@result_description Indent of the element
+
+@result depth
+@result_type integer
+@result_description Depth of the element
+
+@result type
+@result_type integer
+@result_description Type of the element (1=NUMERIC, 2=STRING, 4=CONSOLIDATED)
+
+@result number_parents
+@result_type integer
+@result_description Number of parents
+
+@result parents
+@result_type identifier
+@result_description Comma separated list of parent identifiers
+
+@result number_children
+@result_type integer
+@result_description Number of children
+
+@result children
+@result_type identifier
+@result_description Comma separated list of children identifiers
+
+@result weights
+@result_type double
+@result_description Comma separated list of children weights
+
+
+@example database=1&dimension=0&element=29&children=6,7,8&weights=0.1,0.5,0.4
+@example_description Appends the children "6,7,8" to the list of children of element "29"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns="http://schemas.jedox.com/component"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://schemas.jedox.com/component  component.xsd">
+	<connections>
+		<!--  Specify here user specific connections -->
+	</connections>	
+	<extracts>
+		<!--  Specify here user specific extracts -->
+	</extracts>
+	<functions>
+		<!-- Specify here user specific functions -->
+	</functions>
+</components>
+

@@ -1,0 +1,48 @@
+@request_path /rule/parse
+
+@short_description Parse an enterprise rule
+
+@long_description 
+Parse a definition of an enterprise rule. You can either supply a database and a cube or a list of functions.
+If you supply a database and a cube then the areas are validated against the cube and the allowed functions
+are the standard functions. If you supply a list of functions than no validation of the areas are
+performed and only functions and operators from the given list are allowed.
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+ 
+@param functions
+@param_type string
+@param_description List of function names
+ 
+@param definition
+@param_type string
+@param_description Urlencoded enterprise rule
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+
+@result xml_rule
+@result_type string
+@result_description XML representation of the enterprise rule.
+
+
+
+@example database=1&cube=13&definition=['budget']%3dadd(['actual'],['variance']*-1)
+@example_description Simple Rule

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connections>
+	<connection name="Temporary" type="H2File">
+		<comment>backend for temporary runtime data</comment>
+		<user>sa</user>
+		<password></password>
+		<database>$etl_temporary/temp</database>
+		<parameters>
+			<parameter name="#keep">true</parameter>
+			<parameter name="#drop">true</parameter>
+			<parameter name="#singleton">true</parameter>
+			<parameter name="#backend">gen</parameter>
+			<parameter name="#createSchemata">true</parameter>
+			<parameter name="LOG">0</parameter>
+			<parameter name="LOCK_MODE">0</parameter>
+			<parameter name="UNDO_LOG">0</parameter>
+		</parameters>
+	</connection>
+	<connection name="Drillthrough" type="H2File">
+		<comment>backend for temporary runtime data</comment>
+		<user>sa</user>
+		<password></password>
+		<database>$etl_drillthrough/drill</database>
+		<parameters>
+			<parameter name="#keep">true</parameter>
+			<parameter name="#drop">false</parameter>
+			<parameter name="#singleton">true</parameter>
+			<parameter name="#backend">gen</parameter>
+			<parameter name="#createSchemata">true</parameter>
+		</parameters>
+	</connection>
+	<connection name="History" type="DerbyFile">
+		<user>sa</user>
+		<password></password>
+		<database>$etl_persistence</database>
+		<parameters>
+			<parameter name="derby.storage.pageSize">32768</parameter>
+			<parameter name="derby.storage.pageCacheSize">10000</parameter>
+		</parameters>
+	</connection>
+</connections>

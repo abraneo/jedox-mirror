@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://schemas.jedox.com/etlcore"
+	elementFormDefault="qualified"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:c="http://schemas.jedox.com/etlcore">
+
+	<element name="group" type="c:grouptype" /> 
+	
+
+	<complexType name="membertype">
+		<attribute name="name" type="string" use="required"/>
+	</complexType>
+	
+	<complexType name="memberstype">
+		<sequence>
+			<element name="member" type="c:membertype" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+			
+	<complexType name="grouptype">
+		<all>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="members" type="c:memberstype" minOccurs="1" maxOccurs="1"/>
+		</all>
+		<attribute name="name" type="string" use="required"/>
+	</complexType>
+
+</schema>

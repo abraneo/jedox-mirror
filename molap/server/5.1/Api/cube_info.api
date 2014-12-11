@@ -1,0 +1,76 @@
+@request_path /cube/info
+
+@short_description Shows cube data
+ 
+@long_description 
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+@param show_permission
+@param_type boolean
+@param_description If 1 then additional information about the user's permission on cube is returned (optional, default is 0)
+
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+
+@result cube
+@result_type identifier
+@result_description Identifier of the cube
+
+@result name_cube
+@result_type string
+@result_description Name of the cube
+
+@result number_dimensions
+@result_type integer
+@result_description Number of dimensions
+
+@result dimensions
+@result_type identifier
+@result_description Comma separated list of dimension identifiers
+ 
+@result number_cells
+@result_type double
+@result_description Total number of cells
+
+@result number_filled_cells
+@result_type integer
+@result_description Number of filled numeric base cells plus number of filled string cells
+
+@result status
+@result_type integer
+@result_description Status of cube (0=unloaded, 1=loaded and 2=changed)
+
+@result type
+@result_type integer
+@result_description Type of cube (0=normal, 1=system, 2=attribute, 3=user info, 4=gpu type)
+
+@result cube_token
+@result_type integer
+@result_description The cube token of the cube
+
+@result permission
+@result_type string
+@result_description User's permission on cube, maximum over all groups/roles ("N", "R", "W", "D")
+
+
+@example database=1&cube=7
+@example_description Show cube "0" of database "1"

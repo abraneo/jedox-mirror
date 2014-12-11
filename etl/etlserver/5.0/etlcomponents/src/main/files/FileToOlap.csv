@@ -1,0 +1,328 @@
+Products,Regions,Months,Years,Datatypes,Measures,Value
+Desktop L,Germany,Jan,2010,Actual,Units,13118.6221615765
+Desktop L,Germany,Jan,2010,Actual,Cost of Sales,52120.0087170938
+Desktop L,Germany,Jan,2010,Actual,Turnover,60976.7985912649
+Desktop L,Germany,Feb,2010,Actual,Units,11470.1980052087
+Desktop L,Germany,Feb,2010,Actual,Cost of Sales,45153.2529292746
+Desktop L,Germany,Feb,2010,Actual,Turnover,46994.6215340713
+Desktop L,Germany,Mar,2010,Actual,Units,4043.03820204123
+Desktop L,Germany,Mar,2010,Actual,Cost of Sales,14811.6205654034
+Desktop L,Germany,Mar,2010,Actual,Turnover,19248.4430612174
+Desktop L,France,Jan,2010,Actual,Units,11660.9974769569
+Desktop L,France,Jan,2010,Actual,Cost of Sales,47860.4304105545
+Desktop L,France,Jan,2010,Actual,Turnover,55993.3871361478
+Desktop L,France,Feb,2010,Actual,Units,10195.7315601855
+Desktop L,France,Feb,2010,Actual,Cost of Sales,41463.0421756425
+Desktop L,France,Feb,2010,Actual,Turnover,43153.9224371638
+Desktop L,France,Mar,2010,Actual,Units,3593.81173514776
+Desktop L,France,Mar,2010,Actual,Cost of Sales,13601.1208130426
+Desktop L,France,Mar,2010,Actual,Turnover,17675.3379809159
+Desktop L,Switzerland,Jan,2010,Actual,Units,2096.65400406408
+Desktop L,Switzerland,Jan,2010,Actual,Cost of Sales,9861.84508838349
+Desktop L,Switzerland,Jan,2010,Actual,Turnover,10845.6419192352
+Desktop L,Switzerland,Feb,2010,Actual,Units,4641.35308117028
+Desktop L,Switzerland,Feb,2010,Actual,Cost of Sales,18245.9976151773
+Desktop L,Switzerland,Feb,2010,Actual,Turnover,21471.3076125239
+Desktop L,Switzerland,Mar,2010,Actual,Units,2622.60123520541
+Desktop L,Switzerland,Mar,2010,Actual,Cost of Sales,9693.43580546938
+Desktop L,Switzerland,Mar,2010,Actual,Turnover,10349.9330920524
+Desktop L,Netherlands,Jan,2010,Actual,Units,4229.86720110434
+Desktop L,Netherlands,Jan,2010,Actual,Cost of Sales,16000.0014539908
+Desktop L,Netherlands,Jan,2010,Actual,Turnover,17654.9254774199
+Desktop L,Netherlands,Feb,2010,Actual,Units,3524.69728500685
+Desktop L,Netherlands,Feb,2010,Actual,Cost of Sales,13986.130955323
+Desktop L,Netherlands,Feb,2010,Actual,Turnover,16746.4430687399
+Desktop L,Netherlands,Mar,2010,Actual,Units,4694.55654219994
+Desktop L,Netherlands,Mar,2010,Actual,Cost of Sales,16251.7819153722
+Desktop L,Netherlands,Mar,2010,Actual,Turnover,20776.2744687959
+Desktop L,Belgium,Jan,2010,Actual,Units,5591.08898351917
+Desktop L,Belgium,Jan,2010,Actual,Cost of Sales,28889.8175841387
+Desktop L,Belgium,Jan,2010,Actual,Turnover,29547.2248135679
+Desktop L,Belgium,Feb,2010,Actual,Units,1891.12639197446
+Desktop L,Belgium,Feb,2010,Actual,Cost of Sales,8037.54388077254
+Desktop L,Belgium,Feb,2010,Actual,Turnover,8241.78769241517
+Desktop L,Belgium,Mar,2010,Actual,Units,7843.01189376036
+Desktop L,Belgium,Mar,2010,Actual,Cost of Sales,29367.0062451363
+Desktop L,Belgium,Mar,2010,Actual,Turnover,32773.7864001239
+Desktop L,Luxembourg,Jan,2010,Actual,Cost of Sales,2668.63653546679
+Desktop L,Luxembourg,Jan,2010,Actual,Turnover,3351.68267279999
+Desktop L,Luxembourg,Feb,2010,Actual,Units,337.435182315604
+Desktop L,Luxembourg,Feb,2010,Actual,Cost of Sales,1614.26853419377
+Desktop L,Luxembourg,Feb,2010,Actual,Turnover,1515.89299110479
+Desktop L,Luxembourg,Mar,2010,Actual,Units,745.211602081791
+Desktop L,Luxembourg,Mar,2010,Actual,Cost of Sales,2479.47775603172
+Desktop L,Luxembourg,Mar,2010,Actual,Turnover,3322.07194241999
+Desktop L,United Kingdom,Jan,2010,Actual,Units,2596.94811157615
+Desktop L,United Kingdom,Jan,2010,Actual,Cost of Sales,11484.2740960291
+Desktop L,United Kingdom,Jan,2010,Actual,Turnover,11499.4342457148
+Desktop L,United Kingdom,Feb,2010,Actual,Units,3493.666782468
+Desktop L,United Kingdom,Feb,2010,Actual,Cost of Sales,14927.8197362801
+Desktop L,United Kingdom,Feb,2010,Actual,Turnover,16238.3985372839
+Desktop L,United Kingdom,Mar,2010,Actual,Units,26852.5584704585
+Desktop L,United Kingdom,Mar,2010,Actual,Cost of Sales,96922.2915009616
+Desktop L,United Kingdom,Mar,2010,Actual,Turnover,129255.248217479
+Desktop L,Ireland,Jan,2010,Actual,Units,1496.58740301751
+Desktop L,Ireland,Jan,2010,Actual,Cost of Sales,6826.88290930209
+Desktop L,Ireland,Jan,2010,Actual,Turnover,7285.61310735717
+Desktop L,Ireland,Mar,2010,Actual,Units,747.589520937262
+Desktop L,Ireland,Mar,2010,Actual,Cost of Sales,3517.03966030245
+Desktop L,Ireland,Mar,2010,Actual,Turnover,3510.38358732599
+Desktop L,Czech Republic,Jan,2010,Actual,Units,3267.726
+Desktop L,Czech Republic,Jan,2010,Actual,Cost of Sales,14495.7873536825
+Desktop L,Czech Republic,Jan,2010,Actual,Turnover,18484.2779342759
+Desktop L,Czech Republic,Feb,2010,Actual,Units,7001.13645
+Desktop L,Czech Republic,Feb,2010,Actual,Cost of Sales,30715.7235189986
+Desktop L,Czech Republic,Feb,2010,Actual,Turnover,33874.1715422879
+Desktop L,Czech Republic,Mar,2010,Actual,Units,2484.0816
+Desktop L,Czech Republic,Mar,2010,Actual,Cost of Sales,12367.0731188747
+Desktop L,Czech Republic,Mar,2010,Actual,Turnover,12940.3931884919
+Desktop L,Slovakia,Jan,2010,Actual,Units,353.00727
+Desktop L,Slovakia,Jan,2010,Actual,Cost of Sales,1626.38484691044
+Desktop L,Slovakia,Jan,2010,Actual,Turnover,1753.09384191479
+Desktop L,Slovakia,Feb,2010,Actual,Units,570.4776
+Desktop L,Slovakia,Feb,2010,Actual,Cost of Sales,2634.62626958651
+Desktop L,Slovakia,Feb,2010,Actual,Turnover,2764.72239480359
+Desktop L,Slovakia,Mar,2010,Actual,Units,376.04028
+Desktop L,Slovakia,Mar,2010,Actual,Cost of Sales,1737.42202073903
+Desktop L,Slovakia,Mar,2010,Actual,Turnover,1788.24870904679
+Desktop L,Poland,Jan,2010,Actual,Units,1524.4383
+Desktop L,Poland,Jan,2010,Actual,Cost of Sales,5498.86537297629
+Desktop L,Poland,Jan,2010,Actual,Turnover,6476.55975119997
+Desktop L,Poland,Feb,2010,Actual,Units,2828.62965
+Desktop L,Poland,Feb,2010,Actual,Cost of Sales,12740.5391767597
+Desktop L,Poland,Feb,2010,Actual,Turnover,15247.2580897559
+Desktop L,Poland,Mar,2010,Actual,Units,4980.44085
+Desktop L,Poland,Mar,2010,Actual,Cost of Sales,21863.3513881566
+Desktop L,Poland,Mar,2010,Actual,Turnover,27659.3202464039
+Desktop L,Austria,Jan,2010,Actual,Units,1689.0027
+Desktop L,Austria,Jan,2010,Actual,Cost of Sales,6629.1407050472
+Desktop L,Austria,Jan,2010,Actual,Turnover,6763.44362749437
+Desktop L,Austria,Feb,2010,Actual,Units,2157.309
+Desktop L,Austria,Feb,2010,Actual,Cost of Sales,9182.56031199053
+Desktop L,Austria,Feb,2010,Actual,Turnover,9473.68227839876
+Desktop L,Austria,Mar,2010,Actual,Units,2316.68745
+Desktop L,Austria,Mar,2010,Actual,Cost of Sales,9552.61787943985
+Desktop L,Austria,Mar,2010,Actual,Turnover,11149.007002056
+Desktop L,Italy,Jan,2010,Actual,Units,8590.76295
+Desktop L,Italy,Jan,2010,Actual,Cost of Sales,36286.9882143681
+Desktop L,Italy,Jan,2010,Actual,Turnover,37663.0849998479
+Desktop L,Italy,Feb,2010,Actual,Units,5290.6854
+Desktop L,Italy,Feb,2010,Actual,Cost of Sales,19741.6282906658
+Desktop L,Italy,Feb,2010,Actual,Turnover,24163.1120087279
+Desktop L,Italy,Mar,2010,Actual,Units,12653.1405
+Desktop L,Italy,Mar,2010,Actual,Cost of Sales,49325.2105156761
+Desktop L,Italy,Mar,2010,Actual,Turnover,54834.1585425478
+Desktop L,Portugal,Jan,2010,Actual,Units,2093.0679
+Desktop L,Portugal,Jan,2010,Actual,Cost of Sales,8141.20428515452
+Desktop L,Portugal,Jan,2010,Actual,Turnover,9347.30116107476
+Desktop L,Portugal,Feb,2010,Actual,Units,2164.1928
+Desktop L,Portugal,Feb,2010,Actual,Cost of Sales,9495.88019740623
+Desktop L,Portugal,Feb,2010,Actual,Turnover,9372.14897397236
+Desktop L,Portugal,Mar,2010,Actual,Units,803.84997
+Desktop L,Portugal,Mar,2010,Actual,Cost of Sales,3712.86614365552
+Desktop L,Portugal,Mar,2010,Actual,Turnover,3723.05163300839
+Desktop L,Spain,Jan,2010,Actual,Units,8276.76465
+Desktop L,Spain,Jan,2010,Actual,Cost of Sales,30266.3998893001
+Desktop L,Spain,Jan,2010,Actual,Turnover,32400.1871849039
+Desktop L,Spain,Feb,2010,Actual,Units,12605.901
+Desktop L,Spain,Feb,2010,Actual,Cost of Sales,52261.4881888218
+Desktop L,Spain,Feb,2010,Actual,Turnover,54098.1743887198
+Desktop L,Spain,Mar,2010,Actual,Units,9409.47315
+Desktop L,Spain,Mar,2010,Actual,Cost of Sales,38607.871647171
+Desktop L,Spain,Mar,2010,Actual,Turnover,46068.1223189878
+Desktop L,Denmark,Jan,2010,Actual,Units,2764.71195
+Desktop L,Denmark,Jan,2010,Actual,Cost of Sales,11044.3175951558
+Desktop L,Denmark,Jan,2010,Actual,Turnover,14646.6012739199
+Desktop L,Denmark,Feb,2010,Actual,Cost of Sales,14235.1746725589
+Desktop L,Denmark,Feb,2010,Actual,Turnover,15082.5720275999
+Desktop L,Denmark,Mar,2010,Actual,Units,1582.4655
+Desktop L,Denmark,Mar,2010,Actual,Cost of Sales,7107.46138294131
+Desktop L,Denmark,Mar,2010,Actual,Turnover,8089.71454136997
+Desktop L,Finland,Jan,2010,Actual,Units,1428.6195
+Desktop L,Finland,Jan,2010,Actual,Cost of Sales,5554.0854059838
+Desktop L,Finland,Jan,2010,Actual,Turnover,7101.22015910997
+Desktop L,Finland,Feb,2010,Actual,Cost of Sales,2478.80600974147
+Desktop L,Finland,Feb,2010,Actual,Turnover,3854.43507371998
+Desktop L,Finland,Mar,2010,Actual,Units,2588.7015
+Desktop L,Finland,Mar,2010,Actual,Cost of Sales,10123.3036722429
+Desktop L,Finland,Mar,2010,Actual,Turnover,10550.7190446504
+Desktop L,Norway,Jan,2010,Actual,Units,980.067165
+Desktop L,Norway,Jan,2010,Actual,Cost of Sales,4643.83186346097
+Desktop L,Norway,Jan,2010,Actual,Turnover,4729.60226064478
+Desktop L,Norway,Feb,2010,Actual,Cost of Sales,2380.53201542758
+Desktop L,Norway,Feb,2010,Actual,Turnover,3854.43507371998
+Desktop L,Norway,Mar,2010,Actual,Units,1236.2196
+Desktop L,Norway,Mar,2010,Actual,Cost of Sales,5242.03437467191
+Desktop L,Norway,Mar,2010,Actual,Turnover,5184.83888953798
+Desktop L,Sweden,Jan,2010,Actual,Units,773.14545
+Desktop L,Sweden,Jan,2010,Actual,Cost of Sales,3538.0255119996
+Desktop L,Sweden,Jan,2010,Actual,Turnover,3899.63238855958
+Desktop L,Sweden,Feb,2010,Actual,Units,683.950575
+Desktop L,Sweden,Feb,2010,Actual,Cost of Sales,2449.67212433854
+Desktop L,Sweden,Feb,2010,Actual,Turnover,2724.77940956759
+Desktop L,Sweden,Mar,2010,Actual,Units,3548.3448
+Desktop L,Sweden,Mar,2010,Actual,Cost of Sales,14719.9515786871
+Desktop L,Sweden,Mar,2010,Actual,Turnover,14529.9223959119
+Desktop Pro,Germany,Jan,2010,Actual,Units,2497.15524918214
+Desktop Pro,Germany,Jan,2010,Actual,Cost of Sales,12492.4482943172
+Desktop Pro,Germany,Jan,2010,Actual,Turnover,13030.505886217
+Desktop Pro,Germany,Feb,2010,Actual,Units,4647.12910775876
+Desktop Pro,Germany,Feb,2010,Actual,Cost of Sales,19273.6930592138
+Desktop Pro,Germany,Feb,2010,Actual,Turnover,24078.2205647906
+Desktop Pro,Germany,Mar,2010,Actual,Units,12390.9213770283
+Desktop Pro,Germany,Mar,2010,Actual,Cost of Sales,49540.9530325604
+Desktop Pro,Germany,Mar,2010,Actual,Turnover,63995.4438353443
+Desktop Pro,France,Jan,2010,Actual,Units,2219.69355482857
+Desktop Pro,France,Jan,2010,Actual,Cost of Sales,11471.4860370222
+Desktop Pro,France,Jan,2010,Actual,Turnover,11965.57014345
+Desktop Pro,France,Feb,2010,Actual,Units,4130.7814291189
+Desktop Pro,France,Feb,2010,Actual,Cost of Sales,17698.5243886261
+Desktop Pro,France,Feb,2010,Actual,Turnover,22110.3953762999
+Desktop Pro,France,Mar,2010,Actual,Units,11014.1523351363
+Desktop Pro,France,Mar,2010,Actual,Cost of Sales,45492.1515450509
+Desktop Pro,France,Mar,2010,Actual,Turnover,58765.3295090398
+Desktop Pro,Switzerland,Jan,2010,Actual,Units,2445.49691163787
+Desktop Pro,Switzerland,Jan,2010,Actual,Cost of Sales,9831.87773999081
+Desktop Pro,Switzerland,Jan,2010,Actual,Turnover,10379.2792159056
+Desktop Pro,Switzerland,Feb,2010,Actual,Units,3358.28952251703
+Desktop Pro,Switzerland,Feb,2010,Actual,Cost of Sales,15255.9802388118
+Desktop Pro,Switzerland,Feb,2010,Actual,Turnover,14493.8855070239
+Desktop Pro,Switzerland,Mar,2010,Actual,Units,1121.30920760943
+Desktop Pro,Switzerland,Mar,2010,Actual,Cost of Sales,4267.04439336306
+Desktop Pro,Switzerland,Mar,2010,Actual,Turnover,4626.00250524718
+Desktop Pro,Netherlands,Jan,2010,Actual,Units,2511.64332796505
+Desktop Pro,Netherlands,Jan,2010,Actual,Cost of Sales,11442.7253440028
+Desktop Pro,Netherlands,Jan,2010,Actual,Turnover,12884.0697992159
+Desktop Pro,Netherlands,Feb,2010,Actual,Units,2121.34106178534
+Desktop Pro,Netherlands,Feb,2010,Actual,Cost of Sales,8154.6765301978
+Desktop Pro,Netherlands,Feb,2010,Actual,Turnover,9593.93964467396
+Desktop Pro,Belgium,Jan,2010,Actual,Units,1871.35113923121
+Desktop Pro,Belgium,Jan,2010,Actual,Cost of Sales,6875.87062950565
+Desktop Pro,Belgium,Jan,2010,Actual,Turnover,9078.20892362996
+Desktop Pro,Belgium,Feb,2010,Actual,Units,5046.48387707035
+Desktop Pro,Belgium,Feb,2010,Actual,Cost of Sales,17319.3609270201
+Desktop Pro,Belgium,Feb,2010,Actual,Turnover,20941.8425527079
+Desktop Pro,Belgium,Mar,2010,Actual,Units,2250.60766388452
+Desktop Pro,Belgium,Mar,2010,Actual,Cost of Sales,9342.03785719358
+Desktop Pro,Belgium,Mar,2010,Actual,Turnover,11676.1284040632
+Desktop Pro,Luxembourg,Jan,2010,Actual,Units,311.566730742992
+Desktop Pro,Luxembourg,Jan,2010,Actual,Cost of Sales,1411.36383530087
+Desktop Pro,Luxembourg,Jan,2010,Actual,Turnover,1544.44529537759
+Desktop Pro,Luxembourg,Feb,2010,Actual,Units,2546.11907759748
+Desktop Pro,Luxembourg,Feb,2010,Actual,Cost of Sales,8907.6046035956
+Desktop Pro,Luxembourg,Feb,2010,Actual,Turnover,10954.8110120064
+Desktop Pro,Luxembourg,Mar,2010,Actual,Units,651.045782618169
+Desktop Pro,Luxembourg,Mar,2010,Actual,Cost of Sales,3025.79408619415
+Desktop Pro,Luxembourg,Mar,2010,Actual,Turnover,3338.49014739239
+Desktop Pro,United Kingdom,Jan,2010,Actual,Units,10049.3667554496
+Desktop Pro,United Kingdom,Jan,2010,Actual,Cost of Sales,35859.6829352944
+Desktop Pro,United Kingdom,Jan,2010,Actual,Turnover,40222.7121357598
+Desktop Pro,United Kingdom,Feb,2010,Actual,Units,5440.17319360219
+Desktop Pro,United Kingdom,Feb,2010,Actual,Cost of Sales,22133.2938788669
+Desktop Pro,United Kingdom,Feb,2010,Actual,Turnover,23960.6250141719
+Desktop Pro,United Kingdom,Mar,2010,Actual,Units,5339.527748946
+Desktop Pro,United Kingdom,Mar,2010,Actual,Cost of Sales,20695.259227894
+Desktop Pro,United Kingdom,Mar,2010,Actual,Turnover,28007.0888244839
+Desktop Pro,Ireland,Jan,2010,Actual,Units,538.332661655803
+Desktop Pro,Ireland,Jan,2010,Actual,Cost of Sales,2671.33596037389
+Desktop Pro,Ireland,Jan,2010,Actual,Turnover,2546.38420926119
+Desktop Pro,Ireland,Feb,2010,Actual,Units,1856.47605211769
+Desktop Pro,Ireland,Feb,2010,Actual,Cost of Sales,7541.52144415581
+Desktop Pro,Ireland,Feb,2010,Actual,Turnover,9635.47026907076
+Desktop Pro,Ireland,Mar,2010,Actual,Units,633.578612640658
+Desktop Pro,Ireland,Mar,2010,Actual,Cost of Sales,3147.93995330403
+Desktop Pro,Ireland,Mar,2010,Actual,Turnover,3293.38103472839
+Desktop Pro,Czech Republic,Jan,2010,Actual,Units,4501.7049
+Desktop Pro,Czech Republic,Jan,2010,Actual,Cost of Sales,19164.9216607428
+Desktop Pro,Czech Republic,Jan,2010,Actual,Turnover,21683.6228495039
+Desktop Pro,Czech Republic,Feb,2010,Actual,Units,3611.55795
+Desktop Pro,Czech Republic,Feb,2010,Actual,Cost of Sales,15090.1584230898
+Desktop Pro,Czech Republic,Feb,2010,Actual,Turnover,14789.2367921759
+Desktop Pro,Czech Republic,Mar,2010,Actual,Units,2249.95155
+Desktop Pro,Czech Republic,Mar,2010,Actual,Cost of Sales,10540.4456787401
+Desktop Pro,Czech Republic,Mar,2010,Actual,Turnover,10820.5925013648
+Desktop Pro,Slovakia,Jan,2010,Actual,Cost of Sales,3310.34083884427
+Desktop Pro,Slovakia,Jan,2010,Actual,Turnover,4524.77160827998
+Desktop Pro,Slovakia,Feb,2010,Actual,Units,554.893185
+Desktop Pro,Slovakia,Feb,2010,Actual,Cost of Sales,2259.87891785158
+Desktop Pro,Slovakia,Feb,2010,Actual,Turnover,3062.36693652119
+Desktop Pro,Slovakia,Mar,2010,Actual,Units,367.790115
+Desktop Pro,Slovakia,Mar,2010,Actual,Cost of Sales,1564.70858566889
+Desktop Pro,Slovakia,Mar,2010,Actual,Turnover,1612.28536872479
+Desktop Pro,Poland,Jan,2010,Actual,Units,1772.3475
+Desktop Pro,Poland,Jan,2010,Actual,Cost of Sales,7250.13283114207
+Desktop Pro,Poland,Jan,2010,Actual,Turnover,8530.44821253236
+Desktop Pro,Poland,Feb,2010,Actual,Cost of Sales,10544.2646807976
+Desktop Pro,Poland,Feb,2010,Actual,Turnover,16590.8292303599
+Desktop Pro,Poland,Mar,2010,Actual,Units,5743.4685
+Desktop Pro,Poland,Mar,2010,Actual,Cost of Sales,24412.0065723376
+Desktop Pro,Poland,Mar,2010,Actual,Turnover,28746.0970529039
+Desktop Pro,Austria,Jan,2010,Actual,Units,4209.7209
+Desktop Pro,Austria,Jan,2010,Actual,Cost of Sales,19491.2162013571
+Desktop Pro,Austria,Jan,2010,Actual,Turnover,21780.5192395559
+Desktop Pro,Austria,Feb,2010,Actual,Cost of Sales,37207.1562345452
+Desktop Pro,Austria,Feb,2010,Actual,Turnover,45247.7160827998
+Desktop Pro,Austria,Mar,2010,Actual,Units,1924.9692
+Desktop Pro,Austria,Mar,2010,Actual,Cost of Sales,7877.80510090106
+Desktop Pro,Austria,Mar,2010,Actual,Turnover,8862.80661050397
+Desktop Pro,Italy,Jan,2010,Actual,Units,2460.69285
+Desktop Pro,Italy,Jan,2010,Actual,Cost of Sales,8966.55656043782
+Desktop Pro,Italy,Jan,2010,Actual,Turnover,11359.0667834028
+Desktop Pro,Italy,Feb,2010,Actual,Units,7367.01735
+Desktop Pro,Italy,Feb,2010,Actual,Cost of Sales,27237.0729152091
+Desktop Pro,Italy,Feb,2010,Actual,Turnover,32881.7710636799
+Desktop Pro,Italy,Mar,2010,Actual,Units,2811.6396
+Desktop Pro,Italy,Mar,2010,Actual,Cost of Sales,11257.8458372315
+Desktop Pro,Italy,Mar,2010,Actual,Turnover,13398.9184985039
+Desktop Pro,Portugal,Jan,2010,Actual,Units,2943.6792
+Desktop Pro,Portugal,Jan,2010,Actual,Cost of Sales,12303.3069802857
+Desktop Pro,Portugal,Jan,2010,Actual,Turnover,14266.8279064079
+Desktop Pro,Portugal,Feb,2010,Actual,Units,3141.1611
+Desktop Pro,Portugal,Feb,2010,Actual,Cost of Sales,13206.0344764085
+Desktop Pro,Portugal,Feb,2010,Actual,Turnover,13704.2240291879
+Desktop Pro,Portugal,Mar,2010,Actual,Cost of Sales,4408.24795152217
+Desktop Pro,Portugal,Mar,2010,Actual,Turnover,4524.77160827998
+Desktop Pro,Spain,Jan,2010,Actual,Units,7726.026
+Desktop Pro,Spain,Jan,2010,Actual,Cost of Sales,31933.2014713404
+Desktop Pro,Spain,Jan,2010,Actual,Turnover,35369.4504249239
+Desktop Pro,Spain,Feb,2010,Actual,Units,10680.94335
+Desktop Pro,Spain,Feb,2010,Actual,Cost of Sales,43738.7693300454
+Desktop Pro,Spain,Feb,2010,Actual,Turnover,51749.3504524918
+Desktop Pro,Spain,Mar,2010,Actual,Units,2049.83625
+Desktop Pro,Spain,Mar,2010,Actual,Cost of Sales,7860.75020897646
+Desktop Pro,Spain,Mar,2010,Actual,Turnover,9175.24391710076
+Desktop Pro,Denmark,Jan,2010,Actual,Units,2634.1392
+Desktop Pro,Denmark,Jan,2010,Actual,Cost of Sales,12567.3779108294
+Desktop Pro,Denmark,Jan,2010,Actual,Turnover,12391.5740512872
+Desktop Pro,Denmark,Feb,2010,Actual,Units,6964.75395
+Desktop Pro,Denmark,Feb,2010,Actual,Cost of Sales,25570.6445255523
+Desktop Pro,Denmark,Feb,2010,Actual,Turnover,27683.1348338159
+Desktop Pro,Denmark,Mar,2010,Actual,Units,4247.9745
+Desktop Pro,Denmark,Mar,2010,Actual,Cost of Sales,18448.6410794018
+Desktop Pro,Denmark,Mar,2010,Actual,Turnover,21177.4683646679
+Desktop Pro,Finland,Jan,2010,Actual,Units,1121.764875
+Desktop Pro,Finland,Jan,2010,Actual,Cost of Sales,4658.97103448375
+Desktop Pro,Finland,Jan,2010,Actual,Turnover,4760.33441868598
+Desktop Pro,Finland,Feb,2010,Actual,Units,1397.09955
+Desktop Pro,Finland,Feb,2010,Actual,Cost of Sales,6163.1229360615
+Desktop Pro,Finland,Feb,2010,Actual,Turnover,6431.51364008997
+Desktop Pro,Finland,Mar,2010,Actual,Units,1340.6547
+Desktop Pro,Finland,Mar,2010,Actual,Cost of Sales,5958.94938306481
+Desktop Pro,Finland,Mar,2010,Actual,Turnover,6776.18254171317
+Desktop Pro,Norway,Jan,2010,Actual,Units,1776.88665
+Desktop Pro,Norway,Jan,2010,Actual,Cost of Sales,7601.45614094117
+Desktop Pro,Norway,Jan,2010,Actual,Turnover,8139.81337711077
+Desktop Pro,Norway,Feb,2010,Actual,Units,1376.44815
+Desktop Pro,Norway,Feb,2010,Actual,Cost of Sales,6211.22743429085
+Desktop Pro,Norway,Feb,2010,Actual,Turnover,7419.20160245877
+Desktop Pro,Norway,Mar,2010,Actual,Units,1989.66075
+Desktop Pro,Norway,Mar,2010,Actual,Cost of Sales,8545.94386477437
+Desktop Pro,Norway,Mar,2010,Actual,Turnover,8339.79290981757
+Desktop Pro,Sweden,Jan,2010,Actual,Cost of Sales,4977.10510164622
+Desktop Pro,Sweden,Jan,2010,Actual,Turnover,6033.02881103998
+Desktop Pro,Sweden,Feb,2010,Actual,Units,2732.60295
+Desktop Pro,Sweden,Feb,2010,Actual,Cost of Sales,12547.7231119666
+Desktop Pro,Sweden,Feb,2010,Actual,Turnover,12771.2970175559
+Desktop Pro,Sweden,Mar,2010,Actual,Units,525.267435
+Desktop Pro,Sweden,Mar,2010,Actual,Cost of Sales,2338.48567355657
+Desktop Pro,Sweden,Mar,2010,Actual,Turnover,2642.68838470559

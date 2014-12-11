@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="extract" type="c:extracttype" />
+
+    <complexType name="connectionref">
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<anyAttribute processContents="lax"/>
+	 </complexType>
+
+	 <simpleType name="mode">
+ 		 <restriction base="string">
+			<enumeration value="rootToBases" />
+			<enumeration value="rootToNodes" />
+			<enumeration value="rootToConsolidates" />
+			<enumeration value="nodesToBases" />
+			<enumeration value="onlyBases" />
+			<enumeration value="onlyNodes" />
+			<enumeration value="onlyRoots" />
+  		</restriction>
+	</simpleType>
+	
+	<simpleType name="operator">
+ 		 <restriction base="string">
+			<enumeration value="equal" />
+			<enumeration value="inAlphaRange" />
+			<enumeration value="inRange" />
+<!-- 			<enumeration value="isEmpty" />  -->
+			<enumeration value="like" />
+  		</restriction>
+	</simpleType>
+ 	
+	<simpleType name="logicaloperator">
+ 		 <restriction base="string">
+			<enumeration value="AND" />
+			<enumeration value="OR" />
+  		</restriction>
+	</simpleType>
+
+	<simpleType name="type">
+ 		 <restriction base="string">
+    		<enumeration value="accept"/>
+    		<enumeration value="deny"/>
+  		</restriction>
+	</simpleType> 
+
+	<complexType name="dimensionfilteroperator">
+		<attribute name="type" type="c:type" use="required"/>
+		<attribute name="operator" type="c:operator" use="required"/>
+		<attribute name="value" type="string" />
+		<attribute name="mode" type="c:mode" />
+		<!-- <attribute name="logicaloperator" type="c:logicaloperator"/> -->
+	</complexType>
+
+	<complexType name="dimensionquery">
+		<sequence minOccurs="0" maxOccurs="unbounded">
+			<element name="condition" type="c:dimensionfilteroperator"/>
+		</sequence>
+		<attribute name="name" type="string" use="required" />
+	</complexType>
+
+	<complexType name="querytype">
+        <sequence>
+        	<element name="dimension" type="c:dimensionquery" minOccurs="1" maxOccurs="1">
+        		<annotation>
+					<appinfo>metadata.dimension.Name;mask=1000</appinfo>
+				</annotation>
+        	</element>
+        </sequence>
+    </complexType>
+
+	 <simpleType name="withAttributestype">
+ 		 <restriction base="string">
+    		<enumeration value="true"/>
+    		<enumeration value="false"/>
+  		</restriction>
+	</simpleType>
+
+    <complexType name="extracttype">
+        <all>
+        	<element name="connection" type="c:connectionref"/>
+            <element name="query" type="c:querytype" minOccurs="1" maxOccurs="1"/>
+            <element name="withAttributes" type="c:withAttributestype" minOccurs="0" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+        <attribute name="name" type="string" use="required"/>
+         <attribute name="type" type="string" use="required"/>
+         <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+</schema>

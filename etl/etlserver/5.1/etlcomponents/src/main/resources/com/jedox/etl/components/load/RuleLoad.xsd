@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="load" type="c:ruleloadtype" />
+
+	<complexType name="connectionref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<anyAttribute processContents="lax"/>
+	 </complexType>
+	 
+	  <simpleType name="viewformat">
+ 		 <restriction base="string">
+    		<enumeration value="fh"/>
+    		<enumeration value="fhw"/>
+    		<enumeration value="pc"/>
+    		<enumeration value="pcw"/>
+    		<enumeration value="pcwa"/>
+    		<enumeration value="pcwat"/>
+    		<enumeration value="ncw"/>
+    		<enumeration value="ncwa"/>
+    		<enumeration value="ea"/>
+  		</restriction>
+	</simpleType>
+
+	 <complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+	 </complexType>
+
+	 <simpleType name="loadmode">
+ 		 <restriction base="string">
+    		<enumeration value="update"/>
+    		<enumeration value="insert"/>
+    		<enumeration value="delete"/>
+  		</restriction>
+	</simpleType>
+
+	<complexType name="cubetype">
+		<attribute name="name" type="string" use="required" />
+ 	</complexType>
+
+    <complexType name="ruleloadtype">
+        <all>
+            <element name="connection" type="c:connectionref"/>
+            <element name="source" type="c:sourceref"/>
+			<element name="mode" type="c:loadmode" minOccurs="0" maxOccurs="1"/>
+            <element name="cube" type="c:cubetype">
+            	<annotation>
+					<appinfo>metadata.cube.Name;mask=10000</appinfo>
+				</annotation>
+            </element>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+        <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+</schema>

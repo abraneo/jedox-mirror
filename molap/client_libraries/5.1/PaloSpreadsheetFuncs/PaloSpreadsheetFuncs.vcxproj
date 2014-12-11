@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EAE14674-7F66-43BA-BAB2-2255F2632ACA}</ProjectGuid>
+    <RootNamespace>PaloSpreadsheetFuncs</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\$(Platform)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Configuration)\$(Platform)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(projectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\$(Platform)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Configuration)\$(Platform)\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectName)_x64</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName)_x64</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>include;$(ProjectDir)..\libpalo_ng\source\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <OutputFile>$(TargetDir)$(TargetFileName)</OutputFile>
+    </Lib>
+    <PostBuildEvent>
+      <Command>copy "$(TargetDir)*.lib" "$(SolutionDir)$(Configuration)\$(Platform)\lib\"
+copy "$(TargetDir)$(TargetName)*.pdb" "$(SolutionDir)$(Configuration)\$(Platform)\pdb\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>include;$(ProjectDir)..\libpalo_ng\source\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(TargetDir)$(TargetFileName)</OutputFile>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Lib>
+    <PostBuildEvent>
+      <Command>copy "$(TargetDir)*.lib" "$(SolutionDir)$(Configuration)\$(Platform)\lib\"
+copy "$(TargetDir)$(TargetName)*.pdb" "$(SolutionDir)$(Configuration)\$(Platform)\pdb\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>include;$(ProjectDir)..\libpalo_ng\source\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(TargetDir)$(TargetFileName)</OutputFile>
+    </Lib>
+    <PostBuildEvent>
+      <Command>copy "$(TargetDir)*.lib" "$(SolutionDir)$(Configuration)\$(Platform)\lib\"
+copy "$(TargetDir)$(TargetName)*.pdb" "$(SolutionDir)$(Configuration)\$(Platform)\pdb\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalIncludeDirectories>include;$(ProjectDir)..\libpalo_ng\source\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN64;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>false</OmitFramePointers>
+      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>$(TargetDir)$(TargetFileName)</OutputFile>
+    </Lib>
+    <PostBuildEvent>
+      <Command>copy "$(TargetDir)*.lib" "$(SolutionDir)$(Configuration)\$(Platform)\lib\"
+copy "$(TargetDir)$(TargetName)*.pdb" "$(SolutionDir)$(Configuration)\$(Platform)\pdb\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\PaloSpreadsheetFuncs\AbstractLogger.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\AggregationTypes.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ArgumentException.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericCellException.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GoalSeekType.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\IntArray.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\InvalidRequestException.h" />
+    <ClInclude Include="QueryCacheEntryNotFoundException.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\SpreadsheetFuncsException.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\WrongParamCountException.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\CellValue.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\CellValueArray.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ConsolidationElement.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ConsolidationElementArray.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\CubeInfo.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\DatabaseInfo.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\DimensionElementInfo.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\DimensionElementInfoArray.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\DimensionElementType.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\DimensionInfo.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ElementList.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ElementListArray.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ErrorInfo.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\LicenseInfo.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\RuleInfo.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ServerInfo.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\StringArray.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\StringArrayArray.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\SubsetResult.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\XLError.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\ConvertingCell.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericArgumentArray.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericArrayBuilder.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericCell.h" />
+    <ClInclude Include="GenericCellCellSerializer.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericCellIterator.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\GenericContext.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\QueryCache.h" />
+    <ClInclude Include="SimpleCell.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\SpreadsheetFuncs.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\SpreadsheetFuncsBase.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\SpreadsheetFuncsMessages.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\Wrapper.h" />
+    <ClInclude Include="Bind.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\Messages.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\Poolable.h" />
+    <ClInclude Include="StringTokenizer.h" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\conversion.hpp" />
+    <ClInclude Include="include\PaloSpreadsheetFuncs\Converter.hpp" />
+    <ClInclude Include="namespaces.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CellValue.cpp" />
+    <ClCompile Include="ElementListArray.cpp" />
+    <ClCompile Include="XLError.cpp" />
+    <ClCompile Include="ConvertingCell.cpp" />
+    <ClCompile Include="GenericArgumentArray.cpp" />
+    <ClCompile Include="GenericCell.cpp" />
+    <ClCompile Include="GenericCellCellSerializer.cpp" />
+    <ClCompile Include="QueryCache.cpp" />
+    <ClCompile Include="SimpleCell.cpp" />
+    <ClCompile Include="SpreadsheetFuncs.cpp" />
+    <ClCompile Include="SpreadsheetFuncsBase.cpp" />
+    <ClCompile Include="SpreadsheetFuncsMessages.cpp" />
+    <ClCompile Include="Wrapper.cpp" />
+    <ClCompile Include="StringTokenizer.cpp" />
+    <ClCompile Include="Conversion.cpp" />
+    <ClCompile Include="Converter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Poolable.ipp" />
+    <CustomBuild Include="..\Common\Documentation.xml">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </Outputs>
+      <SubType>Designer</SubType>
+    </CustomBuild>
+    <None Include="..\Common\Documentation.xsx">
+      <DependentUpon>..\Common\Documentation.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="..\Common\Documentation.xsd" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

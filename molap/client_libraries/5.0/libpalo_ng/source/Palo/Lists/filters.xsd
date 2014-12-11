@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://tempuri.org/filters" elementFormDefault="qualified" targetNamespace="http://tempuri.org/filters" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="subset">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" ref="data_filter" />
+       <!-- ?> <xs:element minOccurs="0" maxOccurs="1" ref="structural_filter" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="basic_filter" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="alias_filter" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="text_filter" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="sorting_filter" /> -->
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" />
+      <xs:attribute name="id" type="xs:string" use="required" />
+      <xs:attribute name="sourceDimensionId" type="xs:string" use="required" />
+      <xs:attribute name="activeStateId" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="data_filter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:element ref="only_consolidated" />
+          <xs:element ref="only_leaves" />
+        </xs:choice>
+        <xs:choice>
+          <xs:element ref="data_min" />
+          <xs:element ref="data_max" />
+          <xs:element ref="data_sum" />
+          <xs:element ref="data_average" />
+          <xs:element ref="data_any" />
+          <xs:element ref="data_all" />
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:element ref="upper_percentage" />
+          <xs:element ref="lower_percentage" />
+          <xs:element ref="mid_percentage" />
+        </xs:choice>
+        <xs:element ref="source_cube" />
+        <xs:element ref="par1" />
+        <xs:element ref="op1" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="par2" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="op2" />
+        <xs:element ref="coordinates" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="percentage1" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="percentage2" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="only_consolidated">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="only_leaves">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="data_min">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="data_max">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="data_sum">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="data_average">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="data_any">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="data_all">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="upper_percentage" type="xs:string" />
+  <xs:element name="lower_percentage" type="xs:string" />
+  <xs:element name="mid_percentage" type="xs:string" />
+  <xs:element name="source_cube" type="xs:string" />
+  <xs:element name="par1" type="xs:string" />
+  <xs:element name="par2" type="xs:string" />
+  <xs:element name="op1" type="xs:string" />
+  <xs:element name="op2" type="xs:string" />
+  <xs:element name="coordinates" type="xs:string" />
+  <xs:element name="percentage1" type="xs:string" />
+  <xs:element name="percentage2" type="xs:string" />
+</xs:schema>

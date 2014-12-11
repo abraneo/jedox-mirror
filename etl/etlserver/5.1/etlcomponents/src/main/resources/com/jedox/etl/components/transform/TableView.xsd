@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+	<include schemaLocation="resource.xsd"/>
+    <element name="transform" type="c:transformtype" />
+    
+    <complexType name="inputref">
+		<attribute name="nameref" type="string">
+		</attribute>
+		<attribute name="constant" type="string"/>
+	</complexType>
+	
+	<complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+	 </complexType>
+	 
+	<complexType name="sourcerefs">
+		<sequence>
+			<element name="source" type="c:sourceref" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+	</complexType>
+	
+	<simpleType name="filtertype">
+ 		 <restriction base="string">
+    		<enumeration value="and"/>
+    		<enumeration value="or"/>
+  		</restriction>
+	</simpleType>  
+	
+	<simpleType name="filterrangenumeric">
+ 		 <restriction base="token">
+    		<pattern value="(\[|\()((\-?\d*\.?\d*)|\$\{\w+\}),((\-?\d*\.?\d*)|\$\{\w+\})(\]|\))"/>
+  		</restriction>
+	</simpleType>  
+	
+	<simpleType name="filterrangealpha">
+ 		 <restriction base="token">
+    		<pattern value="(\[|\()((\w|[\.;+\- ])*|\$\{\w+\}),((\w|[\.;+\- ])*|\$\{\w+\})(\]|\))"/>
+  		</restriction>
+	</simpleType>  
+
+	<simpleType name="operator">
+ 		 <restriction base="string">
+			<enumeration value="equal" />
+			<enumeration value="inAlphaRange" />
+			<enumeration value="inRange" />
+			<enumeration value="isEmpty" />
+			<enumeration value="like" />
+  		</restriction>
+	</simpleType>
+	
+	<simpleType name="type">
+ 		 <restriction base="string">
+    		<enumeration value="accept"/>
+    		<enumeration value="deny"/>
+  		</restriction>
+	</simpleType> 
+	
+	<complexType name="columnfilteroperator">
+		<attribute name="type" type="c:type" use="required"/>
+		<attribute name="operator" type="c:operator" use="required"/>
+		<attribute name="value" type="string" />
+	</complexType>	
+	
+	<complexType name="filterinput">
+		<sequence>
+			<element name="condition" type="c:columnfilteroperator" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+	</complexType>
+	
+	<complexType name="filter">
+		<sequence>
+			<element name="input" type="c:filterinput" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="type" type="c:filtertype" default="and"/>
+	</complexType>	
+	
+	<simpleType name="sortertype">
+ 		 <restriction base="string">
+    		<enumeration value="asc"/>
+    		<enumeration value="desc"/>
+  		</restriction>
+	</simpleType>   
+	
+	<complexType name="sorterinputref">
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<attribute name="order" type="c:sortertype" default="asc"/>
+	</complexType>	
+	
+	<complexType name="sorter">
+		<sequence>
+			<element name="input" type="c:sorterinputref" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>	
+	
+	 <simpleType name="cacheType">
+ 		 <restriction base="string">
+    		<enumeration value="none"/>
+    		<enumeration value="memory"/>
+    		<enumeration value="disk"/>
+  		</restriction>
+	</simpleType> 
+   
+    <complexType name="transformtype">
+        <all>
+            <element name="sources" type="c:sourcerefs" minOccurs="1" maxOccurs="1"/>
+            <element name="filter" type="c:filter" minOccurs="0" maxOccurs="1"/>
+			<element name="sorter" type="c:sorter" minOccurs="0" maxOccurs="1"/>
+			<element name="start" type="nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+            <element name="end" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>   
+            <element name="cache" type="c:cacheType" minOccurs="0"
+				maxOccurs="1" />	   
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+        <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+
+</schema>

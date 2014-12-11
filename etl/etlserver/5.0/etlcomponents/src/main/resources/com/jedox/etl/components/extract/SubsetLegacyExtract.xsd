@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.jedox.com/etlcore"
+	xmlns:c="http://schemas.jedox.com/etlcore" elementFormDefault="qualified">
+
+	<element name="extract" type="c:extracttype" />
+
+	<complexType name="connectionref">
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>connections:/connection/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<anyAttribute processContents="lax" />
+	</complexType>
+
+	<complexType name="dimtype">
+		<attribute name="name" type="string" use="required" />
+	</complexType>
+
+	<group name="extractFromDimension">
+		<sequence>
+			<element name="connection" type="c:connectionref" />
+			<element name="dimension" type="c:dimtype" />
+		</sequence>
+	</group>
+
+	<simpleType name="typeType">
+ 		 <restriction base="string">
+    		<enumeration value="Subset"/>
+  	</restriction>
+	</simpleType>
+	<complexType name="extracttype">
+
+		<sequence>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="2"/>
+			<group ref="c:extractFromDimension" />
+		</sequence>
+
+		<attribute name="name" type="string" use="required" />
+		<attribute name="type" type="c:typeType" use="required" />
+	</complexType>
+
+</schema>

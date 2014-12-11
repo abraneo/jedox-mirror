@@ -1,0 +1,441 @@
+CustomerID;Title;FirstName;LastName;CompanyName;Phone;SalesPerson;Country;Region;Country%
+20;Ms.;Jean;Handley;Central Discount Store;582-555-0113;David;Austria;East;40%
+298;Mr.;Robert;Mitosinka;City Cycling;239-555-0198;José;Austria;East;40%
+398;Ms.;Shirley;Bruner;Commendable Bikes;383-555-0155;David;Austria;East;40%
+130;Mr.;Paulo;Lisboa;Elite Bikes;380-555-0116;Jillian;Austria;East;40%
+214;Ms.;Jennifer;Maxham;Exclusive Bicycle Mart;584-555-0193;Jae;Austria;East;40%
+509;Mr.;Robert;Ahlering;Fun Toys and Bikes;678-555-0175;Shu;Austria;East;40%
+701;Ms.;Linda;Ecoffey;Future Bikes;674-555-0188;José;Austria;East;40%
+59;Mr.;Douglas;Groncki;Locks Company;385-555-0140;Shu;Austria;East;40%
+257;Mr.;Matthias;Berndt;Number 1 Supply;384-555-0169;Shu;Austria;East;40%
+434;Mr.;James;Bailey;Road-Way Mart;234-555-0112;David;Austria;East;40%
+431;Mr.;Douglas;Baldwin;Small Cycle Store;583-555-0130;Michael;Austria;East;40%
+277;Mr.;Guy;Gilbert;The Bicycle Accessories;583-555-0198;Shu;Austria;East;40%
+165;Mr.;Randall;Boseman;Third Bike Store;383-555-0117;Jillian;Austria;East;40%
+453;Mr.;Jon;Ganio;Unique Bikes;672-555-0112;Jillian;Austria;East;40%
+136;Mr.;Derek;Graham;Wholesale Parts;674-555-0187;José;Austria;East;40%
+132;Ms.;Teanna;Cobb;Another Sporting Goods Company;661-555-0168;Linda;Austria;East;40%
+492;Mr.;Garth;Fort;Basic Sports Equipment;768-555-0125;Linda;Austria;East;40%
+529;Ms.;Jeanie;Glenn;Big-Time Bike Store;669-555-0149;Shu;Czech Republic;East;18%
+12;Mr.;Johnny;Caprio;Bikes and Motorbikes;112-555-0191;Garrett;Czech Republic;East;18%
+16;Mr.;Christopher;Beck;Bulk Discount Store;112-555-0192;Jae;Czech Republic;East;18%
+689;Ms.;Sandra;Martinez;Consumer Equipment;763-555-0121;Jae;Czech Republic;East;18%
+349;Mr.;Gary;Vargas;Exercise Center;112-555-0176;Shu;Czech Republic;East;18%
+196;Ms.;Jolie;Lenehan;Exhibition Showroom;117-555-0174;Jae;Czech Republic;East;18%
+641;Ms.;Rose;Vandenouer;Extended Tours;666-555-0144;Jae;Czech Republic;East;18%
+197;Ms.;Diane;Krane;Fabrikam Inc.;117-555-0175; Wes;Czech Republic;East;18%
+685;Mr.;James;Haugh;Family Cycle Store;763-555-0120;Garrett;Czech Republic;East;18%
+293;Mr.;Conor;Cunningham;Fashionable Bikes;115-555-0113;Shu;Czech Republic;East;18%
+317;Mr.;Jacob;Dean;Finer Riding Supplies;767-555-0151;José;Czech Republic;East;18%
+290;Mr.;Scott;Culp;Friendly Bikers Shop;119-555-0167;David;Czech Republic;East;18%
+127;Mr.;Joseph;Lique;Front Sporting Goods;119-555-0195;Pamela;Czech Republic;East;18%
+479;Ms.;Lori;Kane;General Supplies;765-555-0141;José;Czech Republic;East;18%
+564;Ms.;Michelle;Alexander;Imported and Domestic Cycles;115-555-0175;Linda;Czech Republic;East;18%
+56;Mr.;Brian;Groth;Latest Accessories Sales;461-555-0118;David;Czech Republic;East;18%
+289;Ms.;Gabriel;Bockenkamp;Moderately-Priced Bikes Store;763-555-0145;Pamela;Czech Republic;East;18%
+192;Mr.;Hao;Chen;Nuts and Bolts Mfg.;117-555-0173;Garrett;Czech Republic;East;18%
+310;Mr.;Frank;Miller;Orange Bicycle Company;118-555-0184;Jillian;Czech Republic;East;18%
+275;Mr.;Chris;Cannon;Outdoor Sporting Goods;118-555-0131;Shu;Czech Republic;East;18%
+258;Mr.;Sairaj;Uddin;Quantity Discounts;767-555-0193;Linda;Czech Republic;East;18%
+119;Ms.;Phyllis;Thomas;Red Bicycle Company;667-555-0112;José;Czech Republic;East;18%
+637;Mr.;Robert;Lyon;Reliable Retail Center;666-555-0143;Garrett;Poland;East;60%
+388;Mr.;Victor;Kelley;Road Way Sales and Rental;112-555-0195;José;Poland;East;60%
+253;Mr.;Erik;Ismert;Roving Sports;116-555-0163;Pamela;Poland;East;60%
+110;Ms.;Kendra;Thompson;Vintage Sport Boutique;464-555-0188;David;Poland;East;60%
+111;Mr.;Scott;Colvin;Westside Cycle Store;119-555-0144;Jillian;Poland;East;60%
+407;Mr.;Robert;Avalos;Workout Emporium;665-555-0198;José;Poland;East;60%
+274;Ms.;Janet;Gilliat;Active Systems;521-555-0183;Jillian;Poland;East;60%
+239;Ms.;Jane;McCarty;Bicycle Merchandise Warehouse;529-555-0195;Shu;Poland;East;60%
+401;Mr.;Tom;Johnston;Brightwork Company;883-555-0177;Shu;Poland;East;60%
+19;Mr.;John;Beaver;Center Cycle Shop;521-555-0195;Pamela;Poland;East;60%
+129;Ms.;Connie;Coffman;Discount Bicycle Specialists;426-555-0181;Jillian;Poland;East;60%
+420;Mr.;Anthony;Chor;Extreme Riding Supplies;429-555-0145;Linda;Poland;East;60%
+198;Mr.;Payton;Benson;Field Trip Inc;528-555-0183;Michael;Poland;East;60%
+362;Ms.;Sharon;Crow;Grand Cycle Store;889-555-0176;David;Poland;East;60%
+58;Mr.;Peter;Kurniawan;Largest Bike Store;436-555-0160;Jillian;Poland;East;60%
+541;Mr.;Willie;Brooks;Nonskid Tire Company;525-555-0174;Pamela;Poland;East;60%
+286;Mr.;Leo;Giakoumakis;Number One Bike Co.;882-555-0116;Jae;Poland;East;60%
+282;Mr.;Billy;Trent;Quick Parts and Service;882-555-0115;Garrett;Poland;East;60%
+389;Ms.;Dorothy;Contreras;Sixth Bike Store;428-555-0176;José;Poland;East;60%
+331;Ms.;Wanda;Vernon;Technical Parts Manufacturing;433-555-0168;Shu;Poland;East;60%
+372;Ms.;Katherine;Swan;Top Bike Market;421-555-0192;Garrett;Poland;East;60%
+598;Mr.;Derik;Stenerson;Black Bicycle Company;441-555-0144;Jillian;Slovakia;East;15%
+18;Mr.;David;Liu;Catalog Store;440-555-0132;Michael;Slovakia;East;15%
+128;Ms.;Judy;Thames;Demand Distributors;799-555-0118;David;Slovakia;East;15%
+421;Mr.;Forrest;Chandler;Fitness Cycling;448-555-0179;Shu;Slovakia;East;15%
+180;Ms.;Nicky;Chesnut;Full-Service Bike Store;264-555-0164;Michael;Slovakia;East;15%
+504;Ms.;Mae;Black;Historic Bicycle Sales;264-555-0143;Michael;Slovakia;East;15%
+57;Ms.;Judy;Lundahl;Leading Sales & Repair;260-555-0130;Jillian;Slovakia;East;15%
+400;Mr.;Peter;Houston;Local Sales and Rental;632-555-0171;Jillian;Slovakia;East;15%
+272;Mr.;Henry;Campen;Metro Cycle Shop;635-555-0126;David;Slovakia;East;15%
+561;Mr.;Marvin;Allen;Mountain Toy Store;447-555-0110;Jillian;Slovakia;East;15%
+586;Ms.;Shanay;Steelman;One Bike Company;797-555-0118;José;Slovakia;East;15%
+655;Ms.;Irene;Hernandez;Operational Manufacturing;790-555-0197;Garrett;Slovakia;East;15%
+76;Mr.;James;Krow;Out-of-the-Way Hotels;265-555-0190;Jillian;Slovakia;East;15%
+650;Ms.;Margaret;Vanderkamp;Permanent Finish Products;265-555-0143;Shu;Slovakia;East;15%
+254;Mr.;Robert;Bernacchi;Safe Cycles Shop;449-555-0176;David;Slovakia;East;15%
+659;Mr.;Ajay;Manchepalli;Shipping Specialists;790-555-0198;Jae;Slovakia;East;15%
+635;Mr.;Roger;Van Houten;Sports Store;631-555-0156;Jae;Slovakia;East;15%
+631;Mr.;Robert;Lyeba;Tandem Sales and Service;631-555-0155;Garrett;Slovakia;East;15%
+330;Mr.;Mete;Goktepe;The New Bike Store;637-555-0120;Linda;Slovakia;East;15%
+697;Mr.;Roger;Harui;Brakes and Gears;774-555-0133;Linda;Denmark;North;23%
+673;Mr.;John;Hanson;Countryside Company;107-555-0117;Linda;Denmark;North;23%
+30;Mr.;Todd;Logan;Cycle Merchants;783-555-0110;Garrett;Denmark;North;23%
+34;Ms.;Barbara;German;Cycles Wholesaler & Mfg.;783-555-0111;Jae;Denmark;North;23%
+131;Ms.;Vanessa;Tench;Eighth Bike Store;785-555-0163;Shu;Denmark;North;23%
+294;Mr.;Alberto;Baltazar;Flawless Bike Shop;780-555-0114;Linda;Denmark;North;23%
+227;Ms.;Robin;McGuigan;Health Spa;103-555-0152; Limite;Denmark;North;23%
+415;Mr.;Greg;Chapman;Imaginary Toys;708-555-0169;Pamela;Denmark;North;23%
+226;Ms.;Vance;Johns;Leisure Activities;103-555-0151;José;Denmark;North;23%
+73;Ms.;Margaret;Krupka;Outdoor Sports Supply;107-555-0132;Pamela;Denmark;North;23%
+474;Mr.;Mihail;Frintu;Retail Cycle Shop;777-555-0163;Linda;Denmark;North;23%
+384;Mr.;Clarence;Tatman;Sparkling Paint and Finishes;787-555-0128;Linda;Denmark;North;23%
+164;Ms.;Cindy;Dodd;Suburban Cycle Shop;706-555-0140;David;Denmark;North;23%
+645;Mr.;Ronald;Heymsfield;Superior Hardware Distributors;784-555-0120;David;Denmark;North;23%
+186;Mr.;Pei;Chow;Thrilling Bike Tours;789-555-0184;Linda;Denmark;North;23%
+353;Ms.;Joan;Campbell;Two-Wheeled Transit Company;700-555-0155;José;Denmark;North;23%
+201;Ms.;Edna;Benson;Unsurpassed Bikes;789-555-0189;Jillian;Denmark;North;23%
+241;Mr.;Eric;Jacobsen;Vale Riding Supplies;703-555-0120;Shu;Denmark;North;23%
+383;Mr.;Scott;Cooper;Vehicle Shop;773-555-0182;Shu;Denmark;North;23%
+240;Mr.;Jessie;Valerio;Wire Baskets and Parts;103-555-0179;Linda;Denmark;North;23%
+273;Ms.;Christie;Trujillo;A Typical Bike Shop;686-555-0180;Jillian;Finland;North;15%
+299;Mr.;Thierry;D'Hers;Citywide Service and Repair;680-555-0192;José;Finland;North;15%
+644;Mr.;Gregory;Vanderbout;Convenient Sales and Service;684-555-0134;Pamela;Finland;North;15%
+426;Mr.;Dirk;Bruno;Custom Accessories Company;817-555-0114;Garrett;Finland;North;15%
+674;Ms.;Melissa;Marple;Discount Tours;685-555-0117;Shu;Finland;North;15%
+168;Sr.;Luis;Bonifaz;Economy Bikes Company;688-555-0113;Linda;Finland;North;15%
+419;Mr.;Darrell;Banks;Exertion Activities Club;816-555-0118;Shu;Finland;North;15%
+346;Mr.;Ranjit;Varkey Chud;Great Bicycle Supply;810-555-0160;Jillian;Finland;North;15%
+505;Mr.;Brad;Sutton;Honest Repair Service;688-555-0115;Pamela;Finland;North;15%
+560;Mr.;Paul;Alcorn;Major Sport Suppliers;331-555-0162;David;Finland;North;15%
+653;Ms.;Kara;Vanderlinden;Mercantile Outlet;680-555-0160;José;Finland;North;15%
+323;Mr.;Jo;Brown;Metro Bike Works;689-555-0130;Michael;Finland;North;15%
+78;Mr.;Stefan;Delmarco;Preferred Bikes;819-555-0186;Linda;Finland;North;15%
+82;Mr.;James;Kramer;Refined Department Stores;814-555-0130;José;Finland;North;15%
+550;Ms.;Raquel;Mello;Remote Bicycle Specialists;723-555-0124;José;Finland;North;15%
+514;Mr.;Ryan;Calafato;Retail Mall;726-555-0155;José;Finland;North;15%
+579;Ms.;Kim;Abercrombie;Riders Company;334-555-0137;Jillian;Finland;North;15%
+91;Ms.;Joy;Koski;Scooters and Bikes Store;810-555-0198;Pamela;Finland;North;15%
+385;Mr.;John;Kelly;Sturdy Toys;330-555-0116;Shu;Finland;North;15%
+173;Mr.;Rudolph;Dillon;Sundry Sporting Goods;722-555-0169;José;Finland;North;15%
+37;Mr.;Jim;Geist;Two Bike Shops;724-555-0161;Pamela;Finland;North;15%
+430;Sr.;Gustavo;Camargo;Uttermost Bike Shop;817-555-0115;Jae;Finland;North;15%
+497;Ms.;Amy;Alberts;Valley Toy Store;727-555-0115;José;Finland;North;15%
+306;Mr.;Stephen;Ayers;Work and Play Association;818-555-0171;Michael;Finland;North;15%
+403;Ms.;Juanita;Holman;Affordable Sports Equipment;996-555-0196;Michael;Finland;North;15%
+491;Ms.;Frances;Adams;Area Bike Accessories;991-555-0183;Michael;Finland;North;15%
+221;Ms.;Sandra;Maynard;Bike Dealers Association;993-555-0179;Michael;Finland;North;15%
+172;Ms.;Gabriele;Dickmann;Certified Sports Supply;835-555-0116;Michael;Finland;North;15%
+484;Mr.;Gary;Suess;Downhill Bicycle Specialists;994-555-0195;Michael;Finland;North;15%
+38;Ms.;Betty;Haines;Finer Mart;867-555-0114;David;Norway;North;32%
+480;Ms.;Susan;French;General Bike Corporation;994-555-0194;Garrett;Norway;North;32%
+281;Ms.;Suzana De Abreu;Canuto;Petroleum Products Distributors;990-555-0141;José;Norway;North;32%
+583;Ms.;Laura;Steele;Professional Containers;741-555-0173;Shu;Norway;North;32%
+582;Ms.;Catherine;Abel;Professional Sales and Service;747-555-0171;Linda;Norway;North;32%
+178;Mr.;Dick;Dievendorff;Rampart Amusement Company;838-555-0148;Jae;Norway;North;32%
+79;Mr.;Mitch;Kennedy;Reasonable Bicycle Sales;996-555-0192;Shu;Norway;North;32%
+307;Ms.;Neva;Mitchell;Riding Associates;992-555-0134;Pamela;Norway;North;32%
+308;Ms.;Megan;Davis;Rugged Bikes;839-555-0198;David;Norway;North;32%
+515;Mr.;Dragan;Tomic;Rural Bicycle Supply;833-555-0167;José;Norway;North;32%
+454;Ms.;Gail;Erickson;Sleek Bikes;834-555-0132;Jillian;Norway;North;32%
+533;Ms.;Yuping;Tian;Tenth Bike Store;744-555-0123;José;Norway;North;32%
+455;Mr.;James;Tran;Timely Shipping Service;740-555-0159;Shu;Norway;North;32%
+174;Mr.;Michael;Bohling;Toy Manufacturing Inc;838-555-0147;Garrett;Norway;North;32%
+510;Mr.;Jimmy;Bischoff;World Bike Discount Store;992-555-0111;Linda;Norway;North;32%
+461;Mr.;Glenn;Track;Active Life Toys;907-555-0170;José;Sweden;North;35%
+424;Mr.;Eli;Bowen;Bikes for Two;371-555-0143;José;Sweden;North;35%
+217;Mr.;Chris;Maxwell;City Manufacturing;642-555-0187;Pamela;Sweden;North;35%
+660;Mr.;Nieves;Vargas;Exhilarating Cycles;371-555-0184;Michael;Sweden;North;35%
+490;Ms.;Elizabeth;Sullivan;Extraordinary Bike Works;306-555-0112;Jillian;Sweden;North;35%
+39;Ms.;Sharon;Looney;Fitness Hotel;377-555-0132;Jillian;Sweden;North;35%
+184;Ms.;Marjorie;Lee;Go-cart and Bike Specialists;306-555-0166;Jillian;Sweden;North;35%
+291;Mr.;Wayne;Banack;Grand Bicycle Stores;640-555-0189;Jillian;Sweden;North;35%
+191;Ms.;Sandra;Kitt;Non-Slip Pedal Company;303-555-0117;José;Sweden;North;35%
+402;Ms.;Marian;Berch;Pro Sporting Goods;640-555-0198;Linda;Sweden;North;35%
+190;Mr.;Mark;Lee;Racing Partners;371-555-0112;José;Sweden;North;35%
+83;Mr.;Eric;Brumfield;Requisite Part Supply;644-555-0114;José;Sweden;North;35%
+92;Ms.;Jovita;Carmody;Sports Commodities;646-555-0137;David;Sweden;North;35%
+163;Mr.;Andrew;Cencini;Sports Merchandise;644-555-0111;Pamela;Sweden;North;35%
+276;Mr.;Michael John;Troyer;Thrifty Parts and Sales;308-555-0175;Linda;Sweden;North;35%
+202;Ms.;A.;Leonetti;Two-Seater Bikes;645-555-0193;Jillian;Sweden;North;35%
+574;Ms.;Janice;Hows;Area Sheet Metal Supply;968-555-0154;Jae;Andorra;South;3%
+466;Sra.;Janeth;Esteves;Central Bicycle Specialists;962-555-0176;Jae;Andorra;South;3%
+25;Mr.;Donald;Blanton;Coalition Bike Company;357-555-0161;Shu;Andorra;South;3%
+547;Ms.;Gladys;Mendiola;Curbside Sporting Goods;535-555-0189;Shu;Andorra;South;3%
+365;Mr.;Jack;Creasey;Distinctive Store;539-555-0182;Shu;Andorra;South;3%
+232;Mr.;David;Jaffe;Exceptional Cycle Services;356-555-0191;Jae;Andorra;South;3%
+570;Mr.;Gregory;Alderson;Family's Favorite Bike Shop;968-555-0153;Garrett;Andorra;South;3%
+166;Ms.;Stacey;Cereghino;Fitness Toy Store;351-555-0131;Jillian;Andorra;South;3%
+643;Ms.;Denise;Maccietto;Friendly Bike Shop;537-555-0190;Michael;Andorra;South;3%
+543;Mr.;R. Morgan;Mendoza;Friendly Neighborhood Bikes;963-555-0146;Jillian;Andorra;South;3%
+462;Mr.;Bob;Gage;General Riding Supplies;962-555-0175;Garrett;Andorra;South;3%
+609;Mr.;David;Hodgson;Good Toys;969-555-0117;Linda;Andorra;South;3%
+228;Ms.;Danielle;Johnson;Home Town Bike Store;356-555-0190;Garrett;Andorra;South;3%
+120;Mr.;Pat;Coleman;Machines & Cycles Store;292-555-0128;Garrett;Andorra;South;3%
+607;Ms.;Alice;Steiner;Maintenance and Repair;355-555-0180;Jillian;Andorra;South;3%
+64;Mr.;Vamsi;Kuppa;Metal Clearing House;290-555-0196;José;Andorra;South;3%
+96;Ms.;Bonnie;Lepro;More Bikes!;354-555-0130;Linda;Andorra;South;3%
+124;Ms.;Yuhong;Li;Nearby Sporting Goods;292-555-0129;Jae;Andorra;South;3%
+75;Ms.;Aidan;Delaney;Paint Supply;358-555-0188;Jillian;Andorra;South;3%
+145;Mr.;Ted;Bremer;Raw Materials Inc;962-555-0166;Pamela;Andorra;South;3%
+457;Mr.;Mark;Erickson;Retail Sporting Equipment;962-555-0112;Shu;Andorra;South;3%
+696;Mr.;Maciej;Dusza;Roadway Supplies;962-555-0144;Shu;Andorra;South;3%
+693;Mr.;Bart;Duncan;Stock Parts and Supplies;539-555-0121;David;Andorra;South;3%
+597;Mr.;Bob;Hodges;All Seasons Sports Supply;129-555-0120;Jillian;Italy;South;55%
+155;Mr.;Joseph;Castellucio;Corner Bicycle Supply;180-555-0114;José;Italy;South;55%
+595;Mr.;Alan;Steiner;Cycle Clearance;127-555-0126;Pamela;Italy;South;55%
+592;Mr.;Stefano;Stefani;Cycling Goods;127-555-0125;Jae;Italy;South;55%
+295;Mr.;Joseph;Mitzner;Engineered Bike Systems;129-555-0164;Shu;Italy;South;55%
+366;Ms.;Teresa;Atkinson;Extended Bike Sales;129-555-0110;Linda;Italy;South;55%
+263;Mr.;Timothy;Burnett;Farthest Bike Store;251-555-0172;José;Italy;South;55%
+542;Mr.;Andrew;Kobylinski;Finer Parts Shop;129-555-0185;David;Italy;South;55%
+588;Mr.;Pat;Chambers;General Cycle Storehouse;127-555-0124;Garrett;Italy;South;55%
+345;Ms.;Abigail;Gonzalez;Genial Bike Associates;121-555-0139;Jillian;Italy;South;55%
+292;Mr.;Michael;Blythe;Grease and Oil Products;126-555-0172;Jillian;Italy;South;55%
+60;Mr.;Sean;Lunt;Main Bicycle Services;183-555-0111;Linda;Italy;South;55%
+77;Mr.;Michael;Brundage;Mechanical Products Ltd.;128-555-0148;Shu;Italy;South;55%
+442;Ms.;Jauna;Elson;Original Bicycle Supply;185-555-0190;José;Italy;South;55%
+438;Mr.;Cory;Booth;Remarkable Bike Store;121-555-0157;Linda;Italy;South;55%
+626;Mr.;Lawrence;Hurkett;Retail Sporting Goods;129-555-0185;Shu;Italy;South;55%
+472;Ms.;Ann;Evans;Summer Sports Place;252-555-0127;Jillian;Italy;South;55%
+255;Mr.;Sunil;Uppal;Swift Cycles;184-555-0187;Jillian;Italy;South;55%
+328;Mr.;Robert;Vessa;Totes & Baskets Company;560-555-0171;Jillian;Italy;South;55%
+137;;Gytis;Barzdukas;Transportation Options;257-555-0119;José;Italy;South;55%
+22;Ms.;Linda;Burnett;Travel Systems;121-555-0121;Jillian;Italy;South;55%
+329;Mr.;Andreas;Berglund;Unicycles;560-555-0172; Bicycle;Italy;South;55%
+452;Ms.;Olga;Trau;A Cycle Shop;398-555-0167;David;Marokko;South;4%
+448;Mr.;Terry;Eminhizer;Action Bicycle Specialists;396-555-0188;Jae;Marokko;South;4%
+528;Ms.;Helen;Meyer;Alpine Ski House;519-555-0112;Linda;Marokko;South;4%
+382;Mr.;Robert;Kelly;Beneficial Exercises and Activities;510-555-0123;Jillian;Marokko;South;4%
+235;Ms.;Mary;Alexander;Certified Bicycle Supply;344-555-0133;Pamela;Marokko;South;4%
+29;Mr.;Bryan;Hamilton;Cross-Country Riding Supplies;344-555-0144;José;Marokko;South;4%
+181;Mr.;Michael;Lee;Family Entertainment Center;396-555-0139;Pamela;Marokko;South;4%
+444;Mr.;Shaun;Beasley;Finer Cycle Shop;396-555-0187;Garrett;Marokko;South;4%
+361;Ms.;Karan;Khanna;Fitness Supplies;390-555-0150;Pamela;Marokko;South;4%
+527;Ms.;Diane;Tibbott;Fun Times Club;847-555-0184;Shu;Marokko;South;4%
+146;Mr.;Richard;Bready;Latest Sports Equipment;340-555-0131;David;Marokko;South;4%
+412;Ms.;Jean;Holloway;Leisure Clearing House;519-555-0152;Jae;Marokko;South;4%
+478;Ms.;Ruby Sue;Styles;Major Cycling;512-555-0122;José;Marokko;South;4%
+156;Mr.;Lester;Bowman;Metal Processing Company;844-555-0112;Garrett;Marokko;South;4%
+66;Mr.;Alexander;Deborde;Neighborhood Store;394-555-0176;Garrett;Marokko;South;4%
+408;Mr.;Alexander;Berger;Odometers and Accessories;519-555-0151;Garrett;Marokko;South;4%
+683;Ms.;Linda;Martin;Oils and Fluids Warehouse;393-555-0168;Jae;Marokko;South;4%
+70;Mr.;Deepak;Kumar;Outdoor Aerobic Systems Company;394-555-0177;Jae;Marokko;South;4%
+538;Mr.;John;Brooks;Prosperous Tours;399-555-0115;Jae;Marokko;South;4%
+534;Mr.;Stephen;Mew;Recommended Bicycles;399-555-0114;Garrett;Marokko;South;4%
+435;Ms.;Carol;Elliott;Satin Finish Company;847-555-0151;Jillian;Marokko;South;4%
+604;Ms.;Wathalee;Steuber;Sellers of Cycles;517-555-0120;Pamela;Marokko;South;4%
+679;Ms.;Brenda;Heaney;Superb Sales and Repair;393-555-0167;Garrett;Marokko;South;4%
+183;Mr.;Yao-Qiang;Cheng;This Area Sporting Goods;344-555-0181;Jillian;Marokko;South;4%
+677;Ms.;Cecelia;Marshall;Tire Exchange;394-555-0168;José;Marokko;South;4%
+114;Mr.;John;Colon;Two Wheels Cycle Store;397-555-0144;Linda;Marokko;South;4%
+160;Ms.;Brigid;Cavendish;Vigorous Sports Store;844-555-0113;Jae;Marokko;South;4%
+28;Ms.;Jackie;Blackwell;Commuter Bicycle Store;972-555-0163;José;Portugal;South;35%
+304;Ms.;Linda;Mitchell;Essential Bike Works;221-555-0168;Jae;Portugal;South;35%
+613;Mr.;Jim;Stewart;Famous Bike Shop;226-555-0110;Garrett;Portugal;South;35%
+380;Ms.;Eva;Corets;First Department Stores;542-555-0164;David;Portugal;South;35%
+418;Mr.;Lee;Chapla;Good Bike Shop;223-555-0184;Jillian;Portugal;South;35%
+149;Mr.;Cornelius;Brandon;Initial Bike Company;229-555-0114;Shu;Portugal;South;35%
+147;Ms.;Alice;Clark;Local Hardware Factory;221-555-0141;Jillian;Portugal;South;35%
+65;Ms.;Jane;Greer;Metro Manufacturing;737-555-0163;José;Portugal;South;35%
+300;Mr.;Daniel;Blanco;Nice Bikes;221-555-0167;Garrett;Portugal;South;35%
+473;Ms.;Kay;Krane;Racing Toys;731-555-0187;Shu;Portugal;South;35%
+312;Mr.;Thomas;Armstrong;Resale Services;226-555-0146;Linda;Portugal;South;35%
+204;Mr.;Ido;Ben-Sachar;Traction Tire Company;973-555-0112;Linda;Portugal;South;35%
+617;Ms.;Arlene;Huff;Tubeless Tire Company;226-555-0111;Jae;Portugal;South;35%
+100;Mr.;Kirk;King;Up-To-Date Sports;979-555-0163;José;Portugal;South;35%
+23;Mr.;Kerim;Hanif;Bike World;216-555-0122;Shu;Spain;South;65%
+624;Mr.;Mike;Hines;First Cycle Store;454-555-0160;Shu;Spain;South;65%
+394;Ms.;Bonnie;Kearney;Little Sports Center;204-555-0190;Jae;Spain;South;65%
+316;Mr.;Ben;Miller;Low Price Cycles;207-555-0167;José;Spain;South;65%
+358;Mr.;Joe;Kim;Mail Market;614-555-0135;Jae;Spain;South;65%
+61;Mr.;Jeffrey;Kurtz;Many Bikes Store;452-555-0179;Shu;Spain;South;65%
+654;Mr.;Jésus;Hernandez;Online Bike Warehouse;214-555-0145;José;Spain;South;65%
+223;Ms.;Joyce;Jarvis;Paints and Solvents Company;458-555-0179;Shu;Spain;South;65%
+390;Mr.;Mike;Taylor;Plastic Parts Company;204-555-0189;Garrett;Spain;South;65%
+142;Mr.;Jon;Grande;Riding Cycles;206-555-0196;Jae;Spain;South;65%
+203;Ms.;Jean;Jordan;Separate Parts Corporation;207-555-0129;Shu;Spain;South;65%
+354;Mr.;Maxwell;Amland;Serious Cycles;614-555-0134;Garrett;Spain;South;65%
+138;Ms.;Jane;Clayton;South Bike Company;206-555-0195;Garrett;Spain;South;65%
+496;Ms.;Marcia;Sultan;Top Sports Supply;613-555-0116;José;Spain;South;65%
+370;Ms.;Elizabeth;Keyser;Acceptable Sales & Service;656-555-0173;José;Belgium;West;15%
+468;Mr.;Paul;Fulton;Blue Bicycle Company;492-555-0146;Michael;Belgium;West;15%
+237;Ms.;Mary;Browning;Client Discount Store;658-555-0146;Jillian;Belgium;West;15%
+596;Ms.;Kathie;Flood;Coho Sports;627-555-0192;David;Belgium;West;15%
+219;Mr.;Brian;Johnson;Extras Sporting Goods;320-555-0134;Jillian;Belgium;West;15%
+344;Ms.;Karren;Burkhardt;Fifth Bike Store;652-555-0132;David;Belgium;West;15%
+622;Mr.;Robert;Stotka;Gift and Toy Store;493-555-0185;Jillian;Belgium;West;15%
+148;Mr.;Alan;Brewer;Lots of Bikes Storehouse;494-555-0134;Jillian;Belgium;West;15%
+343;Ms.;Patricia;Vasquez;Mail-Order Outlet;490-555-0132;Pamela;Belgium;West;15%
+5;Mr.;Lucy;Harrington;Metropolitan Sports Supply;828-555-0186;Shu;Belgium;West;15%
+102;Ms.;Linda;Leste;National Manufacturing;493-555-0134;Garrett;Belgium;West;15%
+340;Mr.;Raja;Venugopal;Nearby Cycle Shop;495-555-0162;Jae;Belgium;West;15%
+360;Ms.;Ramona;Antrim;Novelty Bikes;327-555-0148;Michael;Belgium;West;15%
+562;Ms.;Yvonne;McKay;Practical Bike Supply Company;623-555-0144;Jillian;Belgium;West;15%
+695;Mr.;Rob;Caron;Responsible Bike Dealers;620-555-0117;Jillian;Belgium;West;15%
+600;Ms.;Holly;Holt;Strenuous Exercise Shop;654-555-0150;Linda;Belgium;West;15%
+187;Mr.;Frank;Campbell;Trailblazing Sports;491-555-0132;Shu;Belgium;West;15%
+601;Mr.;Vassar;Stern;Transport Bikes;328-555-0123;Shu;Belgium;West;15%
+493;Mr.;Michael;Sullivan;Valley Bicycle Distributors;323-555-0113;Shu;Belgium;West;15%
+185;Mr.;Sandeep;Kaliyath;Weekend Bike Tours;495-555-0113;Shu;France;West;85%
+106;Ms.;Andrea;Thomsen;West Side Mart;493-555-0135;Jae;France;West;85%
+470;Ms.;Delia;Toone;Wingtip Toys;328-555-0192;David;France;West;85%
+199;Mr.;Roger;Lengel;Authorized Bike Sales and Rental;947-555-0143;Pamela;France;West;85%
+488;Ms.;Margaret;Smith;Bicycle Accessories and Kits;959-555-0151;David;France;West;85%
+236;Ms.;Lola;McCarthy;Closeout Boutique;173-555-0151;David;France;West;85%
+88;Ms.;Pamala;Kotc;Closest Bicycle Store;752-555-0186;Jae;France;West;85%
+507;Mr.;Mary;Bishop;Global Sporting Goods;176-555-0136;Jillian;France;West;85%
+377;Mr.;Marlin;Coriell;Grand Sport Boutique;941-555-0155;Michael;France;West;85%
+40;Mr.;Darren;Gehring;Journey Sporting Goods;417-555-0182;Jillian;France;West;85%
+668;Ms.;Kathy;Marcovecchio;Official Parts Shop;942-555-0141;Pamela;France;West;85%
+460;Ms.;Martha;Espinoza;Price-Cutter Discount Bikes;753-555-0179;José;France;West;85%
+2;Mr.;Keith;Harris;Progressive Sports;170-555-0127;David;France;West;85%
+205;Mr.;Frank;Mart¡nez;Rally Master Company Inc;171-555-0147;Shu;France;West;85%
+84;Ms.;Della;Demott Jr;Rewarding Activities Company;752-555-0185;Garrett;France;West;85%
+578;Ms.;Carolyn;Farino;The Bike Shop;957-555-0125;David;France;West;85%
+698;Mr.;Andy;Carothers;Western Bike Supplies;944-555-0148;Shu;France;West;85%
+1;Mr.;Orlando;Gee;A Bike Store;245-555-0173;Pamela;France;West;85%
+238;Ms.;Jodan;Jacobson;A Great Bicycle Company;652-555-0189;Jillian;France;West;85%
+6;Ms.;Rosmarie;Carroll;Aerobic Exercise Company;244-555-0112;Linda;France;West;85%
+200;Ms.;Peggy;Justice;Basic Bike Company;170-555-0189;David;France;West;85%
+399;Mr.;Chad;Tedford;Big Cycle Mall;588-555-0128;Jillian;France;West;85%
+348;Mr.;Oscar;Alpuerto;Bold Bike Accessories;855-555-0174;Linda;France;West;85%
+154;Mr.;Carlton;Carlisle;Camping and Sports Store;193-555-0116;José;Germany;West;100%
+376;Ms.;Mary;Kesslep;Commerce Bicycle Specialists;421-555-0193;Jae;Germany;West;100%
+552;Mr.;Tim;Kim;Consolidated Messenger;244-555-0115;Garrett;Germany;West;100%
+41;Ms.;Erin;Hagens;Distant Inn;244-555-0127;Shu;Germany;West;100%
+364;Mr.;Imtiaz;Khan;District Mall;249-555-0179;Jillian;Germany;West;100%
+210;Mr.;Josh;Barnhill;Gasless Cycle Shop;584-555-0192;Garrett;Germany;West;100%
+46;Mr.;David;Lawrence;Gear-Shift Bikes Limited;653-555-0159;José;Germany;West;100%
+287;Mr.;Grant;Culbertson;Handy Bike Services;859-555-0173;Michael;Germany;West;100%
+288;Mr.;Robert;Barker;Kickstand Sellers;241-555-0112;Michael;Germany;West;100%
+245;Mr.;James;McCoy;Leather Seat Factory;191-555-0151;José;Germany;West;100%
+313;Mr.;Dylan;Miller;Metropolitan Manufacturing;140-555-0192;Shu;Germany;West;100%
+395;Ms.;June;Brunner;Online Bike Sellers;249-555-0172;Michael;Germany;West;100%
+336;Mr.;Brian;Goldstein;Primary Bike Distributors;495-555-0161;Garrett;Germany;West;100%
+475;Mr.;John;Evans;Real Sporting Goods;581-555-0172;Shu;Germany;West;100%
+439;Ms.;Shannon;Elliott;Regional Manufacturing;425-555-0158;Shu;Germany;West;100%
+334;Ms.;Dora;Verdad;Retreat Inn;155-555-0140;José;Germany;West;100%
+581;Ms.;Geri;Farrell;Safe Toys;329-555-0183;Shu;Germany;West;100%
+222;Mr.;Barry;Johnson;Sample Bike Store;858-555-0140;Linda;Germany;West;100%
+436;Ms.;Barbara;Calone;Sheet Metal Manufacturing;145-555-0152;Jillian;Germany;West;100%
+648;Ms.;Cheryl;Herring;Small Bike Shop;158-555-0154;Shu;Germany;West;100%
+559;Ms.;Nkenge;McLin;Some Discount Store;158-555-0123;Pamela;Germany;West;100%
+649;Mr.;Walter;Mays;Sports Products Store;245-555-0191;Linda;Germany;West;100%
+280;Mr.;Frances;Giglio;Standard Bikes;692-555-0136;José;Germany;West;100%
+433;Ms.;Lindsey;Camacho;Thorough Parts and Repair Services;827-555-0143;Pamela;Germany;West;100%
+112;Ms.;Elsie;Lewin;Town Industries;803-555-0116;Jillian;Germany;West;100%
+109;Mr.;Daniel;Thompson;Travel Sports;247-555-0197;Pamela;Germany;West;100%
+352;Mr.;Shane;Kim;Twelfth Bike Store;155-555-0149;José;Germany;West;100%
+101;Mr.;William;Conner;Urban Sports Emporium;383-555-0111;José;Germany;West;100%
+556;Ms.;Nancy;McPhearson;Variety Cycling;244-555-0116;Jae;Germany;West;100%
+326;Mr.;Scott;Gode;Year-Round Sports;164-555-0145;David;Germany;West;100%
+487;Ms.;Ruth;Suffin;Bike Experts;924-555-0195;Pamela;Ireland;West;30%
+397;Mr.;Sandeep;Katyal;Capable Sales and Service;928-555-0117;Pamela;Ireland;West;30%
+21;Ms.;Jinghao;Liu;Chic Department Stores;928-555-0116;Jillian;Ireland;West;30%
+24;Mr.;Kevin;Liu;Eastside Department Store;926-555-0164;Linda;Ireland;West;30%
+545;Mr.;Christian;Kleinerman;Finish and Sealant Products;362-555-0177;Shu;Ireland;West;30%
+610;Ms.;Liza Marie;Stevens;Fitness Department Stores;366-555-0110;Shu;Ireland;West;30%
+150;Ms.;Jill;Christie;Fleet Bikes;927-555-0198;Linda;Ireland;West;30%
+55;Mr.;Eric;Lang;Kickstands and Accessories;932-555-0163;Pamela;Ireland;West;30%
+625;Ms.;Kayla;Stotler;Major Sporting Goods;315-555-0131;Linda;Ireland;West;30%
+587;Ms.;Rhoda;Finley;Our Sporting Goods Store;920-555-0191;José;Ireland;West;30%
+118;Mr.;Yale;Li;Rapid Bikes;316-555-0138;José;Ireland;West;30%
+256;Mr.;Richard;Irwin;Rental Bikes;367-555-0124;Jillian;Ireland;West;30%
+11;Ms.;Katherine;Harding;Sharp Bikes;926-555-0159;José;Ireland;West;30%
+599;Mr.;Raul;Casts;Westside Plaza;362-555-0162;Shu;Ireland;West;30%
+511;Mr.;Abraham;Swearengin;Wheel Gallery;926-555-0136;Shu;Ireland;West;30%
+7;Mr.;Dominic;Gash;Associated Bikes;192-555-0173;Shu;Luxembourg;West;5%
+665;Mr.;Tomas;Manzanares;Authentic Sales and Service;143-555-0130;Jae;Luxembourg;West;5%
+220;Mr.;Robert;Brown;Best o' Bikes;575-555-0189;Jillian;Luxembourg;West;5%
+381;Ms.;Julie;Taft-Rider;Bicycle Lines Distributors;145-555-0194;Jillian;Luxembourg;West;5%
+367;Ms.;Tammy;Khan;Brown Bicycle Company;145-555-0166;Shu;Luxembourg;West;5%
+489;Ms.;Dorothy;Fox;Cash & Carry Bikes;191-555-0198;Jillian;Luxembourg;West;5%
+371;Mr.;Bruno;Costa Da Silva;Custom Sales and Service;140-555-0143;José;Luxembourg;West;5%
+169;Ms.;Brenda;Diaz;Downtown Hotel;147-555-0192;Shu;Luxembourg;West;5%
+630;Mr.;Andrew;Hill;Eastside Parts Shop;194-555-0149;José;Luxembourg;West;5%
+629;Mr.;Ryan;Ihrig;Efficient Cycling;809-555-0152;José;Luxembourg;West;5%
+523;Ms.;Mary;Gimmi;Futuristic Sport Distributors;149-555-0196;Shu;Luxembourg;West;5%
+661;Mr.;Kari;Hensien;General Department Stores;143-555-0129;Garrett;Luxembourg;West;5%
+608;Mr.;Steven;Brown;Golf and Cycle Store;280-555-0124;Shu;Luxembourg;West;5%
+506;Mr.;François;Ferrier;Great Bikes;571-555-0128;David;Luxembourg;West;5%
+47;Ms.;Hattie;Haemon;Greater Bike Store;141-555-0172;José;Luxembourg;West;5%
+259;Mr.;Lucio;Iallo;Highway Bike Shop;199-555-0135;Shu;Luxembourg;West;5%
+437;Ms.;Megan;Burke;Professional Cycle Store;148-555-0149;Shu;Luxembourg;West;5%
+621;Mr.;Matthew;Hink;Running and Cycling Gear;146-555-0176;David;Luxembourg;West;5%
+580;Mr.;Joshua;Huff;Rural Sales and Service;190-555-0186;Jillian;Luxembourg;West;5%
+692;Ms.;Bev;Desalvo;Successful Sales Company;143-555-0113;Pamela;Luxembourg;West;5%
+406;Mr.;Eddie;Holmes;The Commissary;570-555-0199;José;Luxembourg;West;5%
+309;Mr.;John;Arthur;The Gear Store;149-555-0113;Jillian;Luxembourg;West;5%
+443;Sra.;Janaina;Bueno;Courteous Bicycle Specialists;476-555-0184;José;Netherlands;West;25%
+568;Mr.;Curtis;Howard;Economy Center;555-555-0162;José;Netherlands;West;25%
+250;Ms.;Denean;Ison;Express Bike Services;481-555-0132;Jae;Netherlands;West;25%
+43;Ms.;Elsa;Leavitt;Frugal Bike Shop;482-555-0174;Shu;Netherlands;West;25%
+262;Ms.;Beth;Inghram;General Industries;718-555-0152;José;Netherlands;West;25%
+363;Mr.;Chris;Ashton;Immense Manufacturing Company;556-555-0145;Jillian;Netherlands;West;25%
+246;Ms.;Esther;Valle;Large Bike Shop;481-555-0131;Garrett;Netherlands;West;25%
+4;Ms.;Janet;Gates;Modular Cycle Systems;710-555-0173;Jillian;Netherlands;West;25%
+311;Sr.;Alvaro;De Matos;Principal Bike Company;551-555-0155;Shu;Netherlands;West;25%
+669;Ms.;Patricia;Doyle;Racing Bike Outlet;899-555-0134;David;Netherlands;West;25%
+95;Ms.;Jane;Carmichael;Rural Department Store;716-555-0167;Shu;Netherlands;West;25%
+94;Mr.;Scott;Konersmann;Specialty Sports Store;556-555-0192;Jillian;Netherlands;West;25%
+218;Mr.;David;Johnson;Sure & Reliable Sporting Goods;476-555-0139;David;Netherlands;West;25%
+563;Mr.;Sean;Jacobson;Systematic Sales;555-555-0162;Shu;Netherlands;West;25%
+694;Ms.;Ann;Hass;The Accessories Store;713-555-0168;Jillian;Netherlands;West;25%
+532;Ms.;Diane;Glimp;The Showroom;898-555-0137;José;Netherlands;West;25%
+620;Mr.;Matthew;Hunter;Tires and Tubes;482-555-0188;Pamela;Netherlands;West;25%
+469;Ms.;Twanna;Evans;Vast Bike Sales and Rental;554-555-0124;Pamela;Netherlands;West;25%
+551;Mr.;Samuel;Agcaoili;Vinyl and Plastic Goods;554-555-0110;José;Netherlands;West;25%
+646;Mr.;Scott;MacDonald;Yellow Bicycle Company;470-555-0171;Jillian;Netherlands;West;25%
+3;Ms.;Donna;Carreras;Advanced Bike Components;279-555-0130;Jillian;Switzerland;West;20%
+325;Ms.;Virginia;Miller;All Cycle Shop;918-555-0127;Pamela;Switzerland;West;20%
+425;Mr.;Stephen;Jiang;Bikes for Kids and Adults;910-555-0116;José;Switzerland;West;20%
+268;Mr.;Richard;Byham;Channel Outlet;277-555-0183;Jae;Switzerland;West;20%
+133;Mr.;Michael;Graff;Commercial Sporting Goods;132-555-0150;Shu;Switzerland;West;20%
+508;Mr.;Martin;Svoboda;Designer Department Stores;132-555-0149;Jillian;Switzerland;West;20%
+379;Mr.;Kevin;Kennedy;Fad Outlet;275-555-0179;Pamela;Switzerland;West;20%
+264;Ms.;Phyllis;Tuffield;Fasteners & Bolts Outlet;277-555-0182;Garrett;Switzerland;West;20%
+546;Mr.;Anton;Kirilov;Field Trip Store;608-555-0162;Linda;Switzerland;West;20%
+526;Mr.;David;Givens;Finer Sales and Service;605-555-0111;José;Switzerland;West;20%
+318;Ms.;Ann;Beebe;First-Rate Outlet;277-555-0169;Garrett;Switzerland;West;20%
+417;Ms.;Ruth;Choin;Genuine Bike Shop;273-555-0181;Jillian;Switzerland;West;20%
+42;Mr.;Jeremy;Los;Healthy Activity Store;911-555-0165;Linda;Switzerland;West;20%
+416;Ms.;Angela;Barbariol;Impromptu Trips;134-555-0182;David;Switzerland;West;20%
+565;Mr.;Richard;Bentley;Metallic Paint and Overcoat Co;911-555-0153;Shu;Switzerland;West;20%
+502;Mr.;Krishna;Sunkammurali;Metropolitan Bicycle Supply;272-555-0124;Jae;Switzerland;West;20%
+97;Mr.;Eugene;Kogan;Mountain Bike Center;136-555-0134;Shu;Switzerland;West;20%
+209;Mr.;Robert;Jones;Purple Bicycle Company;595-555-0131;José;Switzerland;West;20%
+498;Ms.;Kelly;Focht;Quick Delivery Service;272-555-0123;Garrett;Switzerland;West;20%
+456;Mr.;Michael;Galos;Riding Excursions;912-555-0149;Linda;Switzerland;West;20%
+471;Mr.;John;Ford;Social Activities Club;596-555-0153;Jillian;United Kingdom;West;70%
+647;Mr.;Michael;Vanderhyde;Solid Bike Parts;918-555-0141;Jillian;United Kingdom;West;70%
+93;Mr.;Prashanth;Desai;Stationary Bikes and Stands;138-555-0156;Jillian;United Kingdom;West;70%
+322;Mr.;Matthew;Miller;Tachometers and Accessories;277-555-0170;Jae;United Kingdom;West;70%
+113;Mr.;Donald;Thompson;Trendy Department Stores;273-555-0111;Shu;United Kingdom;West;70%
+678;Mr.;Reuben;D'sa;Vigorous Exercise Company;916-555-0137;José;United Kingdom;West;70%
+271;Mr.;Jared;Bustamante;Alternative Vehicles;164-555-0147;Pamela;United Kingdom;West;70%
+182;Mr.;Stanley;Alan;Another Bicycle Company;156-555-0126;David;United Kingdom;West;70%
+347;Ms.;Ingrid;Burkhardt;Bike Universe;857-555-0187;Shu;United Kingdom;West;70%
+671;Ms.;Jill;Markwood;Contoso;859-555-0141;Jillian;United Kingdom;West;70%
+569;Mr.;Cecil;Allison;Designated Distributors;699-555-0155;José;United Kingdom;West;70%
+167;Mr.;Blaine;Dockter;Farthermost Bike Shop;156-555-0187;Shu;United Kingdom;West;70%
+670;Ms.;Valerie;Hendricks;First Bike Store;859-555-0140;Jillian;United Kingdom;West;70%
+151;Mr.;Walter;Brian;Futuristic Bikes;163-555-0155;Shu;United Kingdom;West;70%
+48;Ms.;Anita;Lucerne;Grand Industries;164-555-0118;Garrett;United Kingdom;West;70%
+623;Ms.;Phyllis;Huntsman;Hardware Components;153-555-0195;Jillian;United Kingdom;West;70%
+52;Ms.;Rebecca;Laszlo;Instruments and Parts Company;164-555-0119;Jae;United Kingdom;West;70%
+606;Ms.;Helge;Hoeing;Little Bicycle Supply Shop;850-555-0198;Jillian;United Kingdom;West;70%
+520;Ms.;Mari;Caldwell;Metro Metals Co.;162-555-0175;Jae;United Kingdom;West;70%
+605;Mr.;Matthew;Cavallari;Outstanding Cycles;695-555-0161;David;United Kingdom;West;70%
+74;Mr.;Christopher;Bright;Parcel Express Delivery Service;162-555-0166;David;United Kingdom;West;70%
+208;Mr.;Steve;Masters;Professional Cyclists;154-555-0115;José;United Kingdom;West;70%
+244;Mr.;Bronson;Jacobs;Retail Discount Store;697-555-0131;José;United Kingdom;West;70%
+451;Mr.;John;Emory;Roadway Bike Emporium;691-555-0149;Pamela;United Kingdom;West;70%
+10;Ms.;Kathleen;Garza;Rural Cycle Emporium;150-555-0127;José;United Kingdom;West;70%
+335;Mr.;John;Berger;Scratch-Resistant Finishes;156-555-0111;José;United Kingdom;West;70%
+516;Mr.;Thomas;Michaels;Seats and Saddles Company;162-555-0174;Garrett;United Kingdom;West;70%
+115;Mr.;George;Li;Security Racks and Locks;699-555-0183;Shu;United Kingdom;West;70%
+577;Mr.;George;Huckaby;Synthetic Materials Manufacturing;851-555-0127;Pamela;United Kingdom;West;70%
+672;Mr.;Gerald;Drury;Utilitarian Sporting Goods;169-555-0178;Shu;United Kingdom;West;70%
+544;Mr.;Jay;Adams;Valley Bicycle Specialists;158-555-0142;Jillian;United Kingdom;West;70%
+327;Ms.;Caroline;Vicknair;World of Bikes;695-555-0158;Jillian;United Kingdom;West;70%

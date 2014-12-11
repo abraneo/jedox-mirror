@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+	<include schemaLocation="resource.xsd"/>
+    <element name="load" type="c:loadtype" />
+    
+     <complexType name="connectionref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<anyAttribute processContents="lax"/>
+	 </complexType>  
+	 	 
+	 <complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+	 </complexType>
+
+	  <simpleType name="updatemode">
+ 		 <restriction base="string">
+    		<enumeration value="key"/>
+    		<enumeration value="sum"/>
+    		<enumeration value="min"/>
+    		<enumeration value="max"/>
+    		<enumeration value="avg"/>
+    		<enumeration value="count"/>
+    		<enumeration value="first"/>
+    		<enumeration value="last"/>
+  		</restriction>
+	</simpleType>  	
+	 
+	 <complexType name="columntype">
+     	<attribute name="nameref" type="string" use="required">
+		</attribute>
+        <attribute name="mode" type="c:updatemode"/>
+	 </complexType>
+	 
+	  <complexType name="tabletype">
+     	<sequence>
+        	<element name="column" type="c:columntype" minOccurs="0" maxOccurs="unbounded">
+        		<annotation>
+					<appinfo>input</appinfo>
+				</annotation>
+        	</element>
+        </sequence>
+        <attribute name="name" type="string"/>
+        <attribute name="schema" type="string">
+        	<annotation>
+				<appinfo>metadata.schema.table_schem</appinfo>
+			</annotation>
+        </attribute>
+        <attribute name="aggregate" type="c:aggregatemode"/>
+        <attribute name="primaryKey" type="string">
+        	<annotation>
+				<appinfo>input</appinfo>
+			</annotation>
+        </attribute>
+        <attribute name="primaryKeyGeneration" type="c:generationmode"/>
+	 </complexType>
+	 
+
+	<simpleType name="aggregatemode">
+ 		 <restriction base="string">
+    		<enumeration value="true"/>
+    		<enumeration value="false"/>
+    		<enumeration value="row"/>
+    		<enumeration value="bulk"/>
+  		</restriction>
+	</simpleType>  
+	
+	<simpleType name="generationmode">
+ 		 <restriction base="string">
+    		<enumeration value="assigned"/>
+    		<enumeration value="native"/>
+    		<enumeration value="identity"/>
+    		<enumeration value="sequence"/>
+    		<enumeration value="hilo"/>
+    		<enumeration value="increment"/>
+    		<enumeration value="guid"/>
+  		</restriction>
+	</simpleType>  		
+
+	 <simpleType name="loadmode">
+ 		 <restriction base="string">
+    		<enumeration value="create"/>
+    		<enumeration value="update"/>
+    		<enumeration value="add"/>
+    		<enumeration value="insert"/>
+    		<enumeration value="delete"/>
+  		</restriction>
+	</simpleType>  	
+    
+     <complexType name="loadtype">
+        <all>
+            <element name="connection" type="c:connectionref"/>
+            <element name="source" type="c:sourceref"/>
+			<element name="mode" type="c:loadmode" minOccurs="0" maxOccurs="1"/>                        
+            <element name="table" type="c:tabletype" minOccurs="0" maxOccurs="1">
+            	<annotation>
+					<appinfo>metadata.table.table_name;tableTypes=TABLE</appinfo>
+				</annotation>
+            </element>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>      
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+        <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+
+</schema>

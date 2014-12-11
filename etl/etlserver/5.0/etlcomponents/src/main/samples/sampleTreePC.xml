@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleTreePC" version="5.0">
+  <comment>
+<![CDATA[ETL Demo Project.
+Import of Dimension Data in Parent-Child-Format from Flat File and Load to OLAP Dimension using Transform TreePC.]]>
+  </comment>
+  <variables />
+  <connections>
+    <connection name="palodemo" type="Jedox">
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">ISED4Zf4dIFiG6opEFlErw==</password>
+      <database>Demo_ETL</database>
+    </connection>
+    <connection name="Categories_file" type="File">
+      <database>BikerProductCategories.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>UTF-8</encoding>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Categories_Extract" type="File">
+      <connection nameref="Categories_file" />
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="Categories_Tree" type="TreePC">
+      <sources>
+        <source nameref="Categories_Extract" />
+      </sources>
+      <target>
+        <parent>
+          <input nameref="ParentProductCategoryID" />
+        </parent>
+        <child>
+          <input nameref="ProductCategoryID" />
+        </child>
+        <weight>
+          <input constant="1" />
+        </weight>
+        <attributes>
+          <attribute name="Description">
+            <input nameref="Name" />
+          </attribute>
+        </attributes>
+      </target>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="Categories_Load" type="Dimension">
+      <source nameref="Categories_Tree" />
+      <connection nameref="palodemo" />
+      <dimension name="Categories">
+        <elements />
+        <consolidations />
+        <attributes />
+      </dimension>
+      <mode>update</mode>
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard">
+      <load nameref="Categories_Load" />
+    </job>
+  </jobs>
+</project>
+

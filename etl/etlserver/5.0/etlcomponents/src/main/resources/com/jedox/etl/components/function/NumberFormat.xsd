@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="function" type="c:transformertype" />
+
+	<complexType name="inputref">
+		<attribute name="nameref" type="string">
+			<annotation>
+				<appinfo>
+					<ref>source:/alias_map/alias/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="constant" type="string"/>
+	</complexType>
+
+	 <complexType name="inputstype">
+        <sequence>
+        	<element name="input" type="c:inputref"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="ExponentialFormattype">
+ 		 <restriction base="string">
+    		<enumeration value="E0"/>
+    		<enumeration value="E+0"/>
+  		</restriction>
+	</simpleType>
+
+	    <simpleType name="MoveSignType">
+ 		 <restriction base="string">
+    		<enumeration value="left"/>
+    		<enumeration value="right"/>
+  		</restriction>
+	</simpleType>
+
+	 <complexType name="parametertype">
+        <all>
+			<element name="pattern" type="string" minOccurs="0" maxOccurs="1"/>
+        	<element name="default" type="string" minOccurs="0" maxOccurs="1"/>
+        	<element name="exponentialFormat" type="c:ExponentialFormattype" minOccurs="0" maxOccurs="1"/>
+        	<element name="moveSign" type="c:MoveSignType" minOccurs="0" maxOccurs="1"/>
+        	<element name="groupingSeparator" type="string" minOccurs="0" maxOccurs="1"/>
+        	<element name="decimalSeparator" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+    </complexType>
+    <complexType name="transformertype">
+        <all>
+        	 <element name="parameters" type="c:parametertype" minOccurs="1" maxOccurs="1"/>
+        	<element name="inputs" type="c:inputstype" minOccurs="1" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+</schema>

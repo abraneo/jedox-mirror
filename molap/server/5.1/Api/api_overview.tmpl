@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Jedox OLAP</title>
+    <link href="/inc/style_palo.css" rel="stylesheet" type="text/css">
+    <!--[if IE]>
+    <style>
+      body{
+        overflow:auto;
+      }
+    </style>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div id="surround" align="center">
+      <div id="container">
+        <div id="clientHeader">&nbsp;</div>
+
+        <div id="left">
+          <a class="nav" href="/">Home</a>     
+          <a class="nav" href="/browser">Server browser</a>     
+          <a class="nav" href="/api">API Documentation</a>     
+          <a class="nav" href="http://www.jedox.com">Jedox OLAP Home</a>     
+        </div>
+
+        <div id="center">
+          <div style="margin: 10px;">
+            <h1>Jedox OLAP documentation</h1>
+
+            <table cellpadding="2" cellspacing="2" width="100%">
+
+              <tr class="border_table">
+                <td colspan="2"><a href="/">home</a> > API ></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+ 		  <p>
+                    The API uses a subset of the "<a href="http://www.w3.org/Protocols/">Hypertext Transfer Protocol</a>" (HTTP/1.1) and a
+                    "<a href="http://en.wikipedia.org/wiki/Comma-separated_values">Character Separated Values</a>" (CSV) data format.
+                  </p>
+               </td>
+              </tr>
+
+
+              <tr>
+                <td colspan="2"><h2>Token Mechansim</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  In order to support optimistic caching strategies on the client, Jedox OLAP uses a token
+                  mechanism to track changes on the server, databases, dimensions, and cubes as follows.
+                  Each of these objects have an associated token. This token is changed whenever the
+                  object is changed. I. e., if the dimension hierarchy is modified the corresponding
+                  dimension token is changed. The cube token is changed, whenever an element from an
+                  used dimension is deleted. The database token is changed whenever the cube or dimension
+                  token of any contained cube or dimension is changed. The server token is changed,
+                  whenever the token of the contained database is changed. The client can deliver the corresponding
+                  token in a request. If there is a mismatch, an error is returned and the client can update
+                  its cache.<p>
+                  For client side cell caching a second cube token called "client cache" token is delivered. 
+                  A client has to update all cached cell values of the cube as soon as the token changes. 
+                  The behavior of the "client cache" token can be set in a system Cube called #_CONFIGURATION_. 
+                  A change of the "client cache" token has no impact on the other tokens.
+                  Possible values and meanings of the client cache configuration:
+                  <ul>
+                    <li>"N": No client cache. The token changes after each request to force each client to invalidate its cache. </li>
+                    <li>"Y": Use a client cache. The token changes after a cell insert, update or delete. </li>
+                    <li>"E": Use a client cache for cubes without enterprise rules. The token changes after a cell insert, update or delete. </li>
+                  </ul>
+                  <p>
+                  The tokens are delivered in HTTP header fields X-PALO-SV (server), X-PALO-DB (database), X-PALO-DIM (dimensions), 
+                  X-PALO-CB (cubes) and X-PALO-CC (cube client cache).
+                  See <a href="/api/example.html#example1">example 1</a>.
+                </td>
+              </tr>
+
+
+              <tr>
+                <td colspan="2"><h2>HTTP requests</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">The Jedox OLAP server supports the following requests (<a href="/api/example.html">examples</a>): </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Server</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="170">request</td>
+                      <td>description</td>
+                      <td width="75">token</td>
+                    </tr>
+LOOP @server
+                    <tr class="value_table">
+                      <td><a href="/api{@server[]}">{@server[]}</a></td>
+                      <td>{@server_description[]}</td>
+                      <td>{@server_token[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Database</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="170">request</td>
+                      <td>description</td>
+                      <td width="75">token</td>
+                    </tr>
+LOOP @database
+                    <tr class="value_table">
+                      <td><a href="/api{@database[]}">{@database[]}</a></td>
+                      <td>{@database_description[]}</td>
+                      <td>{@database_token[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Dimension</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="170">request</td>
+                      <td>description</td>
+                      <td width="75">token</td>
+                    </tr>
+LOOP @dimension
+                    <tr class="value_table">
+                      <td><a href="/api{@dimension[]}">{@dimension[]}</a></td>
+                      <td>{@dimension_description[]}</td>
+                      <td>{@dimension_token[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Element</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="170">request</td>
+                      <td>description</td>
+                      <td width="75">token</td>
+                    </tr>
+LOOP @element
+                    <tr class="value_table">
+                      <td><a href="/api{@element[]}">{@element[]}</a></td>
+                      <td>{@element_description[]}</td>
+                      <td>{@element_token[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Cube</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="170">request</td>
+                      <td>description</td>
+                      <td width="75">token</td>
+                    </tr>
+LOOP @cube
+                    <tr class="value_table">
+                      <td><a href="/api{@cube[]}">{@cube[]}</a></td>
+                      <td>{@cube_description[]}</td>
+                      <td>{@cube_token[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Cell</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="170">request</td>
+                      <td>description</td>
+                      <td width="75">token</td>
+                    </tr>
+LOOP @cell
+                    <tr class="value_table">
+                      <td><a href="/api{@cell[]}">{@cell[]}</a></td>
+                      <td>{@cell_description[]}</td>
+                      <td>{@cell_token[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td colspan="2"><h2>Events</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="170">request</td>
+                      <td>description</td>
+                      <td width="75">token</td>
+                    </tr>
+LOOP @event
+                    <tr class="value_table">
+                      <td><a href="/api{@event[]}">{@event[]}</a></td>
+                      <td>{@event_description[]}</td>
+                      <td>{@event_token[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Rules</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="170">request</td>
+                      <td>description</td>
+                      <td width="75">token</td>
+                    </tr>
+LOOP @rule
+                    <tr class="value_table">
+                      <td><a href="/api{@rule[]}">{@rule[]}</a></td>
+                      <td>{@rule_description[]}</td>
+                      <td>{@rule_token[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+              
+              <tr>
+                <td colspan="2"><h2>Supervision Server</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="170">request</td>
+                      <td>description</td>
+                      <td width="75">token</td>
+                    </tr>
+LOOP @svs
+                    <tr class="value_table">
+                      <td><a href="/api{@svs[]}">{@svs[]}</a></td>
+                      <td>{@svs_description[]}</td>
+                      <td>{@svs_token[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Error codes</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">If a parameter is missing or wrong the server returns an 
+                error code and a description. The complete liste of <a href="/api/error.html">error 
+                codes</a> is <a href="/api/error.html">here</a>.</td>
+              </tr>
+
+            </table>  
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footerText">Copyright 2005-2013 Jedox AG</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

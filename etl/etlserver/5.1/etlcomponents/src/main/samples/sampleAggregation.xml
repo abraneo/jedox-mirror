@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleAggregation" version="5.1" modified="1383648578483" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Shows the different possibilites of TableTransform component: Aggregation, Normalisation of rows, Denormalisation of rows.</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="palodemo" type="Jedox" modified="1383648578483" modifiedBy="">
+      <comment><![CDATA[Palo database from which the data is extracted]]></comment>
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password>admin</password>
+      <database>Demo</database>
+    </connection>
+    <connection name="out_Aggregate" type="File" modified="1383648578483" modifiedBy="">
+      <database>Result_Aggregate.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+      <quote>"</quote>
+      <encoding>latin1</encoding>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Sales_Extract" type="Cube" modified="1383648578483" modifiedBy="">
+      <connection nameref="palodemo" valuename="Value" />
+      <query onlyBasisAsDefault="true" >
+        <cube name="Sales" valuename="Value" />
+        <dimensions>
+          <dimension name="Datatypes">
+            <condition operator="equal" value="Actual" mode="onlyBases" type="accept" />
+          </dimension>
+          <dimension name="Products">
+            <condition operator="equal" value="Desktop L" mode="onlyBases" type="accept" />
+          </dimension>
+      	  <dimension name="Measures">
+        	<condition mode="onlyBases" operator="equal" type="accept" value="Units" />
+      	</dimension>
+        </dimensions>
+      </query>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="Sales_Aggregate" type="TableAggregation" modified="1383648578483" modifiedBy="">
+      <sources>
+        <source nameref="Sales_Extract" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate>
+            <input nameref="Years" />
+          </coordinate>
+          <coordinate>
+            <input nameref="Regions" />
+          </coordinate>
+          <coordinate>
+            <input nameref="Measures" />
+          </coordinate>
+        </coordinates>
+        <measures>
+          <measure name="Sum" aggregate="sum">
+            <input nameref="Value" />
+          </measure>
+          <measure name="Monthly_Maximum" aggregate="max">
+            <input nameref="Value" />
+          </measure>
+          <measure name="Monthly_Minimum" aggregate="min">
+            <input nameref="Value" />
+          </measure>
+          <measure name="Monthly_Average" aggregate="avg">
+            <input nameref="Value" />
+          </measure>
+          <measure name="Monthly_Count" aggregate="count">
+            <input nameref="Value" />
+          </measure>
+        </measures>
+      </target>
+    </transform>
+		<transform name="Years_Group_Concat" type="TableAggregation">
+			<sources>
+				<source nameref="Sales_Extract" />
+			</sources>
+			<target>
+				<coordinates>
+					<coordinate>
+						<input nameref="Years" />
+					</coordinate>
+				</coordinates>
+				<measures>
+					<measure aggregate="group_concat" name="RegionsConcat">
+						<input nameref="Regions" />
+					</measure>
+				</measures>
+			</target>
+		</transform>    
+  </transforms>
+  <loads>
+    <load name="Aggregate" type="File" modified="1383648578483" modifiedBy="">
+      <source nameref="Sales_Aggregate" />
+      <connection nameref="out_Aggregate" />
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard" modified="1383648578483" modifiedBy="">
+      <execution type="load" nameref="Aggregate" />
+    </job>
+  </jobs>
+</project>
+

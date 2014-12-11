@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Jedox OLAP</title>
+    <link href="/inc/style_palo.css" rel="stylesheet" type="text/css">
+    <!--[if IE]>
+    <style>
+      body{
+        overflow:auto;
+      }
+    </style>
+    <![endif]-->
+  </head>
+
+  <body>
+	<script>
+		function httpGet(theUrl)
+		{
+			  //alert(theUrl);
+		    var xmlHttp = null;
+		    xmlHttp = new XMLHttpRequest();
+    		xmlHttp.open( "GET", theUrl, false );
+    		xmlHttp.send( null );
+    		//alert (xmlHttp.responseText);
+        if (xmlHttp.status != 200) {
+          alert(xmlHttp.responseText);
+          return false;
+        }
+        return true;
+		}
+		function createDatabase(name)
+		{
+			var myurl = location.protocol+"//"+location.host+"/database/create?sid=0000&new_name="+encodeURIComponent(name);
+			if (httpGet(myurl)) {
+  			location.reload();
+      }
+		}
+	</script>
+  
+    <div id="surround" align="center">
+      <div id="container">
+        <div id="clientHeader">&nbsp;</div>
+
+        <div id="left">
+          <a class="nav" href="/">Home</a>     
+          <a class="nav" href="/browser">Server browser</a>     
+          <a class="nav" href="/api">API Documentation</a>     
+          <a class="nav" href="http://www.jedox.com">Jedox OLAP Home</a>     
+        </div>
+
+        <div id="center">
+          <div style="margin: 10px;">
+            <h1>Jedox OLAP server browser</h1>
+
+            <table cellpadding="2" cellspacing="2" width="100%">
+
+              <tr class="border_table">
+                <td colspan="2"><a href="/">home</a> > server ></td>
+              </tr>
+
+ 							{@message}
+							
+              <tr>
+                <td colspan="2"><h2>Server</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="80">action</td>
+                      <td           >description</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><a href="/browser/server?action=load_server">load</a></td>
+                      <td>Reload server data from disk. All changes wil be lost</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><a href="/browser/server?action=save_server">save</a></td>
+                      <td>Save server data to disk. Database and cube data will not be saved.</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><a href="/browser/server?action=shutdown_server">shutdown</a></td>
+                      <td>Shutdown server. Database and cube data will not be saved.</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><a href="/browser/logfile">logfile</a></td>
+                      <td>Show server logfile for current session. Logging has to be set to file!</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><a href="/browser/sessions">sessions</a></td>
+                      <td>Show active sessions.</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><a href="/browser/jobs">jobs</a></td>
+                      <td>Show running jobs.</td>
+                    </tr>
+                  </table>
+                  <p>Show the server <a href="/browser/statistics">time</a> statistics.</p>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Databases</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">ID</td>
+                      <td           >name</td>
+                      <td width="80">num dimension</td>
+                      <td width="80">num cubes</td>
+                      <td width="50">status</td>
+                      <td width="50">type</td>
+                      <td width="50"></td>
+                      <td width="50"></td>
+                      <td width="50"></td>
+                      <td width="50"></td>
+                    </tr>
+LOOP @database_identifier
+                    <tr class="value_table">
+                      <td><a href="/browser/database?database={@database_identifier[]}">{@database_identifier[]}</a></td>
+                      <td><a href="/browser/database?database={@database_identifier[]}">{@database_name[]}</a></td>
+                      <td class="value_cell">{@database_num_dimensions[]}</td>
+                      <td class="value_cell">{@database_num_cubes[]}</td>
+                      <td>{@database_status[]}</td>
+                      <td>{@database_type[]}</td>
+                      <td><a href="/browser/server?database={@database_identifier[]}&action=load">load</a></td>
+                      <td><a href="/browser/server?database={@database_identifier[]}&action=save">save</a></td>
+                      <td><a href="/browser/server?database={@database_identifier[]}&action=unload">unload</a></td>
+                      <td><a href="/browser/server?database={@database_identifier[]}&action=delete">delete</a></td>
+                    </tr>
+END_LOOP
+                    <tr class="value_table">
+                    <td>*</td>
+                    <td><input type="text" name="dbname" onkeyup="if(event.keyCode == 13) createDatabase(event.target.value)"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td> 
+                    <td></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>  
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footerText">{@footerText}</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

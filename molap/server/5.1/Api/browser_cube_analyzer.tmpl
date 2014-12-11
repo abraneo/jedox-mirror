@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Jedox OLAP</title>
+    <link href="/inc/style_palo.css" rel="stylesheet" type="text/css">
+    <!--[if IE]>
+    <style>
+      body{
+        overflow:auto;
+      }
+    </style>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div id="surround" align="center">
+      <div id="container">
+        <div id="clientHeader">&nbsp;</div>
+
+        <div id="left">
+          <a class="nav" href="/">Home</a>     
+          <a class="nav" href="/browser">Server browser</a>     
+          <a class="nav" href="/api">API Documentation</a>     
+          <a class="nav" href="http://www.jedox.com">Jedox OLAP Home</a>     
+        </div>
+
+        <div id="center">
+          <div style="margin: 10px;">
+            <h1>Jedox OLAP server browser</h1>
+
+            <table cellpadding="2" cellspacing="2" width="100%">
+		
+              <tr class="border_table">
+                <td colspan="2"><a href="/">home</a> > <a href="/browser">server</a> > <a href="/browser/database?database={@database_identifier}">database</a> > <a href="/browser/cube?database={@database_identifier}&cube={@cube_identifier}">cube</a> > analyze ></td>
+              </tr>
+
+              {@message}
+
+              <tr>
+                <td colspan="2"><h2>Cube structure</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">%</td>
+                      <td width="80">Cells</td>
+                      <td width="10">Areas</td>
+                      <td width="20">Rules IDs</td>
+      	              <td>Type</td>
+                    </tr>
+LOOP @sizes_perc
+                    <tr class="value_table">
+                      <td>{@sizes_perc[]}</td>
+                      <td>{@sizes_cells[]}</td>
+                      <td>{@sizes_area[]}</td>
+                      <td>{@RuleIDs[]}</td>
+                      <td>{@types[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+            </table>  
+          </div>
+        </div>
+        <div class="footer">
+          <div class="footerText">{@footerText}</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

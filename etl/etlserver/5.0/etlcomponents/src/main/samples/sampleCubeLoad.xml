@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleCubeLoad" version="5.0">
+  <comment>
+<![CDATA[ETL Demo Project.
+Loading monthly data to an already filled OLAP Cube is demonstrated using a Cube Slice Extract and a Cube Load with Mode DELETE for the deletion of the monthly data and a subsequent Cube Load with Mode ADD. The project sampleBiker has to be executed before.]]>
+  </comment>
+  <variables>
+    <variable name="Year">2012</variable>
+    <variable name="Month">May</variable>
+  </variables>
+  <connections>
+    <connection name="bikeretl" type="Jedox">
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">wth/mItaTAGBSfYAN2fSDA==</password>
+      <database>Biker_ETL</database>
+    </connection>
+  </connections>
+  <extracts>
+   <extract name="E_Orders_Full" type="Cube">
+      <connection nameref="bikeretl" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="Orders" valuename="Value"/>
+      </query>
+    </extract>
+   <extract name="E_Orders_YearData" type="Cube">
+      <connection nameref="bikeretl" />
+      <query useRules="false" ignoreEmptyCells="true" onlyBasisAsDefault="true" celltype="both">
+        <cube name="Orders" valuename="Value"/>
+        <dimensions>
+          <dimension name="Years">
+            <accept operator="equal" value="${Year}" mode="onlyNodes" />
+          </dimension>
+          <dimension name="Months">
+            <accept operator="equal" value="${Month}" mode="onlyNodes" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>
+    <extract name="E_Orders_YearSlice" type="CubeSlice">
+      <connection nameref="bikeretl" />
+      <query generateRoots="false">
+        <cube name="OrdersETL" valuename="Value"/>
+        <dimensions>
+          <dimension name="Years">
+            <accept operator="equal" value="${Year}" mode="onlyNodes" />
+          </dimension>
+          <dimension name="Months">
+            <accept operator="equal" value="${Month}" mode="onlyNodes" />
+          </dimension>
+        </dimensions>
+      </query>
+    </extract>    
+  </extracts>
+  <transforms>
+  </transforms>
+  <loads>
+    <load name="Full" type="Cube">
+      <source nameref="E_Orders_Full" />
+      <connection nameref="bikeretl" />
+      <cube name="OrdersETL" />
+      <mode>add</mode>
+    </load>  
+    <load name="YearData" type="Cube">
+      <source nameref="E_Orders_YearData" />
+      <connection nameref="bikeretl" />
+      <cube name="OrdersETL" />
+      <mode>add</mode>
+    </load>
+    <load name="YearDelete" type="Cube">
+      <source nameref="E_Orders_YearSlice" />
+      <connection nameref="bikeretl" />
+      <cube name="OrdersETL" />
+      <mode>delete</mode>
+    </load>
+  </loads>
+  <jobs>
+      <job name="Delta" type="Standard">
+        <variable name="Year">2012</variable>
+        <variable name="Month">Dec</variable>
+        <load nameref="YearDelete" />
+        <load nameref="YearData" />
+      </job>
+      <job name="Full" type="Standard">
+        <load nameref="Full" />
+      </job>
+  </jobs>
+</project>

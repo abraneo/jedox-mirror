@@ -1,0 +1,71 @@
+@request_path /server/login
+
+@short_description This request is used for user authentication and to get session identifiers (sid).
+
+@long_description
+The session identifier (sid) is used to identify a connection to the
+palo server. Therefore the session identifier has to be appended to
+each request (except /server/login and /server/info request). <br>
+
+If no request is made using a session identifier for some time, the
+session will timeout and becomes invalid. A new session identifier has
+to be requested in this case.
+
+@param user
+@param_type string
+@param_description The name of the user (required if require-user is
+enabled)
+
+@param password
+@param_type string
+@param_description The MD5 encrypted password of the user (required if
+require-user is enabled). If the supervision server is used for authentication
+or authorization use the extern_password parameter.
+
+@param extern_password
+@param_type string
+@param_description The plain text password of the user (required if
+require-user is enabled and the supervision server is used for authentication
+or authorization)
+
+@param type
+@param_type integer
+@param_description When 1 server only tries the login validity without creating session
+
+@param machine
+@param_type string
+@param_description Optional parameter. Machine identifier.
+
+@param required
+@param_type string
+@param_description Optional parameter. List of required features.
+
+@param optional
+@param_type string
+@param_description Optional parameter. List of optional features.
+
+@param new_name
+@param_type string
+@param_description Optional parameter. Name of the session. Displayed in management console.
+
+@param external_identifier
+@param_type string
+@param_description Optional parameter. User's locale. Used for subset sorting.
+
+@result sid
+@result_type string
+@result_description Session identifier for a server connection. 
+
+@result ttl
+@result_type string
+@result_description Timeout intervall in seconds. If no request is
+made within this intervall the session becomes inactive.
+
+@result optional
+@result_type string
+@result_description List of optional features server has licenses for.
+
+
+@example user=foo&password=01234567890123456789012345678901
+@example_description Login user "foo" with MD5 encrypted password
+

@@ -1,0 +1,52 @@
+@request_path /database/create
+
+@short_description Creates a database
+
+@long_description 
+
+
+
+@param new_name
+@param_type string
+@param_description Name of the new database
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+ 
+@param type
+@param_type identifier
+@param_description Type of the database (0=normal (default), 3=user info)
+
+@param external_identifier
+@param_type string
+@param_description (Optional) Path to backup file where the database will be loaded from
+
+@result database
+@result_type identifier
+@result_description Identifier of the database
+
+@result name_database
+@result_type string
+@result_description Name of the database
+
+@result number_dimensions
+@result_type integer
+@result_description Number of dimensions in the database
+
+@result number_cubes
+@result_type integer
+@result_description Number of cubes in the database
+
+@result status
+@result_type integer
+@result_description Status of database (0=unloaded, 1=loaded and 2=changed)
+
+@result type
+@result_type integer
+@result_description Type of database (0=normal, 1=system, 3=user info)
+
+
+
+@example new_name=a_new_database
+@example_description Create new database with name "a_new_database"

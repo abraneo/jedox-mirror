@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleCalendar" version="5.0">
+	<comment>
+<![CDATA[ETL Demo Project.
+Constant time dimensions for Years, Months and Weeks are modeled with Calendar Extracts and loaded to an OLAP dimension. This includes also Year-To-Date hierarchies.]]>
+	</comment>
+	<variables />
+	<connections>
+		<connection name="bikeretl" type="Jedox">
+			<comment>
+<![CDATA[Palo database as target system]]>
+			</comment>
+			<host>localhost</host>
+			<port>7777</port>
+			<user>admin</user>
+			<password encrypted="true">HePUbQxECBep1hju+jFb2w==</password>
+			<database>Biker_ETL</database>
+		</connection>
+	</connections>
+	<extracts>
+		<extract name="Months" type="Calendar">
+			<options>
+				<root>All Months</root>
+				<language>en</language>
+			</options>
+			<levels>
+				<quarters>
+					<pattern>'Qtr' Q</pattern>
+					<attributes>
+						<attribute name="english">
+							<pattern>'Quarter' Q</pattern>
+							<language>en</language>
+						</attribute>
+						<attribute name="german">
+							<pattern>'Quartal' Q</pattern>
+							<language>de</language>
+						</attribute>
+					</attributes>
+				</quarters>
+				<months>
+					<pattern>MMM</pattern>
+					<timetodate>
+						<pattern>MMM 'acc'</pattern>
+					</timetodate>
+					<attributes>
+						<attribute name="english">
+							<pattern>MMMM</pattern>
+							<language>en</language>
+						</attribute>
+						<attribute name="german">
+							<pattern>MMMM</pattern>
+							<language>de</language>
+						</attribute>
+					</attributes>
+				</months>
+			</levels>
+		</extract>
+		<extract name="Years" type="Calendar">
+			<options>
+				<root>All Years</root>
+			</options>
+			<levels>
+				<years>
+					<start>2010</start>
+					<end>2016</end>
+					<pattern>yyyy</pattern>
+				</years>
+			</levels>
+		</extract>
+		<extract name="Weeks" type="Calendar">
+			<options>
+				<root>All years</root>
+				<language>de</language>
+				<completeWeek>true</completeWeek>
+			</options>
+			<levels>
+				<years>
+					<start>2010</start>
+					<end>2014</end>
+					<pattern>yyyy</pattern>
+				</years>
+				<weeks>
+					<pattern>yyyy 'W'ww</pattern>
+				</weeks>
+				<days>
+					<pattern>dd.MM.yyyy</pattern>
+				</days>
+			</levels>
+		</extract>
+	</extracts>
+	<transforms />
+	<loads>
+		<load name="Years" type="Dimension">
+			<source nameref="Years" />
+			<connection nameref="bikeretl" />
+			<dimension name="YearDim">
+			</dimension>
+		</load>
+		<load name="Months" type="Dimension">
+			<source nameref="Months" />
+			<connection nameref="bikeretl" />
+			<dimension name="MonthDim">
+			</dimension>
+		</load>
+		<load name="Weeks" type="Dimension">
+			<source nameref="Weeks" />
+			<connection nameref="bikeretl" />
+			<dimension name="WeekDim">
+			</dimension>
+		</load>		
+	</loads>
+	<jobs>
+		<job name="default" type="Standard">
+			<load nameref="Years" />
+			<load nameref="Months" />
+			<load nameref="Weeks" />			
+		</job>
+	</jobs>
+</project>
+

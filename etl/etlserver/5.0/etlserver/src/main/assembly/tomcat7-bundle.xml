@@ -1,0 +1,66 @@
+<assembly>
+	<id>tomcat7</id>
+	<formats>
+		<format>zip</format>
+		<format>dir</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/tomcat7</directory>
+			<outputDirectory></outputDirectory>
+			<fileMode>0755</fileMode> <!-- 420 -->
+			<directoryMode>0755</directoryMode>
+			<excludes>
+				<exclude>**/jmxremote.access</exclude>
+				<exclude>**/jmxremote.password</exclude>
+            </excludes>
+		</fileSet>
+<!-- 	<fileSet>
+			<directory>src/main/webapp/info</directory>
+			<outputDirectory>webapps/ROOT</outputDirectory>
+			<fileMode>0755</fileMode>
+			<directoryMode>0755</directoryMode>
+		</fileSet> -->	
+	</fileSets>
+	  
+	<files>
+		<file>
+			<source>src/main/tomcat7/conf/jmxremote.access</source>
+			<outputDirectory>conf</outputDirectory>
+			<fileMode>0600</fileMode>
+		</file>		
+		<file>
+			<source>src/main/tomcat7/conf/jmxremote.password</source>
+			<outputDirectory>conf</outputDirectory>
+			<fileMode>0600</fileMode>
+		</file>
+	</files>
+	
+	<dependencySets>
+		<!-- <dependencySet>
+			<outputDirectory>lib</outputDirectory>
+			<scope>provided</scope>
+			<includes>
+				<include>org.apache.tomcat:tomcat-util</include>
+				<include>org.apache.tomcat:tomcat-i18n-ja</include>
+				<include>org.apache.tomcat:tomcat-i18n-fr</include>
+				<include>org.apache.tomcat:tomcat-i18n-es</include>
+				<include>org.apache.tomcat:tomcat-dbcp</include>
+				<include>org.apache.tomcat:tomcat-coyote</include>
+				<include>org.apache.tomcat:tomcat-api</include>
+				<include>org.apache.tomcat:tomcat-servlet-api</include>
+				<include>org.apache.tomcat:tomcat-jsp-api</include>
+				<include>org.apache.tomcat:tomcat-jasper-el</include>
+				<include>org.apache.tomcat:tomcat-jasper</include>
+				<include>org.apache.tomcat:tomcat-el-api</include>
+				<include>org.eclipse.jdt:ecj</include>
+				<include>org.apache.tomcat:tomcat-tribes</include>
+				<include>org.apache.tomcat:tomcat-catalina-ha</include>
+				<include>org.apache.tomcat:tomcat-catalina-ant</include>
+				<include>org.apache.tomcat:tomcat-catalina</include>
+				<include>org.apache.tomcat:tomcat-annotations-api</include>
+			</includes>
+		</dependencySet> -->
+	</dependencySets>
+</assembly>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="transform" type="c:transformtype" />
+    
+    <complexType name="inputref">
+		<attribute name="nameref" type="string">
+			<annotation>
+				<appinfo>
+					<ref>source:/alias_map/alias/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="constant" type="string"/>
+	</complexType>
+	
+	<complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>sources:/source/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+	 </complexType>
+	 
+	 
+	 <complexType name="sourcerefs">
+		<sequence>
+			<element name="source" type="c:sourceref" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+	</complexType>
+        
+   <complexType name="typedcomponent">
+		<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required">
+        	<annotation>
+				<appinfo>
+					<get>components:/@type</get>
+				</appinfo>
+			</annotation>
+		</attribute>
+        <anyAttribute processContents="lax"/>
+    </complexType>
+    
+	<complexType name="attributetype">
+		<sequence>
+			<element name="input" type="c:inputref" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="type" type="c:attributedatatypeValidate"/>
+	</complexType>
+	
+	<simpleType name="attributedatatype">
+ 		 <restriction base="string">
+    		<enumeration value="text"/>
+    		<enumeration value="numeric"/>
+  		</restriction>
+	</simpleType> 	
+
+	<simpleType name="attributedatatypeValidate">
+ 		 <restriction base="string">
+    		<enumeration value="text"/>
+    		<enumeration value="numeric"/>
+    		<enumeration value="alias"/>
+  		</restriction>
+	</simpleType> 	
+
+	
+	<complexType name="attributestype">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="attribute" type="c:attributetype"/>
+		</choice>
+	</complexType>
+	
+	<simpleType name="datatype">
+ 		 <restriction base="string">
+    		<enumeration value="text"/>
+    		<enumeration value="numeric"/>
+  		</restriction>
+	</simpleType> 
+	
+	<complexType name="coordinatetype">
+		<all>
+			<element name="input" type="c:inputref" minOccurs="1" maxOccurs="1"/>
+		</all>
+		<attribute name="name" type="string"/>
+		<attribute name="default" type="string"/>
+	</complexType>
+	
+	<complexType name="targettype">
+		<all>
+			<element name="parent" type="c:coordinatetype" minOccurs="1" maxOccurs="1"/>
+			<element name="child" type="c:coordinatetype" minOccurs="1" maxOccurs="1"/>
+			<element name="weight" type="c:coordinatetype" minOccurs="0" maxOccurs="1"/>
+			<element name="type" type="c:coordinatetype" minOccurs="0" maxOccurs="1"/>
+			<element name="attributes" type="c:attributestype" minOccurs="0" maxOccurs="1"/>
+		</all>
+		<attribute name="default" type="string"/>
+		<attribute name="parent" type="string"/>		
+	</complexType>
+    
+    <complexType name="transformtype">
+        <all>
+            <element name="sources" type="c:sourcerefs" minOccurs="1" maxOccurs="1"/>
+            <element name="target" type="c:targettype" minOccurs="1" maxOccurs="1"/>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>      
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+
+</schema>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://schemas.jedox.com/etlcore"
+	elementFormDefault="qualified" 
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:c="http://schemas.jedox.com/etlcore" 
+	xmlns:l="http://schemas.jedox.com/etlcore">
+
+	<include schemaLocation="resource.xsd"/>
+	<element name="job" type="c:jobtype" /> 
+		
+	<complexType name="sourcerefs">
+		<sequence>
+			<element name="source" type="c:sourceref" minOccurs="1" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	    <complexType name="loops">
+		<sequence>
+			<element name="loop" type="c:sourceref" minOccurs="1" maxOccurs="unbounded">
+				<annotation>
+					<appinfo>source</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+		<complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+	 </complexType>
+		
+	<complexType name="jobtype">
+        <all>
+			<element name="loops" type="c:loops" minOccurs="1" maxOccurs="1"/>
+			<element name="execution" type="c:executionreftype" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<appinfo>source</appinfo>
+				</annotation>
+			</element>		
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+		<attribute name="name" type="string" default="default"/>
+		<attribute name="type" type="string" />
+		<attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>		
+		<anyAttribute processContents="lax"/>
+	</complexType>
+	  	
+</schema>

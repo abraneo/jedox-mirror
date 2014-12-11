@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Jedox OLAP</title>
+    <link href="/inc/style_palo.css" rel="stylesheet" type="text/css">
+    <!--[if IE]>
+    <style>
+      body{
+        overflow:auto;
+      }
+    </style>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div id="surround" align="center">
+      <div id="container">
+        <div id="clientHeader">&nbsp;</div>
+
+        <div id="left">
+          <a class="nav" href="/">Home</a>     
+          <a class="nav" href="/browser">Server browser</a>     
+          <a class="nav" href="/api">API Documentation</a>     
+          <a class="nav" href="http://www.jedox.com">Jedox OLAP Home</a>     
+        </div>
+
+        <div id="center">
+          <div style="margin: 10px;">
+            <h1>Jedox OLAP program statistic</h1>
+
+            <table cellpadding="2" cellspacing="2" width="100%">
+
+              <tr class="border_table">
+                <td colspan="2"><a href="/">home</a> > <a href="/browser/server">server</a> > statistics ></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+
+                    <tr class="doc_table">
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td colspan="3" align="center">Total in msec</td>
+                      <td colspan="3" align="center">Per Call in msec</td>
+                    </tr>
+                    <tr class="doc_table">
+                      <td></td>
+                      <td>combined path</td>
+                      <td>calls</td>
+                      <td>wall time</td>
+                      <td>user time</td>
+                      <td>system time</td>
+                      <td>wall time</td>
+                      <td>user time</td>
+                      <td>system time</td>
+                    </tr>
+
+LOOP @combined
+                    <tr class="value_table">
+                      <td class="value_cell">{@loop_number}</td>
+                      <td>{@combined[]}</td>
+                      <td class="value_cell">{@calls_combined[]}</td>
+                      <td class="value_cell">{@total_wall_time_combined[]}</td>
+                      <td class="value_cell">{@total_user_time_combined[]}</td>
+                      <td class="value_cell">{@total_sys_time_combined[]}</td>
+                      <td class="value_cell">{@average_wall_time_combined[]}</td>
+                      <td class="value_cell">{@average_user_time_combined[]}</td>
+                      <td class="value_cell">{@average_sys_time_combined[]}</td>
+                    </tr>
+END_LOOP
+
+                  </table>
+                </td>
+              </tr>
+            </table>
+            <table cellpadding="2" cellspacing="2" width="100%">
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td colspan="3" align="center">Total in msec</td>
+                      <td colspan="3" align="center">Per Call in msec</td>
+                    </tr>
+                    <tr class="doc_table">
+                      <td></td>
+                      <td>full path</td>
+                      <td>calls</td>
+                      <td>wall time</td>
+                      <td>user time</td>
+                      <td>system time</td>
+                      <td>wall time</td>
+                      <td>user time</td>
+                      <td>system time</td>
+                    </tr>
+
+LOOP @full_path
+                    <tr class="value_table">
+                      <td class="value_cell">{@loop_number}</td>
+                      <td>{@full_path[]}</td>
+                      <td class="value_cell">{@calls_full_path[]}</td>
+                      <td class="value_cell">{@total_wall_time_full_path[]}</td>
+                      <td class="value_cell">{@total_user_time_full_path[]}</td>
+                      <td class="value_cell">{@total_sys_time_full_path[]}</td>
+                      <td class="value_cell">{@average_wall_time_full_path[]}</td>
+                      <td class="value_cell">{@average_user_time_full_path[]}</td>
+                      <td class="value_cell">{@average_sys_time_full_path[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+            </table>  
+	    You must compile Jedox OLAP using --enable-time-profiler to see the timing statistics.	
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footerText">Copyright 2005-2013 Jedox AG</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

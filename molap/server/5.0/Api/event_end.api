@@ -1,0 +1,26 @@
+@request_path /event/end
+
+@short_description Ends an event.
+
+@long_description 
+Releases the exclusive lock.
+
+
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection.  A
+supervision server has to use his session identifier here which is
+communicated by Palo to a supervision server during startup. A
+supervision must not use login to obtain a session identifier.
+
+
+
+@result OK
+@result_type integer
+@result_description "1" means OK
+
+
+
+@example -
+@example_description Releases the lock.

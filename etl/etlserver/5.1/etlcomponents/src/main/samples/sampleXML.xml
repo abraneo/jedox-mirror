@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleXML" version="5.1" modified="1383649448670"
+	modifiedBy="">
+	<headers>
+		<header name="comment">
+			<comment>ETL Demo Project.
+				Reads XML File of ETL Project sampleBiker and loads all Connection and
+				FieldTransform definitions to OLAP dimensions.
+				Reads also 2 XML Files currently available via a public URL which contain
+				Exchange Rate Information and load it to an OLAP dimension.
+			</comment>
+		</header>
+	</headers>
+	<variables />
+	<connections>
+		<connection name="palo" type="Jedox" modified="1383649448670"
+			modifiedBy="">
+			<host>localhost</host>
+			<port>7777</port>
+			<user>admin</user>
+			<password encrypted="true">cFju7JN3KyVmTPxIbDA/1w==</password>
+			<database>Demo_ETL</database>
+		</connection>
+		<connection name="ETLProject_Conn" type="XmlFile" modified="1383649448670"
+			modifiedBy="">
+			<database>../samples/sampleBiker.xml</database>
+		</connection>
+		<connection name="ConnList_out" type="XmlFile" modified="1383649448670"
+			modifiedBy="">
+			<database>out.xml</database>
+		</connection>
+		<connection name="ExchangeRate_Conn" type="XmlFile"
+			modified="1383649448670" modifiedBy="">
+			<database>http://www.afd.admin.ch/publicdb/newdb/mwst_kurse/wechselkurse.php
+			</database>
+		</connection>
+		<connection name="ECB_Rates_Conn" type="XmlFile" modified="1383649448670"
+			modifiedBy="">
+			<database>http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml
+			</database>
+		</connection>
+	</connections>
+	<extracts>
+		<extract name="Connections_xml_extract" type="Xml" modified="1383649448670"
+			modifiedBy="">
+			<connection nameref="ETLProject_Conn" />
+			<query>
+				<level>/project/connections/connection</level>
+				<fields>
+					<field>@name</field>
+					<field>@type</field>
+					<field>host</field>
+					<field>port</field>
+					<field>database</field>
+					<field>user</field>
+				</fields>
+			</query>
+			<alias_map>
+				<alias name="name">1</alias>
+				<alias name="type">2</alias>
+			</alias_map>
+		</extract>
+		<extract name="FieldTransforms_xml_extract" type="Xml"
+			modified="1383649448670" modifiedBy="">
+			<connection nameref="ETLProject_Conn" />
+			<query>
+				<level>/project/transforms/transform[@type='FieldTransform']</level>
+				<fields>
+					<field>@name</field>
+					<field>sources/source/@nameref</field>
+					<field>functions/function[1]/@name</field>
+					<field>functions/function[1]/@type</field>
+					<field>functions/function[1]/inputs/input/@nameref</field>
+					<field>functions/function[2]/@name</field>
+					<field>functions/function[2]/@type</field>
+					<field>functions/function[2]/inputs/input/@nameref</field>
+				</fields>
+			</query>
+			<alias_map>
+				<alias name="FieldTransform">1</alias>
+				<alias name="ReferencedSource">2</alias>
+				<alias name="Function_1_Name">3</alias>
+				<alias name="Function_1_Type">4</alias>
+				<alias name="Function_1_Input1">5</alias>
+				<alias name="Function_2_Name">6</alias>
+				<alias name="Function_2_Type">7</alias>
+				<alias name="Function_2_Input1">8</alias>
+			</alias_map>
+		</extract>
+		<extract name="ExchangeRate_Extract" type="Xml" modified="1383649448670"
+			modifiedBy="">
+			<connection nameref="ExchangeRate_Conn" />
+			<query>
+				<level>/def:wechselkurse/def:devise</level>
+				<fields>
+					<field>@code</field>
+					<field>def:land_de</field>
+					<field>def:waehrung</field>
+					<field>def:kurs</field>
+					<field>../def:datum</field>
+					<field>../def:zeit</field>
+				</fields>
+			</query>
+			<alias_map>
+				<alias name="Code">1</alias>
+				<alias name="Country">2</alias>
+				<alias name="Currency">3</alias>
+				<alias name="Rate">4</alias>
+				<alias name="Date">5</alias>
+				<alias name="Time">6</alias>
+			</alias_map>
+			<namespaces>
+				<namespace name="def">http://www.afd.admin.ch/publicdb/newdb/mwst_kurse
+				</namespace>
+				<namespace name="xsi">http://www.w3.org/2001/XMLSchema-instance
+				</namespace>
+			</namespaces>
+		</extract>
+		<extract name="ECB_Time_Extract" type="Xml" modified="1383649448670"
+			modifiedBy="">
+			<connection nameref="ECB_Rates_Conn" />
+			<query>
+				<level>gesmes:Envelope/def:Cube/def:Cube</level>
+				<fields>
+					<field>@time</field>
+				</fields>
+			</query>
+			<alias_map>
+				<alias name="Time">1</alias>
+			</alias_map>
+			<namespaces>
+				<namespace name="gesmes">http://www.gesmes.org/xml/2002-08-01
+				</namespace>
+				<namespace name="def">http://www.ecb.int/vocabulary/2002-08-01/eurofxref
+				</namespace>
+			</namespaces>
+		</extract>
+		<extract name="ECB_EuroRates_Extract" type="Xml" modified="1383649448670"
+			modifiedBy="">
+			<connection nameref="ECB_Rates_Conn" />
+			<query>
+				<level>gesmes:Envelope/def:Cube/def:Cube/def:Cube</level>
+				<fields>
+					<field>../@time</field>
+					<field>@currency</field>
+					<field>@rate</field>
+				</fields>
+			</query>
+			<alias_map>
+				<alias name="ECB_Time">1</alias>
+				<alias name="ECB_Currency">2</alias>
+				<alias name="Rate">3</alias>
+			</alias_map>
+			<namespaces>
+				<namespace name="gesmes">http://www.gesmes.org/xml/2002-08-01
+				</namespace>
+				<namespace name="def">http://www.ecb.int/vocabulary/2002-08-01/eurofxref
+				</namespace>
+			</namespaces>
+		</extract>
+		<extract name="ECB_Currency_All" type="ConstantTree" modified="1383649448670"
+			modifiedBy="">
+			<data>
+				<header>
+					<value>:level</value>
+					<value>:element</value>
+					<value>:weight</value>
+					<value>:nodetype</value>
+				</header>
+				<row>
+					<value>1</value>
+					<value>All</value>
+					<value>1</value>
+					<value />
+				</row>
+			</data>
+		</extract>
+	</extracts>
+	<transforms />
+	<loads>
+		<load name="Connections_Load" type="Dimension" modified="1383649448670"
+			modifiedBy="">
+			<source nameref="Connections_xml_extract" />
+			<connection nameref="palo" />
+			<dimension name="Connections">
+				<elements mode="update" />
+				<consolidations mode="inactive" />
+				<attributes mode="update" />
+			</dimension>
+		</load>
+		<load name="FieldTransforms_Load" type="Dimension" modified="1383649448670"
+			modifiedBy="">
+			<source nameref="FieldTransforms_xml_extract" />
+			<connection nameref="palo" />
+			<dimension name="FieldTransforms">
+				<elements mode="update" />
+				<consolidations mode="inactive" />
+				<attributes mode="update" />
+			</dimension>
+		</load>
+		<load name="ExchangeRate_Load" type="Dimension" modified="1383649448670"
+			modifiedBy="">
+			<source nameref="ExchangeRate_Extract" />
+			<connection nameref="palo" />
+			<dimension name="ExchangeRate">
+				<elements mode="update" />
+				<consolidations mode="inactive" />
+				<attributes mode="update" />
+			</dimension>
+		</load>
+		<load name="ECB_Time" type="Dimension" modified="1383649448670"
+			modifiedBy="">
+			<source nameref="ECB_Time_Extract" />
+			<connection nameref="palo" />
+			<dimension name="ECB_Time">
+				<elements mode="update" />
+				<consolidations mode="update" />
+				<attributes mode="update" />
+			</dimension>
+		</load>
+		<load name="ECB_Currency" type="Dimension" modified="1383649448670"
+			modifiedBy="">
+			<source nameref="ECB_Currency_All" />
+			<connection nameref="palo" />
+			<dimension name="ECB_Currency">
+				<elements mode="update" />
+				<consolidations mode="inactive" />
+				<attributes mode="update" />
+			</dimension>
+		</load>
+		<load name="ECB_EuroRates" type="Cube" modified="1383649448670"
+			modifiedBy="">
+			<source nameref="ECB_EuroRates_Extract" />
+			<connection nameref="palo" />
+			<cube name="ECB_EuroRates" />
+			<mode>update</mode>
+			<default type="createUnderDefault">All</default>
+		</load>
+	</loads>
+	<jobs>
+		<job name="ETLProject" type="Standard" modified="1383649448670"
+			modifiedBy="">
+			<execution type="load" nameref="Connections_Load" />
+			<execution type="load" nameref="FieldTransforms_Load" />
+		</job>
+		<job name="ExchangeRate" type="Standard" modified="1383649448670"
+			modifiedBy="">
+			<execution type="load" nameref="ExchangeRate_Load" />
+		</job>
+		<job name="ECB_Rates" type="Standard" modified="1383649448670"
+			modifiedBy="">
+			<execution type="load" nameref="ECB_Time" />
+			<execution type="load" nameref="ECB_Currency" />
+			<execution type="load" nameref="ECB_EuroRates" />
+		</job>
+	</jobs>
+</project>
+

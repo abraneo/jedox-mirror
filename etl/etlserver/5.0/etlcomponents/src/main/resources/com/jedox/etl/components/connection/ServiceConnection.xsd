@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://schemas.jedox.com/etlcore"
+	elementFormDefault="qualified"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:c="http://schemas.jedox.com/etlcore">
+
+	<element name="connection" type="c:connectiontype" />
+
+	<complexType name="parameter">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="name" type="string" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="password">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="encrypted" type="boolean"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="parameters">
+		<sequence>
+			<element name="parameter" type="c:parameter" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	<simpleType name="sslmode">
+ 		 <restriction base="string">
+    		<enumeration value="verify"/>
+    		<enumeration value="trust"/>
+  		</restriction>
+	</simpleType>   
+
+	<complexType name="connectiontype">
+		<all>
+			<element name="service" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="port" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="operation" type="string" minOccurs="1" maxOccurs="1"/>
+			<element name="wsdl" type="string" minOccurs="1" maxOccurs="1"/>
+			<element name="xmlInfo" type="boolean" minOccurs="0" maxOccurs="1"/>
+			<element name="user" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="password" type="c:password" minOccurs="0" maxOccurs="1"/>
+			<element name="parameters" type="c:parameters" minOccurs="0" maxOccurs="1"/>
+			<element name="encoding" type="string" minOccurs="0" maxOccurs="1"/>
+			<element name="ssl" type="c:sslmode" minOccurs="0" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+		</all>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="type" type="string" use="required"/>
+	</complexType>
+
+</schema>

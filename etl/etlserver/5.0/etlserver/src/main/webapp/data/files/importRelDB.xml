@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="importRelDB" version="3.3">
+  <comment>
+<![CDATA[ETL Demo Project.
+Import from Relational Database to the OLAP database. Demonstrates creation of hierarchical dimensions, cubes and use of functions.
+Note: The Jobs "Cubedata" and "default" end for demonstration purpose with a Warning]]>
+  </comment>
+  <variables />
+  <connections>
+    <connection name="MySQL_Conn" type="Mysql">
+      <host>12.34.56.78</host>
+      <port>3306</port>
+      <database>db1</database>
+      <user>testuser</user>
+      <password encrypted="true">gjGWw6I1yuKgtI+8axjB2w==</password>
+    </connection>
+    <connection name="Ingres_Conn" type="Ingres">
+      <host>192.168.2.35:II7</host>
+      <database>demodb</database>
+      <user>administrator</user>
+      <password>password</password>
+    </connection>
+    <connection name="MySQL_Conn_Generic" type="GenericDB">
+      <url>jdbc:mysql://12.34.56.78:3306/db1</url>
+      <driver>com.mysql.jdbc.Driver</driver>
+      <user>testuser</user>
+      <password encrypted="true">DKxXwmUPFkd+9m1xGwXF1Q==</password>
+    </connection>
+    <connection name="Postgres_Conn" type="Postgresql">
+      <host>localhost</host>
+      <port>5432</port>
+      <database>testDB</database>
+      <user>postgres</user>
+      <password>password</password>
+    </connection>
+    <connection name="Oracle_Conn" type="Oracle">
+      <host>12.34.56.78</host>
+      <port>1521</port>
+      <database>db1</database>
+      <user>testuser</user>
+      <password encrypted="true">fww1PQcCJ+buYJDlVG69Yg==</password>
+    </connection>
+    <connection name="MSSQL_Conn" type="Sqlserver">
+      <host>12.34.56.78</host>
+      <port>1433</port>
+      <database>model</database>
+      <user>sa</user>
+      <password encrypted="true">LI0zPBGOlyjd4EKAgV1wQg==</password>
+    </connection>
+    <connection name="Access_Conn" type="Odbc">
+      <database>Access_Test</database>
+    </connection>
+    <connection name="SQL_Conn" type="HsqldbFile">
+      <comment>
+<![CDATA[HSQLDB File with Sales-Database.]]>
+      </comment>
+      <database>./db1</database>
+    </connection>
+    <connection name="palodemo" type="JedoxOlap">
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">jJNs7k9gwe+ma3CznwaPNg==</password>
+      <database>Demo_ETL</database>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Customer_Extract" type="Relational">
+      <connection nameref="SQL_Conn" />
+      <query>
+<![CDATA[select cust.kunnr, cust.name1, cust.ort01, cust.pstlz, country.land1, country.landx
+from customers as cust, countries as	country
+where cust.land1 = country.land1
+order by cust.land1, cust.kunnr]]>
+      </query>
+      <alias_map>
+        <alias name="CustomerID" default="Customer n.a.">1</alias>
+        <alias name="CustomerName">2</alias>
+        <alias name="City">3</alias>
+        <alias name="PLZ">4</alias>
+        <alias name="CountryID" default="Country n.a.">5</alias>
+        <alias name="CountryName">6</alias>
+      </alias_map>
+    </extract>
+    <extract name="Sales_Extract" type="Relational">
+      <connection nameref="SQL_Conn" />
+      <query>
+<![CDATA[select h.vbeln, i.posnr, h.erdat, h.kunnr, i.arktx, i.netwr, i.waerk, i.kwmeng
+from sdochead as h, sdocline as i
+where h.vbeln = i.vbeln and h.kunnr between '1000' and '3000']]>
+      </query>
+      <alias_map>
+        <alias name="SalesDocNr">1</alias>
+        <alias name="SalesDocLine">2</alias>
+        <alias name="Date">3</alias>
+        <alias name="Customer" default="Customer n.a.">4</alias>
+        <alias name="Artikel">5</alias>
+        <alias name="NetValue" default="0">6</alias>
+        <alias name="Currency">7</alias>
+        <alias name="Units" default="0">8</alias>
+      </alias_map>
+    </extract>
+    <extract name="Year" type="Calendar">
+      <options>
+        <root>All years</root>
+      </options>
+      <levels>
+        <years>
+          <start>2000</start>
+          <end>2012</end>
+          <pattern>yyyy</pattern>
+        </years>
+      </levels>
+    </extract>
+    <extract name="Month" type="Calendar">
+      <options>
+        <root>Year</root>
+      </options>
+      <levels>
+        <quarters>
+          <pattern>Q</pattern>
+        </quarters>
+        <months>
+          <pattern>Q.M</pattern>
+        </months>
+      </levels>
+    </extract>
+    <extract name="Measures" type="Tree">
+      <constants>
+        <constant name="NetValue" />
+        <constant name="Units" />
+      </constants>
+    </extract>
+    <extract name="Currency" type="Tree">
+      <constants>
+        <constant name="All Currencies">
+          <constant name="CAD">
+            <attribute name="label">Canadische Dollar</attribute>
+          </constant>
+          <constant name="CHF">
+            <attribute name="label">Schweizer Franken</attribute>
+          </constant>
+          <constant name="EUR">
+            <attribute name="label">Euro</attribute>
+          </constant>
+          <constant name="GBP">
+            <attribute name="label">Britische Pfund</attribute>
+          </constant>
+          <constant name="MXN">
+            <attribute name="label">Mexikanische Pesos</attribute>
+          </constant>
+          <constant name="USD">
+            <attribute name="label">US Dollar</attribute>
+          </constant>
+        </constant>
+      </constants>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="Customer_Trans" type="FieldTransform">
+      <sources>
+        <source nameref="Customer_Extract" />
+      </sources>
+      <functions>
+        <function name="CountryName_UP" type="UpperLower">
+          <inputs>
+            <input nameref="CountryName" />
+          </inputs>
+          <parameters>
+            <case>UPPER</case>
+          </parameters>
+        </function>
+        <function name="Address" type="Concatenation">
+          <inputs>
+            <input nameref="City" />
+            <input nameref="PLZ" />
+          </inputs>
+          <parameters>
+            <template>#{PLZ} - #{City}</template>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="Customer_Tree" type="TreeFH">
+      <sources>
+        <source nameref="Customer_Trans" />
+      </sources>
+      <target type="numeric" default="Not assigned">
+        <levels>
+          <level>
+            <input constant="All Customers" />
+          </level>
+          <level>
+            <input nameref="CountryID" />
+            <attributes>
+              <attribute name="Name">
+                <input nameref="CountryName_UP" />
+              </attribute>
+            </attributes>
+          </level>
+          <level>
+            <input nameref="CustomerID" />
+            <attributes>
+              <attribute name="Name">
+                <input nameref="CustomerName" />
+              </attribute>
+              <attribute name="Address">
+                <input nameref="Address" />
+              </attribute>
+            </attributes>
+          </level>
+        </levels>
+      </target>
+    </transform>
+    <transform name="Sales_Trans" type="FieldTransform">
+      <sources>
+        <source nameref="Sales_Extract" />
+      </sources>
+      <functions>
+        <function name="Year" type="DateFormat">
+          <inputs>
+            <input nameref="Date" />
+          </inputs>
+          <parameters>
+            <sourceformat>yyyy-MM-dd</sourceformat>
+            <targetformat>yyyy</targetformat>
+          </parameters>
+        </function>
+        <function name="Month" type="DateFormat">
+          <inputs>
+            <input nameref="Date" />
+          </inputs>
+          <parameters>
+            <sourceformat>yyyy-MM-dd</sourceformat>
+            <targetformat>Q.M</targetformat>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="Sales_Normalize" type="TableTransform">
+      <sources>
+        <source nameref="Sales_Trans" />
+      </sources>
+      <target>
+        <coordinates>
+          <coordinate>
+            <input nameref="Customer" />
+          </coordinate>
+          <coordinate>
+            <input nameref="Year" />
+          </coordinate>
+          <coordinate>
+            <input nameref="Month" />
+          </coordinate>
+          <coordinate>
+            <input nameref="Currency" />
+          </coordinate>
+        </coordinates>
+        <measures normalize="Measures" valuename="Value">
+          <measure name="NetValue" aggregate="sum">
+            <input nameref="NetValue" />
+          </measure>
+          <measure name="Units" aggregate="sum">
+            <input nameref="Units" />
+          </measure>
+        </measures>
+      </target>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="Year" type="Dimension">
+      <source nameref="Year" />
+      <connection nameref="palodemo" />
+      <dimension>
+        <elements />
+        <consolidations />
+        <attributes />
+      </dimension>
+      <mode>update</mode>
+    </load>
+    <load name="Month" type="Dimension">
+      <source nameref="Month" />
+      <connection nameref="palodemo" />
+      <dimension>
+        <elements />
+        <consolidations />
+        <attributes />
+      </dimension>
+      <mode>update</mode>
+    </load>
+    <load name="Measures" type="Dimension">
+      <source nameref="Measures" />
+      <connection nameref="palodemo" />
+      <dimension>
+        <elements />
+        <consolidations />
+        <attributes />
+      </dimension>
+      <mode>update</mode>
+    </load>
+    <load name="Currency" type="Dimension">
+      <source nameref="Currency" />
+      <connection nameref="palodemo" />
+      <dimension name="Currency">
+        <elements />
+        <consolidations />
+        <attributes />
+      </dimension>
+      <mode>update</mode>
+    </load>
+    <load name="Customer" type="Dimension">
+      <source nameref="Customer_Tree" />
+      <connection nameref="palodemo" />
+      <dimension name="Customer">
+        <elements />
+        <consolidations />
+        <attributes />
+      </dimension>
+      <mode>update</mode>
+    </load>
+    <load name="Sales_load" type="Cube">
+      <source nameref="Sales_Normalize" />
+      <connection nameref="palodemo" />
+      <cube name="DemoSales" />
+      <mode>update</mode>
+      <default type="defaultBase">Not assigned</default>
+    </load>
+  </loads>
+  <jobs>
+    <job name="Initdata" type="Standard">
+      <load nameref="Year" />
+      <load nameref="Month" />
+      <load nameref="Currency" />
+      <load nameref="Measures" />
+    </job>
+    <job name="Masterdata" type="Standard">
+      <load nameref="Customer" />
+    </job>
+    <job name="Cubedata" type="Standard">
+      <load nameref="Sales_load" />
+    </job>
+    <job name="default" type="Standard">
+      <job nameref="Initdata" />
+      <job nameref="Masterdata" />
+      <job nameref="Cubedata" />
+    </job>
+  </jobs>
+</project>

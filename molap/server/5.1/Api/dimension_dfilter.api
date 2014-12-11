@@ -1,0 +1,122 @@
+@request_path /dimension/dfilter
+
+@short_description Filters dimension elements.
+
+@long_description Filters elements according to specified conditions
+
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+
+@param dimension
+@param_type identifier
+@param_description Identifier of the dimension
+
+@param name_dimension
+@param_type string
+@param_description Name of the dimension. Used only if dimension parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+ 
+@param area
+@param_type area
+@param_description Comma separated list of element identifiers list. Each element identifiers list is colon separated. The area is the cartesian product. Elements for dimension specified is initial subset that will be filtered.
+ 
+@param mode
+@param_type integer
+@param_description DATA_MIN = 1, DATA_MAX = 2, DATA_SUM = 4, DATA_AVERAGE = 8, DATA_ANY = 16, DATA_ALL = 32, DATA_STRING = 64, ONLY_CONSOLIDATED = 128, ONLY_LEAVES = 256, UPPER_PERCENTAGE = 512, LOWER_PERCENTAGE = 1024, MID_PERCENTAGE = 2048, TOP = 4096, NORULES = 8192
+
+@param condition
+@param_type string
+@param_description Condition on the value of numeric or string cells (default is no condition). 
+A condition starts with >, >=, <, <=, ==, or != and is followed by a double or a string. 
+Two condition can be combined by and, or, xor. If you specify a string value, the value has to be csv encoded.
+Do not forget to URL encode the complete condition string.
+ 
+@param values
+@param_type double
+@param_description Values for Top, Upper % and Lower % in this order.
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the
+<a href="/api/server/login">/server/login</a> request to get a valid
+session identifier.
+  
+
+
+@result element
+@result_type identifier
+@result_description Identifier of the element
+
+@result name_element
+@result_type string
+@result_description Name of the element
+
+@result position
+@result_type integer
+@result_description Position of the element
+
+@result level
+@result_type integer
+@result_description Level of the element
+
+@result indent
+@result_type integer
+@result_description Indent of the element
+
+@result depth
+@result_type integer
+@result_description Depth of the element
+
+@result type
+@result_type integer
+@result_description Type of the element (1=NUMERIC, 2=STRING, 4=CONSOLIDATED)
+
+@result number_parents
+@result_type integer
+@result_description Number of parents
+
+@result parents
+@result_type identifier
+@result_description Comma separated list of parent identifiers
+
+@result number_children
+@result_type integer
+@result_description Number of children
+
+@result children
+@result_type identifier
+@result_description Comma separated list of children identifiers
+
+@result weights
+@result_type double
+@result_description Comma separated list of children weights
+
+@result type
+@result_type integer
+@result_description Type of the accumulated value (1=NUMERIC, 2=STRING)
+
+@result exists
+@result_type boolean
+@result_description 1 if numeric value is non-zero or string value is non-empty
+
+@result value
+@result_type double/string
+@result_description Accumulated value used for filtering
+
+
+@example database=2&dimension=11&cube=26&area=1,0,0,0,0,0,0:1:2:3,0:1&mode=4100&condition=%3E1000and%3C100000&values=10:0:0
+@example_description Filter elements of dimension "11" of database "2" according to data in cube 26.

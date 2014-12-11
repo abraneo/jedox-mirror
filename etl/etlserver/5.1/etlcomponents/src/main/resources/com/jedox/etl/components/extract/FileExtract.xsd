@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="extract" type="c:extracttype" />
+    
+	<complexType name="aliastype">
+		<simpleContent>
+			<extension base="positiveInteger">
+				<attribute name="name" type="string" />
+				<attribute name="origin" type="string">
+					<annotation>
+						<appinfo>hidden</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="default" type="string"/>
+			</extension>
+		</simpleContent>
+	</complexType>  
+    
+    <complexType name="aliasmap">
+    	<sequence>
+        	<element name="alias" type="c:aliastype" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+		<attribute name="nameref" type="string">
+			<annotation>
+				<appinfo>
+					<ref>alias_maps:/alias_map/@name</ref>
+					<choice>element:/alias</choice>
+				</appinfo>
+			</annotation>
+		</attribute>
+	 </complexType>
+    
+    <complexType name="connectionref">
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>connections:/connection/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<anyAttribute processContents="lax"/>
+	 </complexType>
+
+    <complexType name="extracttype">
+        <all>
+        	<element name="connection" type="c:connectionref"/>
+            <element name="query" type="string" minOccurs="0" maxOccurs="1"/>
+            <element name="alias_map" type="c:aliasmap" minOccurs="0" maxOccurs="1"/>
+            <element name="skip" type="nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+			<element name="start" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+			<element name="end" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+			<element name="columns" type="positiveInteger" minOccurs="0" maxOccurs="1"/>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="1"/>  
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+        <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+</schema>

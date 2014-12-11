@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sampleTreeJoinNC" version="5.1" modified="1383649305867" modifiedBy="">
+  <headers>
+    <header name="comment">
+      <comment>ETL Demo Project.
+Shows the creation of a tree available in the NC-format and joining it with a Dimension extracted from OLAP database and with a 3rd constant hierarchy.
+To make the dimension elements unique, a prefix is added to one of the hierarchies.</comment>
+    </header>
+  </headers>
+  <variables />
+  <connections>
+    <connection name="palodemo" type="Jedox" modified="1383649305867" modifiedBy="">
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">7a07zC+W5h1jEZmciFvlDw==</password>
+      <database>Demo</database>
+    </connection>
+    <connection name="palotarget" type="Jedox" modified="1383649305867" modifiedBy="">
+      <host>localhost</host>
+      <port>7777</port>
+      <user>admin</user>
+      <password encrypted="true">B9dnbwU59z3RZCli/ni/BQ==</password>
+      <database>Demo_ETL</database>
+    </connection>
+    <connection name="HierProducts_file" type="File" modified="1383649305867" modifiedBy="">
+      <database>HierarchyProductsNC.csv</database>
+      <header>false</header>
+      <delimiter>,</delimiter>
+      <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="HierProducts_Extract" type="File" modified="1383649305867" modifiedBy="">
+      <connection nameref="HierProducts_file" />
+      <alias_map>
+        <alias name="type">1</alias>
+        <alias name="element">2</alias>
+        <alias name="weight">3</alias>
+      </alias_map>
+    </extract>
+    <extract name="Products_Olap" type="Dimension" modified="1383649305867" modifiedBy="">
+      <connection nameref="palodemo" />
+      <query>
+        <dimension name="Products" />
+      </query>
+      <withAttributes>true</withAttributes>
+    </extract>
+    <extract name="Products_Constant" type="ConstantTree" modified="1383649305867" modifiedBy="">
+      <data>
+        <header>
+          <value>:level</value>
+          <value>:element</value>
+          <value>:weight</value>
+          <value>:nodetype</value>
+        </header>
+        <row>
+          <value>1</value>
+          <value>Other Products</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>2</value>
+          <value>New Produkt 1</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>2</value>
+          <value>New Produkt 2</value>
+          <value>1</value>
+          <value />
+        </row>
+        <row>
+          <value>2</value>
+          <value>Not assigned</value>
+          <value>0</value>
+          <value />
+        </row>
+      </data>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="HierProducts_Trans" type="FieldTransform" modified="1383649305867" modifiedBy="">
+      <sources>
+        <source nameref="HierProducts_Extract" />
+      </sources>
+      <functions>
+        <function name="element" type="Concatenation">
+          <inputs>
+            <input nameref="element" />
+          </inputs>
+          <parameters>
+            <template>DP #{element}</template>
+          </parameters>
+        </function>
+      </functions>
+    </transform>
+    <transform name="HierProducts_Tree" type="TreeNC" modified="1383649305867" modifiedBy="">
+      <sources>
+        <source nameref="HierProducts_Trans" />
+      </sources>
+      <target>
+        <type>
+          <input nameref="type" />
+        </type>
+        <element>
+          <input nameref="element" />
+        </element>
+        <weight>
+          <input nameref="weight" />
+        </weight>
+      </target>
+    </transform>
+    <transform name="Products_Join" type="TreeJoin" modified="1383649305867" modifiedBy="">
+      <sources>
+        <source nameref="Products_Constant" />
+        <source nameref="Products_Olap" root="Products from Olap" />
+        <source nameref="HierProducts_Tree" root="Products from File" />
+      </sources>
+    </transform>
+  </transforms>
+  <loads>
+    <load name="Products_Join" type="Dimension" modified="1383649305867" modifiedBy="">
+      <source nameref="Products_Join" />
+      <connection nameref="palotarget" />
+      <dimension name="Products_Join">
+        <elements mode="update" />
+        <consolidations mode="update" />
+        <attributes mode="update" />
+      </dimension>
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard" modified="1383649305867" modifiedBy="">
+      <execution type="load" nameref="Products_Join" />
+    </job>
+  </jobs>
+</project>
+

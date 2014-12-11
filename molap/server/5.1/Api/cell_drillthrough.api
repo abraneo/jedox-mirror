@@ -1,0 +1,54 @@
+@request_path /cell/drillthrough
+
+@short_description Retrieves detailed data for a cube cell.
+ 
+@long_description 
+Depending on the mode the detailed data can be:
+<ul>
+<li>Historical data which track the changes of a cube cell</li>
+<li>Source system data if the cube cell has been loaded via an ETL-process</li>
+<li>User defined data</li>
+</ul>
+The Event OnDrillthrough is raised in Palo Supervision-Server which contains
+the application logic of Drillthrough. Note that Palo Supervision-Server has
+to be installed separately.
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+@param path
+@param_type path
+@param_description Comma separated list of element identifiers
+
+@param name_path
+@param_type npath
+@param_description Comma separated list of element names. Used only if path parameter is omitted.
+
+@param mode
+@param_type integer
+@param_description 1 - History, 2 - Details,..., n - User defined
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+@result resultset
+@result_type string
+@result_description Comma separated component-values (columns) of resultset; First row: Component names of resultset-columns
+
+@example database=1&cube=16&mode=1&path=1,1,1
+@example_description Cell drillthrough for cell "1,1,1"

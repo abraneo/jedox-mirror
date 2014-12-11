@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://schemas.jedox.com/etlcore"
+	elementFormDefault="qualified" 
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:c="http://schemas.jedox.com/etlcore" 
+	xmlns:l="http://schemas.jedox.com/etlcore">
+
+	<include schemaLocation="resource.xsd"/>
+	<element name="job" type="c:jobtype" /> 
+		
+
+	<complexType name="jobtype">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="jobscript" type="string">
+				<annotation>
+					<appinfo>script.groovy</appinfo>
+				</annotation>
+			</element>
+			<element name="comment" type="string"/>
+			<!-- <element name="uses" type="c:dependencies"/> -->
+		</choice>
+		<attribute name="name" type="string" default="default"/>
+        <attribute name="type" type="string" />
+        <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+		<anyAttribute processContents="lax"/>
+	</complexType>
+
+</schema>

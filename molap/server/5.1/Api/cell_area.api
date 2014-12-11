@@ -1,0 +1,90 @@
+@request_path /cell/area
+
+@short_description Shows values of cube cells
+ 
+@long_description The default aggregation function for consolidated cells is SUM. The type of aggregation can be changed by 'function' parameter. In such case the usage of 'expand' parameter is mandatory.
+
+
+@param database
+@param_type identifier
+@param_description Identifier of the database
+ 
+@param name_database
+@param_type string
+@param_description Name of the database. Used only if database parameter is omitted.
+ 
+@param cube
+@param_type identifier
+@param_description Identifier of the cube
+
+@param name_cube
+@param_type string
+@param_description Name of the cube. Used only if cube parameter is omitted.
+
+@param area
+@param_type area
+@param_description Comma separated list of element identifier lists. Identifier lists are separated by colons. The area is the cartesian product.
+
+@param name_area
+@param_type narea
+@param_description Comma separated list of element name lists. Name lists are separated by colons. The area is the cartesian product. Used only if area parameter is omitted.
+
+@param function
+@param_type integer
+@param_description Optional aggregation function.<br>(1=AVG, 2=COUNT, 3=MAX, 4=MIN)
+
+@param expand
+@param_type integer
+@param_description Comma separated list of expand functions.<br>(1=SELF, 2=CHILDREN, 4=LEAVES)
+ 
+@param show_rule
+@param_type boolean
+@param_description If 1, then additional information about the cell value is returned, in case the value originates from an enterprise rule.
+
+@param show_lock_info
+@param_type boolean
+@param_description If 1, then additional information about the cell lock is returned.
+ 
+@param properties
+@param_type identifier
+@param_description Comma separated list of cell property ids.
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the <a href="/api/server/login">/server/login</a> request to get a valid session identifier.
+
+
+@result type
+@result_type integer
+@result_description Type of the value (1=NUMERIC, 2=STRING)
+
+@result exists
+@result_type boolean
+@result_description 1 if numeric value is non-zero or string value is non-empty
+
+@result value
+@result_type double/string
+@result_description Value of the cell
+
+@result path
+@result_type path
+@result_description Comma separated list of element identifiers (path of cube cell)
+
+@result rule
+@result_type identifier
+@result_description Identifier of the rule, this cell values originates from or empty. Only available if show_rule is 1.
+
+@result lock_info
+@result_type identifier
+@result_description Lock info (0 - cell is not locked, 1 - cell is locked by user wich sent request, 2 - cell is locked by another user). Only available if show_lock_info is 1.
+
+@result property_values
+@result_type double/string
+@result_description Values of specified cell properties.
+
+
+
+@example database=1&cube=7&area=0:1,1:2,2:3,3:4,0,0
+@example_description Show values of cells area "(0,1) x (1,2) x (2,3) x (3,4) x 0 x 0"
+@example database=1&cube=13&area=0,0,16,1:2:3,0,0&function=3&expand=1,1,2,1,1,1
+@example_description Show the maximum of children values of element 16 for cells "0 x 0 x 16 x (1,2,3) x 0 x 0"

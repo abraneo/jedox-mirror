@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="transform" type="c:transformtype" />
+    
+    <complexType name="inputref">
+		<attribute name="nameref" type="string">
+			<annotation>
+				<appinfo>
+					<ref>source:/alias_map/alias/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="constant" type="string"/>
+	</complexType>
+	
+	<complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+			<annotation>
+				<appinfo>
+					<ref>sources:/source/@name</ref>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+	 </complexType>
+	 
+	<complexType name="sourcerefs">
+		<sequence>
+			<element name="source" type="c:sourceref" minOccurs="2" maxOccurs="2"/>
+		</sequence>
+	</complexType>
+	
+	 <simpleType name="viewformat">
+ 		 <restriction base="string">
+    		<enumeration value="fh"/>
+    		<enumeration value="fhw"/>
+    		<enumeration value="pc"/>
+    		<enumeration value="pcw"/>
+    		<enumeration value="pcwa"/>
+    		<enumeration value="pcwat"/>
+    		<enumeration value="ncw"/>
+    		<enumeration value="ncwa"/>
+    		<enumeration value="ea"/>
+  		</restriction>
+	</simpleType>   
+	    
+    <complexType name="key">
+         <attribute name="nameref" type="string"/>
+         <attribute name="constant" type="string"/>
+	</complexType>
+    
+    <complexType name="joinpart">
+		<sequence>
+			<element name="key" type="c:key" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+         <attribute name="nameref" type="string" use="required"/>
+	</complexType>
+	
+	<simpleType name="jointypes">
+ 		 <restriction base="string">
+    		<enumeration value="inner"/>
+    		<enumeration value="left outer"/>
+    		<enumeration value="right outer"/>
+   		</restriction>
+	</simpleType> 
+	
+	<simpleType name="jointypesValidate">
+ 		 <restriction base="string">
+    		<enumeration value="full"/> 		 
+    		<enumeration value="inner"/>
+    		<enumeration value="left outer"/>
+    		<enumeration value="right outer"/>
+   		</restriction>
+	</simpleType> 
+	
+	<simpleType name="conditiontypes">
+ 		 <restriction base="string">
+    		<enumeration value="eq"/>
+    		<enumeration value="ne"/>
+    		<enumeration value="le"/>
+    		<enumeration value="lt"/>
+    		<enumeration value="ge"/>
+    		<enumeration value="gt"/>
+   		</restriction>
+	</simpleType> 
+	
+	<complexType name="conditionpart">
+		 <attribute name="type" type="c:conditiontypes" use="required"/>
+	</complexType>
+	
+	<complexType name="conditionspart">
+		<sequence>
+			<element name="condition" type="c:conditionpart" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+    <complexType name="join">
+		<all>
+            <element name="left" type="c:joinpart" minOccurs="1" maxOccurs="1"/>
+            <element name="right" type="c:joinpart" minOccurs="1" maxOccurs="1"/>
+            <element name="conditions" type="c:conditionspart" minOccurs="0" maxOccurs="1"/>   
+        </all>
+        <attribute name="type" type="c:jointypesValidate"/>
+	</complexType>
+    
+    <complexType name="joins">
+		<sequence>
+			<element name="join" type="c:join" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+		 <attribute name="persist" type="boolean"/>
+	</complexType>
+   
+    <complexType name="transformtype">
+        <all>
+            <element name="sources" type="c:sourcerefs" minOccurs="1" maxOccurs="1"/>
+            <element name="joins" type="c:joins" minOccurs="1" maxOccurs="1"/>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>   
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+    </complexType>
+
+</schema>

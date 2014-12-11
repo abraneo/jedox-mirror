@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://schemas.jedox.com/etlcore"
+    xmlns:c="http://schemas.jedox.com/etlcore"
+    elementFormDefault="qualified">
+
+    <element name="load" type="c:cubeloadtype" />
+
+	<complexType name="connectionref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<anyAttribute processContents="lax"/>
+	 </complexType>
+	 
+	  <simpleType name="viewformat">
+ 		 <restriction base="string">
+    		<enumeration value="fh"/>
+    		<enumeration value="fhw"/>
+    		<enumeration value="pc"/>
+    		<enumeration value="pcw"/>
+    		<enumeration value="pcwa"/>
+    		<enumeration value="pcwat"/>
+    		<enumeration value="ncw"/>
+    		<enumeration value="ncwa"/>
+    		<enumeration value="ea"/>
+  		</restriction>
+	</simpleType>  
+
+	 <complexType name="sourceref">
+     	<sequence>
+        	<any minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </sequence>
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<attribute name="format" type="c:viewformat"/>
+	 </complexType>
+
+	 <simpleType name="loadmode">
+ 		 <restriction base="string">
+    		<enumeration value="create"/>
+    		<enumeration value="update"/>
+    		<enumeration value="add"/>
+    		<enumeration value="insert"/>
+    		<enumeration value="delete"/>
+  		</restriction>
+	</simpleType>
+
+	<simpleType name="splashmode">
+ 		 <restriction base="string">
+    		<enumeration value="default"/>
+    		<enumeration value="set"/>
+    		<enumeration value="add"/>
+    		<enumeration value="disabled"/>
+  		</restriction>
+	</simpleType>
+
+	<simpleType name="defaultType">
+ 		 <restriction base="string">
+    		<enumeration value="warning"/>
+    		<enumeration value="mapToDefault"/>
+    		<enumeration value="createUnderDefault"/>
+  		</restriction>
+	</simpleType>
+
+    <complexType name="drillthroughtype">
+    	<sequence>
+			<element name="annex" type="c:dimensiontype" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="connection" type="string">
+			<annotation>
+				<appinfo>connection</appinfo>
+ 			</annotation>			
+		</attribute>
+		<attribute name="aggregate" type="c:aggregatemode"/>
+		<attribute name="schemaname" type="string"/>
+		<attribute name="tablename" type="string"/>
+ 		<attribute name="directextract" type="string">
+ 			<annotation>
+				<appinfo>source</appinfo>
+ 			</annotation>
+		</attribute>
+    </complexType>
+    
+    <complexType name="dimensionstype">
+    	<sequence>
+			<element name="dimension" type="c:dimensiontype" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<appinfo>metadata.dimension.Name;cube=$/@name;mask=10000</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+    </complexType>
+    
+    <complexType name="dimensiontype">
+        <attribute name="name" type="string"/>
+        <attribute name="input" type="string" use="required">
+        	<annotation>
+				<appinfo>input</appinfo>
+			</annotation>
+        </attribute>        
+    </complexType>
+    
+	<simpleType name="aggregatemode">
+ 		 <restriction base="string">
+    		<enumeration value="true"/>
+    		<enumeration value="false"/>
+    		<enumeration value="row"/>
+    		<enumeration value="bulk"/>
+  		</restriction>
+	</simpleType>  	   
+
+	<complexType name="cubetype">
+		<all>
+			<element name="drillthrough" type="c:drillthroughtype" minOccurs="0" maxOccurs="1"/>
+			<element name="dimensions" type="c:dimensionstype" minOccurs="0" maxOccurs="1"/>
+        <!-- 	<element name="rules" type="c:rulestype" minOccurs="0" maxOccurs="1"/>    -->
+        </all>
+        <attribute name="name" type="string"/>
+        <attribute name="splash" type="c:splashmode"/>
+		<attribute name="deactivateRules" type="boolean" default="false"/>
+		<attribute name="deactivateSVS" type="boolean" default="false"/>
+		<attribute name="completelock" type="boolean" default="false"/>        
+    </complexType>
+
+   <complexType name="cubeDefault">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="type" type="c:defaultType" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+    <complexType name="cubeloadtype">
+        <all>
+            <element name="connection" type="c:connectionref"/>
+            <element name="source" type="c:sourceref"/>
+			<element name="mode" type="c:loadmode" minOccurs="0" maxOccurs="1"/>
+            <element name="cube" type="c:cubetype" minOccurs="1" maxOccurs="1">
+            	<annotation>
+					<appinfo>metadata.cube.Name;mask=10000</appinfo>
+				</annotation>
+            </element>
+            <element name="default" type="c:cubeDefault" minOccurs="0" maxOccurs="1"/>
+            <element name="bulksize" type="integer" minOccurs="0" maxOccurs="1"/>
+            <element name="comment" type="string" minOccurs="0" maxOccurs="1"/>
+        </all>
+        <attribute name="name" type="string" use="required"/>
+        <attribute name="type" type="string" use="required"/>
+        <attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+    </complexType>
+</schema>

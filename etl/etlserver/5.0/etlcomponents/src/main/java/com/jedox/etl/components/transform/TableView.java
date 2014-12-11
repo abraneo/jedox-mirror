@@ -1,0 +1,132 @@
+/**
+*   @brief <Description of Class>
+*
+*   @file
+*
+*   Copyright (C) 2008-2013 Jedox AG
+*
+*   This program is free software; you can redistribute it and/or modify it
+*   under the terms of the GNU General Public License (Version 2) as published
+*   by the Free Software Foundation at http://www.gnu.org/copyleft/gpl.html.
+*
+*   This program is distributed in the hope that it will be useful, but WITHOUT
+*   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+*   FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+*   more details.
+*
+*   You should have received a copy of the GNU General Public License along with
+*   this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+*   Place, Suite 330, Boston, MA 02111-1307 USA
+*
+*   If you are developing and distributing open source applications under the
+*   GPL License, then you are free to use Palo under the GPL License.  For OEMs,
+*   ISVs, and VARs who distribute Palo with their products, and do not license
+*   and distribute their source code under the GPL, Jedox provides a flexible
+*   OEM Commercial License.
+*
+* 	Portions of the code developed by proclos OG, Wien on behalf of Jedox AG.
+* 	Intellectual property rights for these portions has proclos OG Wien, 
+* 	or otherwise Jedox AG, Freiburg. Exclusive worldwide exploitation right 
+* 	(commercial copyright) has Jedox AG, Freiburg.
+*
+*   @author Christian Schwarzinger, proclos OG, Wien, Austria
+*   @author Andreas Fr�hlich, Jedox AG, Freiburg, Germany
+*   @author Kais Haddadin, Jedox AG, Freiburg, Germany
+*/
+package com.jedox.etl.components.transform;
+
+import com.jedox.etl.components.config.transform.TableViewConfigurator;
+import com.jedox.etl.core.component.ITypes;
+import com.jedox.etl.core.component.InitializationException;
+import com.jedox.etl.core.component.RuntimeException;
+import com.jedox.etl.core.source.SourceManager;
+import com.jedox.etl.core.source.TableSource;
+import com.jedox.etl.core.source.filter.RowFilter;
+import com.jedox.etl.core.source.processor.IProcessor;
+import com.jedox.etl.core.source.processor.UnionProcessor;
+import com.jedox.etl.core.transform.ITransform;
+
+public class TableView extends TableSource implements ITransform {
+
+	private RowFilter filter;
+
+
+	public IProcessor getProcessor(int size) throws RuntimeException {
+		IProcessor processor = super.getProcessor(0);
+		processor.setFirstRow(getFirstRow());
+		size = (size == 0) ? getLastRow(): size;
+		processor.setLastRow(Math.min(getLastRow(),getFirstRow()+size));
+		return processor;
+	}
+	
+	protected IProcessor getSourceProcessor(int size) throws RuntimeException {
+		IProcessor processor = UnionProcessor.getInstance(getSourceManager().getProcessors());
+		processor.setName(getName());
+		processor.addFilter(filter);
+		return processor;
+	}
+
+	public TableView() {
+		setConfigurator(new TableViewConfigurator());
+	}
+
+	public TableViewConfigurator getConfigurator() {
+		return (TableViewConfigurator)super.getConfigurator();
+	}
+
+	protected SourceManager getSourceManager() {
+		return (SourceManager)getManager(ITypes.Sources);
+	}
+	
+	protected int getFirstRow() throws RuntimeException {
+		try {
+			int startLine =  Math.max(Integer.parseInt(getParameter("start","1"))-1,0);
+			return startLine;
+		}
+		catch (Exception e) {
+			throw new RuntimeException("Failed to parse number of start line in Transform "+ getName() + ": "+e.getMessage());
+		}
+	}
+
+
+	protected int getLastRow() throws RuntimeException {
+		try {
+			int lastLine = Integer.parseInt(getParameter("end","0"));
+			if(lastLine<getFirstRow() && lastLine != 0){
+				throw new RuntimeException("In Transform " + getName() + " end line number can be either 0 or smaller than start line.");
+			}
+			else{
+				return (lastLine == 0) ? Integer.MAX_VALUE: lastLine;
+			}
+		}
+		catch (Exception e) {
+			throw new RuntimeException("Failed to parse number of end line: "+e.getMessage());
+		}
+	}
+
+
+
+	public void init() throws InitializationException {
+		super.init();
+		try {
+			SourceManager manager = new SourceManager();
+			manager.addAll(getConfigurator().getSources());
+			addManager(manager);
+			String query = getConfigurator().getQuery();
+			filter = getConfigurator().getFilter();
+			if (query != null) { 	//have to build a view on top of a source
+				//ensure internal storage.
+				setCaching(true);
+				//set view query on internal storage
+				setQueryInternal(query);
+			} else {  //no view. Just a 1:1 Reference to an other source
+				//turn caching off - is done be underlying source, if enabled there
+				setCaching(false);
+			}
+		}
+		catch (Exception e) {
+			throw new InitializationException(e.getMessage());
+		}	
+	}
+
+}

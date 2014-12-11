@@ -1,0 +1,31 @@
+configure
+
+Run configure --help to see a list of options
+Special options for PHPPalo are:
+
+--enable-ZTS :
+When this switch is used ZTS=1 is passed to the compiler, enabling PHP Zend Thread Safety
+
+--enable-debug=[yes/no]
+Add debugging symbols and do not optimize, use GDB debugging.
+
+PHPHEADERS 
+This variable is passed to configure. 
+Its value is the path to the PHP sources on this system. 
+The default value for this is ./PHP. (e.g. a symbolic link)
+
+example:
+PHPHEADERS=/usr/src/php/php4/php-4.4.4 ./configure --enable-debug=yes
+
+configure with ZTS=0 and the above path to PHP sources.
+
+Hint:
+Use "make distclean" for a fresh restart.
+Use "autoreconf -v -f -i" in emergencies, and if you know what you are doing.
+
+if autoreconf -v -f -i doesn't work try the next four lines
+libtoolize --force --copy
+aclocal
+autoconf
+automake
+

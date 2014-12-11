@@ -1,0 +1,296 @@
+ProductID;Name;ProductNumber;Color;StandardCost;ListPrice;Size;ProductCategoryID;ABC	
+771;Off-Road-100 Blue 38;B-O-82B-38;Blue;573,65;969,00;38;5;30%	
+772;Off-Road-100 Blue 42;B-O-82B-42;Blue;573,65;969,00;42;5;29%	
+773;Off-Road-100 Blue 44;B-O-82B-44;Blue;573,65;969,00;44;5;28%	
+774;Off-Road-100 Blue 48;B-O-82B-48;Blue;573,65;969,00;48;5;27%	
+775;Off-Road-100 Red 38;B-O-82R-38;Red;569,43;961,87;38;5;26%	
+776;Off-Road-100 Red 42;B-O-82R-42;Red;569,43;961,87;42;5;25%	
+777;Off-Road-100 Red 44;B-O-82R-44;Red;569,43;961,87;44;5;25%	
+778;Off-Road-100 Red 48;B-O-82R-48;Red;569,43;961,87;48;5;24%	
+779;Off-Road-200 Blue 38;B-O-68B-38;Blue;379,69;661,20;38;5;24%	
+780;Off-Road-200 Blue 42;B-O-68B-42;Blue;379,69;661,20;42;5;23%	
+781;Off-Road-200 Blue 46;B-O-68B-46;Blue;379,69;661,20;46;5;23%	
+782;Off-Road-200 Red 38;B-O-68R-38;Red;375,59;654,07;38;5;22%	
+783;Off-Road-200 Red 42;B-O-68R-42;Red;375,59;654,07;42;5;22%	
+784;Off-Road-200 Red 46;B-O-68R-46;Red;375,59;654,07;46;5;21%	
+785;Off-Road-300 Red 38;B-O-47R-38;Red;179,53;307,80;38;5;21%	
+786;Off-Road-300 Red 40;B-O-47R-40;Red;179,53;307,80;40;5;20%	
+787;Off-Road-300 Red 44;B-O-47R-44;Red;179,53;307,80;44;5;20%	
+788;Off-Road-300 Red 48;B-O-47R-48;Red;179,53;307,80;48;5;19%	
+980;Off-Road-400-W Blue 38;B-O-38B-38;Blue;125,93;219,30;38;5;1%	
+981;Off-Road-400-W Blue 40;B-O-38B-40;Blue;125,93;219,30;40;5;1%	
+982;Off-Road-400-W Blue 42;B-O-38B-42;Blue;125,93;219,30;42;5;1%	
+983;Off-Road-400-W Blue 46;B-O-38B-46;Blue;125,93;219,30;46;5;1%	
+984;Off-Road-500 Blue 40;B-O-18B-40;Blue;92,47;177,97;40;5;1%	
+985;Off-Road-500 Blue 42;B-O-18B-42;Blue;92,47;177,97;42;5;1%	
+986;Off-Road-500 Blue 44;B-O-18B-44;Blue;92,47;177,97;44;5;1%	
+987;Off-Road-500 Blue 48;B-O-18B-48;Blue;92,47;177,97;48;5;1%	
+988;Off-Road-500 Blue 52;B-O-18B-52;Blue;92,47;177,97;52;5;1%	
+989;Off-Road-500 Red 40;B-O-18R-40;Red;88,37;170,10;40;5;1%	
+990;Off-Road-500 Red 42;B-O-18R-42;Red;88,37;170,10;42;5;1%	
+991;Off-Road-500 Red 44;B-O-18R-44;Red;88,37;170,10;44;5;1%	
+992;Off-Road-500 Red 48;B-O-18R-48;Red;88,37;170,10;48;5;1%	
+993;Off-Road-500 Red 52;B-O-18R-52;Red;88,37;170,10;52;5;1%	
+750;Cross-150 Silver 44;B-C-93S-44;Silver;651,39;1.019,81;44;6;59%	
+751;Cross-150 Silver 48;B-C-93S-48;Silver;651,39;1.019,81;48;6;57%	
+752;Cross-150 Silver 52;B-C-93S-52;Silver;651,39;1.019,81;52;6;55%	
+753;Cross-150 Silver 56;B-C-93S-56;Silver;651,39;1.019,81;56;6;53%	
+749;Cross-150 Silver 62;B-C-93S-62;Silver;651,39;1.019,81;62;6;61%	
+789;Cross-250 Silver 44;B-C-89S-44;Silver;455,64;696,35;44;6;19%	
+790;Cross-250 Silver 48;B-C-89S-48;Silver;455,64;696,35;48;6;18%	
+791;Cross-250 Silver 52;B-C-89S-52;Silver;455,64;696,35;52;6;18%	
+792;Cross-250 Silver 58;B-C-89S-58;Silver;466,48;696,35;58;6;17%	
+793;Cross-250 White 44;B-C-89W-44;White;466,48;696,35;44;6;17%	
+794;Cross-250 White 48;B-C-89W-48;White;466,48;696,35;48;6;16%	
+795;Cross-250 White 52;B-C-89W-52;White;466,48;696,35;52;6;16%	
+796;Cross-250 White 58;B-C-89W-58;White;466,48;696,35;58;6;15%	
+973;Cross-350 Red 40;B-C-79R-40;Red;324,75;484,78;40;6;1%	
+974;Cross-350 Red 42;B-C-79R-42;Red;324,75;484,78;42;6;1%	
+975;Cross-350 Red 44;B-C-79R-44;Red;324,75;484,78;44;6;1%	
+976;Cross-350 Red 48;B-C-79R-48;Red;324,75;484,78;48;6;1%	
+756;Cross-450 Silver 44;B-C-68S-44;Silver;265,41;415,53;44;6;47%	
+757;Cross-450 Silver 48;B-C-68S-48;Silver;265,41;415,53;48;6;45%	
+758;Cross-450 Silver 52;B-C-68S-52;Silver;265,41;415,53;52;6;43%	
+754;Cross-450 Silver 58;B-C-68S-58;Silver;265,41;415,53;58;6;51%	
+755;Cross-450 Silver 60;B-C-68S-60;Silver;265,41;415,53;60;6;49%	
+797;Cross-550 Red 38;B-C-64R-38;Red;213,92;319,34;38;6;15%	
+798;Cross-550 Red 40;B-C-64R-40;Red;213,92;319,34;40;6;14%	
+799;Cross-550 Red 42;B-C-64R-42;Red;213,92;319,34;42;6;14%	
+800;Cross-550 Red 44;B-C-64R-44;Red;213,92;319,34;44;6;13%	
+801;Cross-550 Red 48;B-C-64R-48;Red;213,92;319,34;48;6;13%	
+762;Cross-650 Silver 44;B-C-50S-44;Silver;146,01;246,64;44;6;39%	
+763;Cross-650 Silver 48;B-C-50S-48;Silver;146,01;246,64;48;6;38%	
+764;Cross-650 Silver 52;B-C-50S-52;Silver;146,01;246,64;52;6;37%	
+759;Cross-650 Silver 58;B-C-50S-58;Silver;146,01;246,64;58;6;42%	
+760;Cross-650 Silver 60;B-C-50S-60;Silver;146,01;246,64;60;6;41%	
+761;Cross-650 Silver 62;B-C-50S-62;Silver;146,01;246,64;62;6;40%	
+768;Cross-650 White 44;B-C-50W-44;White;146,01;246,64;44;6;33%	
+769;Cross-650 White 48;B-C-50W-48;White;146,01;246,64;48;6;32%	
+770;Cross-650 White 52;B-C-50W-52;White;146,01;246,64;52;6;31%	
+765;Cross-650 White 58;B-C-50W-58;White;146,01;246,64;58;6;36%	
+766;Cross-650 White 60;B-C-50W-60;White;146,01;246,64;60;6;35%	
+767;Cross-650 White 62;B-C-50W-62;White;146,01;246,64;62;6;34%	
+997;Cross-750 White 44;B-C-19W-44;White;103,09;170,10;44;6;1%	
+998;Cross-750 White 48;B-C-19W-48;White;103,09;170,10;48;6;1%	
+999;Cross-750 White 52;B-C-19W-52;White;103,09;170,10;52;6;1%	
+977;Cross-750 White 58;B-C-19W-58;White;103,09;170,10;58;6;1%	
+966;Trekking-1000 Blue 46;B-T-79B-46;Blue;444,58;750,98;46;7;1%	
+967;Trekking-1000 Blue 50;B-T-79B-50;Blue;444,58;750,98;50;7;1%	
+968;Trekking-1000 Blue 54;B-T-79B-54;Blue;444,58;750,98;54;7;1%	
+969;Trekking-1000 Blue 60;B-T-79B-60;Blue;444,58;750,98;60;7;1%	
+954;Trekking-1000 Yellow 46;B-T-79Y-46;Yellow;444,58;750,98;46;7;1%	
+955;Trekking-1000 Yellow 50;B-T-79Y-50;Yellow;444,58;750,98;50;7;1%	
+956;Trekking-1000 Yellow 54;B-T-79Y-54;Yellow;444,58;750,98;54;7;1%	
+957;Trekking-1000 Yellow 60;B-T-79Y-60;Yellow;444,58;750,98;60;7;1%	
+970;Trekking-2000 Blue 46;B-T-44B-46;Blue;226,55;382,68;46;7;1%	
+971;Trekking-2000 Blue 50;B-T-44B-50;Blue;226,55;382,68;50;7;1%	
+972;Trekking-2000 Blue 54;B-T-44B-54;Blue;226,55;382,68;54;7;1%	
+953;Trekking-2000 Blue 60;B-T-44B-60;Blue;226,55;382,68;60;7;1%	
+978;Trekking-3000 Green 44;B-T-18G-44;Green;138,43;233,84;44;7;1%	
+979;Trekking-3000 Green 50;B-T-18G-50;Green;138,43;233,84;50;7;1%	
+958;Trekking-3000 Green 54;B-T-18G-54;Green;138,43;233,84;54;7;1%	
+959;Trekking-3000 Green 58;B-T-18G-58;Green;138,43;233,84;58;7;1%	
+960;Trekking-3000 Green 62;B-T-18G-62;Green;138,43;233,84;62;7;1%	
+961;Trekking-3000 Yellow 44;B-T-18Y-44;Yellow;138,43;233,84;44;7;1%	
+962;Trekking-3000 Yellow 50;B-T-18Y-50;Yellow;138,43;233,84;50;7;1%	
+963;Trekking-3000 Yellow 54;B-T-18Y-54;Yellow;138,43;233,84;54;7;1%	
+964;Trekking-3000 Yellow 58;B-T-18Y-58;Yellow;138,43;233,84;58;7;1%	
+965;Trekking-3000 Yellow 62;B-T-18Y-62;Yellow;138,43;233,84;62;7;1%	
+813;HL Cross Handlebars;HB-C-956;;16,02;34,28;;8;10%	
+810;HL Off-Road Handlebars;HB-O-918;;16,02;34,28;;8;10%	
+947;HL Trekking Handlebars;HB-T-928;;12,20;26,10;;8;1%	
+811;LL Cross Handlebars;HB-C-504;;5,93;12,69;;8;10%	
+808;LL Off-Road Handlebars;HB-O-243;;5,93;12,69;;8;11%	
+946;LL Trekking Handlebars;HB-T-721;;0,61;13,14;;8;1%	
+812;ML Cross Handlebars;HB-C-720;;8,25;17,65;;8;10%	
+809;ML Off-Road Handlebars;HB-O-763;;8,25;17,65;;8;11%	
+996;HL Bottom Bracket;BB-9108;;16,18;34,62;;9;1%	
+994;LL Bottom Bracket;BB-7421;;7,19;15,39;;9;1%	
+995;ML Bottom Bracket;BB-8107;;13,49;28,85;;9;1%	
+948;Front Brakes;FB-9873;Silver;1,42;33,55;;10;1%	
+907;Rear Brakes;RB-9231;Silver;1,42;33,55;;10;2%	
+952;Chain;CH-0234;Silver;2,70;6,38;;11;1%	
+951;HL Crankset;CS-9183;Black;53,94;127,57;;12;1%	
+949;LL Crankset;CS-4759;Black;23,38;55,28;;12;1%	
+950;ML Crankset;CS-6583;Black;34,16;80,79;;12;1%	
+945;Front Derailleur;FD-2342;Silver;12,19;28,82;;13;1%	
+894;Rear Derailleur;RD-2308;Silver;16,18;38,26;;13;2%	
+804;HL Fork;FK-9939;;30,57;72,29;;14;12%	
+802;LL Fork;FK-1639;;19,74;46,69;;14;12%	
+803;ML Fork;FK-5136;;23,38;55,28;;14;12%	
+807;HL Headset;HS-3479;;16,61;39,29;;15;11%	
+805;LL Headset;HS-0296;;4,56;10,77;;15;12%	
+806;ML Headset;HS-2451;;13,63;32,22;;15;11%	
+747;HL Off-Road Frame - Black 38;F-O-94B-38;Black;22,17;384,64;38;16;65%	
+743;HL Off-Road Frame - Black 42;F-O-94B-42;Black;22,17;384,64;42;16;73%	
+744;HL Off-Road Frame - Black 44;F-O-94B-44;Black;209,73;384,64;44;16;71%	
+746;HL Off-Road Frame - Black 46;F-O-94B-46;Black;22,17;384,64;46;16;67%	
+745;HL Off-Road Frame - Black 48;F-O-94B-48;Black;209,73;384,64;48;16;69%	
+748;HL Off-Road Frame - Silver 38;F-O-94S-38;Silver;224,16;388,88;38;16;63%	
+739;HL Off-Road Frame - Silver 42;F-O-94S-42;Silver;224,16;388,88;42;16;80%	
+740;HL Off-Road Frame - Silver 44;F-O-94S-44;Silver;21,20;388,88;44;16;79%	
+742;HL Off-Road Frame - Silver 46;F-O-94S-46;Silver;224,16;388,88;46;16;75%	
+741;HL Off-Road Frame - Silver 48;F-O-94S-52;Silver;21,20;388,88;48;16;77%	
+943;LL Off-Road Frame - Black 40;F-O-21B-40;Black;4,10;71,19;40;16;1%	
+924;LL Off-Road Frame - Black 42;F-O-21B-42;Black;4,10;71,19;42;16;1%	
+925;LL Off-Road Frame - Black 44;F-O-21B-44;Black;4,10;71,19;44;16;1%	
+926;LL Off-Road Frame - Black 48;F-O-21B-48;Black;4,10;71,19;48;16;1%	
+927;LL Off-Road Frame - Black 52;F-O-21B-52;Black;4,10;71,19;52;16;1%	
+944;LL Off-Road Frame - Silver 40;F-O-21S-40;Silver;43,38;75,25;40;16;1%	
+917;LL Off-Road Frame - Silver 42;F-O-21S-42;Silver;43,38;75,25;42;16;1%	
+918;LL Off-Road Frame - Silver 44;F-O-21S-44;Silver;43,38;75,25;44;16;1%	
+919;LL Off-Road Frame - Silver 48;F-O-21S-48;Silver;43,38;75,25;48;16;1%	
+920;LL Off-Road Frame - Silver 52;F-O-21S-52;Silver;43,38;75,25;52;16;1%	
+814;ML Off-Road Frame - Black 38;F-O-63B-38;Black;55,75;99,40;38;16;9%	
+830;ML Off-Road Frame - Black 40;F-O-63B-40;Black;55,75;99,40;40;16;7%	
+831;ML Off-Road Frame - Black 44;F-O-63B-44;Black;55,75;99,40;44;16;7%	
+832;ML Off-Road Frame - Black 48;F-O-63B-48;Black;55,75;99,40;48;16;7%	
+942;ML Off-Road Frame-W - Silver 38;F-O-63S-38;Silver;59,81;103,77;38;16;1%	
+904;ML Off-Road Frame-W - Silver 40;F-O-63S-40;Silver;59,81;103,77;40;16;2%	
+905;ML Off-Road Frame-W - Silver 42;F-O-63S-42;Silver;59,81;103,77;42;16;2%	
+906;ML Off-Road Frame-W - Silver 46;F-O-63S-46;Silver;59,81;103,77;46;16;2%	
+940;HL Cross Pedal;PD-C-853;Silver/Black;10,79;25,51;;17;1%	
+937;HL Off-Road Pedal;PD-O-562;Silver/Black;10,79;25,51;;17;1%	
+938;LL Cross Pedal;PD-C-347;Silver/Black;5,39;12,75;;17;1%	
+935;LL Off-Road Pedal;PD-O-282;Silver/Black;5,39;12,75;;17;1%	
+939;ML Cross Pedal;PD-C-563;Silver/Black;0,83;19,56;;17;1%	
+936;ML Off-Road Pedal;PD-O-340;Silver/Black;0,83;19,56;;17;1%	
+941;Trekking Pedal;PD-T-852;Silver/Black;10,79;25,51;;17;1%	
+838;HL Cross Frame - Black 44;FR-C-92B-44;Black;260,59;407,98;44;18;6%	
+839;HL Cross Frame - Black 48;FR-C-92B-48;Black;260,59;407,98;48;18;6%	
+840;HL Cross Frame - Black 52;FR-C-92B-52;Black;260,59;407,98;52;18;6%	
+680;HL Cross Frame - Black 58;FR-C-92B-58;Black;317,79;407,98;58;18;100%	
+837;HL Cross Frame - Black 62;FR-C-92B-62;Black;260,59;407,98;62;18;6%	
+718;HL Cross Frame - Red 44;FR-C-92R-44;Red;260,59;407,98;44;18;98%	
+719;HL Cross Frame - Red 48;FR-C-92R-48;Red;260,59;407,98;48;18;98%	
+720;HL Cross Frame - Red 52;FR-C-92R-52;Red;260,59;407,98;52;18;98%	
+721;HL Cross Frame - Red 56;FR-C-92R-56;Red;260,59;407,98;56;18;97%	
+706;HL Cross Frame - Red 58;FR-C-92R-58;Red;317,79;407,98;58;18;100%	
+717;HL Cross Frame - Red 62;FR-C-92R-62;Red;260,59;407,98;62;18;98%	
+736;LL Cross Frame - Black 44;FR-C-38B-44;Black;61,39;96,11;44;18;83%	
+737;LL Cross Frame - Black 48;FR-C-38B-48;Black;61,39;96,11;48;18;82%	
+738;LL Cross Frame - Black 52;FR-C-38B-52;Black;61,39;96,11;52;18;81%	
+722;LL Cross Frame - Black 58;FR-C-38B-58;Black;61,39;96,11;58;18;97%	
+723;LL Cross Frame - Black 60;FR-C-38B-60;Black;61,39;96,11;60;18;96%	
+724;LL Cross Frame - Black 62;FR-C-38B-62;Black;61,39;96,11;62;18;95%	
+725;LL Cross Frame - Red 44;FR-C-38R-44;Red;56,15;96,11;44;18;94%	
+726;LL Cross Frame - Red 48;FR-C-38R-48;Red;56,15;96,11;48;18;93%	
+727;LL Cross Frame - Red 52;FR-C-38R-52;Red;56,15;96,11;52;18;92%	
+728;LL Cross Frame - Red 58;FR-C-38R-58;Red;56,15;96,11;58;18;91%	
+729;LL Cross Frame - Red 60;FR-C-38R-60;Red;56,15;96,11;60;18;90%	
+730;LL Cross Frame - Red 62;FR-C-38R-62;Red;56,15;96,11;62;18;89%	
+731;ML Cross Frame - Blue 44;FR-C-72B-44;Blue;105,64;169,53;44;18;88%	
+732;ML Cross Frame - Blue 48;FR-C-72B-48;Blue;105,64;169,53;48;18;87%	
+733;ML Cross Frame - Blue 52;FR-C-72B-52;Blue;105,64;169,53;52;18;86%	
+734;ML Cross Frame - Blue 58;FR-C-72B-58;Blue;105,64;169,53;58;18;85%	
+735;ML Cross Frame - Blue 60;FR-C-72B-60;Blue;105,64;169,53;60;18;84%	
+822;ML Cross Frame-W - Red 38;FR-C-72R-38;Red;108,28;169,53;38;18;8%	
+833;ML Cross Frame-W - Red 40;FR-C-72R-40;Red;108,28;169,53;40;18;7%	
+834;ML Cross Frame-W - Red 42;FR-C-72R-42;Red;108,28;169,53;42;18;7%	
+835;ML Cross Frame-W - Red 44;FR-C-72R-44;Red;108,28;169,53;44;18;6%	
+836;ML Cross Frame-W - Red 48;FR-C-72R-48;Red;108,28;169,53;48;18;6%	
+913;HL Cross Bike Seat/Saddle;SE-C-995;;7,01;15,00;;19;2%	
+910;HL Off-Road Bike Seat/Saddle;SE-O-940;;7,01;15,00;;19;2%	
+916;HL Trekking Bike Seat/Saddle;SE-T-924;;7,01;15,00;;19;2%	
+911;LL Cross Bike Seat/Saddle;SE-C-581;;3,61;7,73;;19;2%	
+908;LL Off-Road Bike Seat/Saddle;SE-O-236;;3,61;7,73;;19;2%	
+914;LL Trekking Bike Seat/Saddle;SE-T-312;;3,61;7,73;;19;2%	
+912;ML Cross Bike Seat/Saddle;SE-C-908;;5,21;11,15;;19;2%	
+909;ML Off-Road Bike Seat/Saddle;SE-O-798;;5,21;11,15;;19;2%	
+915;ML Trekking Bike Seat/Saddle;SE-T-762;;5,21;11,15;;19;2%	
+890;HL Trekking Frame - Blue 46;FR-T-98B-46;Blue;180,52;316,23;46;20;2%	
+891;HL Trekking Frame - Blue 50;FR-T-98B-50;Blue;180,52;316,23;50;20;2%	
+892;HL Trekking Frame - Blue 54;FR-T-98B-54;Blue;180,52;316,23;54;20;2%	
+893;HL Trekking Frame - Blue 60;FR-T-98B-60;Blue;180,52;316,23;60;20;2%	
+887;HL Trekking Frame - Yellow 46;FR-T-98Y-46;Yellow;180,52;316,23;46;20;2%	
+888;HL Trekking Frame - Yellow 50;FR-T-98Y-50;Yellow;180,52;316,23;50;20;2%	
+889;HL Trekking Frame - Yellow 54;FR-T-98Y-54;Yellow;180,52;316,23;54;20;2%	
+885;HL Trekking Frame - Yellow 60;FR-T-98Y-60;Yellow;180,52;316,23;60;20;3%	
+903;LL Trekking Frame - Blue 44;FR-T-67B-44;Blue;59,96;105,03;44;20;2%	
+895;LL Trekking Frame - Blue 50;FR-T-67B-50;Blue;59,96;105,03;50;20;2%	
+896;LL Trekking Frame - Blue 54;FR-T-67B-54;Blue;59,96;105,03;54;20;2%	
+897;LL Trekking Frame - Blue 58;FR-T-67B-58;Blue;59,96;105,03;58;20;2%	
+898;LL Trekking Frame - Blue 62;FR-T-67B-62;Blue;59,96;105,03;62;20;2%	
+899;LL Trekking Frame - Yellow 44;FR-T-67Y-44;Yellow;59,96;105,03;44;20;2%	
+900;LL Trekking Frame - Yellow 50;FR-T-67Y-50;Yellow;59,96;105,03;50;20;2%	
+901;LL Trekking Frame - Yellow 54;FR-T-67Y-54;Yellow;59,96;105,03;54;20;2%	
+902;LL Trekking Frame - Yellow 58;FR-T-67Y-58;Yellow;59,96;105,03;58;20;2%	
+886;LL Trekking Frame - Yellow 62;FR-T-67Y-62;Yellow;59,96;105,03;62;20;3%	
+820;HL Cross Front Wheel;FW-C-820;Black;43,96;103,97;;21;8%	
+828;HL Cross Rear Wheel;RW-C-820;Black;47,56;112,47;;21;7%	
+817;HL Off-Road Front Wheel;FW-O-928;Black;39,99;94,55;;21;9%	
+825;HL Off-Road Rear Wheel;RW-O-928;Black;43,59;103,07;;21;8%	
+818;LL Cross Front Wheel;FW-C-623;Black;11,40;26,94;;21;9%	
+826;LL Cross Rear Wheel;RW-C-623;Black;14,99;35,44;;21;8%	
+815;LL Off-Road Front Wheel;FW-O-423;Black;8,09;19,13;;21;9%	
+823;LL Off-Road Rear Wheel;RW-O-423;Black;11,69;27,64;;21;8%	
+819;ML Cross Front Wheel;FW-C-762;Black;33,08;78,24;;21;8%	
+827;ML Cross Rear Wheel;RW-C-762;Black;36,68;86,75;;21;7%	
+816;ML Off-Road Front Wheel;FW-O-762;Black;27,84;65,84;;21;9%	
+824;ML Off-Road Rear Wheel;RW-O-762;Black;31,44;74,41;;21;8%	
+821;Trekking Front Wheel;FW-T-905;Black;29,04;68,67;;21;8%	
+829;Trekking Rear Wheel;RW-T-905;Black;32,64;77,18;;21;7%	
+857;Men's Bib-Shorts L;BS-M891-L;Multi;11,14;25,65;L;22;4%	
+856;Men's Bib-Shorts M;BS-M891-M;Multi;11,14;25,65;M;22;5%	
+855;Men's Bib-Shorts S;BS-M891-S;Multi;11,14;25,65;S;22;5%	
+712;AWC Logo Cap;LC-1098;Multi;20,77;3,08;;23;99%	
+863;Full-Finger Gloves L;GV-FF110-L;Black;4,70;10,83;L;24;4%	
+862;Full-Finger Gloves M;GV-FF110-M;Black;4,70;10,83;M;24;4%	
+861;Full-Finger Gloves S;GV-FF110-S;Black;4,70;10,83;S;24;4%	
+860;Half-Finger Gloves L;GV-HF102-L;Black;2,75;6,98;L;24;4%	
+859;Half-Finger Gloves M;GV-HF102-M;Black;2,75;6,98;M;24;4%	
+858;Half-Finger Gloves S;GV-HF102-S;Black;2,75;6,98;S;24;4%	
+715;Long-Sleeve Jersey L;JL-0192-L;Multi;11,55;14,25;L;25;99%	
+714;Long-Sleeve Jersey M;JL-0192-M;Multi;11,55;14,25;M;25;99%	
+713;Long-Sleeve Jersey S;JL-0192-S;Multi;11,55;14,25;S;25;99%	
+716;Long-Sleeve Jersey XL;JL-0192-X;Multi;11,55;14,25;XL;25;99%	
+883;Short-Sleeve Jersey L;JS-0194-L;Yellow;12,47;15,39;L;25;3%	
+882;Short-Sleeve Jersey M;JS-0194-M;Yellow;12,47;15,39;M;25;3%	
+881;Short-Sleeve Jersey S;JS-0194-S;Yellow;12,47;15,39;S;25;3%	
+884;Short-Sleeve Jersey XL;JS-0194-X;Yellow;12,47;15,39;XL;25;3%	
+850;Men's Shorts L;SH-M869-L;Black;7,42;17,10;L;26;5%	
+849;Men's Shorts M;SH-M869-M;Black;7,42;17,10;M;26;5%	
+841;Men's Shorts S;SH-M869-S;Black;7,42;17,10;S;26;6%	
+851;Men's Shorts XL;SH-M869-X;Black;7,42;17,10;XL;26;5%	
+869;Women's Shorts L;SH-W789-L;Black;7,85;19,95;L;26;4%	
+868;Women's Shorts M;SH-W789-M;Black;7,85;19,95;M;26;4%	
+867;Women's Shorts S;SH-W789-S;Black;7,85;19,95;S;26;4%	
+710;Mountain Bike Socks L;SO-B721-L;White;10,20;28,51;L;27;100%	
+709;Mountain Bike Socks M;SO-B721-M;White;10,20;28,51;M;27;100%	
+875;Racing Socks L;SO-R654-L;White;1,01;0,33;L;27;3%	
+874;Racing Socks M;SO-R654-M;White;1,01;0,32;M;27;3%	
+854;Women's Tights L;TI-W334-L;Black;9,28;23,62;L;28;5%	
+853;Women's Tights M;TI-W334-M;Black;9,28;23,62;M;28;5%	
+852;Women's Tights S;TI-W334-S;Black;9,28;23,62;S;28;5%	
+866;Cycling Vest L;VE-C354-L;Blue;0,71;20,00;L;29;4%	
+865;Cycling Vest M;VE-C354-M;Blue;0,71;20,00;M;29;4%	
+864;Cycling Vest S;VE-C354-S;Blue;0,71;20,00;S;29;4%	
+876;Hitch Rack - 4-Bike;RA-H999;;13,46;0,33;;30;3%	
+879;Bike Stand;ST-4523;;1,78;5,01;;31;3%	
+871;Bottle Cage - Off-Road Frame ;BC-O125;;1,12;0,34;;32;3%	
+872;Bottle Cage - Road Frame;BC-R120;;1,01;0,34;;32;3%	
+870;Water Bottle - 30 oz.;WB-H030;;0,56;0,33;;32;4%	
+877;Bike Wash - Dissolver;CL-3333;;0,89;0,33;;33;3%	
+878;Fender Set - Off-Road;FE-7652;;2,47;6,92;;34;3%	
+708;Sport-100 Helmet Black;HT-U500-B;Black;3,93;11,02;;35;100%	
+711;Sport-100 Helmet Green;HT-U500-G;Green;3,93;11,02;;35;100%	
+707;Sport-100 Helmet Red;HT-U500-R;Red;3,93;11,02;;35;100%	
+880;Hydration Pack - 70 oz.;HY-1111-70;Silver;6,17;17,32;70;36;3%	
+847;Headlights - Dual-Beam;LT-H002;;4,33;11,02;;37;5%	
+848;Headlights - Weatherproof;LT-H007;;5,57;14,17;;37;5%	
+846;Taillights - Battery-Powered;LT-T900;;1,73;4,41;;37;5%	
+843;Cable Lock;LO-C500;;3,09;7,88;;38;6%	
+842;Trekking-Panniers;PA-T200;Grey;15,47;39,38;;39;6%	
+844;Minipump;PU-0346;;2,47;6,30;;40;5%	
+845;Pump Off Road;PU-M055;;3,09;7,87;;40;5%	
+922;Cross Bike Tire Tube;TT-C-982;;0,45;0,32;;41;1%	
+933;HL Cross Tire;TI-C-982;;3,66;10,27;;41;1%	
+930;HL Off-Road Tire;TI-O-823;;1,19;11,03;;41;1%	
+931;LL Cross Tire;TI-C-092;;2,41;6,77;;41;1%	
+928;LL Off-Road Tire;TI-O-267;;2,80;7,87;;41;1%	
+932;ML Cross Tire;TI-C-628;;2,80;7,87;;41;1%	
+929;ML Off-Road Tire;TI-O-602;;3,36;9,45;;41;1%	
+921;Off-Road Bike Tire Tube;TT-O-928;;0,56;0,33;;41;1%	
+873;Patch Kit/8 Patches;PK-8000;;0,26;0,32;;41;3%	
+923;Trekking Bike Tire Tube;TT-T-092;;0,56;0,33;;41;1%	
+934;Trekking Tire;TI-T723;;3,25;9,13;;41;1%	

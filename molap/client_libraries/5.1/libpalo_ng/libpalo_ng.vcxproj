@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3714B0BE-2804-4CB8-8726-A268BDB92315}</ProjectGuid>
+    <RootNamespace>libpalo_ng</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>PGInstrument</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\$(Platform)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\$(Platform)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Configuration)\$(Platform)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\$(Platform)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Configuration)\$(Platform)\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectName)_x64</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectName)_x64</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/wd 4251 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)source\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SECURITY_WIN32;BOOST_THREAD_USE_LIB;WIN32;_DEBUG;LIBPALO_NG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>secur32.lib;icuin.lib;icuuc.lib;ws2_32.lib;ssleay32MTd.lib;libeay32MTd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName)_internal.pdb</ProgramDatabaseFile>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <StripPrivateSymbols>$(TargetDir)$(TargetName).pdb</StripPrivateSymbols>
+      <OutputFile>$(TargetDir)$(TargetFileName)</OutputFile>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "$(SolutionDir)$(Configuration)\$(Platform)\"
+copy "$(TargetDir)*.lib" "$(SolutionDir)$(Configuration)\$(Platform)\lib\"
+copy "$(TargetDir)$(TargetName)*.pdb" "$(SolutionDir)$(Configuration)\$(Platform)\pdb\"
+</Command>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/wd 4251 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>$(ProjectDir)source\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SECURITY_WIN32;BOOST_THREAD_USE_LIB;WIN32;LIBPALO_NG;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>secur32.lib;icuin.lib;icuuc.lib;ws2_32.lib;ssleay32MT.lib;libeay32MT.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName)_internal.pdb</ProgramDatabaseFile>
+      <StripPrivateSymbols>$(TargetDir)$(TargetName).pdb</StripPrivateSymbols>
+      <OptimizeReferences>false</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>$(TargetDir)$(TargetFileName)</OutputFile>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "$(SolutionDir)$(Configuration)\$(Platform)\"
+copy "$(TargetDir)*.lib" "$(SolutionDir)$(Configuration)\$(Platform)\lib\"
+copy "$(TargetDir)$(TargetName)*.pdb" "$(SolutionDir)$(Configuration)\$(Platform)\pdb\"
+</Command>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>SECURITY_WIN32;BOOST_THREAD_USE_LIB;_NDEBUG;WIN64;LIBPALO_NG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(ProjectDir)source\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OmitFramePointers>false</OmitFramePointers>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <AdditionalOptions>/wd 4251 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>secur32.lib;icuin.lib;icuuc.lib;ws2_32.lib;ssleay32MTd.lib;libeay32MTd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName)_internal.pdb</ProgramDatabaseFile>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX64</TargetMachine>
+      <StripPrivateSymbols>$(TargetDir)$(TargetName).pdb</StripPrivateSymbols>
+      <OutputFile>$(TargetDir)$(TargetFileName)</OutputFile>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "$(SolutionDir)$(Configuration)\$(Platform)\"
+copy "$(TargetDir)*.lib" "$(SolutionDir)$(Configuration)\$(Platform)\lib\"
+copy "$(TargetDir)$(TargetName)*.pdb" "$(SolutionDir)$(Configuration)\$(Platform)\pdb\"
+</Command>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <PreprocessorDefinitions>SECURITY_WIN32;BOOST_THREAD_USE_LIB;WIN64;LIBPALO_NG;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(ProjectDir)source\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/wd 4251 %(AdditionalOptions)</AdditionalOptions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>secur32.lib;icuin.lib;icuuc.lib;ws2_32.lib;ssleay32MT.lib;libeay32MT.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <OptimizeReferences>false</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <TargetMachine>MachineX64</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName)_internal.pdb</ProgramDatabaseFile>
+      <StripPrivateSymbols>$(TargetDir)$(TargetName).pdb</StripPrivateSymbols>
+      <ShowProgress>NotSet</ShowProgress>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <SubSystem>NotSet</SubSystem>
+      <OutputFile>$(TargetDir)$(TargetFileName)</OutputFile>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "$(SolutionDir)$(Configuration)\$(Platform)\"
+copy "$(TargetDir)*.lib" "$(SolutionDir)$(Configuration)\$(Platform)\lib\"
+copy "$(TargetDir)$(TargetName)*.pdb" "$(SolutionDir)$(Configuration)\$(Platform)\pdb\"
+</Command>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;WIN64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\LibPaloNGExceptionFactory.h" />
+    <ClInclude Include="source\Util\CsvLineDecoder.h" />
+    <ClInclude Include="source\Util\CsvTokenFromStream.h" />
+    <ClInclude Include="source\Util\global.h" />
+    <ClInclude Include="source\include\libpalo_ng\Util\StringUtils.h" />
+    <ClInclude Include="source\Network\ClientSocket.h" />
+    <ClInclude Include="source\include\libpalo_ng\Network\NetInitialisation.h" />
+    <ClInclude Include="source\Network\Socket.h" />
+    <ClInclude Include="source\Network\SocketAddress.h" />
+    <ClInclude Include="source\include\libpalo_ng\Network\SocketException.h" />
+    <ClInclude Include="source\Network\HttpClient\BasicAuthentication.h" />
+    <ClInclude Include="source\Network\HttpClient\Http.h" />
+    <CustomBuildStep Include="source\Network\HttpClient\HttpClient.h" />
+    <CustomBuildStep Include="source\Network\HttpClient\HttpClientConnection.h" />
+    <CustomBuildStep Include="source\Network\HttpClient\HttpClientConnectionPool.h" />
+    <ClInclude Include="source\Network\HttpClient\HttpClientException.h" />
+    <CustomBuildStep Include="source\Network\HttpClient\HttpClientRequest.h" />
+    <CustomBuildStep Include="source\Network\HttpClient\HttpClientResponse.h" />
+    <ClInclude Include="source\Network\HttpClient\HttpExceptionFactory.h" />
+    <ClInclude Include="source\Network\HttpClient\HttpRequestHandler.h" />
+    <ClInclude Include="source\Network\HttpClient\HttpsClientConnection.h" />
+    <ClInclude Include="source\Network\HttpClient\HttpsClientConnectionPool.h" />
+    <CustomBuildStep Include="source\Network\HttpClient\Url.h" />
+    <ClInclude Include="source\Network\TcpDevice\TcpDevice.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cube.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cubes.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Database.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Dimension.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Dimensions.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Element.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Server.h" />
+    <ClInclude Include="source\Palo\ServerImpl.h" />
+    <ClInclude Include="source\Palo\View.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\ServerPool.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\types.h" />
+    <ClInclude Include="source\Palo\Exception\CacheInvalidException.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\CubeNotFoundException.h" />
+    <ClInclude Include="source\Palo\Exception\CubeTokenOutdatedException.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\DatabaseNotFoundException.h" />
+    <ClInclude Include="source\Palo\Exception\DatabaseTokenOutdatedException.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\DimensionNotFoundException.h" />
+    <ClInclude Include="source\Palo\Exception\DimensionTokenOutdatedException.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\ElementNotFoundException.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\ExceptionFactory.h" />
+    <ClInclude Include="source\Palo\Exception\MaximumServerRetrysReachedException.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\PaloException.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\PaloExceptionFactory.h" />
+    <ClInclude Include="source\Palo\Exception\PaloNGGeneralException.h" />
+    <ClInclude Include="source\Palo\Exception\PaloNGTypeErrorException.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\PaloServerException.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Exception\ResolveException.h" />
+    <ClInclude Include="source\Palo\Exception\ServerTokenOutdatedException.h" />
+    <ClInclude Include="source\Palo\Exception\TokenOutdatedException.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\AbstractCache.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\Cache.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\CubeCache.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\CubesCache.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\DatabaseCache.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\DimensionCache.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\DimensionsCache.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\ElementCache.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Cache\ServerCache.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\CubeToken.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\DatabaseToken.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\DimensionToken.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\PaloClient.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\ServerToken.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\Token.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Network\Tokens.h" />
+    <ClInclude Include="source\include\libpalo_ng\Palo\Logging\Logging.h" />
+    <ClInclude Include="source\Palo\Config\Config.h" />
+    <ClInclude Include="source\include\libpalo_ng\config_ng.h" />
+    <ClInclude Include="source\include\libpalo_ng\libpalo_ng_version.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Util\CsvLineDecoder.cpp" />
+    <ClCompile Include="source\Util\CsvTokenFromStream.cpp" />
+    <ClCompile Include="source\Util\StringUtils.cpp" />
+    <ClCompile Include="source\Network\HttpClient\BasicAuthentication.cpp" />
+    <ClCompile Include="source\Network\HttpClient\HttpClient.cpp" />
+    <ClCompile Include="source\Network\HttpClient\HttpClientConnection.cpp" />
+    <ClCompile Include="source\Network\HttpClient\HttpClientConnectionPool.cpp" />
+    <ClCompile Include="source\Network\HttpClient\HttpClientRequest.cpp" />
+    <ClCompile Include="source\Network\HttpClient\HttpClientResponse.cpp" />
+    <ClCompile Include="source\Network\HttpClient\HttpExceptionFactory.cpp" />
+    <ClCompile Include="source\Network\HttpClient\HttpsClientConnection.cpp" />
+    <ClCompile Include="source\Network\HttpClient\HttpsClientConnectionPool.cpp" />
+    <ClCompile Include="source\Network\HttpClient\Url.cpp" />
+    <ClCompile Include="source\Network\TcpDevice\TcpDevice.cpp" />
+    <ClCompile Include="source\Network\ClientSocket.cpp" />
+    <ClCompile Include="source\Network\NetInitialisation.cpp" />
+    <ClCompile Include="source\Network\Socket.cpp" />
+    <ClCompile Include="source\Network\SocketAddress.cpp" />
+    <ClCompile Include="source\Network\SocketException.cpp" />
+    <ClCompile Include="source\Palo\Cube.cpp" />
+    <ClCompile Include="source\Palo\Cubes.cpp" />
+    <ClCompile Include="source\Palo\Database.cpp" />
+    <ClCompile Include="source\Palo\Dimension.cpp" />
+    <ClCompile Include="source\Palo\Dimensions.cpp" />
+    <ClCompile Include="source\Palo\Element.cpp" />
+    <ClCompile Include="source\Palo\Server.cpp" />
+    <ClCompile Include="source\Palo\ServerPool.cpp" />
+    <ClCompile Include="source\Palo\ServerImpl.cpp" />
+    <ClCompile Include="source\Palo\View.cpp" />
+    <ClCompile Include="source\Palo\types.cpp" />
+    <ClCompile Include="source\Palo\Exception\LibPaloNGExceptionFactory.cpp" />
+    <ClCompile Include="source\Palo\Exception\MaximumServerRetrysReachedException.cpp" />
+    <ClCompile Include="source\Palo\Exception\PaloExceptionFactory.cpp" />
+    <ClCompile Include="source\Palo\Network\CubeToken.cpp" />
+    <ClCompile Include="source\Palo\Network\DatabaseToken.cpp" />
+    <ClCompile Include="source\Palo\Network\DimensionToken.cpp" />
+    <ClCompile Include="source\Palo\Network\PaloClient.cpp" />
+    <ClCompile Include="source\Palo\Network\ServerToken.cpp" />
+    <ClCompile Include="source\Palo\Network\Token.cpp" />
+    <ClCompile Include="source\Palo\Logging\Logging.cpp" />
+    <ClCompile Include="source\Palo\Config\Config.cpp" />
+    <ClCompile Include="source\libpalo_ng.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="source\libpalo_ng_version.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="libpalo_ng.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

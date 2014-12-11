@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://schemas.jedox.com/component"
+	xmlns:tns="http://schemas.jedox.com/component">
+
+	<complexType name="componentsType">
+		<sequence maxOccurs="unbounded">
+			<choice>
+				<any maxOccurs="unbounded" processContents="lax"
+					namespace="##other" />
+				<element ref="tns:projects" />
+				<element ref="tns:jobs" />
+				<element ref="tns:extracts" />
+				<element ref="tns:transforms" />
+				<element ref="tns:loads" />
+				<element ref="tns:functions" />
+				<element ref="tns:connections" />
+				<element ref="tns:scriptapis" />
+				<element ref="tns:prototypes" />				
+			</choice>
+		</sequence>
+	</complexType>
+	
+	<complexType name="parameterType">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="name" type="string" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="componentType">
+		<sequence>
+			<element ref="tns:parameter" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="class" type="string" use="required" />
+		<attribute name="name" type="string" use="required" />
+		<attribute name="default" type="boolean" default="false" use="optional" />
+		<attribute name="status" type="string" use="optional" />
+		<attribute name="modes" type="string" use="optional" />
+		<attribute name="caption" type="string" use="optional" />
+		<attribute name="connectionList" type="string" use="optional" />
+	</complexType>
+
+	<complexType name="managerType">
+		<sequence minOccurs="0" maxOccurs="unbounded">
+			<element ref="tns:component" />
+		</sequence>
+	</complexType>
+	
+	<element name="parameter" type="tns:parameterType" />
+	
+	<element name="component" type="tns:componentType" />
+
+	<element name="components" type="tns:componentsType" />
+	
+	<element name="extracts" type="tns:managerType">
+		<unique name="sourcenames">
+			<selector xpath=".//tns:component" />
+			<field xpath="@name" />
+		</unique>
+	</element>
+	
+	<element name="transforms" type="tns:managerType">
+		<unique name="transformnames">
+			<selector xpath=".//tns:component" />
+			<field xpath="@name" />
+		</unique>
+	</element>
+	
+	<element name="loads" type="tns:managerType">
+		<unique name="loadnames">
+			<selector xpath=".//tns:component" />
+			<field xpath="@name" />
+		</unique>
+	</element>
+	
+	<element name="functions" type="tns:managerType">
+		<unique name="functionnames">
+			<selector xpath=".//tns:component" />
+			<field xpath="@name" />
+		</unique>
+	</element>
+	
+	<element name="connections" type="tns:managerType">
+		<unique name="connectionnames">
+			<selector xpath=".//tns:component" />
+			<field xpath="@name" />
+		</unique>
+	</element>
+	
+	<element name="projects" type="tns:managerType">
+		<unique name="projectnames">
+			<selector xpath=".//tns:component" />
+			<field xpath="@name" />
+		</unique>
+	</element>
+	
+	<element name="jobs" type="tns:managerType">
+		<unique name="jobnames">
+			<selector xpath=".//tns:component" />
+			<field xpath="@name" />
+		</unique>
+	</element>
+	
+	<element name="scriptapis" type="tns:managerType">
+		<unique name="apinames">
+			<selector xpath=".//tns:component" />
+			<field xpath="@name" />
+		</unique>
+	</element>
+	
+	<element name="alias_maps" type="tns:managerType">
+		<unique name="aliasmapnames">
+			<selector xpath=".//tns:component" />
+			<field xpath="@name" />
+		</unique>
+	</element>
+	
+	<element name="prototypes" type="tns:managerType">
+		<unique name="prototypes">
+			<selector xpath=".//tns:component" />
+			<field xpath="@name" />
+		</unique>
+	</element>	
+	
+</schema>

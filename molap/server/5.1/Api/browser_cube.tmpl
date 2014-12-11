@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Jedox OLAP</title>
+    <link href="/inc/style_palo.css" rel="stylesheet" type="text/css">
+    <!--[if IE]>
+    <style>
+      body{
+        overflow:auto;
+      }
+    </style>
+    <![endif]-->
+  </head>
+
+  <body>
+  	<script>
+		function httpGet(theUrl)
+		{
+		    var xmlHttp = null;
+		    xmlHttp = new XMLHttpRequest();
+    		xmlHttp.open( "GET", theUrl, false );
+    		xmlHttp.send( null );
+        if (xmlHttp.status != 200) {
+          alert(xmlHttp.responseText);
+          return false;
+        }
+        return true;
+		}
+		function editHandler(event)
+		{
+		  if(event.keyCode == 13) {
+		    path = event.target.getAttribute('path');
+		    type = event.target.getAttribute('type');
+		    prevValue = event.target.getAttribute('prevValue');
+		    value = event.target.value;
+        var add=false;
+        command = value.substr(0,1);
+        splash = 0;
+        if (command == '+') {
+          value =value.substr(1);
+          add = true;
+        } else if (command == '!') {
+          value =value.substr(1);
+          splash = 3;
+        } else if (command == '#') {
+          value =value.substr(1);
+          splash = 1;
+        }
+        if (splash != 0) {
+          lastchar = value.slice(-1);
+          if (lastchar == "%") {
+            percentage = value.substr(0,value.length-1);
+            // calculate desired value
+            value = prevValue * percentage / 100;
+          }
+        }
+    		var myurl = location.protocol+"//"+location.host+"/cell/replace?sid=0000&database={@database_identifier}&cube={@cube_identifier}&path="+path+"&value="+value;
+        if (add) {
+          myurl += "&add=1";
+        }
+        if (splash != 0) {
+          myurl += "&splash="+splash;
+        }
+        if (httpGet(myurl)) {
+            location.reload();
+        }
+		  }
+		}
+		function startEdit(event)
+  	    {
+          //console.log(event.target.parentNode.getElementsByClassName('path')[0]);
+          path = event.target.parentNode.parentNode.getElementsByClassName('path')[0].innerHTML;
+          type = event.target.parentNode.parentNode.getElementsByClassName('type')[0].innerHTML;
+          prevValue = event.target.parentNode.parentNode.getElementsByClassName('value')[0].innerHTML;
+          console.log(path, type, prevValue);
+          val = event.target.innerHTML;
+          newhtml = "<input type='text' value='"+val+"' onkeyup='editHandler(event)' path='"+path+"' type='"+type+"' prevValue='"+prevValue+"'></input>";
+          event.target.parentNode.innerHTML = newhtml;
+        }
+  	</script>
+  	
+    <div id="surround" align="center">
+      <div id="container">
+        <div id="clientHeader">&nbsp;</div>
+
+        <div id="left">
+          <a class="nav" href="/">Home</a>     
+          <a class="nav" href="/browser">Server browser</a>     
+          <a class="nav" href="/api">API Documentation</a>     
+          <a class="nav" href="http://www.jedox.com">Jedox OLAP Home</a>     
+        </div>
+
+        <div id="center">
+          <div style="margin: 10px;">
+            <h1>Jedox OLAP server browser</h1>
+
+            <table cellpadding="2" cellspacing="2" width="100%">
+		
+              <tr class="border_table">
+                <td colspan="2"><a href="/">home</a> > <a href="/browser">server</a> > <a href="/browser/database?database={@database_identifier}">database</a> > cube ></td>
+              </tr>
+
+              {@message}
+
+              <tr>
+                <td colspan="2"><h2>Cube</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">ID</td>
+                      <td           >name</td>
+                      <td width="50">status</td>
+                      <td width="50">type</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td>{@cube_identifier}</td>
+                      <td>{@cube_name}</td>
+                      <td>{@cube_status}</td>
+                      <td>{@cube_type}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td>number of numeric cube cells</td>
+                      <td>filled cube cells (numeric and string)</td>
+                      <td>marked cells</td>
+                      <td>enterprise rules</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td>{@dimension_numeric_cells}</td>
+                      <td>{@cube_size}</td>
+                      <td>{@marked_cells}</td>
+                      <td>
+                      <a href="/browser/rule?database={@database_identifier}&cube={@cube_identifier}">show {@cube_rules} rules</a>
+                      <a href="/browser/analyzer?database={@database_identifier}&cube={@cube_identifier}">analyze</a>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td>cached areas</td>
+                      <td>cached cells</td>
+                      <td>cached values/limit</td>
+                      <td>cached cells found</td>
+                      <td>cache age/generation</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td>{@cached_areas}</td>
+                      <td>{@cached_cells}</td>
+                      <td>{@cached_values_limit}</td>
+                      <td>{@cached_values_found}</td>
+                      <td>{@cache_time_info} <a href="/browser/cube?database={@database_identifier}&cube={@cube_identifier}&action=reset_cache">clear cache</a></td>
+                    </tr>
+                  </table>
+
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="80">action</td>
+                      <td           >description</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><a href="/browser/cube?database={@database_identifier}&cube={@cube_identifier}&action=load">load</a></td>
+                      <td>Reload cube data from disk. All changes wil be lost.</td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><a href="/browser/cube?database={@database_identifier}&cube={@cube_identifier}&action=save">save</a></td>
+                      <td>Save server, database and cube data to disk.</td>
+                    </tr>
+                    <tr class="value_table">                    
+                      <td><a href="/browser/database?database={@database_identifier}&cube={@cube_identifier}&action=unload">unload</a></td>
+                      <td>Unload cube from memory if it was saved before.</td>
+                    </tr>                    
+                    <tr class="value_table">                    
+                      <td><a href="/browser/database?database={@database_identifier}&cube={@cube_identifier}&action=delete">delete</a></td>
+                      <td>Delete cube from memory and disk.</td>
+                    </tr>                    
+                  </table>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td colspan="2"><h2>Dimensions</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td width="20">ID</td>
+                      <td           >name</td>
+                      <td width="80">num elements</td>
+                      <td width="80">numeric el.</td>
+                      <td width="60">max level</td>
+                      <td width="60">max depth</td>
+                      <td width="60">type</td>
+                    </tr>
+LOOP @dimension_identifier
+                    <tr class="value_table">
+                      <td><a href="/browser/dimension?database={@database_identifier}&dimension={@dimension_identifier[]}">{@dimension_identifier[]}</a></td>
+                      <td><a href="/browser/dimension?database={@database_identifier}&dimension={@dimension_identifier[]}">{@dimension_name[]}</a></td>
+                      <td class="value_cell">{@dimension_num_elements[]}</td>
+                      <td class="value_cell">{@dimension_numeric_elements[]}</td>
+                      <td class="value_cell">{@dimension_max_level[]}</td>
+                      <td class="value_cell">{@dimension_max_depth[]}</td>
+                      <td class="value_cell">{@dimension_type[]}</td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><h2>Cell</h2></td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <form action="/browser/cube">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td>Path (*)</td>
+                      <td width="90"></td>
+                      <td width="10"></td>
+                    </tr>
+                    <tr class="value_table">
+                      <td><input name="area" type="text" size="50" maxlength="16384" value="{@cell_path_value}"></td>
+                      <td><input name="skip_empty" input type="checkbox" value="0">Skip empty</td>
+                      <td><input type="submit" value=" OK "></td>
+                    </tr>
+                  </table>
+                  <input name="database" type="hidden" value="{@database_identifier}">  
+                  <input name="cube" type="hidden" value="{@cube_identifier}">  
+                  </form>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">
+                  <table class="border_table" cellpadding="2" cellspacing="1" width="100%">
+                    <tr class="doc_table">
+                      <td>path</td>
+                      <td>elements</td>
+                      <td width="60">type</td>
+                      <td width="40">rule</td>
+                      <td width="100">value</td>
+                    </tr>
+LOOP @cell_path
+                    <tr class="value_table">
+                      <td class="path">{@cell_path[]}</td>
+                      <td>{@cell_pathName[]}</td>
+                      <td class="type">{@cell_type[]}</td>
+                      <td>{@cell_rule[]}</td>
+                      <td><span  class="value" onclick="startEdit(event)">{@cell_value[]}</a></td>
+                    </tr>
+END_LOOP
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="2">(*) Comma separated list of element identifier. Use the "*" character for all elements of a dimension. 
+                The list of cells is limited to 1000 values.</td>
+              </tr>
+            </table>  
+          </div>
+        </div>
+
+        <div class="footer">
+          <div class="footerText">{@footerText}</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

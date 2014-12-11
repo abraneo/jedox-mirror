@@ -1,0 +1,82 @@
+/**
+*   @brief <Description of Class>
+*  
+*   @file
+*  
+*   Copyright (C) 2008-2013 Jedox AG
+*  
+*   This program is free software; you can redistribute it and/or modify it
+*   under the terms of the GNU General Public License (Version 2) as published
+*   by the Free Software Foundation at http://www.gnu.org/copyleft/gpl.html.
+*  
+*   This program is distributed in the hope that it will be useful, but WITHOUT
+*   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+*   FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+*   more details.
+*  
+*   You should have received a copy of the GNU General Public License along with
+*   this program; if not, write to the Free Software Foundation, Inc., 59 Temple
+*   Place, Suite 330, Boston, MA 02111-1307 USA
+* 
+*   If you are developing and distributing open source applications under the
+*   GPL License, then you are free to use Palo under the GPL License.  For OEMs, 
+*   ISVs, and VARs who distribute Palo with their products, and do not license
+*   and distribute their source code under the GPL, Jedox provides a flexible  
+*   OEM Commercial License.
+*  
+*   Developed by proclos OG, Wien on behalf of Jedox AG. Intellectual property
+*   rights has proclos OG, Wien. Exclusive worldwide exploitation right 
+*   (commercial copyright) has Jedox AG, Freiburg.
+*  
+*   @author Christian Schwarzinger, proclos OG, Wien, Austria
+*   @author Gerhard Weis, proclos OG, Wien, Austria
+*   @author Andreas Fr�hlich, Jedox AG, Freiburg, Germany
+*   @author Kais Haddadin, Jedox AG, Freiburg, Germany
+*/
+package com.jedox.etl.core.source.processor.views;
+
+import java.util.List;
+
+import com.jedox.etl.core.aliases.IAliasMap;
+import com.jedox.etl.core.node.CoordinateNode;
+import com.jedox.etl.core.node.INamedValue;
+import com.jedox.etl.core.node.NamedValue;
+import com.jedox.etl.core.node.Row;
+import com.jedox.etl.core.node.tree.ITreeElement;
+import com.jedox.palojlib.interfaces.IElement.ElementType;
+
+public class FullHierarchyWeightedView extends FullHierarchyView {
+	
+	protected Row initRow(IAliasMap map, int length) {
+		Row row = super.initRow(map, length);
+		//now create weight columns
+		for (int i=1; i<length; i++) {
+			CoordinateNode c = new CoordinateNode("weight"+i);
+			// c.setFallbackDefault("1");
+			row.addColumn((i*2)-1,c);
+		}
+		//merge columns
+		return row;
+	}
+	
+	protected INamedValue<ElementType> getWeightColumn(ITreeElement node, ITreeElement parent) {
+		double weight = node.getWeight(parent);
+		NamedValue<ElementType> column = new NamedValue<ElementType>(String.valueOf(weight));
+		return column;
+	}
+	
+	public Row fillRow(int current) {
+		List<ITreeElement> arow = getSourceRows().get(current);
+		fillColumn((CoordinateNode) getTargetRow().getColumn(0),arow.get(0));
+		for (int i=1; i<arow.size(); i++) {
+			fillColumn((CoordinateNode) getTargetRow().getColumn((i*2)-1), getWeightColumn(arow.get(i),arow.get(i-1)));
+			fillColumn((CoordinateNode) getTargetRow().getColumn((i*2)), arow.get(i));
+		}
+		for (int i=(arow.size()*2)-1; i<getTargetRow().size(); i++) {
+			CoordinateNode c = (CoordinateNode) getTargetRow().getColumn(i);
+			c.setValue("");
+		}
+		return getTargetRow();
+	}
+
+}

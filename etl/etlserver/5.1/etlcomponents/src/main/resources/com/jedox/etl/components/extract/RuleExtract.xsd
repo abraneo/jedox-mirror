@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.jedox.com/etlcore"
+	xmlns:c="http://schemas.jedox.com/etlcore" elementFormDefault="qualified">
+
+	<element name="extract" type="c:extracttype" />
+
+	<complexType name="connectionref">
+		<attribute name="nameref" type="string" use="required">
+		</attribute>
+		<anyAttribute processContents="lax" />
+	</complexType>
+
+	<complexType name="singleruletype">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="comment" type="string" />
+				<attribute name="active" type="boolean" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="rulestype">
+		<sequence>
+			<element name="rule" type="c:singleruletype" minOccurs="0"
+				maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="cubetype">
+		<attribute name="name" type="string" use="required" />
+	</complexType>
+
+	<group name="extractFromCube">
+		<sequence>
+			<element name="connection" type="c:connectionref" />
+			<element name="cube" type="c:cubetype">
+				<annotation>
+					<appinfo>metadata.cube.Name;mask=10000</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+	</group>
+
+	<group name="extractFromXML">
+		<sequence>
+			<element name="rules" type="c:rulestype" />
+		</sequence>
+	</group>
+
+	<group name="extractFromBoth">
+		<choice>
+			<group ref="c:extractFromCube" minOccurs="0" />
+			<group ref="c:extractFromXML" minOccurs="0" />
+		</choice>
+	</group>
+	<complexType name="extracttype">
+
+		<sequence>
+			<element name="comment" type="string" minOccurs="0" maxOccurs="2"/>
+			<group ref="c:extractFromBoth" />
+		</sequence>
+
+		<attribute name="name" type="string" use="required" />
+		<attribute name="type" type="string" use="required" />
+		<attribute name="modified" type="string"/>
+        <attribute name="modifiedBy" type="string"/>
+	</complexType>
+
+</schema>

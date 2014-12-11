@@ -1,0 +1,34 @@
+@request_path /element/destroy
+
+@short_description Deletes an element
+
+@long_description 
+
+@param database
+@param_type identifier
+@param_description Identifier of a database
+ 
+@param dimension
+@param_type identifier
+@param_description Identifier of a dimension
+ 
+@param element
+@param_type identifier
+@param_description Identifier of an element
+ 
+@param sid
+@param_type string
+@param_description Session identifier for a server connection. Use the
+<a href="/api/server/login">/server/login</a> request to get a valid
+session identifier.
+
+
+
+@result OK
+@result_type boolean
+@result_description "1" means OK
+
+
+
+@example database=1&dimension=0&element=112
+@example_description Delete element "112" of dimension "0"

@@ -1,0 +1,63 @@
+<project name="sampleTableView" version="5.0">
+  <comment>
+<![CDATA[ETL Demo Project.
+Demonstrates filtering and sorting of tables with a transform of type TableView. The result is loaded to a Flat file.
+]]>
+  </comment>
+  <variables/>
+  <connections>
+    <connection name="Products_file" type="File">
+      <database>BikerProducts.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+  	  <quote>#none</quote>
+      <encoding>latin1</encoding>
+    </connection>
+    <connection name="out_file" type="File">
+      <database>Result_ProductsView.csv</database>
+      <header>true</header>
+      <delimiter>;</delimiter>
+  	  <quote>"</quote>      
+      <encoding>latin1</encoding>
+    </connection>
+  </connections>
+  <extracts>
+    <extract name="Products_Extract" type="File">
+      <connection nameref="Products_file"/>
+    </extract>
+  </extracts>
+  <transforms>
+    <transform name="Products_View" type="TableView">
+      <sources>
+        <source nameref="Products_Extract"/>
+      </sources>
+      <sorter>
+        <input nameref="ProductID" order="asc"/>
+      </sorter>
+      <filter type="and">
+        <input nameref="Color">
+          <accept operator="equal" value="Blue"/>
+        </input>
+        <input nameref="ProductCategoryID">
+          <accept operator="inRange" value="[10,30]"/>
+        </input>
+      </filter>
+      <start>1</start>
+      <end>10</end>      
+    </transform>
+  </transforms>
+  <loads>
+    <load name="Products_View_Load" type="File">
+      <comment>
+<![CDATA[Write the Source to a Flat File.]]>
+      </comment>
+      <source nameref="Products_View"/>
+      <connection nameref="out_file"/>
+    </load>
+  </loads>
+  <jobs>
+    <job name="default" type="Standard">
+      <load nameref="Products_View_Load"/>
+    </job>
+  </jobs>
+</project>

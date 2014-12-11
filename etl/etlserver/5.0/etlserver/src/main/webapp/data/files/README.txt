@@ -1,0 +1,1 @@
+Storage directory for Data-Files used in Palo ETL File-Extract and File-Load
